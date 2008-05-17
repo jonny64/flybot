@@ -1,0 +1,9 @@
+#How To Get It Work
+
+= Introduction =
+
+Just unpack bot to FlylinkDC installation folder
+
+
+= Details =
+It wasn't tested yet on clients other than [flylinkdc.ru FlylinkDC]
