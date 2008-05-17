@@ -1,5 +1,4 @@
-#How To Get It Work
-
+#labels Featured,Phase-Deploy
 = Introduction =
 
 Just unpack bot to FlylinkDC installation folder
