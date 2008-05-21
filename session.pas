@@ -3,7 +3,7 @@ unit session;
 interface
 
 uses
-  SysUtils, Classes, Windows, Dictionary, botdef;
+  SysUtils, Classes, Windows, Dictionary, settings, botdef, Forms;
 
 type
   TUserSession = class
@@ -87,7 +87,7 @@ begin
   SetLength(replies, length(replies)+1);
   replies[length(replies)-1] := msg;
 
-  if (GetVariable('BOT') = '1') then exit;
+  //if (GetVariable('BOT') = '1') then exit;
 
   //определям список возможных ответов
   possible := dict.GetMatched(msg, used);
@@ -109,7 +109,7 @@ begin
     if addActions then begin
       SendMsg(WideString(cid), WideString(current.phrase));
       if current.giveSlot then
-         SendProc2( integer(USER_SLOT), pWideChar(cid), @SLOT_TIMEOUT_SEC, sizeof(SLOT_TIMEOUT_SEC) );
+         SendProc2( integer(USER_SLOT), pWideChar(cid), @g_slotTimeout, sizeof(g_slotTimeout) );
       if current.closeWnd then
          SendProc2( integer(USER_CLOSE), pWideChar(cid), nil, 0 );
       if current.addToIngnore then
@@ -121,7 +121,7 @@ begin
   //if (random(10) > 8) then exit;
 
   timeout := length(current.phrase)*100;
-  if (random(5) = 0) then inc(timeout, 6000);
+  if (random(5) = 0) then inc(timeout, g_answrDelay);
   SendDelayedMsg(current.phrase, timeout);
 end;
 
@@ -161,7 +161,6 @@ procedure DelayedMsgThread(cid: pointer); stdcall;
 var
   r: ^TMsgRecord;
   current:TPhrase;
-  //на сколько выдавать слот
 begin
   r := cid;
   if (WaitForSingleObject(r.waitHandle, r.timeout) = WAIT_TIMEOUT) and (Assigned(SendProc2)) then

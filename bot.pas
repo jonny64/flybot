@@ -3,7 +3,7 @@ unit bot;
 interface
 
 uses
-  SysUtils, Classes, Windows, Session, botdef;
+  SysUtils, Classes, Windows, Session, settings, botdef;
 
 var
   SendProc: tSendMessage;
@@ -13,6 +13,8 @@ var
   procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param: pointer; paramsize: Cardinal); stdcall;
   function init(var _init: TBotInit): boolean; stdcall;
   procedure SendMsg(cid, msg: WideString);
+  function GetModulePath:string;
+  
   exports init;
 
 implementation
@@ -62,7 +64,7 @@ var
   cid, msg,answer,userinfo: WideString;
   i,sid: integer;
 begin
-     if (TrayForm <> nil) and (not TrayForm.State) then exit;
+     if (TrayForm <> nil) and (not TrayForm.botEnabled) then exit;
 
   //bot callback for receiving notifications from client
   case CODES(msgid) of
@@ -110,8 +112,6 @@ end;
 
 //инициализаци€ _init struct
 function init(var _init: TBotInit): boolean; stdcall;
-var
-  exe: array [0..512] of char;
 begin
   Randomize;
   _init.botId := 'xBot';
@@ -135,17 +135,27 @@ begin
   result := true;//пока все идет хорошо
   //создаем и заполн€ем словарь фраз-ответов
   try
-    GetModuleFilename(0, exe, 512);
-    dict := TDict.init(ExtractFilePath(string(exe)) + 'Dictionary.ini');
+    dict := TDict.init(GetModulePath + DICTIONARY_FILENAME);
+    ReadSettings;
+    case g_slotTimeout of
+         600:  TrayForm.Check(0);
+         3600:  TrayForm.Check(1);
+         86400: TrayForm.Check(2);
+    end;
   except
     on e: exception do
     begin
-      Windows.Beep(400, 50);
-      Windows.MessageBox(0, pchar('(ChatBot.dll) ѕроблема со словарем '#13#10+e.message),
-                         'error', MB_OK or MB_ICONERROR);
+      TrayForm.ShowErrMsg('ѕроблема со словарем ' + #13 + e.message);
       result := false;
     end;
   end;
+end;
+
+function GetModulePath:string;
+var exe:array[0..512]of char;
+begin
+  GetModuleFilename(0, exe, 512);
+  result:=ExtractFilePath(string(exe))
 end;
 
 end.
