@@ -3,7 +3,7 @@ unit dictionary;
 interface
 
 uses
-  SysUtils, Classes, Windows, RegExpr;
+  SysUtils, Classes, Windows, RegExpr, botdef, tray;
 
 type
   TPhrase = record
@@ -19,19 +19,41 @@ type
 type
   TDict = class
   private
+    dicFilename:string;
     function getPhraseCount: integer;
   public
     allphrases: TPhrases;
     property count: integer read getPhraseCount;
+    
     function getMatched(const msg: WideString; const used: TBoolArray): TPhrases;
+    function Reload: boolean;
+
     class function GetRandom(const  from: TPhrases): TPhrase;
     constructor init(const ini: string);
   end;
 
+   
 var
   dict: TDict;
-
+  
 implementation
+
+function TDict.Reload: boolean;
+var
+  exe: array [0..512] of char;
+begin
+  result:=true;
+  try
+    GetModuleFilename(0, exe, 512);
+    dict := TDict.init(ExtractFilePath(string(exe)) + DICTIONARY_FILENAME);
+  except
+    on e: exception do
+    begin
+      TrayForm.ShowErrMsg('Проблема со словарем ' + #13 + e.message);
+      result := false;
+    end;
+  end;
+end;
 
 function TDict.getPhraseCount: integer;
 begin
@@ -89,17 +111,17 @@ end;
 
 class function TDict.GetRandom(const from: TPhrases): TPhrase;
 var
-  max, msg, i: integer;
+  sumPrio, msgId, i: integer;
 begin
-  max := 0;
+  sumPrio := 0;
   for i := low(from) to high(from) do
-    max := max + from[i].basePrio;
-  msg := random(max);
-  if (msg >= max) then msg := max-1;
-  i := 0; max := 0;
+    sumPrio := sumPrio + round(1000/from[i].basePrio);
+  msgId := random(sumPrio);
+  //if (msgId >= sumPrio) then msgId := sumPrio-1;
+  i := 0; sumPrio := 0;
   while (true) do begin
-    max := max + from[i].basePrio;
-    if (msg < max) then break
+    sumPrio := sumPrio + round(1000/from[i].basePrio);
+    if (msgId < sumPrio) then break
     else inc(i);
   end;
   result := from[i];
@@ -116,6 +138,7 @@ begin
   AssignFile(f, ini);
   Reset(f);
   try
+    dicFilename:=ini;
     dst := 0;
     while not EOF(f) do begin
       Readln(f, s);
