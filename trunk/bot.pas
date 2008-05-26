@@ -137,11 +137,6 @@ begin
   try
     dict := TDict.init(GetModulePath + DICTIONARY_FILENAME);
     ReadSettings;
-    case g_slotTimeout of
-         600:  TrayForm.Check(0);
-         3600:  TrayForm.Check(1);
-         86400: TrayForm.Check(2);
-    end;
   except
     on e: exception do
     begin

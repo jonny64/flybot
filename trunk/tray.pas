@@ -27,6 +27,7 @@ type
     procedure popSlot10mClick(Sender: TObject);
     procedure popSlot1hClick(Sender: TObject);
     procedure popSlot1dClick(Sender: TObject);
+    procedure PopupMenuMainPopup(Sender: TObject);
   private
     { Private declarations }
     procedure SwitchIcon;
@@ -38,7 +39,6 @@ type
     procedure OnWmMouseTray(var message: TMessage); message WM_USER;
     procedure AddTrayIcon(const tip: string);
     procedure BeforeDestruction; override;
-    procedure Check(i:integer);
   end;
        
 var
@@ -108,11 +108,14 @@ begin
   SwitchIcon;}
 end;
 
+//переключаем текст на пункте меню
 procedure TTrayForm.popSwitchClick(Sender: TObject);
+var
+  itemToEdit: TMenuItem;
 begin
   botEnabled := not botEnabled;
-  //переключаем текст на пункте меню
-  PopupMenuMain.Items[3].Caption:=stateStr[integer(botEnabled)+1];
+
+  PopupMenuMain.Items[4].Caption:=stateStr[integer(botEnabled)+1];
   SwitchIcon;
 end;
 
@@ -129,33 +132,32 @@ begin
 if (Button=mbLeft) then popSwitchClick(nil);
 end;
 
-procedure TTrayForm.Check(i:integer);
-var j:integer;
-begin
-  for j := 0 to PopupMenuMain.Items[1].Count - 1 do
-    PopupMenuMain.Items[1].Items[j].Checked:=false;
-  PopupMenuMain.Items[1].Items[i].Checked:=true;
-end;
-
 procedure TTrayForm.popSlot10mClick(Sender: TObject);
 begin
   g_slotTimeout:=600;
-  Check(0);
   WriteSettings;
 end;
 
 procedure TTrayForm.popSlot1hClick(Sender: TObject);
 begin
   g_slotTimeout:=3600;
-  Check(1);
   WriteSettings;
 end;
 
 procedure TTrayForm.popSlot1dClick(Sender: TObject);
 begin
   g_slotTimeout:=86400;
-  Check(2);
   WriteSettings;
+end;
+
+procedure TTrayForm.PopupMenuMainPopup(Sender: TObject);
+begin
+  with PopupMenuMain.Items[1] do
+    case g_slotTimeout of
+         600:  Items[0].Checked:=true;
+         3600: Items[1].Checked:=true;
+         86400: Items[2].Checked:=true;
+    end;
 end;
 
 initialization
