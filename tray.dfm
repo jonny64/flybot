@@ -334,6 +334,7 @@ object TrayForm: TTrayForm
     Top = 80
   end
   object PopupMenuMain: TPopupMenu
+    OnPopup = PopupMenuMainPopup
     Left = 72
     Top = 80
     object popReloadDict: TMenuItem
@@ -344,14 +345,17 @@ object TrayForm: TTrayForm
       Caption = #1042#1099#1076#1072#1074#1072#1090#1100' '#1089#1083#1086#1090' '#1085#1072
       object popSlot10m: TMenuItem
         Caption = '10 '#1084#1080#1085'.'
+        RadioItem = True
         OnClick = popSlot10mClick
       end
       object popSlot1h: TMenuItem
         Caption = '1 '#1095#1072#1089
+        RadioItem = True
         OnClick = popSlot1hClick
       end
       object popSlot1d: TMenuItem
         Caption = '1 '#1076#1077#1085#1100
+        RadioItem = True
         OnClick = popSlot1dClick
       end
     end
