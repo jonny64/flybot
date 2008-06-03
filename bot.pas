@@ -15,9 +15,8 @@ uses
   SysUtils, Classes, Windows, Session, settings, botdef;
 
 var
-  SendProc: tSendMessage;
-  SendProc2: tSendMessage2;
-  QueryInfo2: tQueryInfo;
+  SendProc2: TSendMessage2;///var адрес функции API в пространстве клиента
+  QueryInfo2: TQueryInfo;
 
   procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param: pointer; paramsize: Cardinal); stdcall;
   function init(var _init: TBotInit): boolean; stdcall;
@@ -31,14 +30,29 @@ implementation
 uses
   dictionary, tray;
 
-  
-//посылает личку пользователю с заданным cid
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version
+* @param cid WideString id адресата
+* @param msg WideString текст лички
+* @result None
+* @brief посылает личку пользователю
+*}
+//******************************************************************************
 procedure SendMsg(cid, msg: WideString);
 begin
       SendProc2( integer(SEND_PM), pWideChar(cid), pWideString(msg), sizeof(msg) );
 end;
 
-//обработчик уведомлений от клиента
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version
+* @param userinfo WideString структура, содержащая информацию о приславшем личку
+* @param userMsg WideString текст пришедшей PM
+* @result None
+* @brief посылает ответ/добавляет в игнор/etc
+*}
+//******************************************************************************
 procedure SendAnswer(userinfo, userMsg: WideString);
 var
   cid,answer: WideString;
@@ -132,17 +146,17 @@ end;
 
 //******************************************************************************
 {* @author xmm
-* @date 02-июн-2008 : Original Version
+* @date 03-июн-2008 : Original Version
 * @param _init TBotInit var структура, содержащая адреса функций API, вызываемых ботом
 * @result boolean
-* @brief функция вызывается клиентом при старте
+* @brief вызывается клиентом при старте
 *}
 //******************************************************************************
 function init(var _init: TBotInit): boolean; stdcall;
 begin
   Randomize;
-  _init.botId := 'xBot';
-  _init.botVersion := '0.1';
+  _init.botId := 'flybot';
+  _init.botVersion := '0.2';
 
   //проверяем версию botapi, поддерживаемую клиентом
   //передаем клиенту адрес процедуры обработки уведомлений

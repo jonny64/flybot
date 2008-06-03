@@ -1,19 +1,27 @@
+//******************************************************************************
+{*
+* @file botdef.pas
+* @author xmm
+* @date 03-июн-2008
+* @brief общие определения
+*}
+//******************************************************************************
 unit botdef;
 
 interface
 uses Windows;
 
 type
-  tSendMessage = procedure(params: PWideChar; message: PWideChar); stdcall;
-  tRecvMessage = procedure(params: PWideChar; message: PWideChar); stdcall;
+  TSendMessage = procedure(params: PWideChar; message: PWideChar); stdcall;
+  TRecvMessage = procedure(params: PWideChar; message: PWideChar); stdcall;
 
-  tSendMessage2 = function(msgid:integer; objid:PWideChar; param:pointer; paramsize: Cardinal):boolean;stdcall;
-  tRecvMessage2 = procedure(msgid:integer; objid:PWideChar; param:pointer; paramsize: Cardinal);stdcall;
+  TSendMessage2 = function(msgid:integer; objid:PWideChar; param:pointer; paramsize: Cardinal):boolean;stdcall;
+  TRecvMessage2 = procedure(msgid:integer; objid:PWideChar; param:pointer; paramsize: Cardinal);stdcall;
 
-  tQueryInfo = function(qryid:integer; objid:PWideChar;const param:pointer; paramsize:integer):pointer;stdcall;
-  tFreeInfo  = procedure(info:pointer);stdcall;
-
+  TQueryInfo = function(qryid:integer; objid:PWideChar;const param:pointer; paramsize:integer):pointer;stdcall;
+  TFreeInfo  = procedure(info:pointer);stdcall;
 type
+/// тип события
 CODES =(
                 SEND_PM         = 0,
                 SEND_CM         = 1,
@@ -43,18 +51,19 @@ CODES =(
 
                 LAST
         );
+/// структура, передаваемая при старте клиентом боту
   TBotInit = record
     apiVersion:         DWORD;
     appName:            PCHAR;
     appVersion:         PCHAR;
-    OnSendMessage:      tSendMessage;
-    OnRecvMessage:      tRecvMessage;
+    OnSendMessage:      TSendMessage;
+    OnRecvMessage:      TRecvMessage;
     botId:              PCHAR;
     botVersion:         PCHAR;
-    OnSendMessage2:     tSendMessage2;
-    OnRecvMessage2:     tRecvMessage2;
-    QueryInfo:          tQueryInfo;
-    FreeInfo:           tFreeInfo;
+    OnSendMessage2:     TSendMessage2;
+    OnRecvMessage2:     TRecvMessage2;
+    QueryInfo:          TQueryInfo;
+    FreeInfo:           TFreeInfo;
   end;
   const SLOT_TIMEOUT_SEC  : DWORD = 600;
         WIN32_TRUE        : BOOL  = true;
@@ -65,4 +74,3 @@ CODES =(
         DEFAULT_ANSWER_DELAY:integer=6;
 implementation
 end.
- 
