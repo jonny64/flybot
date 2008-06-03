@@ -111,7 +111,7 @@ AutoIncBuild=1
 MajorVer=0
 MinorVer=2
 Release=1
-Build=29
+Build=37
 Debug=0
 PreRelease=0
 Special=0
@@ -122,7 +122,7 @@ CodePage=1251
 [Version Info Keys]
 CompanyName=
 FileDescription=чат бот для клиентов пиринговой сети DirectConnect
-FileVersion=0.2.1.29
+FileVersion=0.2.1.37
 InternalName=
 LegalCopyright=
 LegalTrademarks=

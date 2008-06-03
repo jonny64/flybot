@@ -1,3 +1,12 @@
+//******************************************************************************
+{*
+* @file session.pas
+* @author xmm
+* @date 03-июн-2008
+* @brief сессии лички
+* @details описан класс предстал€ющий один сеанс лички
+*}
+//******************************************************************************
 unit session;
 
 interface
@@ -6,20 +15,35 @@ uses
   SysUtils, Classes, Windows, Dictionary, settings, botdef, Forms;
 
 type
+  /// сеанс лички
+  {*
+    предстал€ет уникальный сеанс лички
+  *}
   TUserSession = class
   public
+    /// cid того, с кем общаемс€
     cid: WideString;
+    /// вс€ информаци€ о нем
     params: TStringList;
+    /// обработать сообщение
     procedure handleMessage(const params, msg: WideString);
+    /// получить cid по структуре userinfo
     class function getCID(const params: WideString): WideString;
+    ///конструктор
     constructor Create(cid: WideString);
+    //деструктор
     destructor Done;
+    ///получить параметр из структуры userinfo
     function GetVariable(const v: WideString): WideString;
   private
     hShutdown: THandle;
+    ///контекст (ответы адресата в рамках сессии)
     replies: array of WideString;
+    ///маркер использованных фраз-ответов
     used: TBoolArray;
+    ///подстановка фактических значений во фразу, таких, как $NICK
     function processVariables(const msg: WideString): WideString;
+    ///отсылка сообщени€ через заданный промежуток времени
     procedure SendDelayedMsg(const msg: WideString; timeout: integer);
   end;
 
@@ -38,6 +62,14 @@ begin
   CloseHandle(hShutdown);
 end;
 
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version 
+* @param cid WideString cid адресата
+* @result None
+* @brief конструктор
+*}
+//******************************************************************************
 constructor TUserSession.Create(cid: WideString);
 begin
   hShutdown := CreateEvent(nil, true, false, nil);
@@ -47,6 +79,14 @@ begin
   params := TStringList.Create;
 end;
 
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version 
+* @param v WideString const  
+* @result WideString запршенный параметр
+* @brief получить параметр из структуры userinfo
+*}
+//******************************************************************************
 function TUserSession.GetVariable(const v: WideString): WideString;
 var
   id, res: WideString;
@@ -58,6 +98,14 @@ begin
   result := res;
 end;
 
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version 
+* @param params WideString const  
+* @result WideString запршенный cid
+* @brief получить cid по структуре userinfo
+*}
+//******************************************************************************
 class function TUserSession.getCID(const params: WideString): WideString;
 var
   i: integer;
@@ -69,6 +117,15 @@ begin
     result := '';
 end;
 
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version 
+* @param params WideString const структура userinfo
+* @param msg WideString const текст вход€щей лички
+* @result None
+* @brief обработать сообщение
+*}
+//******************************************************************************
 procedure TUserSession.handleMessage(const params, msg: WideString);
 var
   possible: TPhrases;
@@ -125,6 +182,14 @@ begin
   SendDelayedMsg(current.phrase, timeout);
 end;
 
+//******************************************************************************
+{* @author xmm
+* @date 03-июн-2008 : Original Version 
+* @param msg WideString const фраза
+* @result WideString фраза с подставленными значени€ми
+* @brief подстановка фактических значений во фразу, таких, как $NICK
+*}
+//******************************************************************************
 function TUserSession.processVariables(const msg: WideString): WideString;
 var
   i, ps: integer;
@@ -150,13 +215,18 @@ begin
   end;
 end;
 
+/// отложенна€ личка
 type
   TMsgRecord = record
+    ///текст, cid адресата
     msg, cid: WideString;
+    ///задержка
     timeout: integer;
+    ///дескриптор таймера
     waitHandle: THandle;
   end;
 
+/// поток, отсылающий отложенную личку
 procedure DelayedMsgThread(cid: pointer); stdcall;
 var
   r: ^TMsgRecord;
