@@ -1,4 +1,4 @@
-#labels Phase-Deploy
+#labels Phase-Deploy,Deprecated
 = Установка =
 
 Распаковать в папку клиента FlylinkDC (поместить рядом с *.exe)
