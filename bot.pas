@@ -1,3 +1,12 @@
+//******************************************************************************
+{*
+* @file bot.pas
+* @author xmm
+* @date 02-июн-2008
+* @brief главный модуль
+* @details содержит процедуру инициализации
+*}
+//******************************************************************************
 unit bot;
 
 interface
@@ -58,7 +67,18 @@ begin
   end;
 end;
 
-//обрабатываем уведомления от клиента DC
+
+//******************************************************************************
+{* @author xmm
+* @date 02-июн-2008 : Original Version
+* @param msgid integer тип сообщения
+* @param objid PWideChar Зависит от сообщения (обычно cid юзера, явившегося причиной сообщения)
+* @param param pointer Зависит от сообщения
+* @param paramsize Cardinal размер переданных праметров.
+* @result None
+* @brief обрабатывает уведомления от клиента DC
+*}
+//******************************************************************************
 procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param:pointer; paramsize: Cardinal); stdcall;
 var
   cid, msg,answer,userinfo: WideString;
@@ -110,7 +130,14 @@ begin
 end;
 end;
 
-//инициализация _init struct
+//******************************************************************************
+{* @author xmm
+* @date 02-июн-2008 : Original Version
+* @param _init TBotInit var структура, содержащая адреса функций API, вызываемых ботом
+* @result boolean
+* @brief функция вызывается клиентом при старте
+*}
+//******************************************************************************
 function init(var _init: TBotInit): boolean; stdcall;
 begin
   Randomize;
@@ -146,6 +173,14 @@ begin
   end;
 end;
 
+
+//******************************************************************************
+{* @author xmm
+* @date 02-июн-2008 : Original Version
+* @result string
+* @brief возвращает путь к исполняемому модулю клиента
+*}
+//******************************************************************************
 function GetModulePath:string;
 var exe:array[0..512]of char;
 begin
