@@ -70,8 +70,9 @@ var
 begin
   // TODO разобраться удобно ли учитывать регистр
   t := AnsiLowerCase(msg);
-  resMatched := nil; resMatched:=nil;
+  resMatched := nil;
   dst := 0; dstOther:=0;
+  //TrayForm.ShowInfoMsg(IntToStr(count));
   for i := 0 to count-1 do begin
     if (used[i]) then continue;//шаблон уже использовался
     

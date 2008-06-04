@@ -37,10 +37,11 @@ type
     { Public declarations }
     botEnabled: boolean;
     procedure ShowErrMsg(msg:string);
-    procedure ShowInfoMsg(msg:string);
+    procedure ShowInfoMsg(msg:string); overload;
+    procedure ShowInfoMsg(msg:string; header: string); overload;
     procedure AddTrayIcon(const tip: string);
   end;
-       
+
 var
   TrayForm: TTrayForm;
 
@@ -64,6 +65,12 @@ procedure TTrayForm.ShowInfoMsg(msg:string);
 begin
     CoolTrayIconMain.ShowBalloonHint('Операция прошла успешно',
     msg, bitInfo,10)
+end;
+
+//информационное сообщение
+procedure TTrayForm.ShowInfoMsg(msg:string; header: string);
+begin
+    CoolTrayIconMain.ShowBalloonHint(header, msg, bitInfo, 10);
 end;
 
 //установка иконки, отражающей состоягние бота
