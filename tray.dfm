@@ -889,12 +889,16 @@ object TrayForm: TTrayForm
     OnPopup = PopupMenuMainPopup
     Left = 72
     Top = 80
-    object popReloadDict: TMenuItem
+    object mniReloadDict: TMenuItem
       Caption = '&'#1055#1077#1088#1077#1075#1088#1091#1079#1080#1090#1100' '#1089#1083#1086#1074#1072#1088#1100
-      OnClick = popReloadDictClick
+      OnClick = mniReloadDictClick
     end
-    object popSlot: TMenuItem
-      Caption = #1042#1099#1076#1072#1074#1072#1090#1100' '#1089#1083#1086#1090' '#1085#1072
+    object mniOpenDict: TMenuItem
+      Caption = #1054#1090#1082#1088#1099#1090#1100' '#1089#1083#1086#1074#1072#1088#1100
+      OnClick = mniOpenDictClick
+    end
+    object mniSlot: TMenuItem
+      Caption = #1057#1088#1086#1082' '#1076#1077#1081#1089#1090#1074#1080#1103' '#1089#1083#1086#1090#1072
       object popSlot10m: TMenuItem
         Caption = '10 '#1084#1080#1085'.'
         RadioItem = True
@@ -911,17 +915,17 @@ object TrayForm: TTrayForm
         OnClick = popSlot1dClick
       end
     end
-    object popSettings: TMenuItem
+    object mniSettings: TMenuItem
       Caption = '&'#1053#1072#1089#1090#1088#1086#1081#1082#1080
       Visible = False
     end
-    object popPM: TMenuItem
+    object mniPM: TMenuItem
       Caption = '&'#1051#1080#1095#1082#1072' '#1074' '#1086#1092#1092#1083#1072#1081#1085
       Visible = False
     end
-    object popSwitch: TMenuItem
+    object mniSwitch: TMenuItem
       Caption = '&'#1054#1090#1082#1083#1102#1095#1080#1090#1100
-      OnClick = popSwitchClick
+      OnClick = mniSwitchClick
     end
   end
 end

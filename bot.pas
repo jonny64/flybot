@@ -55,7 +55,7 @@ end;
 //******************************************************************************
 procedure SendAnswer(userinfo, userMsg: WideString);
 var
-  cid,answer: WideString;
+  cid: WideString;
   i,sessionId: integer;
 begin
   try
@@ -95,8 +95,7 @@ end;
 //******************************************************************************
 procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param:pointer; paramsize: Cardinal); stdcall;
 var
-  cid, msg,answer,userinfo: WideString;
-  i,sid: integer;
+  msg,userinfo: WideString;
 begin
      if (TrayForm <> nil) and (not TrayForm.botEnabled) then exit;
 
@@ -164,6 +163,7 @@ begin
   case _init.apiVersion of
     1:begin
            // TODO что-то сделать если botapi2 не подд-ся клиентом
+           TrayForm.ShowErrMsg('botapi2 не поддерживается клиентом. Обновите клиент.');
            exit;
       end;
     2: begin
