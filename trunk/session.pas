@@ -52,7 +52,7 @@ var
 
 implementation
 
-uses bot;
+uses bot, tray;
 
 destructor TUserSession.done;
 begin
@@ -102,7 +102,7 @@ end;
 {* @author xmm
 * @date 03-июн-2008 : Original Version 
 * @param params WideString const  
-* @result WideString запршенный cid
+* @result WideString запрошенный cid
 * @brief получить cid по структуре userinfo
 *}
 //******************************************************************************
@@ -161,16 +161,23 @@ begin
   current.phrase := processVariables(current.phrase);
   
   // TODO переделать во что-нибудь поизящнее
+  //обработка дополнительных флагов (в игнор, закрыть окно PM, etc...)
   with current do begin
     addActions:=giveSlot or closeWnd or addToIngnore;
     if addActions then begin
       SendMsg(WideString(cid), WideString(current.phrase));
-      if current.giveSlot then
-         SendProc2( integer(USER_SLOT), pWideChar(cid), @g_slotTimeout, sizeof(g_slotTimeout) );
-      if current.closeWnd then
+      if current.closeWnd then begin
          SendProc2( integer(USER_CLOSE), pWideChar(cid), nil, 0 );
-      if current.addToIngnore then
+         TrayForm.ShowInfoMsg('Закрыта личка '+nick);
+      end;
+      if current.giveSlot then begin
+         SendProc2( integer(USER_SLOT), pWideChar(cid), @g_slotTimeout, sizeof(g_slotTimeout) );
+         TrayForm.ShowInfoMsg('Выдан слот '+nick);
+      end;
+      if current.addToIngnore then begin
          SendProc2( integer(USER_IGNORE), pWideChar(cid), @WIN32_TRUE, sizeof(WIN32_TRUE) );
+         TrayForm.ShowInfoMsg(nick+' добавлен в игнор.');
+      end;
       exit;
     end;
   end;
@@ -179,6 +186,7 @@ begin
 
   timeout := length(current.phrase)*100;
   if (random(5) = 0) then inc(timeout, g_answrDelay);
+  //ответ с задержкой
   SendDelayedMsg(current.phrase, timeout);
 end;
 
@@ -230,7 +238,6 @@ type
 procedure DelayedMsgThread(cid: pointer); stdcall;
 var
   r: ^TMsgRecord;
-  current:TPhrase;
 begin
   r := cid;
   if (WaitForSingleObject(r.waitHandle, r.timeout) = WAIT_TIMEOUT) and (Assigned(SendProc2)) then

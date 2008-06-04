@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, CoolTrayIcon, Menus, settings, botdef;
+  ExtCtrls, ShellAPI, CoolTrayIcon, Menus, settings, botdef;
 
 type
   TTrayForm = class(TForm)
@@ -12,22 +12,24 @@ type
     ImageOff: TImage;
     CoolTrayIconMain: TCoolTrayIcon;
     PopupMenuMain: TPopupMenu;
-    popSwitch: TMenuItem;
-    popReloadDict: TMenuItem;
-    popPM: TMenuItem;
-    popSettings: TMenuItem;
-    popSlot: TMenuItem;
+    mniSwitch: TMenuItem;
+    mniReloadDict: TMenuItem;
+    mniPM: TMenuItem;
+    mniSettings: TMenuItem;
+    mniSlot: TMenuItem;
     popSlot10m: TMenuItem;
     popSlot1h: TMenuItem;
     popSlot1d: TMenuItem;
-    procedure popSwitchClick(Sender: TObject);
-    procedure popReloadDictClick(Sender: TObject);
+    mniOpenDict: TMenuItem;
+    procedure mniSwitchClick(Sender: TObject);
+    procedure mniReloadDictClick(Sender: TObject);
     procedure CoolTrayIconMainMouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure popSlot10mClick(Sender: TObject);
     procedure popSlot1hClick(Sender: TObject);
     procedure popSlot1dClick(Sender: TObject);
     procedure PopupMenuMainPopup(Sender: TObject);
+    procedure mniOpenDictClick(Sender: TObject);
   private
     { Private declarations }
     procedure SwitchIcon;
@@ -36,9 +38,7 @@ type
     botEnabled: boolean;
     procedure ShowErrMsg(msg:string);
     procedure ShowInfoMsg(msg:string);
-    procedure OnWmMouseTray(var message: TMessage); message WM_USER;
     procedure AddTrayIcon(const tip: string);
-    procedure BeforeDestruction; override;
   end;
        
 var
@@ -56,14 +56,14 @@ var stateStr:array[1..2]of string=('&Включить', '&Отключить');
 procedure TTrayForm.ShowErrMsg(msg:string);
 begin
     CoolTrayIconMain.ShowBalloonHint('Проблема',
-    msg, bitError,12);
+    msg, bitError,10);
 end;
 
 //информационное сообщение
 procedure TTrayForm.ShowInfoMsg(msg:string);
 begin
     CoolTrayIconMain.ShowBalloonHint('Операция прошла успешно',
-    msg, bitInfo,12)
+    msg, bitInfo,10)
 end;
 
 //установка иконки, отражающей состоягние бота
@@ -79,48 +79,21 @@ end;
 procedure TTrayForm.AddTrayIcon(const tip: string);
 begin
   CoolTrayIconMain.Hint:=tip;
-  PopupMenuMain.Items[3].Caption:=stateStr[integer(botEnabled)+1];
-  SwitchIcon;
-  {n.cbSize := sizeof(n);
-  n.Wnd := handle;
-  n.uID := 0;
-  n.hIcon := Image1.Picture.Icon.Handle;
-  n.uCallbackMessage := WM_USER;
-  n.uFlags := NIF_ICON or NIF_TIP or NIF_MESSAGE;
-  CopyMemory(@n.szTip, pchar(tip), sizeof(n.szTip));
-  Shell_NotifyIcon(NIM_ADD, @n);
-  state := true;   }
-end;
-
-procedure TTrayForm.BeforeDestruction;
-begin
-  {n.cbSize := sizeof(n);
-  n.Wnd := handle;
-  n.uID := 0;
-  n.uFlags := 0;
-  Shell_NotifyIcon(NIM_DELETE, @n);}
-end;
-
-procedure TTrayForm.OnWmMouseTray(var message: TMessage);
-begin
-  {if (message.LParam <> WM_LBUTTONDOWN) and (message.LParam <> WM_RBUTTONDOWN) then exit;
-  state := not state;
-  SwitchIcon;}
-end;
-
-//переключаем текст на пункте меню
-procedure TTrayForm.popSwitchClick(Sender: TObject);
-var
-  itemToEdit: TMenuItem;
-begin
-  botEnabled := not botEnabled;
-
   PopupMenuMain.Items[4].Caption:=stateStr[integer(botEnabled)+1];
   SwitchIcon;
 end;
 
+//переключаем текст на пункте меню
+procedure TTrayForm.mniSwitchClick(Sender: TObject);
+begin
+  botEnabled := not botEnabled;
+
+  PopupMenuMain.Items[5].Caption:=stateStr[integer(botEnabled)+1];
+  SwitchIcon;
+end;
+
 //перезагрузка словаря с диска
-procedure TTrayForm.popReloadDictClick(Sender: TObject);
+procedure TTrayForm.mniReloadDictClick(Sender: TObject);
 begin
   if dict.Reload    then
     ShowInfoMsg('Словарь перезагружен')
@@ -129,7 +102,7 @@ end;
 procedure TTrayForm.CoolTrayIconMainMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
-if (Button=mbLeft) then popSwitchClick(nil);
+  if (Button=mbLeft) then mniSwitchClick(nil);
 end;
 
 procedure TTrayForm.popSlot10mClick(Sender: TObject);
@@ -152,12 +125,17 @@ end;
 
 procedure TTrayForm.PopupMenuMainPopup(Sender: TObject);
 begin
-  with PopupMenuMain.Items[1] do
+  with PopupMenuMain.Items[2] do
     case g_slotTimeout of
          600:  Items[0].Checked:=true;
          3600: Items[1].Checked:=true;
          86400: Items[2].Checked:=true;
     end;
+end;
+
+procedure TTrayForm.mniOpenDictClick(Sender: TObject);
+begin
+  ShellExecute(0, 'open', PChar(DICTIONARY_FILENAME), '','', SW_SHOW);
 end;
 
 initialization
