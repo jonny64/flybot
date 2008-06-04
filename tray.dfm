@@ -915,6 +915,25 @@ object TrayForm: TTrayForm
         OnClick = popSlot1dClick
       end
     end
+    object mniAddDelay: TMenuItem
+      Caption = #1047#1072#1076#1077#1088#1078#1082#1072' '#1087#1077#1088#1077#1076' '#1086#1090#1074#1077#1090#1086#1084
+      object mni0: TMenuItem
+        Caption = '0 '#1089#1077#1082'.'
+        RadioItem = True
+        OnClick = mni0Click
+      end
+      object mni6: TMenuItem
+        Caption = '6 '#1089#1077#1082'.'
+        Checked = True
+        RadioItem = True
+        OnClick = mni6Click
+      end
+      object mni60: TMenuItem
+        Caption = '60 '#1089#1077#1082'.'
+        RadioItem = True
+        OnClick = mni60Click
+      end
+    end
     object mniSettings: TMenuItem
       Caption = '&'#1053#1072#1089#1090#1088#1086#1081#1082#1080
       Visible = False

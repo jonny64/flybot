@@ -21,6 +21,10 @@ type
     popSlot1h: TMenuItem;
     popSlot1d: TMenuItem;
     mniOpenDict: TMenuItem;
+    mniAddDelay: TMenuItem;
+    mni0: TMenuItem;
+    mni6: TMenuItem;
+    mni60: TMenuItem;
     procedure mniSwitchClick(Sender: TObject);
     procedure mniReloadDictClick(Sender: TObject);
     procedure CoolTrayIconMainMouseDown(Sender: TObject;
@@ -30,6 +34,9 @@ type
     procedure popSlot1dClick(Sender: TObject);
     procedure PopupMenuMainPopup(Sender: TObject);
     procedure mniOpenDictClick(Sender: TObject);
+    procedure mni0Click(Sender: TObject);
+    procedure mni6Click(Sender: TObject);
+    procedure mni60Click(Sender: TObject);
   private
     { Private declarations }
     procedure SwitchIcon;
@@ -86,7 +93,7 @@ end;
 procedure TTrayForm.AddTrayIcon(const tip: string);
 begin
   CoolTrayIconMain.Hint:=tip;
-  PopupMenuMain.Items[4].Caption:=stateStr[integer(botEnabled)+1];
+  PopupMenuMain.Items[6].Caption:=stateStr[integer(botEnabled)+1];
   SwitchIcon;
 end;
 
@@ -95,7 +102,7 @@ procedure TTrayForm.mniSwitchClick(Sender: TObject);
 begin
   botEnabled := not botEnabled;
 
-  PopupMenuMain.Items[5].Caption:=stateStr[integer(botEnabled)+1];
+  PopupMenuMain.Items[6].Caption:=stateStr[integer(botEnabled)+1];
   SwitchIcon;
 end;
 
@@ -138,11 +145,35 @@ begin
          3600: Items[1].Checked:=true;
          86400: Items[2].Checked:=true;
     end;
+  with PopupMenuMain.Items[3] do
+    case g_answrDelay of
+         0:  Items[0].Checked:=true;
+         6: Items[1].Checked:=true;
+         60: Items[2].Checked:=true;
+    end;
 end;
 
 procedure TTrayForm.mniOpenDictClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', PChar(DICTIONARY_FILENAME), '','', SW_SHOW);
+end;
+
+procedure TTrayForm.mni0Click(Sender: TObject);
+begin
+  g_answrDelay:=0;
+  WriteSettings;
+end;
+
+procedure TTrayForm.mni6Click(Sender: TObject);
+begin
+  g_answrDelay:=6;
+  WriteSettings;
+end;
+
+procedure TTrayForm.mni60Click(Sender: TObject);
+begin
+  g_answrDelay:=60;
+  WriteSettings;
 end;
 
 initialization
