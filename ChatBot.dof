@@ -111,7 +111,7 @@ AutoIncBuild=1
 MajorVer=0
 MinorVer=2
 Release=1
-Build=50
+Build=56
 Debug=0
 PreRelease=0
 Special=0
@@ -122,13 +122,13 @@ CodePage=1251
 [Version Info Keys]
 CompanyName=
 FileDescription=чат бот для клиентов пиринговой сети DirectConnect
-FileVersion=0.2.1.50
+FileVersion=0.2.1.56
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=
-ProductVersion=1.0.0.0
+ProductVersion=
 Comments=добавляет в игнор рекламщиков, выдает слоты, отвечает на лички...
 [Excluded Packages]
 d:\program files\borland\delphi7\Bin\dclshlctrls70.bpl=Shell Control Property and Component Editors

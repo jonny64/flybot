@@ -76,7 +76,6 @@ begin
   except
     on e: exception do begin
       SendMsg(cid, WideString('Проблема с ChatBot.dll: '+e.message) );
-      Windows.Beep(800, 50);
     end;
   end;
 end;

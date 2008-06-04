@@ -132,7 +132,7 @@ var
   current: TPhrase;
   i, timeout: integer;
 
-  nick: WideString;
+  nick, match: WideString;
   addActions:boolean;
 begin
   Self.Params.Text := StringReplace(params, '|', #13#10, [rfReplaceAll]);
@@ -166,17 +166,18 @@ begin
     addActions:=giveSlot or closeWnd or addToIngnore;
     if addActions then begin
       SendMsg(WideString(cid), WideString(current.phrase));
+      match := 'Совпадение по шаблону: '+current.match;
       if current.closeWnd then begin
          SendProc2( integer(USER_CLOSE), pWideChar(cid), nil, 0 );
-         TrayForm.ShowInfoMsg('Закрыта личка '+nick);
+         TrayForm.ShowInfoMsg('Закрыта личка ' + nick, match);
       end;
       if current.giveSlot then begin
          SendProc2( integer(USER_SLOT), pWideChar(cid), @g_slotTimeout, sizeof(g_slotTimeout) );
-         TrayForm.ShowInfoMsg('Выдан слот '+nick);
+         TrayForm.ShowInfoMsg('Выдан слот ' + nick, match);
       end;
       if current.addToIngnore then begin
          SendProc2( integer(USER_IGNORE), pWideChar(cid), @WIN32_TRUE, sizeof(WIN32_TRUE) );
-         TrayForm.ShowInfoMsg(nick+' добавлен в игнор.');
+         TrayForm.ShowInfoMsg(nick + ' добавлен в игнор.', match);
       end;
       exit;
     end;
