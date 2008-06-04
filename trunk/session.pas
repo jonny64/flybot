@@ -186,7 +186,7 @@ begin
   //if (random(10) > 8) then exit;
 
   timeout := length(current.phrase)*100;
-  if (random(5) = 0) then inc(timeout, g_answrDelay);
+  inc(timeout, g_answrDelay*1000);
   //ответ с задержкой
   SendDelayedMsg(current.phrase, timeout);
 end;
