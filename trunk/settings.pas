@@ -12,6 +12,8 @@ var
   g_slotTimeout:integer;
   //задержка перед выдачей фразы-ответа, сек.
   g_answrDelay:integer;
+  //показывать уведомления
+  g_baloonInfo:boolean;
 
 implementation
 
@@ -28,8 +30,9 @@ var
 begin
   Ini := TIniFile.Create(GetModulePath + BOT_SETTINGS_FILE);
   try
-    g_slotTimeout:=Ini.ReadInteger( 'Timeout', 'Slot', DEFAULT_SLOT_TIMEOUT );
-    g_answrDelay:=Ini.ReadInteger( 'Delay', 'Answer', DEFAULT_ANSWER_DELAY );
+    g_slotTimeout:=Ini.ReadInteger( 'Time', 'SlotTimeout', DEFAULT_SLOT_TIMEOUT );
+    g_answrDelay:=Ini.ReadInteger( 'Time', 'AnswerDelay', DEFAULT_ANSWER_DELAY );
+    g_baloonInfo:=Ini.ReadBool( 'Info', 'ShowBaloon', True );
   finally
     Ini.Free;
   end;
@@ -41,8 +44,9 @@ var
 begin
   Ini := TIniFile.Create(GetModulePath + BOT_SETTINGS_FILE);
   try
-    Ini.WriteInteger( 'Timeout', 'Slot',  g_slotTimeout);
-    Ini.WriteInteger( 'Delay', 'Answer',  g_answrDelay);
+    Ini.WriteInteger( 'Time', 'SlotTimeout',  g_slotTimeout);
+    Ini.WriteInteger( 'Time', 'AnswerDelay',  g_answrDelay);
+    Ini.WriteBool( 'Info', 'ShowBaloon',  g_baloonInfo);
   finally
     Ini.Free;
   end;
