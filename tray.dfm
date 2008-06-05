@@ -889,13 +889,13 @@ object TrayForm: TTrayForm
     OnPopup = PopupMenuMainPopup
     Left = 72
     Top = 80
-    object mniReloadDict: TMenuItem
-      Caption = '&'#1055#1077#1088#1077#1075#1088#1091#1079#1080#1090#1100' '#1089#1083#1086#1074#1072#1088#1100
-      OnClick = mniReloadDictClick
-    end
     object mniOpenDict: TMenuItem
       Caption = #1054#1090#1082#1088#1099#1090#1100' '#1089#1083#1086#1074#1072#1088#1100
       OnClick = mniOpenDictClick
+    end
+    object mniReloadDict: TMenuItem
+      Caption = '&'#1055#1077#1088#1077#1075#1088#1091#1079#1080#1090#1100' '#1089#1083#1086#1074#1072#1088#1100
+      OnClick = mniReloadDictClick
     end
     object mniSlot: TMenuItem
       Caption = #1057#1088#1086#1082' '#1076#1077#1081#1089#1090#1074#1080#1103' '#1089#1083#1086#1090#1072
@@ -924,7 +924,6 @@ object TrayForm: TTrayForm
       end
       object mni6: TMenuItem
         Caption = '6 '#1089#1077#1082'.'
-        Checked = True
         RadioItem = True
         OnClick = mni6Click
       end
@@ -932,6 +931,19 @@ object TrayForm: TTrayForm
         Caption = '60 '#1089#1077#1082'.'
         RadioItem = True
         OnClick = mni60Click
+      end
+    end
+    object mniShowInfo: TMenuItem
+      Caption = #1055#1086#1082#1072#1079#1099#1074#1072#1090#1100' '#1091#1074#1077#1076#1086#1084#1083#1077#1085#1080#1103
+      object mniYes: TMenuItem
+        Caption = #1044#1072
+        RadioItem = True
+        OnClick = mniYesClick
+      end
+      object mniNo: TMenuItem
+        Caption = #1053#1077#1090
+        RadioItem = True
+        OnClick = mniNoClick
       end
     end
     object mniSettings: TMenuItem

@@ -25,6 +25,9 @@ type
     mni0: TMenuItem;
     mni6: TMenuItem;
     mni60: TMenuItem;
+    mniShowInfo: TMenuItem;
+    mniYes: TMenuItem;
+    mniNo: TMenuItem;
     procedure mniSwitchClick(Sender: TObject);
     procedure mniReloadDictClick(Sender: TObject);
     procedure CoolTrayIconMainMouseDown(Sender: TObject;
@@ -37,6 +40,8 @@ type
     procedure mni0Click(Sender: TObject);
     procedure mni6Click(Sender: TObject);
     procedure mni60Click(Sender: TObject);
+    procedure mniYesClick(Sender: TObject);
+    procedure mniNoClick(Sender: TObject);
   private
     { Private declarations }
     procedure SwitchIcon;
@@ -93,7 +98,7 @@ end;
 procedure TTrayForm.AddTrayIcon(const tip: string);
 begin
   CoolTrayIconMain.Hint:=tip;
-  PopupMenuMain.Items[6].Caption:=stateStr[integer(botEnabled)+1];
+  PopupMenuMain.Items[7].Caption:=stateStr[integer(botEnabled)+1];
   SwitchIcon;
 end;
 
@@ -102,7 +107,7 @@ procedure TTrayForm.mniSwitchClick(Sender: TObject);
 begin
   botEnabled := not botEnabled;
 
-  PopupMenuMain.Items[6].Caption:=stateStr[integer(botEnabled)+1];
+  PopupMenuMain.Items[7].Caption:=stateStr[integer(botEnabled)+1];
   SwitchIcon;
 end;
 
@@ -151,6 +156,11 @@ begin
          6: Items[1].Checked:=true;
          60: Items[2].Checked:=true;
     end;
+    with PopupMenuMain.Items[4] do
+    case g_baloonInfo of
+         True:  Items[0].Checked:=true;
+         False: Items[1].Checked:=true;
+    end;
 end;
 
 procedure TTrayForm.mniOpenDictClick(Sender: TObject);
@@ -173,6 +183,18 @@ end;
 procedure TTrayForm.mni60Click(Sender: TObject);
 begin
   g_answrDelay:=60;
+  WriteSettings;
+end;
+
+procedure TTrayForm.mniYesClick(Sender: TObject);
+begin
+  g_baloonInfo:=True;
+  WriteSettings;
+end;
+
+procedure TTrayForm.mniNoClick(Sender: TObject);
+begin
+  g_baloonInfo:=False;
   WriteSettings;
 end;
 

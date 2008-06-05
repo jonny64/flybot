@@ -169,15 +169,15 @@ begin
       match := 'Совпадение по шаблону: '+current.match;
       if current.closeWnd then begin
          SendProc2( integer(USER_CLOSE), pWideChar(cid), nil, 0 );
-         TrayForm.ShowInfoMsg('Закрыта личка ' + nick, match);
+         if g_baloonInfo then TrayForm.ShowInfoMsg('Закрыта личка ' + nick, match);
       end;
       if current.giveSlot then begin
          SendProc2( integer(USER_SLOT), pWideChar(cid), @g_slotTimeout, sizeof(g_slotTimeout) );
-         TrayForm.ShowInfoMsg('Выдан слот ' + nick, match);
+         if g_baloonInfo then TrayForm.ShowInfoMsg('Выдан слот ' + nick, match);
       end;
       if current.addToIngnore then begin
          SendProc2( integer(USER_IGNORE), pWideChar(cid), @WIN32_TRUE, sizeof(WIN32_TRUE) );
-         TrayForm.ShowInfoMsg(nick + ' добавлен в игнор.', match);
+         if g_baloonInfo then TrayForm.ShowInfoMsg(nick + ' добавлен в игнор.', match);
       end;
       exit;
     end;
