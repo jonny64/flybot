@@ -62,7 +62,7 @@ implementation
 {$R *.DFM}
 
 uses
-   dictionary;
+   dictionary, bot;
 var stateStr:array[1..2]of string=('&¬ключить', '&ќтключить');
 
 //сообщение об ошибке
@@ -165,7 +165,7 @@ end;
 
 procedure TTrayForm.mniOpenDictClick(Sender: TObject);
 begin
-  ShellExecute(0, 'open', PChar(DICTIONARY_FILENAME), '','', SW_SHOW);
+  ShellExecute(0, 'open', PChar(GetModulePath + DICTIONARY_FILENAME), '','', SW_SHOW);
 end;
 
 procedure TTrayForm.mni0Click(Sender: TObject);
