@@ -133,18 +133,20 @@ var
   i, timeout: integer;
 
   nick, match: WideString;
-  addActions:boolean;
+  favouriteUser, addActions:boolean;
 begin
   Self.Params.Text := StringReplace(params, '|', #13#10, [rfReplaceAll]);
 
   //определим ник автора PM
   nick:= self.params.Values['NICK'];
+  //если друг, то бот молчит
+  favouriteUser:= self.params.Values['ISFAV']='1';
+  if favouriteUser then exit;
 
   //сохраняем входящую реплику автора PM
   SetLength(replies, length(replies)+1);
   replies[length(replies)-1] := msg;
 
-  //if (GetVariable('BOT') = '1') then exit;
 
   //определям список возможных ответов
   possible := dict.GetMatched(msg, used);
