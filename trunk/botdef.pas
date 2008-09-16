@@ -67,9 +67,9 @@ CODES =(
   end;
   const SLOT_TIMEOUT_SEC  : DWORD = 600;
         WIN32_TRUE        : BOOL  = true;
-        BOT_VERSION_STRING: string='flybot v0.22.2';
-        DICTIONARY_FILENAME:string='dictionary.ini';
-        BOT_SETTINGS_FILE:string='flybot.ini';
+        BOT_VERSION_STRING: string='flybot v0.22.3';
+        DICTIONARY_FILENAME:string='Settings\\flydict.ini';
+        BOT_SETTINGS_FILE:string='Settings\\flybot.ini';
         DEFAULT_SLOT_TIMEOUT:integer=600;
         DEFAULT_ANSWER_DELAY:integer=6;
 implementation

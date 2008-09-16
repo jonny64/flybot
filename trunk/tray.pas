@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, ShellAPI, CoolTrayIcon, Menus, settings, botdef;
+  ExtCtrls, ShellAPI, Menus, settings, botdef, CoolTrayIcon;
 
 type
   TTrayForm = class(TForm)

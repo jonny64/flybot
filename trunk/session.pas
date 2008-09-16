@@ -143,7 +143,7 @@ begin
   favouriteUser:= self.params.Values['ISFAV']='1';
   if favouriteUser then exit;
 
-  //сохраняем входящую реплику автора PM
+  //сохраняем в истории входящую реплику автора PM
   SetLength(replies, length(replies)+1);
   replies[length(replies)-1] := msg;
 
@@ -155,6 +155,10 @@ begin
       used[i] := false;
     possible := dict.GetMatched(msg, used);
   end;
+
+  //если походящих ответов нет
+  //(нет ответов с пустым шаблоном, а ни одна с непустым не подоошла)
+  if length(possible)=0 then exit;
 
   //выбираем произвольный, помечаем его использованным
   current := dict.GetRandom(possible);

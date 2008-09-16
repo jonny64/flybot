@@ -1,6 +1,6 @@
 ;NSIS Modern User Interface
 ;Header Bitmap Example Script
-!define VERSION "0.22.1"
+!define VERSION "0.22.2"
 
 !ifndef VERSION
   !define VERSION 'anonymous-build'
@@ -67,6 +67,8 @@ Section "Dummy Section" SecDummy
   
   ;ADD YOUR OWN FILES HERE...
   File ..\bin\ChatBot.dll
+  SetOverwrite ifnewer
+  AllowSkipFiles on
   File ..\bin\Dictionary.ini
   
   ;Store installation folder
