@@ -17,6 +17,8 @@ var
 
 implementation
 
+uses tray;
+
 function GetModulePath:string;
 var exe:array[0..512]of char;
 begin
@@ -33,8 +35,8 @@ begin
     g_slotTimeout:=Ini.ReadInteger( 'Time', 'SlotTimeout', DEFAULT_SLOT_TIMEOUT );
     g_answrDelay:=Ini.ReadInteger( 'Time', 'AnswerDelay', DEFAULT_ANSWER_DELAY );
     g_baloonInfo:=Ini.ReadBool( 'Info', 'ShowBaloon', True );
-  finally
-    Ini.Free;
+  except
+    on e: exception do  TrayForm.ShowErrMsg(e.Message);
   end;
 end;
 
@@ -47,8 +49,8 @@ begin
     Ini.WriteInteger( 'Time', 'SlotTimeout',  g_slotTimeout);
     Ini.WriteInteger( 'Time', 'AnswerDelay',  g_answrDelay);
     Ini.WriteBool( 'Info', 'ShowBaloon',  g_baloonInfo);
-  finally
-    Ini.Free;
+  except
+    on e: exception do  TrayForm.ShowErrMsg(e.Message);
   end;
 end;
 
