@@ -1,6 +1,6 @@
 ;NSIS Modern User Interface
 ;Header Bitmap Example Script
-!define VERSION "0.22.2"
+!define VERSION "0.22.3"
 
 !ifndef VERSION
   !define VERSION 'anonymous-build'
@@ -67,9 +67,9 @@ Section "Dummy Section" SecDummy
   
   ;ADD YOUR OWN FILES HERE...
   File ..\bin\ChatBot.dll
-  SetOverwrite ifnewer
-  AllowSkipFiles on
-  File ..\bin\Dictionary.ini
+  SetOutPath "$INSTDIR\Settings"
+  SetOverwrite off
+  File ..\bin\Settings\flydict.ini
   
   ;Store installation folder
   WriteRegStr HKCU "Software\flybot" "" $INSTDIR
@@ -98,7 +98,6 @@ Section "Uninstall"
   ;ADD YOUR OWN FILES HERE...
 
   Delete "$INSTDIR\ChatBot.dll"
-  Delete "$INSTDIR\Dictionary.ini"
   Delete "$INSTDIR\uninstall-flybot.exe"
 
   DeleteRegKey /ifempty HKCU "Software\flybot"
