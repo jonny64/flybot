@@ -94,7 +94,8 @@ procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param:pointer; paramsi
 var
   msg,userinfo: WideString;
 begin
-     if (TrayForm <> nil) and (not TrayForm.botEnabled) then exit;
+  if (TrayForm <> nil) then
+    exit;
 
   //bot callback for receiving notifications from client
   case CODES(msgid) of

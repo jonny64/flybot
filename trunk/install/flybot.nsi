@@ -1,5 +1,5 @@
 ;NSIS Modern User Interface
-!define VERSION "0.22.3"
+!define VERSION "0.22.4-alpha"
 
 !ifndef VERSION
   !define VERSION 'anonymous-build'
@@ -73,7 +73,9 @@ Section "Dummy Section" SecDummy
   SetOutPath "$INSTDIR\Settings"
   SetOverwrite off
   File ..\bin\Settings\flydict.ini
-  
+  SetOverwrite on  
+  File ..\bin\Settings\flybot.ini
+
   ;Store installation folder
   WriteRegStr HKCU "Software\flybot" "" $INSTDIR
   
