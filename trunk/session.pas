@@ -2,9 +2,8 @@
 {*
 * @file session.pas
 * @author xmm
-* @date 03-июн-2008
 * @brief сессии лички
-* @details описан класс предстал€ющий один сеанс лички
+* @details управление сеансами лички
 *}
 //******************************************************************************
 unit session;
@@ -12,7 +11,7 @@ unit session;
 interface
 
 uses
-  SysUtils, Classes, Windows, Dictionary, settings, botdef, Forms;
+  SysUtils, Classes, Windows, Dictionary, settings, def, Forms;
 
 type
   /// сеанс лички

@@ -1,9 +1,17 @@
+//******************************************************************************
+{*
+* @file dictionary.pas
+* @author xmm
+* @brief управление словарем
+* @details словарь отвечает за хранение и выборку шаблонов
+*}
+//******************************************************************************
 unit dictionary;
 
 interface
 
 uses
-  SysUtils, Classes, Windows, RegExpr, botdef, tray;
+  SysUtils, Classes, Windows, RegExpr, def, tray;
 
 type
   TPhrase = record
@@ -149,8 +157,8 @@ begin
       Readln(f, s);
       //пропуск комментариев и слишком коротких строк
       if (length(s) < 3) or (s[1] = ';') then continue;
-      // TODO пользовать RegExpr для сплиттинга строки
-      ps := pos('/', s);
+      
+	  ps := pos('/', s);
       if (ps <= 0) then continue;
       prio := StrToInt(copy(s, 1, ps-1));
       delete(s, 1, ps);

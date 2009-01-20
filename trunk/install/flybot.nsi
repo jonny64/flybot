@@ -1,5 +1,4 @@
 ;NSIS Modern User Interface
-;Header Bitmap Example Script
 !define VERSION "0.22.3"
 
 !ifndef VERSION
@@ -19,10 +18,10 @@ SetCompressor /SOLID lzma
 
 ;RequestExecutionLevel admin
 ;--------------------------------
-;Include Modern UI
+;Include Modern UI 2
 
-  !include "MUI.nsh"
-
+  !include "MUI2.nsh"
+  !include "InstallOptions.nsh"
 ;--------------------------------
 ;General
 
@@ -31,6 +30,8 @@ SetCompressor /SOLID lzma
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\FlylinkDC++"
+  
+  DirText "Программа установит $(^NameDA) в папку клиента. Чтобы выбрать другую папку, нажмите кнопку 'Обзор' и укажите ее."
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKLM SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\FlylinkDC++_is1 "InstallLocation"
@@ -53,7 +54,9 @@ SetCompressor /SOLID lzma
   
   !insertmacro MUI_UNPAGE_CONFIRM
   !insertmacro MUI_UNPAGE_INSTFILES
-  
+  ;!define MUI_FINISHPAGE_LINK "Visit the NSIS site for the latest news, FAQs and support"
+  ;!define MUI_FINISHPAGE_LINK_LOCATION "http://flybot.googlecode.com"
+  ;!insertmacro MUI_PAGE_FINISH
 ;--------------------------------
 ;Languages
  
@@ -76,18 +79,17 @@ Section "Dummy Section" SecDummy
   
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\uninstall-flybot.exe"
-
 SectionEnd
 
 ;--------------------------------
 ;Descriptions
 
   ;Language strings
-  ;LangString DESC_SecDummy ${LANG_RUSSIAN} "A test section."
+  ;LangString DirText ${LANG_RUSSIAN} "A test section."
 
   ;Assign language strings to sections
   ;!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-    ;!insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} $(DESC_SecDummy)
+    ;!insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} DirText
   ;!insertmacro MUI_FUNCTION_DESCRIPTION_END
  
 ;--------------------------------

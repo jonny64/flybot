@@ -2,7 +2,6 @@
 {*
 * @file bot.pas
 * @author xmm
-* @date 02-июн-2008
 * @brief главный модуль
 * @details содержит процедуру инициализации
 *}
@@ -12,7 +11,7 @@ unit bot;
 interface
 
 uses
-  SysUtils, Classes, Windows, Session, settings, botdef;
+  SysUtils, Classes, Windows, Session, settings, def;
 
 var
   SendProc2: TSendMessage2;///var адрес функции API в пространстве клиента
@@ -21,7 +20,6 @@ var
   procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param: pointer; paramsize: Cardinal); stdcall;
   function init(var _init: TBotInit): boolean; stdcall;
   procedure SendMsg(cid, msg: WideString);
-  function GetModulePath:string;
   
   exports init;
 
@@ -176,7 +174,6 @@ begin
   //создаем и заполняем словарь фраз-ответов
   try
     dict := TDict.init(GetModulePath + DICTIONARY_FILENAME);
-    ReadSettings;
   except
     on e: exception do
     begin
@@ -184,21 +181,6 @@ begin
       result := false;
     end;
   end;
-end;
-
-
-//******************************************************************************
-{* @author xmm
-* @date 02-июн-2008 : Original Version
-* @result string
-* @brief возвращает путь к исполняемому модулю клиента
-*}
-//******************************************************************************
-function GetModulePath:string;
-var exe:array[0..512]of char;
-begin
-  GetModuleFilename(0, exe, 512);
-  result:=ExtractFilePath(string(exe))
 end;
 
 end.

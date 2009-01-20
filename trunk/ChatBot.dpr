@@ -4,7 +4,7 @@ uses
   SysUtils,
   Classes,
   Windows,
-  botdef in 'botdef.pas',
+  def in 'def.pas',
   bot in 'bot.pas',
   session in 'session.pas',
   dictionary in 'dictionary.pas',
