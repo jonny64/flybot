@@ -192,8 +192,10 @@ begin
 
   timeout := length(current.phrase)*100;
   inc(timeout, g_answrDelay*1000);
+  
   //ответ с задержкой
-  SendDelayedMsg(current.phrase, timeout);
+  if TrayForm.botEnabled then
+    SendDelayedMsg(current.phrase, timeout);
 end;
 
 //******************************************************************************
