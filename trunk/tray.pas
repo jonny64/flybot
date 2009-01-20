@@ -38,7 +38,8 @@ type
     procedure mniOpenDictClick(Sender: TObject);
     procedure mniYesClick(Sender: TObject);
     procedure mniNoClick(Sender: TObject);
-    procedure DelayItemClick(Sender: TObject);
+    procedure SlotDelayItemClick(Sender: TObject);
+    procedure AnswerDelayItemClick(Sender: TObject);
   private
     { Private declarations }
     procedure SwitchIcon;
@@ -148,9 +149,17 @@ begin
   WriteSettings;
 end;
 
-procedure TTrayForm.DelayItemClick(Sender: TObject);
+procedure TTrayForm.SlotDelayItemClick(Sender: TObject);
 begin
   (Sender as TMenuItem).Checked:= True;
+  g_SlotTimeout := (Sender as TMenuItem).Tag;
+  WriteSettings;
+end;
+
+procedure TTrayForm.AnswerDelayItemClick(Sender: TObject);
+begin
+  (Sender as TMenuItem).Checked:= True;
+  g_AnswrDelay := (Sender as TMenuItem).Tag;
   WriteSettings;
 end;
 
@@ -162,7 +171,7 @@ initialization
     item.RadioItem := true;
     item.Tag := g_slotTimeouts[i];
     item.Caption := ToString(item.Tag div 60) + ' мин.';
-    item.OnClick := TrayForm.DelayItemClick;
+    item.OnClick := TrayForm.SlotDelayItemClick;
     TrayForm.PopupMenuMain.Items[2].Add(item);
   end;
   for i:=0 to High(g_answrDelays) do begin
@@ -170,7 +179,7 @@ initialization
     item.RadioItem := true;
     item.Tag := g_answrDelays[i];
     item.Caption := ToString(item.Tag) + ' сек.';
-    item.OnClick := TrayForm.DelayItemClick;
+    item.OnClick := TrayForm.AnswerDelayItemClick;
     TrayForm.PopupMenuMain.Items[3].Add(item);
   end;
   TrayForm.PopupMenuMain.Items[2].Items[g_selectedTimeout].Click();
