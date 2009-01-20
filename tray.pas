@@ -1,10 +1,18 @@
+//******************************************************************************
+{*
+* @file bot.pas
+* @author xmm
+* @brief форма контекстного меню
+* @details контекстное меню иконки в трее
+*}
+//******************************************************************************
 unit tray;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, ShellAPI, Menus, settings, botdef, CoolTrayIcon;
+  ExtCtrls, ShellAPI, Menus, settings, def, CoolTrayIcon;
 
 type
   TTrayForm = class(TForm)
@@ -17,14 +25,8 @@ type
     mniPM: TMenuItem;
     mniSettings: TMenuItem;
     mniSlot: TMenuItem;
-    popSlot10m: TMenuItem;
-    popSlot1h: TMenuItem;
-    popSlot1d: TMenuItem;
     mniOpenDict: TMenuItem;
     mniAddDelay: TMenuItem;
-    mni0: TMenuItem;
-    mni6: TMenuItem;
-    mni60: TMenuItem;
     mniShowInfo: TMenuItem;
     mniYes: TMenuItem;
     mniNo: TMenuItem;
@@ -32,16 +34,11 @@ type
     procedure mniReloadDictClick(Sender: TObject);
     procedure CoolTrayIconMainMouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
-    procedure popSlot10mClick(Sender: TObject);
-    procedure popSlot1hClick(Sender: TObject);
-    procedure popSlot1dClick(Sender: TObject);
     procedure PopupMenuMainPopup(Sender: TObject);
     procedure mniOpenDictClick(Sender: TObject);
-    procedure mni0Click(Sender: TObject);
-    procedure mni6Click(Sender: TObject);
-    procedure mni60Click(Sender: TObject);
     procedure mniYesClick(Sender: TObject);
     procedure mniNoClick(Sender: TObject);
+    procedure DelayItemClick(Sender: TObject);
   private
     { Private declarations }
     procedure SwitchIcon;
@@ -56,7 +53,8 @@ type
 
 var
   TrayForm: TTrayForm;
-
+  item: TMenuItem;
+  i:integer;
 implementation
 
 {$R *.DFM}
@@ -124,38 +122,8 @@ begin
   if (Button=mbLeft) then mniSwitchClick(nil);
 end;
 
-procedure TTrayForm.popSlot10mClick(Sender: TObject);
-begin
-  g_slotTimeout:=600;
-  WriteSettings;
-end;
-
-procedure TTrayForm.popSlot1hClick(Sender: TObject);
-begin
-  g_slotTimeout:=3600;
-  WriteSettings;
-end;
-
-procedure TTrayForm.popSlot1dClick(Sender: TObject);
-begin
-  g_slotTimeout:=86400;
-  WriteSettings;
-end;
-
 procedure TTrayForm.PopupMenuMainPopup(Sender: TObject);
 begin
-  with PopupMenuMain.Items[2] do
-    case g_slotTimeout of
-         600:  Items[0].Checked:=true;
-         3600: Items[1].Checked:=true;
-         86400: Items[2].Checked:=true;
-    end;
-  with PopupMenuMain.Items[3] do
-    case g_answrDelay of
-         0:  Items[0].Checked:=true;
-         6: Items[1].Checked:=true;
-         60: Items[2].Checked:=true;
-    end;
     with PopupMenuMain.Items[4] do
     case g_baloonInfo of
          True:  Items[0].Checked:=true;
@@ -166,24 +134,6 @@ end;
 procedure TTrayForm.mniOpenDictClick(Sender: TObject);
 begin
   ShellExecute(0, 'open', PChar(GetModulePath + DICTIONARY_FILENAME), '','', SW_SHOW);
-end;
-
-procedure TTrayForm.mni0Click(Sender: TObject);
-begin
-  g_answrDelay:=0;
-  WriteSettings;
-end;
-
-procedure TTrayForm.mni6Click(Sender: TObject);
-begin
-  g_answrDelay:=6;
-  WriteSettings;
-end;
-
-procedure TTrayForm.mni60Click(Sender: TObject);
-begin
-  g_answrDelay:=60;
-  WriteSettings;
 end;
 
 procedure TTrayForm.mniYesClick(Sender: TObject);
@@ -198,8 +148,34 @@ begin
   WriteSettings;
 end;
 
+procedure TTrayForm.DelayItemClick(Sender: TObject);
+begin
+  (Sender as TMenuItem).Checked:= True;
+  WriteSettings;
+end;
+
 initialization
   TrayForm := TTrayForm.Create(nil);
+  ReadSettings;
+  for i:=0 to High(g_slotTimeouts) do begin
+    item := TMenuItem.Create(nil);
+    item.RadioItem := true;
+    item.Tag := g_slotTimeouts[i];
+    item.Caption := ToString(item.Tag div 60) + ' мин.';
+    item.OnClick := TrayForm.DelayItemClick;
+    TrayForm.PopupMenuMain.Items[2].Add(item);
+  end;
+  for i:=0 to High(g_answrDelays) do begin
+    item := TMenuItem.Create(nil);
+    item.RadioItem := true;
+    item.Tag := g_answrDelays[i];
+    item.Caption := ToString(item.Tag) + ' сек.';
+    item.OnClick := TrayForm.DelayItemClick;
+    TrayForm.PopupMenuMain.Items[3].Add(item);
+  end;
+  TrayForm.PopupMenuMain.Items[2].Items[g_selectedTimeout].Click();
+  TrayForm.PopupMenuMain.Items[3].Items[g_selectedAnswer].Click();
+
   TrayForm.botEnabled:=true;
   TrayForm.AddTrayIcon(BOT_VERSION_STRING);
 finalization

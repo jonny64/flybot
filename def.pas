@@ -1,15 +1,14 @@
 //******************************************************************************
 {*
-* @file botdef.pas
+* @file def.pas
 * @author xmm
-* @date 03-июн-2008
 * @brief общие определения
 *}
 //******************************************************************************
-unit botdef;
+unit def;
 
 interface
-uses Windows;
+uses SysUtils, Windows;
 
 type
   TSendMessage = procedure(params: PWideChar; message: PWideChar); stdcall;
@@ -67,10 +66,36 @@ CODES =(
   end;
   const SLOT_TIMEOUT_SEC  : DWORD = 600;
         WIN32_TRUE        : BOOL  = true;
-        BOT_VERSION_STRING: string='flybot v0.22.3';
+        BOT_VERSION_STRING: string='flybot v0.22.4';
         DICTIONARY_FILENAME:string='Settings\\flydict.ini';
         BOT_SETTINGS_FILE:string='Settings\\flybot.ini';
         DEFAULT_SLOT_TIMEOUT:integer=600;
         DEFAULT_ANSWER_DELAY:integer=6;
+
+  function GetModulePath:string;
+  function ToString(i:integer):string;
 implementation
+
+//******************************************************************************
+{* @author xmm
+* @date 02-июн-2008 : Original Version
+* @result string
+* @brief возвращает путь к исполняемому модулю клиента
+*}
+//******************************************************************************
+function GetModulePath:string;
+var exe:array[0..512]of char;
+begin
+  GetModuleFilename(0, exe, 512);
+  result:=ExtractFilePath(string(exe))
+end;
+
+function ToString(i:integer):string;
+var tmp:string;
+begin
+  str(i, tmp);
+  ToString := tmp;
+end;
+
 end.
+
