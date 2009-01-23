@@ -173,7 +173,7 @@ begin
   tail := ' сек.';
   time := TimeSec;
   i := 1;
-  while (TimeSec >= limits[i]) and (i < 5) do begin 
+  while (i < 5) and (TimeSec >= limits[i]) do begin 
     time := TimeSec div limits[i];
     tail := labels[i];
     i := i + 1;
