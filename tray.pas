@@ -163,14 +163,34 @@ begin
   WriteSettings;
 end;
 
+// формирует строку вида xx мин (час, нед)
+function TimeToStr(TimeSec:integer):string;
+const labels: array[1..4] of string =(' мин.',' час.', ' дн.', ' нед.');
+  limits: array[1..4] of integer = (60, 3600, 86400, 86400*7);
+var tail: string;
+  i, time: integer;
+begin
+  tail := ' сек.';
+  time := TimeSec;
+  i := 1;
+  while (TimeSec >= limits[i]) and (i < 5) do begin 
+    time := TimeSec div limits[i];
+    tail := labels[i];
+    i := i + 1;
+  end;
+  TimeToStr := ToString(time) + tail;
+end;
+
 initialization
   TrayForm := TTrayForm.Create(nil);
+  // читаем параметры последнего сеанса
   ReadSettings;
+  // создаем меню задержек (величина задержки в мс. помещаем в tag каждого item)
   for i:=0 to High(g_slotTimeouts) do begin
     item := TMenuItem.Create(nil);
     item.RadioItem := true;
     item.Tag := g_slotTimeouts[i];
-    item.Caption := ToString(item.Tag div 60) + ' мин.';
+    item.Caption := TimeToStr(item.Tag);
     item.OnClick := TrayForm.SlotDelayItemClick;
     TrayForm.PopupMenuMain.Items[2].Add(item);
   end;
@@ -178,10 +198,11 @@ initialization
     item := TMenuItem.Create(nil);
     item.RadioItem := true;
     item.Tag := g_answrDelays[i];
-    item.Caption := ToString(item.Tag) + ' сек.';
+    item.Caption := TimeToStr(item.Tag);
     item.OnClick := TrayForm.AnswerDelayItemClick;
     TrayForm.PopupMenuMain.Items[3].Add(item);
   end;
+  // выбираем задержки предыдущего сеанса
   TrayForm.PopupMenuMain.Items[2].Items[g_selectedTimeout].Click();
   TrayForm.PopupMenuMain.Items[3].Items[g_selectedAnswer].Click();
 
