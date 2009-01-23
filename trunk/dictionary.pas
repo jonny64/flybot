@@ -158,25 +158,26 @@ begin
       //пропуск комментариев и слишком коротких строк
       if (length(s) < 3) or (s[1] = ';') then continue;
       
-	  ps := pos('/', s);
+	    ps := pos('/', s);
       if (ps <= 0) then continue;
-      prio := StrToInt(copy(s, 1, ps-1));
+      prio := StrToInt(copy(s, 1, ps - 1));
       delete(s, 1, ps);
+
       ps := pos('/', s);
       if (ps <= 0) then continue;
-      matchtxt := copy(s, 1, ps-1);
+      matchtxt := copy(s, 1, ps - 1);
       delete(s, 1, ps);
+
       ps := pos('/', s);
-      if (ps <= 0) then answer := s
+      if (ps <= 0) then
+        answer := s
       else begin
           answer := copy(s, 1, ps-1);
           delete(s, 1, ps);
           params:= s;
       end;
-      params := copy(s, 1, ps-1);
-      delete(s, 1, ps);
 
-      SetLength(allphrases, dst+1);
+      SetLength(allphrases, dst + 1);
       with allphrases[dst] do begin
         id                 := dst;
         basePrio           := prio;
