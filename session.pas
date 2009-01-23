@@ -243,14 +243,16 @@ type
   end;
 
 /// поток, отсылающий отложенную личку
-procedure DelayedMsgThread(cid: pointer); stdcall;
+procedure DelayedMsgThread(msgInfo: pointer); stdcall;
 var
   r: ^TMsgRecord;
 begin
-  r := cid;
-  if (WaitForSingleObject(r.waitHandle, r.timeout) = WAIT_TIMEOUT) and (Assigned(SendProc2)) then
+  r := msgInfo;
+  if (WaitForSingleObject(r.waitHandle, r.timeout) = WAIT_TIMEOUT) and
+   (Assigned(SendProc2)) then begin
     SendMsg(WideString(r.cid), WideString(r.msg));
     Dispose(r);
+   end;
 end;
 
 procedure TUserSession.SendDelayedMsg(const msg: WideString; timeout: integer);

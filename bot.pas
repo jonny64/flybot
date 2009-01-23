@@ -46,6 +46,7 @@ uses
 //******************************************************************************
 procedure SendMsg(cid, msg: WideString);
 begin
+  if length(msg)<>0 then
       SendProc2( integer(SEND_PM), pWideChar(cid), pWideString(msg), sizeof(msg) );
 end;
 
@@ -101,7 +102,7 @@ procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param:pointer; paramsi
 var
   msg,userinfo: WideString;
 begin
-  if (TrayForm <> nil) then
+  if (TrayForm = nil) then
     exit;
 
   case CODES(msgid) of
