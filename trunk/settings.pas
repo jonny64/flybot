@@ -46,10 +46,14 @@ begin
     for i:=0 to answerDelays.Count - 1 do begin
       SetLength(g_answrDelays, i + 1);
       g_answrDelays[i] := Ini.ReadInteger('AnswerDelay', answerDelays[i], DEFAULT_ANSWER_DELAY);
+      if g_answrDelays[i] < 0 then 
+        g_answrDelays[i] := 0;
     end;
     for i:=0 to slotTimeouts.Count - 1 do begin
       SetLength(g_slotTimeouts, i + 1);
       g_slotTimeouts[i] := Ini.ReadInteger('SlotTimeout', slotTimeouts[i], DEFAULT_SLOT_TIMEOUT);
+      if g_slotTimeouts[i] < 0 then 
+        g_slotTimeouts[i] := 0;
     end;
     g_selectedTimeout:= Ini.ReadInteger('Selected', 'SlotTimeout', 1);
     g_selectedAnswer := Ini.ReadInteger('Selected', 'AnswerDelay', 1);
