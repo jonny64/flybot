@@ -145,14 +145,14 @@ constructor TDict.init(const ini: string);
 var
   f: TextFile;
   s, matchtxt,answer, params: string;
-  dst, ps, prio: integer;
+  templateCount, ps, prio: integer;
 begin
   allphrases := nil;
   AssignFile(f, ini);
   Reset(f);
   try
     dicFilename:=ini;
-    dst := 0;
+    templateCount := 0;
     while not EOF(f) do begin
       Readln(f, s);
       //пропуск комментариев и слишком коротких строк
@@ -177,9 +177,9 @@ begin
           params:= s;
       end;
 
-      SetLength(allphrases, dst + 1);
-      with allphrases[dst] do begin
-        id                 := dst;
+      SetLength(allphrases, templateCount + 1);
+      with allphrases[templateCount] do begin
+        id                 := templateCount;
         basePrio           := prio;
         match              := matchtxt;
         closeWnd           := (pos('c',params) > 0);
@@ -187,7 +187,7 @@ begin
         addToIngnore       := (pos('i',params) > 0);
         phrase             := answer;
       end;
-      inc(dst);
+      inc(templateCount);
     end;
   finally
     CloseFile(f);
