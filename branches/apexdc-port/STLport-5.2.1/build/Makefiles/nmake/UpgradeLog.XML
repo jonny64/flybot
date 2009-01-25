@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="vc9">
+</Property><Property Name="Solution File" Value="D:\mash\Visual Studio 2008\Projects\SamplePlugin.sln\STLport-5.2.1\build\Makefiles\nmake\vc9.sln">
+</Property><Property Name="Date" Value="25 января 2009 г.">
+</Property><Property Name="Time" Value="17:02:46">
+</Property></Properties><Event ErrorLevel="2" Project="D:\mash\Visual Studio 2008\Projects\SamplePlugin.sln\STLport-5.2.1\build\Makefiles\nmake\vc9.mak" Source="vc9" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="vc9" Source="vc9.mak" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="vc9" Source="vc9.mak" Description="Not Converted">
+</Event></UpgradeLog>
