@@ -17,7 +17,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)bin"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)STLport-5.2.1\stlport&quot;;&quot;$(SolutionDir)Client&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)Stlport\stlport&quot;;&quot;$(SolutionDir)Client&quot;"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,7 +61,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)STLport-5.2.1\lib&quot;"
+				AdditionalLibraryDirectories="$(SolutionDir)STLport\lib"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"

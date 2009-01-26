@@ -20,8 +20,6 @@
 #include "Plugin.h"
 #include "PluginDlg.h"
 
-#pragma warning (disable: 4996)
-
 Plugin* Plugin::instance = NULL;
 
 // Little greeting from us :)
