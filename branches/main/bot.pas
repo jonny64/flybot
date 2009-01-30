@@ -102,7 +102,7 @@ procedure OnRecvMessage2 (msgid:integer; objid:PWideChar; param:pointer; paramsi
 var
   msg,userinfo: WideString;
 begin
-  if (TrayForm = nil) then
+  if (TrayForm = nil) and (not TrayForm.botEnabled) then
     exit;
 
   case CODES(msgid) of
