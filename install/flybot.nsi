@@ -1,5 +1,5 @@
 ;NSIS Modern User Interface
-!define VERSION "0.22.4-alpha"
+!define VERSION "0.22.4"
 
 !ifndef VERSION
   !define VERSION 'anonymous-build'
