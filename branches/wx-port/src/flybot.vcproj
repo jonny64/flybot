@@ -4,6 +4,7 @@
 	Version="8,00"
 	Name="flybot"
 	ProjectGUID="{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}"
+	RootNamespace="flybot"
 	>
 	<Platforms>
 		<Platform
@@ -11,6 +12,9 @@
 		/>
 	</Platforms>
 	<ToolFiles>
+		<ToolFile
+			RelativePath="..\inst\nsis.rules"
+		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -27,6 +31,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -129,6 +136,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -228,6 +238,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -325,6 +338,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -427,6 +443,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -524,6 +543,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -625,6 +647,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -722,6 +747,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -824,6 +852,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -924,6 +955,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -1021,6 +1055,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -1123,6 +1160,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -1220,6 +1260,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -1323,6 +1366,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -1423,6 +1469,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
+				Name="NSIS Script"
+			/>
+			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
@@ -1521,6 +1570,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="NSIS Script"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"

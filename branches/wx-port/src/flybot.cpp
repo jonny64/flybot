@@ -9,7 +9,7 @@ DWORD WINAPI ThreadProc(LPVOID lpParameter)
 {
 	wxApp::SetInstance(new wxDLLApp());
 	wxEntry(GetModuleHandle(NULL),NULL,NULL,SW_SHOW);
-	return true;
+	return true; 
 }
 
 
