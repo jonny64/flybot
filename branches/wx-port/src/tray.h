@@ -15,8 +15,9 @@ public:
     {}
 
     void OnLeftButtonDClick(wxTaskBarIconEvent&);
-    void OnMenuRestore(wxCommandEvent&);
-    void OnMenuExit(wxCommandEvent&);
+    void OnMenuOpenDict(wxCommandEvent&);
+    void OnMenuReload(wxCommandEvent&);
+	void OnPower(wxCommandEvent&);
     void OnMenuSetNewIcon(wxCommandEvent&);
     void OnMenuSetOldIcon(wxCommandEvent&);
        void OnMenuCheckmark(wxCommandEvent&);

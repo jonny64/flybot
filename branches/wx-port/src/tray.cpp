@@ -81,37 +81,39 @@ void MyDialog::Init(void)
 
 
 enum {
-    PU_RESTORE = 10001,
-    PU_NEW_ICON,
-    PU_OLD_ICON,
-    PU_EXIT,
-    PU_CHECKMARK,
-    PU_SUB1,
-    PU_SUB2,
-    PU_SUBMAIN
+    PU_OPEN_DICT = 10001,
+    PU_RELOAD_DICT,
+    PU_SLOT_TIMEOUT_SUB,
+    PU_ANSWER_TIMEOUT_SUB,
+    PU_BALOON_SUB,
+    PU_POWER,
+	PU_TIMEOUT1,
+	PU_TIMEOUT2,
+	PU_YES,
+	PU_NO
 };
 
 
 BEGIN_EVENT_TABLE(MyTaskBarIcon, wxTaskBarIcon)
-    EVT_MENU(PU_RESTORE, MyTaskBarIcon::OnMenuRestore)
-    EVT_MENU(PU_EXIT,    MyTaskBarIcon::OnMenuExit)
-    EVT_MENU(PU_NEW_ICON,MyTaskBarIcon::OnMenuSetNewIcon)
-    EVT_MENU(PU_OLD_ICON,MyTaskBarIcon::OnMenuSetOldIcon)
-    EVT_MENU(PU_CHECKMARK,MyTaskBarIcon::OnMenuCheckmark)
-    EVT_UPDATE_UI(PU_CHECKMARK,MyTaskBarIcon::OnMenuUICheckmark)
+    EVT_MENU(PU_OPEN_DICT, MyTaskBarIcon::OnMenuOpenDict)
+    EVT_MENU(PU_RELOAD_DICT,    MyTaskBarIcon::OnMenuReload)
+    EVT_MENU(PU_SLOT_TIMEOUT_SUB, MyTaskBarIcon::OnMenuSub)
+    EVT_MENU(PU_ANSWER_TIMEOUT_SUB, MyTaskBarIcon::OnMenuSub)
+    //EVT_MENU(PU_CHECKMARK,MyTaskBarIcon::OnMenuCheckmark)
+    //EVT_UPDATE_UI(PU_CHECKMARK,MyTaskBarIcon::OnMenuUICheckmark)
     EVT_TASKBAR_LEFT_DCLICK  (MyTaskBarIcon::OnLeftButtonDClick)
-    EVT_MENU(PU_SUB1, MyTaskBarIcon::OnMenuSub)
-    EVT_MENU(PU_SUB2, MyTaskBarIcon::OnMenuSub)
+    EVT_MENU(PU_BALOON_SUB, MyTaskBarIcon::OnMenuSub)
+    EVT_MENU(PU_POWER, MyTaskBarIcon::OnPower)
 END_EVENT_TABLE()
 
-void MyTaskBarIcon::OnMenuRestore(wxCommandEvent& )
+void MyTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
 {
-    dialog->Show(true);
+    //dialog->Show(true);
 }
 
-void MyTaskBarIcon::OnMenuExit(wxCommandEvent& )
+void MyTaskBarIcon::OnMenuReload(wxCommandEvent& )
 {
-    dialog->Close(true);
+    //dialog->Close(true);
 }
 
 static bool check = true;
@@ -154,29 +156,38 @@ void MyTaskBarIcon::OnMenuSub(wxCommandEvent&)
 // Overridables
 wxMenu *MyTaskBarIcon::CreatePopupMenu()
 {
-    // Try creating menus different ways
-    // TODO: Probably try calling SetBitmap with some XPMs here
     wxMenu *menu = new wxMenu;
-    menu->Append(PU_RESTORE, _T("&Restore TBTest"));
+	menu->Append(PU_OPEN_DICT, _T("&Open dict"));
+    menu->Append(PU_OPEN_DICT, _T("&Reload dict"));
     menu->AppendSeparator();
-    menu->Append(PU_OLD_ICON, _T("&Restore Old Icon"));    
-    menu->Append(PU_NEW_ICON, _T("&Set New Icon"));
-    menu->AppendSeparator();
-    menu->Append(PU_CHECKMARK, _T("Checkmark"),wxT(""), wxITEM_CHECK);
-    menu->AppendSeparator();
-    wxMenu *submenu = new wxMenu;
-    submenu->Append(PU_SUB1, _T("One submenu"));
-    submenu->AppendSeparator();
-    submenu->Append(PU_SUB2, _T("Another submenu"));
-    menu->Append(PU_SUBMAIN, _T("Submenu"), submenu);
-#ifndef __WXMAC_OSX__ /*Mac has built-in quit menu*/
-    menu->AppendSeparator();
-    menu->Append(PU_EXIT,    _T("E&xit"));
-#endif
+    // menu->Append(PU_CHECKMARK, _T("Checkmark"),wxT(""), wxITEM_CHECK);
+    
+	wxMenu *submenuSlot = new wxMenu;
+    submenuSlot->Append(PU_TIMEOUT1, _T("Slot timeout 1"));
+    submenuSlot->Append(PU_TIMEOUT2, _T("Slot timeout 2"));
+	menu->Append(PU_ANSWER_TIMEOUT_SUB, _T("Slot timeout"), submenuSlot);
+
+	wxMenu *submenuAnswr = new wxMenu;
+    submenuAnswr->Append(PU_TIMEOUT1, _T("Answer timeout 1"));
+    submenuAnswr->Append(PU_TIMEOUT2, _T("Answer timeout 2"));
+	menu->Append(PU_ANSWER_TIMEOUT_SUB, _T("Answer timeout"), submenuAnswr);
+
+	wxMenu *submenuBaloon = new wxMenu;
+    submenuBaloon->Append(PU_YES, _T("Yes"));
+    submenuBaloon->Append(PU_NO, _T("No"));
+	menu->Append(PU_ANSWER_TIMEOUT_SUB, _T("Show baloons"), submenuBaloon);
+	menu->AppendSeparator();
+
+	menu->Append(PU_POWER, _T("&On/Off"));    
+
     return menu;
 }
 
 void MyTaskBarIcon::OnLeftButtonDClick(wxTaskBarIconEvent&)
 {
-    dialog->Show(true);
+    // dialog->Show(true);
+}
+
+void MyTaskBarIcon::OnPower(wxCommandEvent&)
+{
 }
