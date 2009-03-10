@@ -9,8 +9,8 @@
 			DisplayName="nsis script"
 			CommandLine="[NsisMake] [inputs]"
 			Outputs="$(InputName).exe"
-			AdditionalDependencies="$(SolutionDir)bin\Chatbot.dll"
 			FileExtensions="*.nsi"
+			ExecutionDescription="Executing tool..."
 			>
 			<Properties>
 				<StringProperty
