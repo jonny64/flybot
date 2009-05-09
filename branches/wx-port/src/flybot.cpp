@@ -1,16 +1,29 @@
 #include "wx/wx.h"
 #include "flybot.h"
 #include "wx/taskbar.h"
-#include "wx/private.h"
+#include "wx/msw/private.h"
 
-IMPLEMENT_APP_NO_MAIN(wxDLLApp)
-
-DWORD WINAPI ThreadProc(LPVOID lpParameter)
+class wxFlybotDLL: public wxApp
 {
-	wxApp::SetInstance(new wxDLLApp());
-	wxEntry(GetModuleHandle(NULL),NULL,NULL,SW_SHOW);
-	return true; 
-}
+	MyTaskBarIcon   *m_taskBarIcon;
+public:
+	bool OnInit()
+	{
+		m_taskBarIcon = new MyTaskBarIcon();
+		if (!m_taskBarIcon->SetIcon(wxICON(ONLINE_ICO), wxT("flybot 0.3 alpha")))
+			wxMessageBox(wxT("Could not set icon."));
+
+		wxDialog* dlg = new wxDialog(NULL,-1,wxT("Hello World From Library"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_DIALOG_STYLE,wxDialogNameStr);
+		dlg->Show();
+		return true;
+	}
+	~wxFlybotDLL()
+	{
+		delete m_taskBarIcon;
+	}
+};
+
+IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -18,7 +31,6 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 					  LPVOID lpReserved
 					  )
 {
-
 	int argc = 0;
 	char **argv = NULL;
 	switch (ul_reason_for_call)
@@ -54,31 +66,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, unsigned paramsize)
 {
-	// first of all, log event (except user join/part/update)
-	if (msgid != BotInit::RECV_UPDATE && msgid != BotInit::RECV_PART) {
-		//EnterCriticalSection(&logcs);
-		//FILE *log = fopen("v2test.log", "a+t, ccs=UTF-8");
-		//if (log) {
-		//   fwprintf(log, L"RecvMessage2: id=%2d, ", msgid);
-		//   MEMORY_BASIC_INFORMATION i;
-		//   if (VirtualQuery(objid, &i, sizeof(i)) && (i.State == MEM_COMMIT))
-		//      fwprintf(log, L"objid=\"%s\" ", objid);
-		//   else
-		//      fwprintf(log, L"objid=%08X ", objid);
-		//   if (VirtualQuery(param, &i, sizeof(i)) && (i.State == MEM_COMMIT))
-		//      fwprintf(log, L"param=\"%s\" ", param);
-		//   else
-		//      fwprintf(log, L"param=%08X ", param);
-		//   fwprintf(log, L" paramsize=%d\n", paramsize);
-		//   fwprintf(log, L"raw param: <");
-		//   fwrite(param, 1, paramsize, log);
-		//   fwprintf(log, L">\n");
-		//   fclose(log);
-		//}
-		//LeaveCriticalSection(&logcs);
-	}
-
-	// then parse some test commands
+	// parse some test commands
 	if (msgid != BotInit::RECV_PM_NEW && msgid != BotInit::RECV_PM) return;
 
 	WCHAR cid[64], *msg = (WCHAR*)param, *p, *q = 0;
@@ -188,7 +176,7 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 }
 
 extern "C" FLYBOT_API
-bool  __stdcall init(BotInit* _init)
+bool  init(BotInit* _init)
 {
 	if (_init->apiVersion < 2) 
 		return false;
@@ -197,20 +185,5 @@ bool  __stdcall init(BotInit* _init)
 	_init->RecvMessage2 = OnRecvMessage2;
 	memcpy(&::_init, _init, sizeof(BotInit));
 
-	// wxMessageBox(wxT("Init called"));
-
 	return true;
-}
-
-bool wxDLLApp::OnInit()
-{
-	m_taskBarIcon = new MyTaskBarIcon();
-	if (!m_taskBarIcon->SetIcon(wxICON(ONLINE_ICO), wxT("flybot 0.3 alpha")))
-		wxMessageBox(wxT("Could not set icon."));
-	return true;
-}
-
-wxDLLApp::~wxDLLApp()
-{
-	delete m_taskBarIcon;
 }

@@ -19,16 +19,11 @@
 //#endif
 
 
-struct BotInit _init;
+struct BotInit _init = {0};
 CRITICAL_SECTION logcs;
 HANDLE ThreadId;
 
 
-extern "C" FLYBOT_API bool __stdcall init(BotInit*);
+extern "C" FLYBOT_API bool init(BotInit*);
 
-class wxDLLApp : public wxApp
-{
-	MyTaskBarIcon   *m_taskBarIcon;
-	bool OnInit();
-	virtual ~wxDLLApp();
-};
+void RunApp();

@@ -1,83 +1,12 @@
 // For compilers that support precompilation, includes "wx.h".
 #include "wx/wxprec.h"
 
-#ifdef __BORLANDC__
-#pragma hdrstop
-#endif
-
 #ifndef WX_PRECOMP
 #include "wx/wx.h"
 #endif
 
-// the application icon (under Windows and OS/2 it is in resources)
-#if defined(__WXGTK__) || defined(__WXMOTIF__) || defined(__WXMAC__) || defined(__WXMGL__) || defined(__WXX11__)
-    #include "../sample.xpm"
-#endif
-
-#include "smile.xpm"
-
 #include "wx/taskbar.h"
 #include "tray.h"
-
-// Declare two frames
-MyDialog   *dialog = NULL;
-
-BEGIN_EVENT_TABLE(MyDialog, wxDialog)
-    EVT_BUTTON(wxID_OK, MyDialog::OnOK)
-    EVT_BUTTON(wxID_EXIT, MyDialog::OnExit)
-    EVT_CLOSE(MyDialog::OnCloseWindow)
-END_EVENT_TABLE()
-
-
-MyDialog::MyDialog(wxWindow* parent, const wxWindowID id, const wxString& title,
-    const wxPoint& pos, const wxSize& size, const long windowStyle):
-  wxDialog(parent, id, title, pos, size, windowStyle)
-{
-    Init();
-}
-
-MyDialog::~MyDialog()
-{
-    delete m_taskBarIcon;
-#if defined(__WXCOCOA__)
-    delete m_dockIcon;
-#endif
-}
-
-void MyDialog::OnOK(wxCommandEvent& WXUNUSED(event))
-{
-    Show(false);
-}
-
-void MyDialog::OnExit(wxCommandEvent& WXUNUSED(event))
-{
-    Close(true);
-}
-
-void MyDialog::OnCloseWindow(wxCloseEvent& WXUNUSED(event))
-{
-    Destroy();
-}
-
-void MyDialog::Init(void)
-{
-  (void)new wxStaticText(this, wxID_ANY, _T("Press 'Hide me' to hide me, Exit to quit."),
-                         wxPoint(10, 20));
-
-  (void)new wxStaticText(this, wxID_ANY, _T("Double-click on the taskbar icon to show me again."),
-                         wxPoint(10, 40));
-
-  (void)new wxButton(this, wxID_EXIT, _T("Exit"), wxPoint(185, 230), wxSize(80, 25));
-  (new wxButton(this, wxID_OK, _T("Hide me"), wxPoint(100, 230), wxSize(80, 25)))->SetDefault();
-  Centre(wxBOTH);
-   
-  m_taskBarIcon = new MyTaskBarIcon();
-#if defined(__WXCOCOA__)
-  m_dockIcon = new MyTaskBarIcon(wxTaskBarIcon::DOCK);
-#endif
-  if (!m_taskBarIcon->SetIcon(wxICON(sample), wxT("wxTaskBarIcon Sample")))
-        wxMessageBox(wxT("Could not set icon."));
-}
 
 
 enum {
@@ -120,7 +49,6 @@ void MyTaskBarIcon::OnMenuReload(wxCommandEvent& )
 
 void MyTaskBarIcon::OnMenuCheckmark(wxCommandEvent& event)
 {
-	event.
 }
 
 void MyTaskBarIcon::OnMenuUICheckmark(wxUpdateUIEvent&event)
@@ -156,7 +84,9 @@ void MyTaskBarIcon::OnMenuSub(wxCommandEvent&)
 // Overridables
 wxMenu *MyTaskBarIcon::CreatePopupMenu()
 {
+	
     wxMenu *menu = new wxMenu;
+	
 	menu->Append(PU_OPEN_DICT, _T("&Open dict"));
     menu->Append(PU_OPEN_DICT, _T("&Reload dict"));
     menu->AppendSeparator();
