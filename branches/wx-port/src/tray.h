@@ -12,7 +12,7 @@ public:
 #else
     MyTaskBarIcon()
 #endif
-    {}
+	{}
 
     void OnLeftButtonDClick(wxTaskBarIconEvent&);
     void OnMenuOpenDict(wxCommandEvent&);
@@ -23,6 +23,8 @@ public:
        void OnMenuCheckmark(wxCommandEvent&);
        void OnMenuUICheckmark(wxUpdateUIEvent&);
     void OnMenuSub(wxCommandEvent&);
+    void SwitchIcon();
+
     virtual wxMenu *CreatePopupMenu();
 
 DECLARE_EVENT_TABLE()

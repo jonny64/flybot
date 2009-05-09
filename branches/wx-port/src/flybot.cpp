@@ -6,14 +6,14 @@
 class wxFlybotDLL: public wxApp
 {
 	MyTaskBarIcon   *m_taskBarIcon;
+
 public:
 	bool OnInit()
 	{
 		m_taskBarIcon = NULL;
 		m_taskBarIcon = new MyTaskBarIcon();
-		if (!m_taskBarIcon->SetIcon(wxICON(ONLINE_ICO), wxT("flybot 0.3 alpha")))
-			wxMessageBox(wxT("Could not set icon."));
-
+		
+		m_taskBarIcon->SwitchIcon();
 		return true;
 	}
 	~wxFlybotDLL()

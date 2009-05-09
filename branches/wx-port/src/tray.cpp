@@ -32,8 +32,8 @@ BEGIN_EVENT_TABLE(MyTaskBarIcon, wxTaskBarIcon)
     EVT_MENU(PU_TIMEOUT1,MyTaskBarIcon::OnMenuCheckmark)
     EVT_MENU(PU_TIMEOUT2,MyTaskBarIcon::OnMenuCheckmark)
     EVT_UPDATE_UI(PU_CHECKMARK,MyTaskBarIcon::OnMenuUICheckmark)
-    EVT_TASKBAR_LEFT_DCLICK  (MyTaskBarIcon::OnLeftButtonDClick)
-    EVT_MENU(PU_BALOON_SUB, MyTaskBarIcon::OnMenuSub)
+    EVT_TASKBAR_LEFT_DCLICK(MyTaskBarIcon::OnLeftButtonDClick)
+	EVT_MENU(PU_BALOON_SUB, MyTaskBarIcon::OnMenuSub)
     EVT_MENU(PU_POWER, MyTaskBarIcon::OnPower)
 END_EVENT_TABLE()
 
@@ -58,10 +58,6 @@ void MyTaskBarIcon::OnMenuUICheckmark(wxUpdateUIEvent&event)
 
 void MyTaskBarIcon::OnMenuSetNewIcon(wxCommandEvent&)
 {
-    //wxIcon icon(smile_xpm);
-
-    //if (!SetIcon(icon, wxT("wxTaskBarIcon Sample - a different icon")))
-      //  wxMessageBox(wxT("Could not set new icon."));
 }
 
 void MyTaskBarIcon::OnMenuSetOldIcon(wxCommandEvent&)
@@ -115,9 +111,33 @@ wxMenu *MyTaskBarIcon::CreatePopupMenu()
 
 void MyTaskBarIcon::OnLeftButtonDClick(wxTaskBarIconEvent&)
 {
-    // dialog->Show(true);
+	SwitchIcon();
 }
 
 void MyTaskBarIcon::OnPower(wxCommandEvent&)
 {
+	SwitchIcon();
+}
+
+void MyTaskBarIcon::SwitchIcon()
+{
+	static bool online = false;
+	online = !online;
+
+	wxString path(wxT("..\\ico\\"));
+	if (online)
+	{
+		path.append(wxT("online.ico"));
+	}
+	else
+	{
+		path.append(wxT("offline.ico"));
+	}
+
+	wxIcon trayIcon;
+	trayIcon.LoadFile(path, wxBITMAP_TYPE_ICO);
+	// FIXME: find out why loading from resources  doesn't work
+	// SetIcon(wxIcon(ONLINE_ICO), ...)
+	if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")))
+		wxMessageBox(wxT("Could not set icon."));
 }
