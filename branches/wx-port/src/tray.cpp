@@ -58,10 +58,10 @@ void MyTaskBarIcon::OnMenuUICheckmark(wxUpdateUIEvent&event)
 
 void MyTaskBarIcon::OnMenuSetNewIcon(wxCommandEvent&)
 {
-    wxIcon icon(smile_xpm);
+    //wxIcon icon(smile_xpm);
 
-    if (!SetIcon(icon, wxT("wxTaskBarIcon Sample - a different icon")))
-        wxMessageBox(wxT("Could not set new icon."));
+    //if (!SetIcon(icon, wxT("wxTaskBarIcon Sample - a different icon")))
+      //  wxMessageBox(wxT("Could not set new icon."));
 }
 
 void MyTaskBarIcon::OnMenuSetOldIcon(wxCommandEvent&)

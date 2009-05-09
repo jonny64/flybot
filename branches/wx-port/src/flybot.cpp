@@ -1,5 +1,5 @@
-#include "wx/wx.h"
 #include "flybot.h"
+#include "wx/wx.h"
 #include "wx/taskbar.h"
 #include "wx/msw/private.h"
 
@@ -9,12 +9,11 @@ class wxFlybotDLL: public wxApp
 public:
 	bool OnInit()
 	{
+		m_taskBarIcon = NULL;
 		m_taskBarIcon = new MyTaskBarIcon();
 		if (!m_taskBarIcon->SetIcon(wxICON(ONLINE_ICO), wxT("flybot 0.3 alpha")))
 			wxMessageBox(wxT("Could not set icon."));
 
-		wxDialog* dlg = new wxDialog(NULL,-1,wxT("Hello World From Library"),wxDefaultPosition,wxDefaultSize,wxDEFAULT_DIALOG_STYLE,wxDialogNameStr);
-		dlg->Show();
 		return true;
 	}
 	~wxFlybotDLL()
@@ -80,7 +79,7 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 		  memcpy(cid, msg+2, 39*sizeof(WCHAR));
 		  cid[39] = 0;
 		  str = msg+2+39+1;
-		  _init.SendMessage2(BotInit::SEND_PM, cid, str, (wcslen(str)+1)*sizeof(WCHAR));
+		  g_botAPI.SendMessage2(BotInit::SEND_PM, cid, str, (wcslen(str)+1)*sizeof(WCHAR));
 		  break;
 		  // t <huburl> <message>
 		  // send public message to hub <huburl>
@@ -90,14 +89,14 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 		  memcpy(cid, msg+2, (p-(msg+2))*sizeof(WCHAR));
 		  cid[p-(msg+2)] = 0;
 		  str = p+1;
-		  _init.SendMessage2(BotInit::SEND_CM, cid, str, (wcslen(str)+1)*sizeof(WCHAR));
+		  g_botAPI.SendMessage2(BotInit::SEND_CM, cid, str, (wcslen(str)+1)*sizeof(WCHAR));
 		  break;
 		  // x <cid>
 		  // close PM window
 	  case 'x':
 		  memcpy(cid, msg+2, 39*sizeof(WCHAR));
 		  cid[39] = 0;
-		  _init.SendMessage2(BotInit::USER_CLOSE, cid, 0, 0);
+		  g_botAPI.SendMessage2(BotInit::USER_CLOSE, cid, 0, 0);
 		  break;
 		  // b <cid> <0/1>
 		  // ban/unban
@@ -105,7 +104,7 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 		  memcpy(cid, msg+2, 39*sizeof(WCHAR));
 		  cid[39] = 0;
 		  value = msg[2+39+1]-'0';
-		  _init.SendMessage2(BotInit::USER_BAN, cid, &value, sizeof(value));
+		  g_botAPI.SendMessage2(BotInit::USER_BAN, cid, &value, sizeof(value));
 		  break;
 		  // i <cid> <0/1>
 		  // ignore/unignore
@@ -113,7 +112,7 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 		  memcpy(cid, msg+2, 39*sizeof(WCHAR));
 		  cid[39] = 0;
 		  value = msg[2+39+1]-'0';
-		  _init.SendMessage2(BotInit::USER_IGNORE, cid, &value, sizeof(value));
+		  g_botAPI.SendMessage2(BotInit::USER_IGNORE, cid, &value, sizeof(value));
 		  break;
 		  // l <cid> <time>
 		  // give/remove slot
@@ -121,69 +120,53 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 		  memcpy(cid, msg+2, 39*sizeof(WCHAR));
 		  cid[39] = 0;
 		  value = _wtoi(&msg[2+39+1]);
-		  _init.SendMessage2(BotInit::USER_SLOT, cid, &value, sizeof(value));
+		  g_botAPI.SendMessage2(BotInit::USER_SLOT, cid, &value, sizeof(value));
 		  break;
 	  case 'q':
 		  switch (msg[1]) {
 			  // qu <cid>
 			  // query user by CID
 	  case 'u':
-		  q = (WCHAR*)_init.QueryInfo(BotInit::QUERY_USER_BY_CID, msg+3, NULL, 0);
+		  q = (WCHAR*)g_botAPI.QueryInfo(BotInit::QUERY_USER_BY_CID, msg+3, NULL, 0);
 		  break;
 		  // qh <url>
 		  // query hub by url
 	  case 'h':
-		  q = (WCHAR*)_init.QueryInfo(BotInit::QUERY_HUB_BY_URL, msg+3, NULL, 0);
+		  q = (WCHAR*)g_botAPI.QueryInfo(BotInit::QUERY_HUB_BY_URL, msg+3, NULL, 0);
 		  break;
 		  // qs
 		  // query self CID
 	  case 's':
-		  q = (WCHAR*)_init.QueryInfo(BotInit::QUERY_SELF, NULL, NULL, 0);
+		  q = (WCHAR*)g_botAPI.QueryInfo(BotInit::QUERY_SELF, NULL, NULL, 0);
 		  break;
 		  // qc
 		  // query connected hubs
 	  case 'c':
-		  q = (WCHAR*)_init.QueryInfo(BotInit::QUERY_CONNECTED_HUBS, NULL, NULL, 0);
+		  q = (WCHAR*)g_botAPI.QueryInfo(BotInit::QUERY_CONNECTED_HUBS, NULL, NULL, 0);
 		  break;
 		  // ql <url>
 		  // query hub users
 	  case 'l':
-		  q = (WCHAR*)_init.QueryInfo(BotInit::QUERY_HUB_USERS, NULL, NULL, 0);
+		  q = (WCHAR*)g_botAPI.QueryInfo(BotInit::QUERY_HUB_USERS, NULL, NULL, 0);
 		  break;
 	  case '1':
 	  case '2':
 	  case '3':
 	  case '4':
-		  {
-			  // query transfers
-			  // q1-4 [<cid>]
-			  static int c[3] = { BotInit::QUERY_RUNNING_UPLOADS, BotInit::QUERY_QUEUED_UPLOADS, BotInit::QUERY_DOWNLOADS };
-			  memcpy(cid, msg+3, 39*sizeof(WCHAR)); cid[39] = 0;
-			  q = (WCHAR*)_init.QueryInfo(c[msg[1]-'1'], msg[2]==' '? cid : NULL, NULL, 0);
-			  break;
-		  }
-		  }
-		  EnterCriticalSection(&logcs);
-		  FILE *log = fopen("v2test.log", "a+t, ccs=UTF-8");
-		  if (log) {
-			  fwprintf(log, L"query result: %s\n", q? q : L"query failed!");
-			  fclose(log);
-		  }
-		  LeaveCriticalSection(&logcs);
-		  _init.FreeInfo(q);
 		  break;
 	}
 }
+}
 
-extern "C" FLYBOT_API
-bool  init(BotInit* _init)
+extern "C" 
+FLYBOT_API init(BotInit* _init)
 {
 	if (_init->apiVersion < 2) 
 		return false;
 	_init->botId = "Api2Test";
 	_init->botVersion = "1.0";
 	_init->RecvMessage2 = OnRecvMessage2;
-	memcpy(&::_init, _init, sizeof(BotInit));
+	memcpy(&::g_botAPI, _init, sizeof(BotInit));
 
 	return true;
 }

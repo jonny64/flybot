@@ -389,7 +389,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28d_adv.lib wxmsw28d_html.lib wxbase28d_xml.lib wxmsw28d_core.lib wxbase28d.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexd.lib wxexpatd.lib winmm.lib comctl32.lib rpcrt4.lib wsock32.lib odbc32.lib"
+				AdditionalDependencies="wxmsw28d_adv.lib wxmsw28d_core.lib wxbase28d.lib wxregexd.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -874,7 +874,7 @@
 				AdditionalOptions="/EHsc "
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories=".\..\..\lib\vc_lib\mswu,.\..\..\include,.,.\..\..\samples"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswu&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;__WXMSW__;_WINDOWS;NOPCH"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -902,11 +902,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28u_adv.lib wxmsw28u_html.lib wxbase28u_xml.lib wxmsw28u_core.lib wxbase28u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib winmm.lib comctl32.lib rpcrt4.lib wsock32.lib odbc32.lib"
+				AdditionalOptions="/EXPORT:init"
+				AdditionalDependencies="wxmsw28u_adv.lib wxmsw28u_core.lib wxbase28u.lib wxregexu.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories=".\..\..\lib\vc_lib"
+				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
 				ProgramDatabaseFile="vc_mswu\flybot.pdb"
 				SubSystem="2"
 				TargetMachine="1"
@@ -1387,7 +1388,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHsc "
 				Optimization="0"
-				AdditionalIncludeDirectories=".\..\..\lib\vc_lib\mswud,.\..\..\include,.,.\..\..\samples"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswud&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -1415,11 +1416,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28ud_adv.lib wxmsw28ud_html.lib wxbase28ud_xml.lib wxmsw28ud_core.lib wxbase28ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib winmm.lib comctl32.lib rpcrt4.lib wsock32.lib odbc32.lib"
+				AdditionalOptions="/EXPORT:init"
+				AdditionalDependencies="wxmsw28ud_adv.lib wxmsw28ud_core.lib wxbase28ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories=".\..\..\lib\vc_lib"
+				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="vc_mswud\flybot.pdb"
 				SubSystem="2"
@@ -1678,6 +1680,10 @@
 			Name="Header files"
 			>
 			<File
+				RelativePath=".\ChatBotAPI.h"
+				>
+			</File>
+			<File
 				RelativePath=".\flybot.h"
 				>
 			</File>
@@ -1699,6 +1705,18 @@
 			</File>
 			<File
 				RelativePath=".\stuff.rc"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Icons"
+			>
+			<File
+				RelativePath="..\ico\offline.ICO"
+				>
+			</File>
+			<File
+				RelativePath="..\ico\online.ICO"
 				>
 			</File>
 		</Filter>

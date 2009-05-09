@@ -4,26 +4,20 @@
 // that uses this DLL. This way any other project whose source files include this file see 
 // FLYBOT_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
-#include "wx/wx.h"
+//#include "wx/wx.h"
 #include <windows.h>
 #include <process.h>
 
 #include "ChatBotAPI.h"
 #include "tray.h"
 
-
-//#ifdef FLYBOT_EXPORTS
-#define FLYBOT_API __declspec(dllexport)
-//#else
-//#define FLYBOT_API __declspec(dllimport)
-//#endif
+#define FLYBOT_API __declspec(dllexport) bool  __stdcall
 
 
-struct BotInit _init = {0};
-CRITICAL_SECTION logcs;
+struct BotInit g_botAPI = {0};
 HANDLE ThreadId;
 
 
-extern "C" FLYBOT_API bool init(BotInit*);
+extern "C" FLYBOT_API init(BotInit*);
 
 void RunApp();
