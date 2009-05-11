@@ -1,13 +1,9 @@
-// For compilers that support precompilation, includes "wx.h".
-#include "wx/wxprec.h"
-
-#ifndef WX_PRECOMP
-#include "wx/wx.h"
-#endif
-
-#include "wx/taskbar.h"
+#include "stdwx.h"
 #include "tray.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 enum {
     PU_OPEN_DICT = 10001,
@@ -53,7 +49,6 @@ void MyTaskBarIcon::OnMenuCheckmark(wxCommandEvent& event)
 
 void MyTaskBarIcon::OnMenuUICheckmark(wxUpdateUIEvent&event)
 {
-       //event.Check( check );
 }
 
 void MyTaskBarIcon::OnMenuSetNewIcon(wxCommandEvent&)

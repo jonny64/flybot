@@ -1,7 +1,6 @@
 #pragma once
 
-#include "wx/wx.h"
-#include "wx/taskbar.h"
+#include "stdwx.h"
 
 class MyTaskBarIcon: public wxTaskBarIcon
 {

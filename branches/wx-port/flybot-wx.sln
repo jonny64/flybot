@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flybot", "src\flybot.vcproj", "{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "inst", "inst\inst.vcproj", "{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC} = {5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -28,14 +23,6 @@ Global
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Debug|Win32.ActiveCfg = Debug|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Debug|Win32.Build.0 = Debug|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Release|Win32.ActiveCfg = Release|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Release|Win32.Build.0 = Release|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Unicode Debug|Win32.Build.0 = Debug|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Unicode Release|Win32.ActiveCfg = Release|Win32
-		{FD66E880-1CC3-4EA7-81F4-C1FA59B9714F}.Unicode Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

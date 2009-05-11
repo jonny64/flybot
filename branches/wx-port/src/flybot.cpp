@@ -1,7 +1,9 @@
+#include "stdwx.h"
 #include "flybot.h"
-#include "wx/wx.h"
-#include "wx/taskbar.h"
-#include "wx/msw/private.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
 
 class wxFlybotDLL: public wxApp
 {
@@ -71,6 +73,8 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 	WCHAR cid[64], *msg = (WCHAR*)param, *p, *q = 0;
 	WCHAR *str;
 	DWORD value;
+	WCHAR *userinfo = (WCHAR*)g_botAPI.QueryInfo(BotInit::CODES::QUERY_USER_BY_CID, objid, NULL, 0);
+    // HandlePM(userinfo, msg);
 
 	switch (msg[0]) {
 		// s <cid> <message>
