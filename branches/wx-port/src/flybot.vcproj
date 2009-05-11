@@ -115,7 +115,6 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
-		
 		<Configuration
 			Name="Unicode Release|Win32"
 			OutputDirectory=".\vc_mswu"
@@ -221,7 +220,6 @@
 				CommandLine="&quot;C:\Program Files\NSIS\makensis&quot; &quot;$(SolutionDir)inst\flybot.nsi&quot;"
 			/>
 		</Configuration>
-		
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory=".\vc_msw"
@@ -427,7 +425,6 @@
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
-		
 	</Configurations>
 	<References>
 	</References>
@@ -438,6 +435,14 @@
 			<File
 				RelativePath=".\flybot.cpp"
 				>
+				<FileConfiguration
+					Name="Unicode Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\stdwx.cpp"
@@ -505,7 +510,7 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="inst"
+			Name="Install"
 			>
 			<File
 				RelativePath="..\inst\flybot.nsi"
