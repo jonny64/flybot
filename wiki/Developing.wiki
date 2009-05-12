@@ -1,13 +1,19 @@
 #labels Phase-Implementation
 = Разработчикам =
 
+== flybot pre - 0.3 ==
+
 Проект собирался под Delphi 7.
 
-Были мысли писать c нуля (на ... ээ ... 'живом' языке), но потом нашелся 
+Были мысли писать c нуля, но потом нашелся 
 Delphi пример из apex speedmod, который и был доработан :). 
 
 Для успешной компиляции требуется компонент [http://flybot.googlecode.com/files/CoolTrayIcon.zip CoolTrayIcon].
 
-Были попытки привести код в порядок. 
-Если есть желание, можете сгенерировать документацию себе сами.
-Препроцессор для doxygen (pas2dox) можно легко найти в сети.
+== flybot 0.3 ==
+
+  *  Код [http://flybot.googlecode.com/svn/trunk/branches/wx-port/ здесь]
+
+  *  Скачайте и соберите библиотеку (статически, конфигурация unicode - debug) [http://www.wxwidgets.org/downloads/ wxWidgets]
+
+  *  Скопируйте папки include и полученную папку lib в папку solution'а
