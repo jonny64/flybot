@@ -18,9 +18,17 @@ public:
 		m_taskBarIcon->SwitchIcon();
 		return true;
 	}
+	
+	int OnExit()
+	{
+		m_taskBarIcon->RemoveIcon();
+		delete m_taskBarIcon;
+
+		return 0;
+	}
+
 	~wxFlybotDLL()
 	{
-		delete m_taskBarIcon;
 	}
 };
 
