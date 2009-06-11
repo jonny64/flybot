@@ -149,7 +149,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHsc "
-				Optimization="2"
+				Optimization="1"
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswu&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;__WXMSW__;_WINDOWS;NOPCH"
@@ -442,6 +442,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Session.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdwx.cpp"
 				>
 				<FileConfiguration
@@ -465,6 +469,10 @@
 				RelativePath=".\tray.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\UserInfo.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header files"
@@ -478,11 +486,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Session.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdwx.h"
 				>
 			</File>
 			<File
 				RelativePath=".\tray.h"
+				>
+			</File>
+			<File
+				RelativePath=".\UserInfo.h"
 				>
 			</File>
 		</Filter>
