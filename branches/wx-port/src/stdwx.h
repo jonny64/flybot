@@ -1,3 +1,4 @@
+#pragma once
 #include "wx/wxprec.h"
 
 #include "wx/msw/private.h"
@@ -5,7 +6,7 @@
 #include "wx/taskbar.h"
 #include "ChatBotAPI.h"
 
-// debug memory allocation enhancement (see next tip)
+// debug memory allocation enhancement
 #ifdef _DEBUG
 #include <crtdbg.h>
 #define DEBUG_NEW new(_NORMAL_BLOCK ,__FILE__, __LINE__)

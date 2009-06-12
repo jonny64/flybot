@@ -81,7 +81,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wxmsw28d_adv.lib wxmsw28d_core.lib wxbase28d.lib wxregexd.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories=".\..\..\lib\vc_lib"
 				GenerateDebugInformation="true"
@@ -388,7 +388,7 @@
 				AdditionalOptions="/EXPORT:init"
 				AdditionalDependencies="wxmsw28ud_adv.lib wxmsw28ud_core.lib wxbase28ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
-				LinkIncremental="2"
+				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
 				GenerateDebugInformation="true"
@@ -516,6 +516,14 @@
 			<File
 				RelativePath=".\stuff.rc"
 				>
+				<FileConfiguration
+					Name="Unicode Debug|Win32"
+					>
+					<Tool
+						Name="VCResourceCompilerTool"
+						Culture="1049"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter

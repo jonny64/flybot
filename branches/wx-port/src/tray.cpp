@@ -1,5 +1,6 @@
 #include "stdwx.h"
 #include "tray.h"
+#include "resource.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -118,21 +119,15 @@ void MyTaskBarIcon::SwitchIcon()
 {
 	static bool online = false;
 	online = !online;
-
-	wxString path(wxT("..\\ico\\"));
-	if (online)
-	{
-		path.append(wxT("online.ico"));
-	}
-	else
-	{
-		path.append(wxT("offline.ico"));
-	}
+	
+	HICON hIconOnline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_ONLINE));
+	HICON hIconOffline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_OFFLINE));
+	HICON hIcon = online? hIconOnline : hIconOffline;
 
 	wxIcon trayIcon;
-	trayIcon.LoadFile(path, wxBITMAP_TYPE_ICO);
-	// FIXME: find out why loading from resources  doesn't work
-	// SetIcon(wxIcon(ONLINE_ICO), ...)
-	if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")))
+	trayIcon.SetHICON(hIcon);
+	// TODO: find out why normal loading from resources doesn't work
+	// SetIcon(wxIcon(IDI_ICON_ONLINE), wxT("flybot 0.3 alpha") )
+	if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")) )
 		wxMessageBox(wxT("Could not set icon."));
 }

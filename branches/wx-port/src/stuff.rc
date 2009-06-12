@@ -54,8 +54,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-ONLINE_ICO                  ICON                    "..\ico\online.ico"
-OFFLINE_ICO                  ICON                    "..\ico\offline.ico"
+IDI_ICON_ONLINE         ICON                    "..\\ico\\online.ico"
+IDI_ICON_OFFLINE        ICON                    "..\\ico\\offline.ico"
 #endif    // Russian resources
 /////////////////////////////////////////////////////////////////////////////
 
