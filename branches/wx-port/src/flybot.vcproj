@@ -510,10 +510,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\smile.xpm"
-				>
-			</File>
-			<File
 				RelativePath=".\stuff.rc"
 				>
 				<FileConfiguration

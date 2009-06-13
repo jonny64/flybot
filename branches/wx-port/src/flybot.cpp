@@ -24,16 +24,33 @@ public:
 
 	void HandlePM(UserInfo& userinfo, wxString& msg)
 	{
-		// if session is not opened, open one
-		// answer pm, according to session enviroment
+		// do not process favourites
+		if ( wxT("1") == userinfo[wxT("ISFAV")] )
+			return;
+
+		// if it is a new PM, create new session
+		wxString cid = userinfo[wxT("CID")];
+		if (NULL == m_sessions[cid])
+		{
+			m_sessions[cid] = new Session(userinfo);
+		}
+
+		// answer pm, according to previous replies, etc.
+		m_sessions[cid]->Answer(msg);
 	}
 	
 	int OnExit()
 	{
-		m_sessions.clear();
-
 		m_taskBarIcon->RemoveIcon();
 		delete m_taskBarIcon;
+
+		// free session info
+		SessionMap::iterator it;
+		for( it = m_sessions.begin(); it != m_sessions.end(); ++it )
+		{
+			delete it->second;
+		}
+		m_sessions.clear();
 
 		return 0;
 	}
@@ -86,14 +103,16 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, unsigned paramsize)
 {
-	WCHAR *msg = (WCHAR*)param;
-	WCHAR *info = (WCHAR*)g_botAPI.QueryInfo(CODES::QUERY_USER_BY_CID, objid, NULL, 0);
+	WCHAR *msg = NULL;
+	WCHAR *info = NULL;
 
 	switch (msgid)
 	{
-		case CODES::RECV_PM:
+		case RECV_PM:
 			// fall down
-		case CODES::RECV_PM_NEW:
+		case RECV_PM_NEW:
+			msg = (WCHAR*)param;
+			info = (WCHAR*)g_botAPI.QueryInfo(QUERY_USER_BY_CID, objid, NULL, 0);
 			wxGetApp().HandlePM(UserInfo(info), wxString(msg));
 			break;
 		default:
