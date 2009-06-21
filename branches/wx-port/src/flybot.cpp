@@ -2,6 +2,7 @@
 #include "flybot.h"
 #include "UserInfo.h"
 #include "Session.h"
+#include "Dictionary.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -12,12 +13,16 @@ class wxFlybotDLL: public wxApp
 	MyTaskBarIcon   *m_taskBarIcon;
 	WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
 	SessionMap m_sessions;
+	Dictionary m_dictionary;
 public:
 	bool OnInit()
 	{
 		m_taskBarIcon = NULL;
 		m_taskBarIcon = new MyTaskBarIcon();
 		
+		// TODO: redirect logging to custom BaloonLogger class derived from wxLog;
+		// set it as default logger with wxLog::SetActiveTarget()
+
 		m_taskBarIcon->SwitchIcon();
 		return true;
 	}

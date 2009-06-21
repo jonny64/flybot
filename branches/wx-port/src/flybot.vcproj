@@ -430,6 +430,10 @@
 			Name="Source Files"
 			>
 			<File
+				RelativePath=".\Dictionary.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\flybot.cpp"
 				>
 				<FileConfiguration
@@ -440,6 +444,10 @@
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\Phrase.cpp"
+				>
 			</File>
 			<File
 				RelativePath=".\Session.cpp"
@@ -482,7 +490,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Dictionary.h"
+				>
+			</File>
+			<File
 				RelativePath=".\flybot.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Phrase.h"
 				>
 			</File>
 			<File

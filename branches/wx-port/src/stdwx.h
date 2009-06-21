@@ -3,6 +3,8 @@
 
 #include "wx/msw/private.h"
 #include "wx/wx.h"
+#include <wx/tokenzr.h>
+
 #include "wx/taskbar.h"
 #include "ChatBotAPI.h"
 

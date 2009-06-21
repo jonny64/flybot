@@ -1,5 +1,4 @@
 #include "stdwx.h"
-#include <wx/tokenzr.h>
 #include "UserInfo.h"
 
 UserInfo::UserInfo(WCHAR* userinfo)
@@ -9,7 +8,8 @@ UserInfo::UserInfo(WCHAR* userinfo)
 
 	// split string by | char
 	wxStringTokenizer tokenizer(info, wxT("|"));
-	while (tokenizer.HasMoreTokens() ) {
+	while (tokenizer.HasMoreTokens() ) 
+	{
 		wxString token = tokenizer.GetNextToken();		
 
 		// split value and varname
