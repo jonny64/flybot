@@ -2,8 +2,11 @@
 #include "UserInfo.h"
 #include "Session.h"
 
+extern struct BotInit g_botAPI;
+
 Session::Session(void)
 {
+	m_dictionary.Load();
 }
 
 Session::Session(UserInfo& userinfo)
@@ -13,13 +16,23 @@ Session::Session(UserInfo& userinfo)
 
 int Session::Answer(wxString& msg)
 {
-	// save incoming msg to history;
-	// find matches;
+	wxString answer = m_dictionary.GetAnswer(msg);
+	
 	// if no matches, exit;
-	// select one (random) answer from matches, mark it as used;
-	// replace special vars in answer;
+	if (answer.empty())
+		return 0;
+
+	// TODO: replace special vars in answer;
 	// process answer additional flags;
-	// send answer after desired time interval
+	// wait desired time interval
+
+	// send answer
+	wxString cid = m_userinfo[wxT("CID")];
+	if (!cid.empty())
+	{
+		g_botAPI.SendMessage2(SEND_PM, cid.c_str(), answer.c_str(), answer.size() + sizeof(wxChar));
+	}
+
 	return 0;
 }
 

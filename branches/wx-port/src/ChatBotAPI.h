@@ -1,6 +1,4 @@
-
-#ifndef CHAT_BOT_API_H
-#define CHAT_BOT_API_H
+#pragma once
 
 struct BotInit
 {
@@ -57,5 +55,3 @@ enum CODES {
 
         LAST
 };
-
-#endif // CHAT_BOT_API_H

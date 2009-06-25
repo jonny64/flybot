@@ -9,12 +9,14 @@ WX_DECLARE_OBJARRAY(Phrase, ArrayOfPhrases);
 class Dictionary
 {
 	ArrayOfPhrases m_phrases;
+	wxArrayString m_history;
 
 	int ProcessLine(wxString);
 public:
 	Dictionary(void);
 
 	int Load();
+	wxString GetAnswer(wxString& msg);
 
 	~Dictionary(void);
 };

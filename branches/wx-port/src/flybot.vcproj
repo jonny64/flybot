@@ -446,10 +446,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\Phrase.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Session.cpp"
 				>
 			</File>
@@ -479,6 +475,10 @@
 			</File>
 			<File
 				RelativePath=".\UserInfo.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\wxFlybotDLL.cpp"
 				>
 			</File>
 		</Filter>
@@ -515,6 +515,10 @@
 			</File>
 			<File
 				RelativePath=".\UserInfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\wxFlybotDLL.h"
 				>
 			</File>
 		</Filter>

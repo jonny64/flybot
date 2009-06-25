@@ -14,14 +14,36 @@ Dictionary::Dictionary(void)
 
 int Dictionary::ProcessLine(wxString line)
 {
-	Phrase phrase;
+	// skip comments
+	if (!line.empty() && line[0]==wxChar(';'))
+	{
+		return 0;
+	}
 
 	// split string by / char. construc phrase
 	wxStringTokenizer tokenizer(line, wxT("/"));
+	wxArrayString row;
 	while (tokenizer.HasMoreTokens() ) 
 	{
-		wxString value = tokenizer.GetNextToken();
+		row.Add(tokenizer.GetNextToken());
 	}
+
+	const int PARAMS_PER_LINE = 4;
+	if (row.Count() < PARAMS_PER_LINE)
+	{
+		// TODO: warn user
+		return -1;
+	}
+	
+	Phrase phrase = {0};
+	if (!row[0].ToLong(&phrase.Priority))
+	{
+		// TODO: warn user
+		return -1;
+	}
+	phrase.MatchExpr = row[1];
+	phrase.Answer = row[2];
+	phrase.Flags = row[3];
 
 	// add newly constructed phrase to collection
 	m_phrases.Add(phrase);
@@ -46,6 +68,18 @@ int Dictionary::Load()
 
 	return 0;
 
+}
+
+wxString Dictionary::GetAnswer(wxString& msg)
+{
+	m_history.Add(msg);
+
+	wxString answer;
+	
+	// find matches;
+	// select one (random) answer from matches, mark it as used;
+	
+	return answer;
 }
 
 Dictionary::~Dictionary(void)

@@ -1,72 +1,12 @@
 #include "stdwx.h"
 #include "flybot.h"
-#include "UserInfo.h"
-#include "Session.h"
-#include "Dictionary.h"
+#include "wxFlybotDLL.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-class wxFlybotDLL: public wxApp
-{
-	MyTaskBarIcon   *m_taskBarIcon;
-	WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
-	SessionMap m_sessions;
-	Dictionary m_dictionary;
-public:
-	bool OnInit()
-	{
-		m_taskBarIcon = NULL;
-		m_taskBarIcon = new MyTaskBarIcon();
-		
-		// TODO: redirect logging to custom BaloonLogger class derived from wxLog;
-		// set it as default logger with wxLog::SetActiveTarget()
-
-		m_taskBarIcon->SwitchIcon();
-		return true;
-	}
-
-	void HandlePM(UserInfo& userinfo, wxString& msg)
-	{
-		// do not process favourites
-		if ( wxT("1") == userinfo[wxT("ISFAV")] )
-			return;
-
-		// if it is a new PM, create new session
-		wxString cid = userinfo[wxT("CID")];
-		if (NULL == m_sessions[cid])
-		{
-			m_sessions[cid] = new Session(userinfo);
-		}
-
-		// answer pm, according to previous replies, etc.
-		m_sessions[cid]->Answer(msg);
-	}
-	
-	int OnExit()
-	{
-		m_taskBarIcon->RemoveIcon();
-		delete m_taskBarIcon;
-
-		// free session info
-		SessionMap::iterator it;
-		for( it = m_sessions.begin(); it != m_sessions.end(); ++it )
-		{
-			delete it->second;
-		}
-		m_sessions.clear();
-
-		return 0;
-	}
-
-	~wxFlybotDLL()
-	{
-	}
-};
-
-IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
-
+DECLARE_APP(wxFlybotDLL)
 
 BOOL APIENTRY DllMain( HMODULE hModule,
 					  DWORD  ul_reason_for_call,

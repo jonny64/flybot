@@ -1,10 +1,13 @@
 #include "stdwx.h"
 #include "tray.h"
 #include "resource.h"
+#include "wxFlybotDLL.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+DECLARE_APP(wxFlybotDLL)
 
 enum {
     PU_OPEN_DICT = 10001,
@@ -41,7 +44,7 @@ void MyTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
 
 void MyTaskBarIcon::OnMenuReload(wxCommandEvent& )
 {
-    //dialog->Close(true);
+	wxGetApp().ReloadDictionary();
 }
 
 void MyTaskBarIcon::OnMenuCheckmark(wxCommandEvent& event)
@@ -80,7 +83,7 @@ wxMenu *MyTaskBarIcon::CreatePopupMenu()
     wxMenu *menu = new wxMenu;
 	
 	menu->Append(PU_OPEN_DICT, _T("&Open dict"));
-    menu->Append(PU_OPEN_DICT, _T("&Reload dict"));
+    menu->Append(PU_RELOAD_DICT, _T("&Reload dict"));
     menu->AppendSeparator();
     // menu->Append(PU_CHECKMARK, _T("Checkmark"),wxT(""), wxITEM_CHECK);
     

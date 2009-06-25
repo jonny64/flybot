@@ -1,8 +1,9 @@
 #pragma once
 
-class Phrase
+struct Phrase
 {
-public:
-	Phrase(void);
-	~Phrase(void);
+	long Priority;
+	wxString MatchExpr;
+	wxString Answer;
+	wxString Flags;
 };
