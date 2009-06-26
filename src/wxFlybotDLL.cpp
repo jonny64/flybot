@@ -7,17 +7,17 @@ bool wxFlybotDLL::OnInit()
 {
 	m_taskBarIcon = NULL;
 	m_taskBarIcon = new MyTaskBarIcon();
+	m_taskBarIcon->SwitchIcon();
 
 	// TODO: redirect logging to custom BaloonLogger class derived from wxLog;
 	// set it as default logger with wxLog::SetActiveTarget()
 
-	m_taskBarIcon->SwitchIcon();
 	return true;
 }
 
 void wxFlybotDLL::ReloadDictionary()
 {
-	m_dictionary.Load();
+	Dict.Load();
 }
 
 void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)

@@ -1,11 +1,12 @@
 #pragma once
 #include "UserInfo.h"
 #include "Dictionary.h"
+#include "FlybotAPI.h"
 
 class Session
 {
 	UserInfo m_userinfo;
-	Dictionary m_dictionary;
+	ArrayOfPhrases m_usedPhrases;
 public:
 	Session(void);
 	Session(UserInfo&);

@@ -3,6 +3,7 @@
 #include <wx/txtstrm.h>
 #include <wx/wfstream.h>
 #include <wx/stdpaths.h>
+#include <wx/regex.h>
 
 #include <wx/arrimpl.cpp>
 WX_DEFINE_OBJARRAY(ArrayOfPhrases);
@@ -92,15 +93,29 @@ int Dictionary::Load()
 
 }
 
-wxString Dictionary::GetAnswer(wxString& msg)
+wxString Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases)
 {
-	m_history.Add(msg);
+	wxString answer = wxT("");
 
-	wxString answer;
-	
+	ArrayOfPhrases candidates;
+	Phrase p = {0};
 	// find matches;
+	for (unsigned int i = 0; i < m_phrases.Count(); i++)
+	{
+		p = m_phrases.Item(i);
+		wxRegEx phraseRegEx(p.MatchExpr);
+		if (phraseRegEx.Matches(msg))
+		{
+			candidates.Add(p);
+		}
+	}
+
 	// select one (random) answer from matches, mark it as used;
+	Phrase selectedPhrase = {0};
 	
+
+	usedPhrases->Add(selectedPhrase);
+	answer = selectedPhrase.Answer;
 	return answer;
 }
 
