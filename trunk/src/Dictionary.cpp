@@ -64,7 +64,7 @@ bool Dictionary::ProcessLine(wxString line)
 	}
 
 	// add newly constructed phrase to collection
-	m_phrases.Add(phrase);
+	phrase.MatchExpr.empty()? m_phrases.Add(phrase) : m_emptyPhrases.Add(phrase);
 	
 	return true;
 }
@@ -93,7 +93,7 @@ int Dictionary::Load()
 
 }
 
-wxString Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases)
+Phrase Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases)
 {
 	wxString answer = wxT("");
 
@@ -110,13 +110,17 @@ wxString Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhras
 		}
 	}
 
-	// select one (random) answer from matches, mark it as used;
 	Phrase selectedPhrase = {0};
+	if (candidates.empty())
+	{
+		candidates = m_emptyPhrases;
+	}
 	
-
+	// select one (random) answer from matches, mark it as used;
+	
+	// TODO: show selected phrase template to user
 	usedPhrases->Add(selectedPhrase);
-	answer = selectedPhrase.Answer;
-	return answer;
+	return selectedPhrase;
 }
 
 Dictionary::~Dictionary(void)

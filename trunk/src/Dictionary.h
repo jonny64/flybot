@@ -11,13 +11,14 @@ WX_DECLARE_OBJARRAY(Phrase, ArrayOfPhrases);
 class Dictionary
 {
 	ArrayOfPhrases m_phrases;
+	ArrayOfPhrases  m_emptyPhrases;
 
 	bool ProcessLine(wxString);
 public:
 	Dictionary(void);
 
 	int Load();
-	wxString GetMatchedTemplate(wxString&, ArrayOfPhrases*);
+	Phrase GetMatchedTemplate(wxString&, ArrayOfPhrases*);
 
 	~Dictionary(void);
 };

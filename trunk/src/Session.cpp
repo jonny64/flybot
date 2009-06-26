@@ -13,15 +13,16 @@ Session::Session(UserInfo& userinfo)
 
 int Session::Answer(wxString& msg)
 {
-	wxString answerTemplate = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
+	Phrase selectedPhrase = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
 	
 	// if no matches, exit;
-	if (answerTemplate.empty())
+	if (selectedPhrase.empty())
 		return 0;
 
 	// TODO: replace special vars in answer;
 	// process answer additional flags;
-	wxString answer = answerTemplate;
+	wxString answer = selectedPhrase.Answer;
+
 	// wait desired time interval
 
 	// send answer
