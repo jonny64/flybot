@@ -2,7 +2,7 @@
 
 struct Phrase
 {
-	long Priority;
+	int Priority;
 	wxString MatchExpr;
 	wxString Answer;
 	wxString Flags;

@@ -12,15 +12,29 @@ Dictionary::Dictionary(void)
 	Load();
 }
 
-int Dictionary::ProcessLine(wxString line)
+static bool ToPriority(const wxString str, int *buf)
+{
+	long converted = 0;
+
+	bool ok = str.ToLong(&converted, 10);
+	bool isPriority = ok && 0 < converted && converted < DICTIONARY_MAX_PRIORITY;
+	
+	if (isPriority)
+	{
+		*buf = converted;
+	}
+	return isPriority;
+}
+
+bool Dictionary::ProcessLine(wxString line)
 {
 	// skip comments
-	if (!line.empty() && line[0]==wxChar(';'))
+	if (line.empty() || line.StartsWith(&DICTIONARY_COMMENT_CHAR))
 	{
-		return 0;
+		return true;
 	}
 
-	// split string by / char. construc phrase
+	// split string by / char.
 	wxStringTokenizer tokenizer(line, wxT("/"));
 	wxArrayString row;
 	while (tokenizer.HasMoreTokens() ) 
@@ -28,42 +42,49 @@ int Dictionary::ProcessLine(wxString line)
 		row.Add(tokenizer.GetNextToken());
 	}
 
-	const int PARAMS_PER_LINE = 4;
-	if (row.Count() < PARAMS_PER_LINE)
+	const int MIN_PARAMS_PER_LINE = 3;
+	if (row.Count() < MIN_PARAMS_PER_LINE)
 	{
 		// TODO: warn user
-		return -1;
+		return false;
 	}
 	
+	// construct phrase
 	Phrase phrase = {0};
-	if (!row[0].ToLong(&phrase.Priority))
+	if (!ToPriority(row[0], &phrase.Priority))
 	{
 		// TODO: warn user
-		return -1;
+		return false;
 	}
 	phrase.MatchExpr = row[1];
 	phrase.Answer = row[2];
-	phrase.Flags = row[3];
+	if (row.Count() > MIN_PARAMS_PER_LINE)
+	{
+		phrase.Flags = row[3];
+	}
 
 	// add newly constructed phrase to collection
 	m_phrases.Add(phrase);
 	
-	return 0;
+	return true;
 }
 
 int Dictionary::Load()
 {
 	wxString dictionaryFile = wxStandardPaths::Get().GetPluginsDir() + DICTIONARY_FILENAME;
 	wxFileInputStream input(dictionaryFile);
-	wxTextInputStream text(input);
+	wxTextInputStream text(input, wxT("\r\n"), wxCSConv(wxFONTENCODING_CP1251));
 
 	m_phrases.Clear();
 
 	wxString line;	
 	while(input.IsOk() && !input.Eof() )
 	{
-		text >> line;
-		ProcessLine(line);
+		line = text.ReadLine();
+		if (!ProcessLine(line))
+		{
+			return -1;
+		}
 	}
 
 	return 0;
