@@ -6,7 +6,6 @@
 #include <wx/tokenzr.h>
 
 #include "wx/taskbar.h"
-#include "ChatBotAPI.h"
 
 // debug memory allocation enhancement
 #ifdef _DEBUG

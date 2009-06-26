@@ -446,6 +446,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\FlybotAPI.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Session.cpp"
 				>
 			</File>

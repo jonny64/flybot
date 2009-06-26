@@ -1,8 +1,8 @@
 #include "stdwx.h"
 #include "UserInfo.h"
 #include "Session.h"
+#include "FlybotAPI.h"
 
-extern struct BotInit g_botAPI;
 
 Session::Session(void)
 {
@@ -30,7 +30,7 @@ int Session::Answer(wxString& msg)
 	wxString cid = m_userinfo[wxT("CID")];
 	if (!cid.empty())
 	{
-		g_botAPI.SendMessage2(SEND_PM, cid.c_str(), answer.c_str(), answer.size() + sizeof(wxChar));
+		FlybotAPI::SendPM(cid, answer);
 	}
 
 	return 0;

@@ -28,7 +28,6 @@ static bool ToPriority(const wxString str, int *buf)
 
 bool Dictionary::ProcessLine(wxString line)
 {
-	// skip comments
 	if (line.empty() || line.StartsWith(&DICTIONARY_COMMENT_CHAR))
 	{
 		return true;
@@ -73,6 +72,8 @@ int Dictionary::Load()
 {
 	wxString dictionaryFile = wxStandardPaths::Get().GetPluginsDir() + DICTIONARY_FILENAME;
 	wxFileInputStream input(dictionaryFile);
+	// TODO: support both for Unicode and ANSI encoded dictionary
+	// wxTextInputStream text(input) supposed to work fine in both cases, but...
 	wxTextInputStream text(input, wxT("\r\n"), wxCSConv(wxFONTENCODING_CP1251));
 
 	m_phrases.Clear();

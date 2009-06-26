@@ -1,6 +1,7 @@
 #include "stdwx.h"
 #include "flybot.h"
 #include "wxFlybotDLL.h"
+#include "FlybotAPI.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,17 +49,19 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, unsigned paramsize)
 {
-	WCHAR *msg = NULL;
-	WCHAR *info = NULL;
+	wxString msg;
+	UserInfo userinfo;
 
 	switch (msgid)
 	{
 		case RECV_PM:
 			// fall down
 		case RECV_PM_NEW:
-			msg = (WCHAR*)param;
-			info = (WCHAR*)g_botAPI.QueryInfo(QUERY_USER_BY_CID, objid, NULL, 0);
-			wxGetApp().HandlePM(UserInfo(info), wxString(msg));
+			msg = wxString((WCHAR*)param);
+			if (FlybotAPI::QueryUserinfo(objid, &userinfo))
+			{
+				wxGetApp().HandlePM(userinfo, msg);
+			}
 			break;
 		default:
 			break;
@@ -73,7 +76,7 @@ FLYBOT_API init(BotInit* _init)
 	_init->botId = "flybot";
 	_init->botVersion = "0.3";
 	_init->RecvMessage2 = OnRecvMessage2;
-	memcpy(&::g_botAPI, _init, sizeof(BotInit));
+	FlybotAPI::Init(_init);
 
 	return true;
 }
