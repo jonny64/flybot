@@ -93,13 +93,42 @@ int Dictionary::Load()
 
 }
 
+static int random(int max)
+{
+	srand (time(NULL));
+	return int((rand()/RAND_MAX)*max);
+}
+
+static Phrase SelectAccordingPriority(ArrayOfPhrases &from)
+{
+	unsigned int sumPrio = 0;
+	for (unsigned int i = 0; i<from.Count(); i++)
+	{
+		sumPrio += int(DICTIONARY_MAX_PRIORITY/from[i].Priority);
+	}
+	
+	unsigned int msgId =  random(sumPrio);
+	
+	unsigned int i = 0;
+	while (true)
+	{
+		sumPrio = sumPrio + int(DICTIONARY_MAX_PRIORITY/from[i].Priority);
+		if (msgId >= sumPrio)
+			i++;
+		else
+			break;
+	}
+
+	return from[i];
+}
+
 Phrase Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases)
 {
 	wxString answer = wxT("");
 
+	// find matches
 	ArrayOfPhrases candidates;
 	Phrase p = {0};
-	// find matches;
 	for (unsigned int i = 0; i < m_phrases.Count(); i++)
 	{
 		p = m_phrases.Item(i);
@@ -109,15 +138,13 @@ Phrase Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases
 			candidates.Add(p);
 		}
 	}
-
-	Phrase selectedPhrase = {0};
 	if (candidates.empty())
 	{
 		candidates = m_emptyPhrases;
 	}
 	
-	// select one (random) answer from matches, mark it as used;
-	
+	Phrase selectedPhrase = SelectAccordingPriority(candidates);
+
 	// TODO: show selected phrase template to user
 	usedPhrases->Add(selectedPhrase);
 	return selectedPhrase;

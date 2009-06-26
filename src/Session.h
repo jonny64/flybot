@@ -7,6 +7,8 @@ class Session
 {
 	UserInfo m_userinfo;
 	ArrayOfPhrases m_usedPhrases;
+
+	void ProcessFlags(const wxString&);
 public:
 	Session(void);
 	Session(UserInfo&);
