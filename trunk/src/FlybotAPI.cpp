@@ -13,7 +13,7 @@ void _FlybotAPI::Init(const BotInit *aInit)
 
 bool _FlybotAPI::SendPM(const wxString& cid, const wxString& msg)
 {
-	if (m_botAPI.SendMessage2)
+	if (m_botAPI.SendMessage2 && !cid.empty())
 	{
 		return m_botAPI.SendMessage2(SEND_PM, cid.c_str(), msg.c_str(), 
 			msg.size() + sizeof(wxChar));
@@ -23,9 +23,42 @@ bool _FlybotAPI::SendPM(const wxString& cid, const wxString& msg)
 
 bool _FlybotAPI::QueryUserinfo(const WCHAR* cid, UserInfo *userinfo)
 {
-	if (m_botAPI.QueryInfo)
+	if (m_botAPI.QueryInfo && cid)
 	{
 		*userinfo = (WCHAR*)m_botAPI.QueryInfo(QUERY_USER_BY_CID, cid, NULL, 0);
+		return true;
+	}
+	return false;
+}
+
+
+bool _FlybotAPI::ClosePM(wxString& cid)
+{	
+	if (m_botAPI.SendMessage2 && !cid.empty())
+	{
+		m_botAPI.SendMessage2( USER_CLOSE, cid.c_str(), NULL, 0 );
+		return true;
+	}
+	return false;
+}
+
+bool _FlybotAPI::AddToIgnore(wxString& cid)
+{	
+	if (m_botAPI.SendMessage2 && !cid.empty())
+	{
+		int slotTimeout = 600;
+		m_botAPI.SendMessage2( USER_SLOT, cid.c_str(), &slotTimeout, sizeof(slotTimeout) );
+		return true;
+	}
+	return false;
+}
+
+bool _FlybotAPI::GiveSlot(wxString& cid)
+{
+	if (m_botAPI.SendMessage2 && !cid.empty())
+	{
+		BOOL WIN_TRUE = TRUE;
+		m_botAPI.SendMessage2( USER_IGNORE, cid.c_str(), &WIN_TRUE, sizeof(BOOL) );
 		return true;
 	}
 	return false;

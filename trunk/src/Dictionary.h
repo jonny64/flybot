@@ -5,6 +5,9 @@
 const wxString DICTIONARY_FILENAME = wxT("\\Settings\\flydict.ini");
 const long DICTIONARY_MAX_PRIORITY = 1000;
 const wxChar DICTIONARY_COMMENT_CHAR = wxChar(';');
+const wxChar DICTIONARY_CLOSE_CHAR = wxChar('c');
+const wxChar DICTIONARY_IGNORE_CHAR = wxChar('i');
+const wxChar DICTIONARY_SLOT_CHAR = wxChar('s');
 
 WX_DECLARE_OBJARRAY(Phrase, ArrayOfPhrases);
 
