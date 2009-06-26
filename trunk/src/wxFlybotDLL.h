@@ -13,11 +13,14 @@ class wxFlybotDLL: public wxApp
 
 	WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
 	SessionMap m_sessions;
-	Dictionary m_dictionary;
 public:
+	Dictionary Dict;
+
 	bool OnInit();
 	void ReloadDictionary();
 	void HandlePM(UserInfo& userinfo, wxString& msg);
 	int OnExit();
 	~wxFlybotDLL();
 };
+
+DECLARE_APP(wxFlybotDLL)

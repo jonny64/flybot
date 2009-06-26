@@ -7,8 +7,6 @@
 #define new DEBUG_NEW
 #endif
 
-DECLARE_APP(wxFlybotDLL)
-
 BOOL APIENTRY DllMain( HMODULE hModule,
 					  DWORD  ul_reason_for_call,
 					  LPVOID lpReserved
@@ -58,7 +56,7 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 			// fall down
 		case RECV_PM_NEW:
 			msg = wxString((WCHAR*)param);
-			if (FlybotAPI::QueryUserinfo(objid, &userinfo))
+			if (FlybotAPI.QueryUserinfo(objid, &userinfo))
 			{
 				wxGetApp().HandlePM(userinfo, msg);
 			}
@@ -76,7 +74,7 @@ FLYBOT_API init(BotInit* _init)
 	_init->botId = "flybot";
 	_init->botVersion = "0.3";
 	_init->RecvMessage2 = OnRecvMessage2;
-	FlybotAPI::Init(_init);
+	FlybotAPI.Init(_init);
 
 	return true;
 }
