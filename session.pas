@@ -188,14 +188,11 @@ begin
     end;
   end;
 
-  //if (random(10) > 8) then exit;
-
   timeout := length(current.phrase)*100;
   inc(timeout, g_answrDelay*1000);
-  
-  //ответ с задержкой
-  if TrayForm.botEnabled then
-    SendDelayedMsg(current.phrase, timeout);
+
+  //ответ с задержкой в отдельном потоке
+  SendDelayedMsg(current.phrase, timeout);
 end;
 
 //******************************************************************************
