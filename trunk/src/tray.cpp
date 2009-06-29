@@ -134,3 +134,28 @@ void MyTaskBarIcon::SwitchIcon()
 	if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")) )
 		wxMessageBox(wxT("Could not set icon."));
 }
+
+bool MyTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, unsigned int timeout, int icon)
+{
+	if (!IsOk())
+		return false;
+
+	NOTIFYICONDATA notifyData = {0};
+	notifyData.hWnd = (HWND)((wxFrame*)m_win)->GetHWND();
+	notifyData.uFlags = NIF_INFO;
+
+	wxStrncpy(notifyData.szInfo, message.c_str(), WXSIZEOF(notifyData.szInfo));
+	wxStrncpy(notifyData.szInfoTitle, title.c_str(), WXSIZEOF(notifyData.szInfoTitle));
+	notifyData.dwInfoFlags = icon;
+	notifyData.uTimeout = timeout;
+	
+	// should work with Win2000+
+	notifyData.cbSize = NOTIFYICONDATA_V2_SIZE;
+
+	if (m_iconAdded)
+		return (TRUE == Shell_NotifyIcon(NIM_MODIFY, &notifyData));
+	else
+		return false;
+
+}
+

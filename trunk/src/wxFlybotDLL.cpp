@@ -1,5 +1,6 @@
 #include "stdwx.h"
 #include "wxFlybotDLL.h"
+#include "wxLogBaloon.h"
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
@@ -9,9 +10,11 @@ bool wxFlybotDLL::OnInit()
 	m_taskBarIcon = new MyTaskBarIcon();
 	m_taskBarIcon->SwitchIcon();
 
-	// TODO: redirect logging to custom BaloonLogger class derived from wxLog;
-	// set it as default logger with wxLog::SetActiveTarget()
-
+	// set new logger
+	delete wxLog::SetActiveTarget(new wxLogBaloon(m_taskBarIcon));
+	
+	m_taskBarIcon->ShowBalloon(wxT("Test balloon"), wxT("Startup!"));
+	
 	return true;
 }
 

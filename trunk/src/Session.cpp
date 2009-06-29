@@ -11,21 +11,28 @@ Session::Session(UserInfo& userinfo)
 	m_userinfo = userinfo;
 }
 
-void Session::ProcessFlags(const wxString &flags)
+void Session::ProcessFlags(const Phrase &selectedPharase)
 {
-	// TODO: use hash char->func ?!
+	const wxString flags = selectedPharase.Flags;
+	wxString message = wxT("");
 	if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
 	{
 		FlybotAPI.ClosePM(m_userinfo[wxT("CID")]);
+		message = wxT("Closed PM from %s, matched template %s");
 	}
 	if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
 	{
 		FlybotAPI.GiveSlot(m_userinfo[wxT("CID")]);
+		message = wxT("Slot was given to %s, matched template %s");
 	}
 	if (flags.Freq(DICTIONARY_IGNORE_CHAR) > 0)
 	{
-		FlybotAPI.ClosePM(m_userinfo[wxT("CID")]);
+		FlybotAPI.AddToIgnore(m_userinfo[wxT("CID")]);
+		message = wxT("%s added to ignore list, matched template %s");
 	}
+
+	if (!message.empty())
+		wxLogMessage(message, m_userinfo[wxT("NICK")], selectedPharase.MatchExpr);
 }
 
 int Session::Answer(wxString& msg)
@@ -37,8 +44,8 @@ int Session::Answer(wxString& msg)
 		return 0;
 
 	// TODO: replace special vars in answer;
-	// process answer additional flags;
-	ProcessFlags(selectedPhrase.Flags);
+	
+ProcessFlags(selectedPhrase);
 
 	// wait desired time interval
 
