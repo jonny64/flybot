@@ -1,6 +1,8 @@
 #pragma once
 
 #include "stdwx.h"
+#include <shellapi.h>
+
 
 class MyTaskBarIcon: public wxTaskBarIcon
 {
@@ -12,7 +14,8 @@ public:
     MyTaskBarIcon()
 #endif
 	{}
-
+	
+	bool ShowBalloon(const wxString&, const wxString&, unsigned int timeout = 10000, int icon = NIIF_INFO);
     void OnLeftButtonDClick(wxTaskBarIconEvent&);
     void OnMenuOpenDict(wxCommandEvent&);
     void OnMenuReload(wxCommandEvent&);
