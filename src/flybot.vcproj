@@ -115,8 +115,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="building installer..."
-				CommandLine="&quot;C:\Program Files\NSIS\makensis&quot; &quot;$(SolutionDir)inst\flybot.nsi&quot;"
+				Description="performing additional tasks:"
+				CommandLine="echo updating version information...&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;&quot;C:\Program Files\NSIS\makensis&quot; flybot.nsi"
 			/>
 		</Configuration>
 		<Configuration
@@ -349,11 +349,19 @@
 			Name="Install"
 			>
 			<File
-				RelativePath="..\inst\flybot.nsi"
+				RelativePath="..\inst\flybot.src"
+				>
+			</File>
+			<File
+				RelativePath="..\inst\genpatch.bat"
 				>
 			</File>
 			<File
 				RelativePath="..\inst\line.bmp"
+				>
+			</File>
+			<File
+				RelativePath="..\inst\verpatch.src"
 				>
 			</File>
 		</Filter>
