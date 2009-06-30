@@ -63,7 +63,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 	}
 
 	// add newly constructed phrase to collection
-	phrase.MatchExpr.empty()? m_phrases.Add(phrase) : m_emptyPhrases.Add(phrase);
+	phrase.MatchExpr.empty()? m_emptyPhrases.Add(phrase) : m_phrases.Add(phrase);
 	
 	return true;
 }
@@ -145,14 +145,18 @@ Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedP
 			candidates.Add(p);
 		}
 	}
+
 	if (candidates.empty())
 	{
 		candidates = m_emptyPhrases;
 	}
-	
-	Phrase selectedPhrase = SelectAccordingPriority(candidates);
 
-	usedPhrases->Add(selectedPhrase);
+	Phrase selectedPhrase = {0};
+	if (!candidates.empty())
+	{
+		selectedPhrase = SelectAccordingPriority(candidates);
+		usedPhrases->Add(selectedPhrase);
+	}
 	return selectedPhrase;
 }
 
