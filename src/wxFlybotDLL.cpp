@@ -22,7 +22,7 @@ void wxFlybotDLL::ReloadDictionary()
 {
 	if (SUCCESS == Dict.Load())
 	{
-		wxLogMessage(wxT("Dictionary was successfully loaded"));
+		wxLogMessage(_("Dictionary was successfully loaded"));
 	}
 }
 

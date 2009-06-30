@@ -7,26 +7,23 @@ class MyTaskBarIcon: public wxTaskBarIcon
 {
 public:
 #if defined(__WXCOCOA__)
-    MyTaskBarIcon(wxTaskBarIconType iconType = DEFAULT_TYPE)
-    :   wxTaskBarIcon(iconType)
+	MyTaskBarIcon(wxTaskBarIconType iconType = DEFAULT_TYPE)
+		:   wxTaskBarIcon(iconType)
 #else
-    MyTaskBarIcon()
+	MyTaskBarIcon()
 #endif
 	{}
-	
+
 	bool ShowBalloon(const wxString&, const wxString&, unsigned int timeout = 4, int icon = NIIF_INFO);
-    void OnLeftButtonDClick(wxTaskBarIconEvent&);
-    void OnMenuOpenDict(wxCommandEvent&);
-    void OnMenuReload(wxCommandEvent&);
+	void OnLeftButtonDClick(wxTaskBarIconEvent&);
+	void OnMenuOpenDict(wxCommandEvent&);
+	void OnMenuReload(wxCommandEvent&);
 	void OnPower(wxCommandEvent&);
-    void OnMenuSetNewIcon(wxCommandEvent&);
-    void OnMenuSetOldIcon(wxCommandEvent&);
-       void OnMenuCheckmark(wxCommandEvent&);
-       void OnMenuUICheckmark(wxUpdateUIEvent&);
-    void OnMenuSub(wxCommandEvent&);
-    void SwitchIcon();
+	void OnMenuCheckmark(wxCommandEvent&);
+	void OnMenuSub(wxCommandEvent&);
+	void SwitchIcon();
 
-    virtual wxMenu *CreatePopupMenu();
+	virtual wxMenu *CreatePopupMenu();
 
-DECLARE_EVENT_TABLE()
+	DECLARE_EVENT_TABLE()
 };
