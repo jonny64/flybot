@@ -5,11 +5,22 @@
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
+bool wxFlybotDLL::GetEnabledState()
+{
+	return m_enabled;
+}
+
+void wxFlybotDLL::SwitchState()
+{
+	m_enabled = !m_enabled;
+}
+
 bool wxFlybotDLL::OnInit()
 {
+	m_enabled = false;
 	m_taskBarIcon = NULL;
-	m_taskBarIcon = new MyTaskBarIcon();
-	m_taskBarIcon->SwitchIcon();
+	m_taskBarIcon = new FlybotTaskBarIcon();
+	m_taskBarIcon->SetupIcon();
 
 	// set new logger
 	delete wxLog::SetActiveTarget(new wxLogBaloon(m_taskBarIcon));
