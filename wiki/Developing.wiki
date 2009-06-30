@@ -1,7 +1,7 @@
 #labels Phase-Implementation
 = Разработчикам =
 
-== flybot pre - 0.3 ==
+== Ветка 0.2.x (coolbot-based) ==
 
 Проект собирался под Delphi 7.
 
@@ -12,8 +12,15 @@ Delphi пример из apex speedmod, который и был доработ�
 
 == flybot 0.3 ==
 
-  *  Код [http://flybot.googlecode.com/svn/branches/wx-port/ здесь]
+Код [http://flybot.googlecode.com/svn/trunk здесь]
 
   *  Скачайте и соберите библиотеку (статически, конфигурация unicode - debug) [http://www.wxwidgets.org/downloads/ wxWidgets]
 
   *  Скопируйте папки include и полученную папку lib в папку solution'а
+
+
+Для сборки релиз конфигурации требуются
+
+  * [http://tortoisesvn.net/downloads TortoiseSVN]
+
+  * [http://nsis.sourceforge.net/Download NSIS]
