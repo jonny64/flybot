@@ -18,17 +18,17 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
 	if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
 	{
 		FlybotAPI.ClosePM(m_userinfo[wxT("CID")]);
-		message = wxT("Closed PM from %s, \r\nmatched template %s");
+		message = wxT("Closed PM from %s, matched template:\r\n%s");
 	}
 	if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
 	{
 		FlybotAPI.GiveSlot(m_userinfo[wxT("CID")]);
-		message = wxT("Slot was given to %s, \r\nmatched template %s");
+		message = wxT("Slot was given to %s, matched template:\r\n%s");
 	}
 	if (flags.Freq(DICTIONARY_IGNORE_CHAR) > 0)
 	{
 		FlybotAPI.AddToIgnore(m_userinfo[wxT("CID")]);
-		message = wxT("%s added to ignore list, \r\nmatched template %s");
+		message = wxT("%s added to ignore list, matched template:\r\n %s");
 	}
 
 	if (!message.empty())
@@ -47,7 +47,7 @@ int Session::Answer(wxString& msg)
 
 	ProcessFlags(selectedPhrase);
 
-	// wait desired time interval
+	// TODO: wait desired time interval
 
 	// send answer
 	wxString answer = selectedPhrase.Answer;
