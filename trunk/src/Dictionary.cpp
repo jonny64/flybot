@@ -44,7 +44,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 	const int MIN_PARAMS_PER_LINE = 3;
 	if (row.Count() < MIN_PARAMS_PER_LINE)
 	{
-		*errorMessage = wxT("Too few parameters");
+		*errorMessage = wxT("too few parameters");
 		return false;
 	}
 	
@@ -52,13 +52,15 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 	Phrase phrase = {0};
 	if (!ToPriority(row[0], &phrase.Priority))
 	{
-		*errorMessage = wxString::Format(wxT("priority should be in range 0..%d"), DICTIONARY_MAX_PRIORITY);
+		*errorMessage = wxString::Format(_("priority should be in range 0..%d"), DICTIONARY_MAX_PRIORITY);
 		return false;
 	}
+
+	// FIXME: embed compiled regexp into phrase struct (this will result in faster phrase match)
 	phrase.MatchExpr = row[1];
 	if (!wxRegEx(phrase.MatchExpr).IsValid())
 	{
-		*errorMessage = wxString::Format(wxT("invalid regular expression:\r\n%s"), phrase.MatchExpr);
+		*errorMessage = wxString::Format(_("invalid regular expression:\n%s"), phrase.MatchExpr);
 		return false;
 	}
 	phrase.Answer = row[2];
@@ -97,7 +99,7 @@ int Dictionary::Load()
 		wxString errorMessage = wxT("");
 		if (!ProcessLine(line, &errorMessage))
 		{
-			wxLogError(wxT("processing row %d\r\n%s "), row, errorMessage);
+			wxLogError(_("processing row %d\n%s "), row, errorMessage);
 			errorsCount++;
 		}
 	}
