@@ -17,17 +17,17 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
 	wxString message = wxT("");
 	if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
 	{
-		FlybotAPI.ClosePM(m_userinfo[wxT("CID")]);
+		FlybotAPI.ClosePM(m_userinfo[FLYBOT_API_CID]);
 		message = _("Closed PM from %s, matched template:\n%s");
 	}
 	if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
 	{
-		FlybotAPI.GiveSlot(m_userinfo[wxT("CID")]);
+		FlybotAPI.GiveSlot(m_userinfo[FLYBOT_API_CID]);
 		message = _("Slot was given to %s, matched template:\n%s");
 	}
 	if (flags.Freq(DICTIONARY_IGNORE_CHAR) > 0)
 	{
-		FlybotAPI.AddToIgnore(m_userinfo[wxT("CID")]);
+		FlybotAPI.AddToIgnore(m_userinfo[FLYBOT_API_CID]);
 		message = _("%s added to ignore list, matched template:\n %s");
 	}
 
@@ -51,7 +51,7 @@ int Session::Answer(wxString& msg)
 
 	// send answer
 	wxString answer = selectedPhrase.Answer;
-	wxString cid = m_userinfo[wxT("CID")];
+	wxString cid = m_userinfo[FLYBOT_API_CID];
 	if (!cid.empty() && !answer.empty())
 	{
 		FlybotAPI.SendPM(cid, answer);

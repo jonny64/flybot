@@ -50,7 +50,6 @@ void FlybotTaskBarIcon::OnMenuReload(wxCommandEvent& )
 
 void FlybotTaskBarIcon::OnMenuSub(wxCommandEvent&)
 {
-	wxMessageBox(wxT("You clicked on a submenu!"));
 }
 
 void FlybotTaskBarIcon::OnMenuCheckmark(wxCommandEvent&)
