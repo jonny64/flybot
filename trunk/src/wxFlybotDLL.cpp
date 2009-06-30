@@ -13,11 +13,11 @@ bool wxFlybotDLL::GetEnabledState()
 void wxFlybotDLL::SwitchState()
 {
 	m_enabled = !m_enabled;
-}
+}k
 
 bool wxFlybotDLL::OnInit()
 {
-	m_enabled = false;
+	m_enabled = true;
 	m_taskBarIcon = NULL;
 	m_taskBarIcon = new FlybotTaskBarIcon();
 	m_taskBarIcon->SetupIcon();

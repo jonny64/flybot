@@ -47,6 +47,9 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 
 void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, unsigned paramsize)
 {
+	if (!wxGetApp().GetEnabledState())
+		return;
+
 	wxString msg;
 	UserInfo userinfo;
 
