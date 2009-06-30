@@ -116,7 +116,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="performing additional tasks:"
-				CommandLine="echo updating version information...&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;&quot;C:\Program Files\NSIS\makensis&quot; flybot.nsi"
+				CommandLine="echo updating version information...&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;&quot;C:\Program Files\NSIS\makensis&quot; flybot.nsi&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -385,6 +385,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\inst\README"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
