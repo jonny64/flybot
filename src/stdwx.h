@@ -14,3 +14,5 @@
 #else
 #define DEBUG_NEW new
 #endif
+
+const int SUCCESS = 0;

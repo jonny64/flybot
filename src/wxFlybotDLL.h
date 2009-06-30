@@ -18,6 +18,7 @@ public:
 
 	bool OnInit();
 	void ReloadDictionary();
+	void OpenDictionary();
 	void HandlePM(UserInfo& userinfo, wxString& msg);
 	int OnExit();
 	~wxFlybotDLL();

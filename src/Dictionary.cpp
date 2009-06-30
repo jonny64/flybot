@@ -69,10 +69,14 @@ bool Dictionary::ProcessLine(wxString line)
 	return true;
 }
 
+wxString Dictionary::GetDictionaryFilename()
+{
+	return wxStandardPaths::Get().GetPluginsDir() + DICTIONARY_FILENAME;
+}
+
 int Dictionary::Load()
 {
-	wxString dictionaryFile = wxStandardPaths::Get().GetPluginsDir() + DICTIONARY_FILENAME;
-	wxFileInputStream input(dictionaryFile);
+	wxFileInputStream input(GetDictionaryFilename());
 	// TODO: support both for Unicode and ANSI encoded dictionary
 	// wxTextInputStream text(input) supposed to work fine in both cases, but...
 	wxTextInputStream text(input, wxT("\r\n"), wxCSConv(wxFONTENCODING_CP1251));

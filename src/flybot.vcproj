@@ -317,11 +317,7 @@
 			Name="Resource"
 			>
 			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\stuff.rc"
+				RelativePath=".\flybot.rc"
 				>
 				<FileConfiguration
 					Name="Unicode Debug|Win32"
@@ -331,6 +327,10 @@
 						Culture="1049"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\resource.h"
+				>
 			</File>
 		</Filter>
 		<Filter
