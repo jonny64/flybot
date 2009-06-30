@@ -1,7 +1,7 @@
 #pragma once
 #include "stdwx.h" 
 
-#include "tray.h"
+#include "FlybotTaskBarIcon.h"
 #include "UserInfo.h"
 #include "Session.h"
 #include "Dictionary.h"

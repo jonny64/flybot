@@ -369,11 +369,11 @@
 			Name="Tray"
 			>
 			<File
-				RelativePath=".\tray.cpp"
+				RelativePath=".\FlybotTaskBarIcon.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\tray.h"
+				RelativePath=".\FlybotTaskBarIcon.h"
 				>
 			</File>
 			<File

@@ -29,6 +29,11 @@ wxString& UserInfo::operator[](const wxString& key)
 	return m_vars[key];
 }
 
+bool UserInfo::Favourite()
+{
+	return wxT("1") == m_vars[wxT("ISFAV")];
+}
+
 UserInfo::~UserInfo(void)
 {
 }
