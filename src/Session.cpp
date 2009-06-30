@@ -18,17 +18,17 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
 	if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
 	{
 		FlybotAPI.ClosePM(m_userinfo[wxT("CID")]);
-		message = wxT("Closed PM from %s, matched template %s");
+		message = wxT("Closed PM from %s, \r\nmatched template %s");
 	}
 	if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
 	{
 		FlybotAPI.GiveSlot(m_userinfo[wxT("CID")]);
-		message = wxT("Slot was given to %s, matched template %s");
+		message = wxT("Slot was given to %s, \r\nmatched template %s");
 	}
 	if (flags.Freq(DICTIONARY_IGNORE_CHAR) > 0)
 	{
 		FlybotAPI.AddToIgnore(m_userinfo[wxT("CID")]);
-		message = wxT("%s added to ignore list, matched template %s");
+		message = wxT("%s added to ignore list, \r\nmatched template %s");
 	}
 
 	if (!message.empty())
@@ -38,21 +38,21 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
 int Session::Answer(wxString& msg)
 {
 	Phrase selectedPhrase = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
-	
+
 	// if no matches, exit;
 	if (selectedPhrase.empty())
 		return 0;
 
 	// TODO: replace special vars in answer;
-	
-ProcessFlags(selectedPhrase);
+
+	ProcessFlags(selectedPhrase);
 
 	// wait desired time interval
 
 	// send answer
 	wxString answer = selectedPhrase.Answer;
 	wxString cid = m_userinfo[wxT("CID")];
-	if (!cid.empty())
+	if (!cid.empty() && !answer.empty())
 	{
 		FlybotAPI.SendPM(cid, answer);
 	}
