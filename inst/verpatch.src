@@ -1,4 +1,4 @@
-set VERSION="0.3.0.$WCREV$"
+set VERSION="0.30.$WCREV$"
 set BUILDINFO=/s pb "$WCMODS?MODIFIED:Original$"
 set FILEDESCR=/s desc "chatbot for FlylinkDC++ client"
 set COMPINFO=/s company "astro64m" /s (c) "(c) copyleft 2008-2009"

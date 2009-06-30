@@ -5,11 +5,22 @@
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
+bool wxFlybotDLL::GetEnabledState()
+{
+	return m_enabled;
+}
+
+void wxFlybotDLL::SwitchState()
+{
+	m_enabled = !m_enabled;
+}
+
 bool wxFlybotDLL::OnInit()
 {
+	m_enabled = true;
 	m_taskBarIcon = NULL;
-	m_taskBarIcon = new MyTaskBarIcon();
-	m_taskBarIcon->SwitchIcon();
+	m_taskBarIcon = new FlybotTaskBarIcon();
+	m_taskBarIcon->SetupIcon();
 
 	// set new logger
 	delete wxLog::SetActiveTarget(new wxLogBaloon(m_taskBarIcon));
@@ -22,7 +33,7 @@ void wxFlybotDLL::ReloadDictionary()
 {
 	if (SUCCESS == Dict.Load())
 	{
-		wxLogMessage(wxT("Dictionary was successfully loaded"));
+		wxLogMessage(_("Dictionary was successfully loaded"));
 	}
 }
 
@@ -47,12 +58,12 @@ void wxFlybotDLL::OpenDictionary()
 void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 {
 	// do not process favourites
-	if ( wxT("1") == userinfo[wxT("ISFAV")] )
+	if ( userinfo.Favourite() )
 		return;
 
 	// FIXME: enclose m_sessions processing in critical section
 	// if it is a new PM, create new session
-	wxString cid = userinfo[wxT("CID")];
+	wxString cid = userinfo[FLYBOT_API_CID];
 	if (NULL == m_sessions[cid])
 	{
 		m_sessions[cid] = new Session(userinfo);

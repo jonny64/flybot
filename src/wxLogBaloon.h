@@ -1,12 +1,12 @@
 #pragma once
 #include "stdwx.h"
-#include "tray.h"
+#include "FlybotTaskBarIcon.h"
 
 class wxLogBaloon : public wxLog
 {
-	MyTaskBarIcon *m_taskBarIcon;
+	FlybotTaskBarIcon *m_taskBarIcon;
 public:
-	wxLogBaloon(MyTaskBarIcon *);
+	wxLogBaloon(FlybotTaskBarIcon *);
 	~wxLogBaloon(void);
 	
 protected:
