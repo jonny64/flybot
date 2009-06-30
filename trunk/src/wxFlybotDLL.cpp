@@ -37,7 +37,7 @@ static bool wxLaunchDefaultApplication(const wxString &document)
 
 void wxFlybotDLL::OpenDictionary()
 {
-	if (wxLaunchDefaultApplication(Dictionary::GetDictionaryFilename()) )
+	if (!wxLaunchDefaultApplication(Dictionary::GetDictionaryFilename()) )
 	{
 		// TODO: handle case when no program associated to .ini files
 	}

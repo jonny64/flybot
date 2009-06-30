@@ -27,7 +27,7 @@ static bool ToPriority(const wxString str, int *buf)
 	return isPriority;
 }
 
-bool Dictionary::ProcessLine(wxString line)
+bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 {
 	if (line.empty() || line.StartsWith(&DICTIONARY_COMMENT_CHAR))
 	{
@@ -45,7 +45,7 @@ bool Dictionary::ProcessLine(wxString line)
 	const int MIN_PARAMS_PER_LINE = 3;
 	if (row.Count() < MIN_PARAMS_PER_LINE)
 	{
-		// TODO: warn user
+		*errorMessage = wxT("Too few parameters");
 		return false;
 	}
 	
@@ -53,7 +53,7 @@ bool Dictionary::ProcessLine(wxString line)
 	Phrase phrase = {0};
 	if (!ToPriority(row[0], &phrase.Priority))
 	{
-		// TODO: warn user
+		*errorMessage = wxString::Format(wxT("priority should be in range 0..%d"), DICTIONARY_MAX_PRIORITY);
 		return false;
 	}
 	phrase.MatchExpr = row[1];
@@ -83,18 +83,22 @@ int Dictionary::Load()
 
 	m_phrases.Clear();
 
-	wxString line;	
+	wxString line = wxT("");
+	int row = 0;
+	int errorsCount = 0;
 	while(input.IsOk() && !input.Eof() )
 	{
+		row++;
 		line = text.ReadLine();
-		if (!ProcessLine(line))
+		wxString errorMessage = wxT("");
+		if (!ProcessLine(line, &errorMessage))
 		{
-			return -1;
+			wxLogError(wxT("processing row %d: %s "), row, errorMessage);
+			errorsCount++;
 		}
 	}
 
-	return 0;
-
+	return errorsCount;
 }
 
 static int random(int max)
@@ -126,7 +130,7 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &from)
 	return from[i];
 }
 
-Phrase Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases)
+Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedPhrases)
 {
 	wxString answer = wxT("");
 
@@ -149,7 +153,6 @@ Phrase Dictionary::GetMatchedTemplate(wxString& msg, ArrayOfPhrases *usedPhrases
 	
 	Phrase selectedPhrase = SelectAccordingPriority(candidates);
 
-	// TODO: show selected phrase template to user
 	usedPhrases->Add(selectedPhrase);
 	return selectedPhrase;
 }
