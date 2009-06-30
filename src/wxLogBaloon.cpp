@@ -2,7 +2,7 @@
 #include "wxLogBaloon.h"
 #include "wxFlybotDLL.h"
 
-wxLogBaloon::wxLogBaloon(MyTaskBarIcon *tb)
+wxLogBaloon::wxLogBaloon(FlybotTaskBarIcon *tb)
 {
 	m_taskBarIcon = tb;
 }

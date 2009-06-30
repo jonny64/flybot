@@ -1,6 +1,6 @@
 #include "stdwx.h"
 #include <wx/utils.h>
-#include "tray.h"
+#include "FlybotTaskBarIcon.h"
 #include "resource.h"
 #include "wxFlybotDLL.h"
 
@@ -10,7 +10,8 @@
 
 DECLARE_APP(wxFlybotDLL)
 
-enum {
+enum 
+{
 	PU_OPEN_DICT = 10001,
 	PU_RELOAD_DICT,
 	PU_SLOT_TIMEOUT_SUB,
@@ -25,41 +26,40 @@ enum {
 };
 
 
-BEGIN_EVENT_TABLE(MyTaskBarIcon, wxTaskBarIcon)
-EVT_MENU(PU_OPEN_DICT, MyTaskBarIcon::OnMenuOpenDict)
-EVT_MENU(PU_RELOAD_DICT,    MyTaskBarIcon::OnMenuReload)
-EVT_MENU(PU_SLOT_TIMEOUT_SUB, MyTaskBarIcon::OnMenuSub)
-EVT_MENU(PU_ANSWER_TIMEOUT_SUB, MyTaskBarIcon::OnMenuSub)
-EVT_MENU(PU_TIMEOUT1,MyTaskBarIcon::OnMenuCheckmark)
-EVT_MENU(PU_TIMEOUT2,MyTaskBarIcon::OnMenuCheckmark)
-EVT_TASKBAR_LEFT_DCLICK(MyTaskBarIcon::OnLeftButtonDClick)
-EVT_MENU(PU_BALOON_SUB, MyTaskBarIcon::OnMenuSub)
-EVT_MENU(PU_POWER, MyTaskBarIcon::OnPower)
+BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
+	EVT_MENU(PU_OPEN_DICT, FlybotTaskBarIcon::OnMenuOpenDict)
+	EVT_MENU(PU_RELOAD_DICT,    FlybotTaskBarIcon::OnMenuReload)
+	EVT_MENU(PU_SLOT_TIMEOUT_SUB, FlybotTaskBarIcon::OnMenuSub)
+	EVT_MENU(PU_ANSWER_TIMEOUT_SUB, FlybotTaskBarIcon::OnMenuSub)
+	EVT_MENU(PU_TIMEOUT1,FlybotTaskBarIcon::OnMenuCheckmark)
+	EVT_MENU(PU_TIMEOUT2,FlybotTaskBarIcon::OnMenuCheckmark)
+	EVT_TASKBAR_LEFT_UP(FlybotTaskBarIcon::OnLeftButtonUp)
+	EVT_MENU(PU_BALOON_SUB, FlybotTaskBarIcon::OnMenuSub)
+	EVT_MENU(PU_POWER, FlybotTaskBarIcon::OnPower)
 END_EVENT_TABLE()
 
-void MyTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
+void FlybotTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
 {
 	wxGetApp().OpenDictionary();
 }
 
-void MyTaskBarIcon::OnMenuReload(wxCommandEvent& )
+void FlybotTaskBarIcon::OnMenuReload(wxCommandEvent& )
 {
 	wxGetApp().ReloadDictionary();
 }
 
-void MyTaskBarIcon::OnMenuSub(wxCommandEvent&)
+void FlybotTaskBarIcon::OnMenuSub(wxCommandEvent&)
 {
 	wxMessageBox(wxT("You clicked on a submenu!"));
 }
 
-void MyTaskBarIcon::OnMenuCheckmark(wxCommandEvent&)
+void FlybotTaskBarIcon::OnMenuCheckmark(wxCommandEvent&)
 {
 }
 
 // Overridables
-wxMenu *MyTaskBarIcon::CreatePopupMenu()
+wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 {
-
 	wxMenu *menu = new wxMenu;
 
 	menu->Append(PU_OPEN_DICT, _("&Open dictionary"));
@@ -90,41 +90,39 @@ wxMenu *MyTaskBarIcon::CreatePopupMenu()
 	return menu;
 }
 
-void MyTaskBarIcon::OnLeftButtonDClick(wxTaskBarIconEvent&)
+void FlybotTaskBarIcon::OnLeftButtonUp(wxTaskBarIconEvent&)
 {
-	SwitchIcon();
+	wxGetApp().SwitchState();
+	SetupIcon();
 }
 
-void MyTaskBarIcon::OnPower(wxCommandEvent&)
+void FlybotTaskBarIcon::OnPower(wxCommandEvent&)
 {
-	SwitchIcon();
+	SetupIcon();
 }
 
-void MyTaskBarIcon::SwitchIcon()
+void FlybotTaskBarIcon::SetupIcon()
 {
-	static bool online = false;
-	online = !online;
-
 	HICON hIconOnline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_ONLINE));
 	HICON hIconOffline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_OFFLINE));
-	HICON hIcon = online? hIconOnline : hIconOffline;
+	HICON hIcon = wxGetApp().GetEnabledState()? hIconOnline : hIconOffline;
 
 	wxIcon trayIcon;
 	trayIcon.SetHICON(hIcon);
 	// TODO: find out why normal loading from resources doesn't work
-	// SetIcon(wxIcon(IDI_ICON_ONLINE), wxT("flybot 0.3 alpha") )
+	// SetupIcon(wxIcon(IDI_ICON_ONLINE), wxT("flybot 0.3 alpha") )
 	if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")) )
 		wxLogError(_("Could not set icon."));
 }
 
-bool MyTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, unsigned int timeout, int icon)
+bool FlybotTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, unsigned int timeout, int icon)
 {
 	if (!IsOk())
 		return false;
 
 	NOTIFYICONDATA notifyData = {0};
 	notifyData.uFlags = NIF_INFO | NIF_TIP;
-	notifyData.dwInfoFlags = icon  | NIIF_NOSOUND;
+	notifyData.dwInfoFlags = icon | NIIF_NOSOUND;
 	notifyData.uTimeout = timeout * 1000;	
 
 	// find our icon (see wxTaskBarIcon implementation for details)
