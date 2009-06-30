@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by stuff.rc
+// Used by flybot.rc
 //
 #define IDI_ICON_ONLINE                 103
 #define IDI_ICON_OFFLINE                104

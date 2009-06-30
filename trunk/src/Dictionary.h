@@ -21,6 +21,7 @@ public:
 	Dictionary(void);
 
 	int Load();
+	static wxString GetDictionaryFilename();
 	Phrase GetMatchedTemplate(wxString&, ArrayOfPhrases*);
 
 	~Dictionary(void);

@@ -1,4 +1,5 @@
 #include "stdwx.h"
+#include <wx/utils.h>
 #include "tray.h"
 #include "resource.h"
 #include "wxFlybotDLL.h"
@@ -39,7 +40,7 @@ END_EVENT_TABLE()
 
 void MyTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
 {
-    //dialog->Show(true);
+	wxGetApp().OpenDictionary();
 }
 
 void MyTaskBarIcon::OnMenuReload(wxCommandEvent& )
@@ -82,11 +83,12 @@ wxMenu *MyTaskBarIcon::CreatePopupMenu()
 	
     wxMenu *menu = new wxMenu;
 	
-	menu->Append(PU_OPEN_DICT, _T("&Open dict"));
-    menu->Append(PU_RELOAD_DICT, _T("&Reload dict"));
+	menu->Append(PU_OPEN_DICT, _T("&Open dictionary"));
+    menu->Append(PU_RELOAD_DICT, _T("&Reload dicttionary"));
     menu->AppendSeparator();
     // menu->Append(PU_CHECKMARK, _T("Checkmark"),wxT(""), wxITEM_CHECK);
     
+	/*
 	wxMenu *submenuSlot = new wxMenu;
     submenuSlot->AppendRadioItem(PU_TIMEOUT1, _T("Slot timeout 1"));
     submenuSlot->AppendRadioItem(PU_TIMEOUT2, _T("Slot timeout 2"));
@@ -96,11 +98,12 @@ wxMenu *MyTaskBarIcon::CreatePopupMenu()
     submenuAnswr->AppendRadioItem(PU_TIMEOUT1, _T("Answer timeout 1"));
     submenuAnswr->AppendRadioItem(PU_TIMEOUT2, _T("Answer timeout 2"));
 	menu->Append(PU_ANSWER_TIMEOUT_SUB, _T("Answer timeout"), submenuAnswr);
-
+	
 	wxMenu *submenuBaloon = new wxMenu;
     submenuBaloon->AppendRadioItem(PU_YES, _T("Yes"));
     submenuBaloon->AppendRadioItem(PU_NO, _T("No"));
 	menu->Append(PU_ANSWER_TIMEOUT_SUB, _T("Show baloons"), submenuBaloon);
+	*/
 	menu->AppendSeparator();
 
 	menu->Append(PU_POWER, _T("&On/Off"));    
@@ -132,7 +135,7 @@ void MyTaskBarIcon::SwitchIcon()
 	// TODO: find out why normal loading from resources doesn't work
 	// SetIcon(wxIcon(IDI_ICON_ONLINE), wxT("flybot 0.3 alpha") )
 	if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")) )
-		wxMessageBox(wxT("Could not set icon."));
+		wxLogError(wxT("Could not set icon."));
 }
 
 bool MyTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, unsigned int timeout, int icon)
@@ -141,21 +144,19 @@ bool MyTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, 
 		return false;
 
 	NOTIFYICONDATA notifyData = {0};
-	notifyData.hWnd = (HWND)((wxFrame*)m_win)->GetHWND();
-	notifyData.uFlags = NIF_INFO;
+	notifyData.uFlags = NIF_INFO | NIF_TIP;
+	notifyData.dwInfoFlags = icon  | NIIF_NOSOUND;
+	notifyData.uTimeout = timeout * 1000;	
+	
+	// find our icon (see wxTaskBarIcon implementation for details)
+	notifyData.hWnd = GetHwndOf((wxFrame *)m_win);
+	notifyData.uID = 99;
 
 	wxStrncpy(notifyData.szInfo, message.c_str(), WXSIZEOF(notifyData.szInfo));
 	wxStrncpy(notifyData.szInfoTitle, title.c_str(), WXSIZEOF(notifyData.szInfoTitle));
-	notifyData.dwInfoFlags = icon;
-	notifyData.uTimeout = timeout;
 	
-	// should work with Win2000+
+	// targeting Win2000+
 	notifyData.cbSize = NOTIFYICONDATA_V2_SIZE;
-
-	if (m_iconAdded)
-		return (TRUE == Shell_NotifyIcon(NIM_MODIFY, &notifyData));
-	else
-		return false;
-
+	
+	return m_iconAdded && TRUE == Shell_NotifyIcon(NIM_MODIFY, &notifyData);
 }
-

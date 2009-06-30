@@ -11,7 +11,7 @@ void wxLogBaloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t))
 {
 	if (NULL != m_taskBarIcon)
 	{
-		m_taskBarIcon->ShowBalloon(wxString(wxT("Attention")), wxString(szString));
+		m_taskBarIcon->ShowBalloon(wxString(wxT("Information")), wxString(szString));
 	}
 }
 
