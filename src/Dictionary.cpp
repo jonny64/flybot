@@ -56,6 +56,11 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 		return false;
 	}
 	phrase.MatchExpr = row[1];
+	if (!wxRegEx(phrase.MatchExpr).IsValid())
+	{
+		*errorMessage = wxString::Format(wxT("invalid regular expression:\r\n%s"), phrase.MatchExpr);
+		return false;
+	}
 	phrase.Answer = row[2];
 	if (row.Count() > MIN_PARAMS_PER_LINE)
 	{
