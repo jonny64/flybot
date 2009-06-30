@@ -63,14 +63,14 @@ SetCompressor /SOLID lzma
 
 Section "Dummy Section" SecDummy
   SetOutPath "$INSTDIR"
+  File README
   
-  ;ADD YOUR OWN FILES HERE...
   File ..\bin\ChatBot.dll
   SetOutPath "$INSTDIR\Settings"
   SetOverwrite off
   File ..\bin\Settings\flydict.ini
-  SetOverwrite on  
-  File ..\bin\Settings\flybot.ini
+  ;SetOverwrite on  
+  ;File ..\bin\Settings\flybot.ini
 
   ;Store installation folder
   WriteRegStr HKCU "Software\flybot" "" $INSTDIR
@@ -99,7 +99,8 @@ Section "Uninstall"
 
   Delete "$INSTDIR\ChatBot.dll"
   Delete "$INSTDIR\uninstall-flybot.exe"
-
+  Delete "$INSTDIR\README"
+  
   DeleteRegKey /ifempty HKCU "Software\flybot"
 
 SectionEnd
