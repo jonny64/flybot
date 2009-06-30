@@ -13,7 +13,7 @@ bool wxFlybotDLL::GetEnabledState()
 void wxFlybotDLL::SwitchState()
 {
 	m_enabled = !m_enabled;
-}k
+}
 
 bool wxFlybotDLL::OnInit()
 {
@@ -58,12 +58,12 @@ void wxFlybotDLL::OpenDictionary()
 void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 {
 	// do not process favourites
-	if ( wxT("1") == userinfo[wxT("ISFAV")] )
+	if ( userinfo.Favourite() )
 		return;
 
 	// FIXME: enclose m_sessions processing in critical section
 	// if it is a new PM, create new session
-	wxString cid = userinfo[wxT("CID")];
+	wxString cid = userinfo[FLYBOT_API_CID];
 	if (NULL == m_sessions[cid])
 	{
 		m_sessions[cid] = new Session(userinfo);
