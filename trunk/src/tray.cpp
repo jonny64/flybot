@@ -85,7 +85,7 @@ wxMenu *MyTaskBarIcon::CreatePopupMenu()
 	
 	menu->Append(PU_OPEN_DICT, _T("&Open dictionary"));
     menu->Append(PU_RELOAD_DICT, _T("&Reload dicttionary"));
-    menu->AppendSeparator();
+    // menu->AppendSeparator();
     // menu->Append(PU_CHECKMARK, _T("Checkmark"),wxT(""), wxITEM_CHECK);
     
 	/*
