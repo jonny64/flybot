@@ -114,7 +114,7 @@ void FlybotTaskBarIcon::SetupIcon()
 		wxLogError(_("Could not set icon."));
 }
 
-bool FlybotTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, unsigned int timeout, int icon)
+bool FlybotTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, int icon, unsigned int timeout)
 {
 	if (!IsOk())
 		return false;
