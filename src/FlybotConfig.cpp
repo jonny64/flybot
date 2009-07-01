@@ -64,11 +64,16 @@ void FlybotConfig::ReadSlotTimeouts()
 	}
 }
 
-int FlybotConfig::SelectedSlotTimeoutId()
+int FlybotConfig::GetSelectedSlotTimeoutId()
 {
 	int selectedTimeoutId = 0;
-	wxGetApp().Config.Read(SETTING_SLOT_TIMEOUT, selectedTimeoutId);
+	wxGetApp().Config.Read(SETTING_SLOT_TIMEOUT, &selectedTimeoutId);
 	return selectedTimeoutId;
+}
+
+void FlybotConfig::SetSelectedSlotTimeoutId(int id)
+{
+	wxGetApp().Config.Write(SETTING_SLOT_TIMEOUT, id);
 }
 
 FlybotConfig::~FlybotConfig(void)

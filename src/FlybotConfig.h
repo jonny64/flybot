@@ -15,7 +15,8 @@ public:
 	
 	list<int> SlotTimeouts;
 	bool BalloonsEnabled();
-	int SelectedSlotTimeoutId();
+	int GetSelectedSlotTimeoutId();
+	void SetSelectedSlotTimeoutId(int id);
 
 	~FlybotConfig(void);
 };
