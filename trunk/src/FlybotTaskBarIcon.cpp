@@ -47,9 +47,14 @@ void FlybotTaskBarIcon::OnMenuReload(wxCommandEvent& )
 	wxGetApp().ReloadDictionary();
 }
 
-void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& useBalloonsClickEvt)
+void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
 {
-	wxGetApp().Config.Write(SETTING_USE_BALLOONS,  useBalloonsClickEvt.GetId() == wxID_YES);
+	wxGetApp().Config.SetSelectedSlotTimeoutId(evt.GetId() - wxID_SLOT_TIMEOUT_BEGIN);
+}
+
+void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& evt)
+{
+	wxGetApp().Config.Write(SETTING_USE_BALLOONS,  evt.GetId() == wxID_YES);
 }
 
 // Overridables
@@ -71,9 +76,12 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 			wxID_SLOT_TIMEOUT_BEGIN + index, 
 			wxString::Format(_("%d sec."), *it)
 			);
+		Connect(wxID_SLOT_TIMEOUT_BEGIN + index, 
+			wxEVT_COMMAND_MENU_SELECTED, 
+			wxCommandEventHandler(FlybotTaskBarIcon::OnMenuSlotTimeoutClick));
 		index++;
 	}
-	submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->SelectedSlotTimeoutId(), true);
+	submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->GetSelectedSlotTimeoutId(), true);
 	menu->Append(PU_SLOT_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
 
 	/*
