@@ -9,13 +9,14 @@ wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 
 void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int icon)
 {
-	if (!(0 <= icon - NIIF_INFO && icon - NIIF_INFO < 3))
+	int id = icon - NIIF_INFO;
+	if (!(0 <= id && id < 3))
 		return;
 
 	wxString titles[] = {_("Information"), _("Warning"), _("Error")};
 	if (NULL != m_taskBarIcon)
 	{
-		m_taskBarIcon->ShowBalloon(titles[icon - NIIF_INFO], wxString(szString), icon);
+		m_taskBarIcon->ShowBalloon(titles[id], wxString(szString), icon);
 	}
 }
 
@@ -41,7 +42,8 @@ void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 		case wxLOG_Message:
 		case wxLOG_Status:
 		default:    // log unknown log levels too
-			DoLogString(szString, t);
+			if (wxGetApp().BalloonsEnabled())
+				DoLogString(szString, t);
 			break;
 
 		case wxLOG_Trace:

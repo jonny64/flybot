@@ -191,7 +191,7 @@
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="vc_mswud\flybot.pdb"
+				ProgramDatabaseFile="$(SolutionDir)bin\Chatbot.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"

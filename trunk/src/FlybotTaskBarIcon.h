@@ -19,8 +19,7 @@ public:
 	void OnMenuOpenDict(wxCommandEvent&);
 	void OnMenuReload(wxCommandEvent&);
 	void OnPower(wxCommandEvent&);
-	void OnMenuCheckmark(wxCommandEvent&);
-	void OnMenuSub(wxCommandEvent&);
+	void OnMenuUseBalloonsClick(wxCommandEvent &useBalloonsClickEvt);
 	void SetupIcon();
 
 	virtual wxMenu *CreatePopupMenu();
