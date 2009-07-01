@@ -22,7 +22,8 @@ void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int i
 
 void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 {
-	switch ( level ) {
+	switch ( level ) 
+	{
 		case wxLOG_FatalError:
 			DoLogString(wxString(_("Fatal error: ")) + szString + _("Program aborted."), t, NIIF_ERROR);
 			Flush();
@@ -42,7 +43,7 @@ void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 		case wxLOG_Message:
 		case wxLOG_Status:
 		default:    // log unknown log levels too
-			if (wxGetApp().BalloonsEnabled())
+			if (wxGetApp().Config.BalloonsEnabled())
 				DoLogString(szString, t);
 			break;
 

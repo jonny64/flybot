@@ -249,6 +249,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\FlybotConfig.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Session.cpp"
 				>
 			</File>
@@ -290,6 +294,10 @@
 			</File>
 			<File
 				RelativePath=".\FlybotAPI.h"
+				>
+			</File>
+			<File
+				RelativePath=".\FlybotConfig.h"
 				>
 			</File>
 			<File
