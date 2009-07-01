@@ -1,15 +1,15 @@
 #include "stdwx.h"
-#include "wxLogBaloon.h"
+#include "wxLogBalloon.h"
 #include "wxFlybotDLL.h"
 
-wxLogBaloon::wxLogBaloon(FlybotTaskBarIcon *tb)
+wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 {
 	m_taskBarIcon = tb;
 }
 
-void wxLogBaloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int icon)
+void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int icon)
 {
-	if (!(0 <= icon - NIIF_INFO && icon - NIIF_INFO < 3));
+	if (!(0 <= icon - NIIF_INFO && icon - NIIF_INFO < 3))
 		return;
 
 	wxString titles[] = {_("Information"), _("Warning"), _("Error")};
@@ -19,7 +19,7 @@ void wxLogBaloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int ic
 	}
 }
 
-void wxLogBaloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
+void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 {
 	switch ( level ) {
 		case wxLOG_FatalError:
@@ -58,6 +58,6 @@ void wxLogBaloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 	}
 }
 
-wxLogBaloon::~wxLogBaloon(void)
+wxLogBalloon::~wxLogBalloon(void)
 {
 }

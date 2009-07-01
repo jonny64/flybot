@@ -77,10 +77,10 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 	submenuAnswr->AppendRadioItem(PU_TIMEOUT2, _("Answer timeout 2"));
 	menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Answer timeout"), submenuAnswr);
 
-	wxMenu *submenuBaloon = new wxMenu;
-	submenuBaloon->AppendRadioItem(PU_YES, _("Yes"));
-	submenuBaloon->AppendRadioItem(PU_NO, _("No"));
-	menu->Append(PU_BALOON_SUB, _("Show baloons"), submenuBaloon);
+	wxMenu *submenuBalloon = new wxMenu;
+	submenuBalloon->AppendRadioItem(PU_YES, _("Yes"));
+	submenuBalloon->AppendRadioItem(PU_NO, _("No"));
+	menu->Append(PU_BALOON_SUB, _("Show baloons"), submenuBalloon);
 	*/
 	menu->AppendSeparator();
 

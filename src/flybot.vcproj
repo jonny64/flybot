@@ -377,11 +377,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wxLogBaloon.cpp"
+				RelativePath=".\wxLogBalloon.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\wxLogBaloon.h"
+				RelativePath=".\wxLogBalloon.h"
 				>
 			</File>
 		</Filter>
