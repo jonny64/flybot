@@ -1,6 +1,6 @@
 #include "stdwx.h"
 #include "wxFlybotDLL.h"
-#include "wxLogBaloon.h"
+#include "wxLogBalloon.h"
 #include <wx/utils.h>
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
@@ -23,7 +23,7 @@ bool wxFlybotDLL::OnInit()
 	m_taskBarIcon->SetupIcon();
 
 	// set new logger
-	delete wxLog::SetActiveTarget(new wxLogBaloon(m_taskBarIcon));
+	delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 	
 	Dict.Load();
 	return true;

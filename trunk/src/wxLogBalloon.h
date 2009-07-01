@@ -2,12 +2,12 @@
 #include "stdwx.h"
 #include "FlybotTaskBarIcon.h"
 
-class wxLogBaloon : public wxLog
+class wxLogBalloon : public wxLog
 {
 	FlybotTaskBarIcon *m_taskBarIcon;
 public:
-	wxLogBaloon(FlybotTaskBarIcon *);
-	~wxLogBaloon(void);
+	wxLogBalloon(FlybotTaskBarIcon *);
+	~wxLogBalloon(void);
 	
 protected:
     void DoLogString(const wxChar *, time_t, int icon  = NIIF_INFO);
