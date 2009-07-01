@@ -99,7 +99,7 @@ int Dictionary::Load()
 		wxString errorMessage = wxT("");
 		if (!ProcessLine(line, &errorMessage))
 		{
-			wxLogError(_("processing row %d\n%s "), row, errorMessage);
+			wxLogWarning(_("dictionary, line %d:\n%s"), row, errorMessage);
 			errorsCount++;
 		}
 	}

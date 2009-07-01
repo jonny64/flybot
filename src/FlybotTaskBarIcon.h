@@ -14,7 +14,7 @@ public:
 #endif
 	{}
 
-	bool ShowBalloon(const wxString&, const wxString&, unsigned int timeout = 4, int icon = NIIF_INFO);
+	bool ShowBalloon(const wxString&, const wxString&, int icon = NIIF_INFO, unsigned int timeout = 4);
 	void OnLeftButtonUp(wxTaskBarIconEvent&);
 	void OnMenuOpenDict(wxCommandEvent&);
 	void OnMenuReload(wxCommandEvent&);

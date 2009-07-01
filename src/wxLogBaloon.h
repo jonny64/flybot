@@ -10,6 +10,6 @@ public:
 	~wxLogBaloon(void);
 	
 protected:
-    // implement sink function
-    virtual void DoLogString(const wxChar *, time_t);
+    void DoLogString(const wxChar *, time_t, int icon  = NIIF_INFO);
+	virtual void DoLog(wxLogLevel level, const wxChar *szString, time_t t);
 };
