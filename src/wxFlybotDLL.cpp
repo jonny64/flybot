@@ -15,6 +15,13 @@ void wxFlybotDLL::SwitchState()
 	m_enabled = !m_enabled;
 }
 
+bool wxFlybotDLL::BalloonsEnabled()
+{
+	bool useBalloons = false;
+	Config.Read(SETTING_USE_BALLOONS, &useBalloons, true);
+	return useBalloons;
+}
+
 bool wxFlybotDLL::OnInit()
 {
 	m_enabled = true;

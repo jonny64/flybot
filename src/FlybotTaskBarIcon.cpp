@@ -20,21 +20,15 @@ enum
 	PU_POWER,
 	PU_TIMEOUT1,
 	PU_TIMEOUT2,
-	PU_YES,
-	PU_NO,
 	PU_CHECKMARK
 };
 
 
 BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
+	EVT_TASKBAR_LEFT_UP(FlybotTaskBarIcon::OnLeftButtonUp)
 	EVT_MENU(PU_OPEN_DICT, FlybotTaskBarIcon::OnMenuOpenDict)
 	EVT_MENU(PU_RELOAD_DICT,    FlybotTaskBarIcon::OnMenuReload)
-	EVT_MENU(PU_SLOT_TIMEOUT_SUB, FlybotTaskBarIcon::OnMenuSub)
-	EVT_MENU(PU_ANSWER_TIMEOUT_SUB, FlybotTaskBarIcon::OnMenuSub)
-	EVT_MENU(PU_TIMEOUT1,FlybotTaskBarIcon::OnMenuCheckmark)
-	EVT_MENU(PU_TIMEOUT2,FlybotTaskBarIcon::OnMenuCheckmark)
-	EVT_TASKBAR_LEFT_UP(FlybotTaskBarIcon::OnLeftButtonUp)
-	EVT_MENU(PU_BALOON_SUB, FlybotTaskBarIcon::OnMenuSub)
+	EVT_MENU_RANGE(wxID_YES, wxID_NO, FlybotTaskBarIcon::OnMenuUseBalloonsClick)
 	EVT_MENU(PU_POWER, FlybotTaskBarIcon::OnPower)
 END_EVENT_TABLE()
 
@@ -48,12 +42,9 @@ void FlybotTaskBarIcon::OnMenuReload(wxCommandEvent& )
 	wxGetApp().ReloadDictionary();
 }
 
-void FlybotTaskBarIcon::OnMenuSub(wxCommandEvent&)
+void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& useBalloonsClickEvt)
 {
-}
-
-void FlybotTaskBarIcon::OnMenuCheckmark(wxCommandEvent&)
-{
+	wxGetApp().Config.Write(SETTING_USE_BALLOONS,  useBalloonsClickEvt.GetId() == wxID_YES);
 }
 
 // Overridables
@@ -76,14 +67,15 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 	submenuAnswr->AppendRadioItem(PU_TIMEOUT1, _("Answer timeout 1"));
 	submenuAnswr->AppendRadioItem(PU_TIMEOUT2, _("Answer timeout 2"));
 	menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Answer timeout"), submenuAnswr);
-
-	wxMenu *submenuBalloon = new wxMenu;
-	submenuBalloon->AppendRadioItem(PU_YES, _("Yes"));
-	submenuBalloon->AppendRadioItem(PU_NO, _("No"));
-	menu->Append(PU_BALOON_SUB, _("Show baloons"), submenuBalloon);
 	*/
-	menu->AppendSeparator();
+	wxMenu *submenuBalloon = new wxMenu;
+	submenuBalloon->AppendRadioItem(wxID_YES, _("Yes"));
+	submenuBalloon->AppendRadioItem(wxID_NO, _("No"));
+	
+	submenuBalloon->Check(wxGetApp().BalloonsEnabled()? wxID_YES:wxID_NO, true);
 
+	menu->Append(PU_BALOON_SUB, _("Show balloons"), submenuBalloon);
+	menu->AppendSeparator();
 	menu->Append(PU_POWER, _("&On/Off"));    
 
 	return menu;
