@@ -20,7 +20,8 @@ enum
 	PU_POWER,
 	PU_TIMEOUT1,
 	PU_TIMEOUT2,
-	PU_CHECKMARK
+	PU_CHECKMARK,
+	wxID_SLOT_TIMEOUT_BEGIN = 10050
 };
 
 
@@ -31,6 +32,10 @@ BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
 	EVT_MENU_RANGE(wxID_YES, wxID_NO, FlybotTaskBarIcon::OnMenuUseBalloonsClick)
 	EVT_MENU(PU_POWER, FlybotTaskBarIcon::OnPower)
 END_EVENT_TABLE()
+
+FlybotTaskBarIcon::FlybotTaskBarIcon()
+{
+}
 
 void FlybotTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
 {
@@ -50,32 +55,42 @@ void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& useBalloonsClickE
 // Overridables
 wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 {
+	FlybotConfig *conf = &wxGetApp().Config;
 	wxMenu *menu = new wxMenu;
 
 	menu->Append(PU_OPEN_DICT, _("&Open dictionary"));
 	menu->Append(PU_RELOAD_DICT, _("&Reload dicttionary"));
-	/*
 	menu->AppendSeparator();
-	menu->Append(PU_CHECKMARK, _("Checkmark"),wxT(""), wxITEM_CHECK);
-
+	
+	// form slot timeouts submenu
 	wxMenu *submenuSlot = new wxMenu;
-	submenuSlot->AppendRadioItem(PU_TIMEOUT1, _("Slot timeout 1"));
-	submenuSlot->AppendRadioItem(PU_TIMEOUT2, _("Slot timeout 2"));
-	menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
+	int index = 0;
+	for (list<int>::iterator it = conf->SlotTimeouts.begin(); it != conf->SlotTimeouts.end(); ++it)
+	{
+		submenuSlot->AppendRadioItem(
+			wxID_SLOT_TIMEOUT_BEGIN + index, 
+			wxString::Format(_("%d sec."), *it)
+			);
+		index++;
+	}
+	submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->SelectedSlotTimeoutId(), true);
+	menu->Append(PU_SLOT_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
 
+	/*
 	wxMenu *submenuAnswr = new wxMenu;
 	submenuAnswr->AppendRadioItem(PU_TIMEOUT1, _("Answer timeout 1"));
 	submenuAnswr->AppendRadioItem(PU_TIMEOUT2, _("Answer timeout 2"));
 	menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Answer timeout"), submenuAnswr);
 	*/
+
+	// form 'enable status balloons' submenu
 	wxMenu *submenuBalloon = new wxMenu;
 	submenuBalloon->AppendRadioItem(wxID_YES, _("Yes"));
 	submenuBalloon->AppendRadioItem(wxID_NO, _("No"));
-	
-	submenuBalloon->Check(wxGetApp().BalloonsEnabled()? wxID_YES:wxID_NO, true);
-
-	menu->Append(PU_BALOON_SUB, _("Show balloons"), submenuBalloon);
+	submenuBalloon->Check(conf->BalloonsEnabled()? wxID_YES:wxID_NO, true);
+	menu->Append(PU_BALOON_SUB, _("&Show balloons"), submenuBalloon);
 	menu->AppendSeparator();
+
 	menu->Append(PU_POWER, _("&On/Off"));    
 
 	return menu;
