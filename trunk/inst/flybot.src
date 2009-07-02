@@ -43,8 +43,11 @@ SetCompressor /SOLID lzma
 ;--------------------------------
 ;Pages
 
-  ;!insertmacro MUI_PAGE_LICENSE "${NSISDIR}\Docs\Modern UI\License.txt"
-  ;!insertmacro MUI_PAGE_COMPONENTS
+  PageEx license
+   LicenseText "ќзнакомьтесь со следующей информацией" "ясно"
+   LicenseData README
+  PageExEnd
+  
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   
