@@ -66,6 +66,7 @@ void FlybotConfig::ReadSlotTimeouts()
 
 int FlybotConfig::GetSelectedSlotTimeout()
 {
+	// FIXME: investigate 'bad case'
 	list<int>::iterator it = SlotTimeouts.begin();
 	std::advance(it, GetSelectedSlotTimeoutId());
 	return *it;

@@ -23,7 +23,7 @@ bool wxFlybotDLL::OnInit()
 	m_taskBarIcon = new FlybotTaskBarIcon();
 	m_taskBarIcon->SetupIcon();
 
-	// set new logger
+	// set new logger (SetActiveTarget returns old logger)
 	delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 	
 	Dict.Load();
