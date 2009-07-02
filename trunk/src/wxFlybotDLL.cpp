@@ -39,7 +39,7 @@ void wxFlybotDLL::SelectLanguage(int lang)
 	delete m_locale;
 	m_locale = new wxLocale(lang);
 	m_locale->AddCatalogLookupPathPrefix(wxStandardPaths::Get().GetPluginsDir());
-	if (!m_locale->AddCatalog(wxT("flybot-ru")) )
+	if (!m_locale->AddCatalog(wxT("Chatbot")) )
 	{
 		// fall back to embedded english (do nothing)
 	}
