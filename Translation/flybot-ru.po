@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flybot 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-02 11:54+0300\n"
+"POT-Creation-Date: 2009-07-02 12:45+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: test <test@test.com>\n"
 "Language-Team:  <astro64m@gmail.com>\n"
@@ -12,14 +12,13 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: wxT\n"
 "X-Poedit-SearchPath-0: c:\\home\\mash\\Visual Studio 2008\\Projects\\flybot\\src\n"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/Dictionary.cpp:55
 #, c-format
 msgid "priority should be in range 0..%d"
-msgstr ""
+msgstr "приоритет должен быть в диапазоне 0..%d"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/Dictionary.cpp:63
@@ -28,6 +27,8 @@ msgid ""
 "invalid regular expression:\n"
 "%s"
 msgstr ""
+"синтаксис регулярного выражения:\n"
+"%s"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/Dictionary.cpp:102
@@ -36,72 +37,74 @@ msgid ""
 "dictionary, line %d:\n"
 "%s"
 msgstr ""
+"словарь, строка %d:\n"
+"%s"
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:63
 msgid "min."
-msgstr ""
+msgstr "мин."
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:63
 msgid "hr."
-msgstr ""
+msgstr "ч."
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:63
 msgid "day"
-msgstr ""
+msgstr "дн."
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:63
 msgid "wk."
-msgstr ""
+msgstr "нед."
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:67
 msgid "sec."
-msgstr ""
+msgstr "сек."
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:85
 msgid "&Open dictionary"
-msgstr ""
+msgstr "Открыть словарь"
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:86
 msgid "&Reload dicttionary"
-msgstr ""
+msgstr "Перегрузить словарь"
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:104
 msgid "Slot timeout"
-msgstr ""
+msgstr "Срок действия слота"
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:115
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:116
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 #: c:\home\mash\Visual
 #: Studio
 #: 2008\Projects\flybot\src/FlybotTaskBarIcon.cpp:118
 msgid "&Show balloons"
-msgstr ""
+msgstr "Показывать уведомления"
 
 #: c:\home\mash\Visual
 #: Studio
@@ -122,6 +125,8 @@ msgid ""
 "Closed PM from %s, matched template:\n"
 "%s"
 msgstr ""
+"Закрыта личка %s, совпадение по шаблону:\n"
+"%s"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/Session.cpp:27
@@ -130,6 +135,8 @@ msgid ""
 "Slot was given to %s, matched template:\n"
 "%s"
 msgstr ""
+"Выдан слот %s, совпадение по шаблону:\n"
+"%s"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/Session.cpp:32
@@ -138,26 +145,28 @@ msgid ""
 "%s added to ignore list, matched template:\n"
 " %s"
 msgstr ""
+"%s добавлен в игнор, совпадение по шаблону:\n"
+" %s"
 
 #: c:\home\mash\Visual
-#: Studio 2008\Projects\flybot\src/wxFlybotDLL.cpp:37
+#: Studio 2008\Projects\flybot\src/wxFlybotDLL.cpp:51
 msgid "Dictionary was successfully loaded"
-msgstr ""
+msgstr "Словарь успешно загружен"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/wxLogBalloon.cpp:16
 msgid "Information"
-msgstr ""
+msgstr "Информация"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/wxLogBalloon.cpp:16
 msgid "Warning"
-msgstr ""
+msgstr "Предупреждение"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/wxLogBalloon.cpp:16
 msgid "Error"
-msgstr ""
+msgstr "Ошибка"
 
 #: c:\home\mash\Visual
 #: Studio 2008\Projects\flybot\src/wxLogBalloon.cpp:28
@@ -168,4 +177,7 @@ msgstr ""
 #: Studio 2008\Projects\flybot\src/wxLogBalloon.cpp:28
 msgid "Program aborted."
 msgstr ""
+
+#~ msgid "Test"
+#~ msgstr "Тестовая строка"
 

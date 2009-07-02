@@ -10,10 +10,12 @@
 class wxFlybotDLL: public wxApp
 {
 	FlybotTaskBarIcon   *m_taskBarIcon;
-
+	wxLocale *m_locale;
 	WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
 	SessionMap m_sessions;
 	bool m_enabled;
+	
+	void SelectLanguage(int lang);
 public:
 	
 	Dictionary Dict;
