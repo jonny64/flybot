@@ -69,11 +69,11 @@ Section "Dummy Section" SecDummy
   File README
   
   File ..\bin\ChatBot.dll
+  File ..\bin\Chatbot.mo
   SetOutPath "$INSTDIR\Settings"
   SetOverwrite off
   File ..\bin\Settings\flydict.ini
   SetOverwrite on 
-  File ..\bin\Chatbot.mo
   ;File ..\bin\Settings\flybot.ini
 
   ;Store installation folder
