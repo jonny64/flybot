@@ -1,7 +1,5 @@
 #include "stdwx.h"
 #include "flybot.h"
-#include "wxFlybotDLL.h"
-#include "FlybotAPI.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

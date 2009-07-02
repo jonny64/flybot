@@ -6,7 +6,7 @@
 #include "Session.h"
 #include "Dictionary.h"
 #include "wxFlybotDLL.h"
-#include "ChatBotAPI.h"
+#include "FlybotAPI.h"
 
 #define FLYBOT_API __declspec(dllexport) bool  __stdcall
 

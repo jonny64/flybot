@@ -69,7 +69,8 @@ Section "Dummy Section" SecDummy
   SetOutPath "$INSTDIR\Settings"
   SetOverwrite off
   File ..\bin\Settings\flydict.ini
-  ;SetOverwrite on  
+  SetOverwrite on 
+  File ..\bin\Chatbot.mo
   ;File ..\bin\Settings\flybot.ini
 
   ;Store installation folder
@@ -100,6 +101,7 @@ Section "Uninstall"
   Delete "$INSTDIR\ChatBot.dll"
   Delete "$INSTDIR\uninstall-flybot.exe"
   Delete "$INSTDIR\README"
+  Delete "$INSTDIR\Chatbot.mo"
   
   DeleteRegKey /ifempty HKCU "Software\flybot"
 
