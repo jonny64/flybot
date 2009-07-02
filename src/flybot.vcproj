@@ -116,7 +116,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="performing additional tasks:"
-				CommandLine="echo updating version information...&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;&quot;C:\Program Files\NSIS\makensis&quot; flybot.nsi&#x0D;&#x0A;"
+				CommandLine="echo updating version information...&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;&quot;C:\Program Files\NSIS\makensis&quot; flybot.nsi&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -219,6 +219,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy /y &quot;$(SolutionDir)Translation\*.mo&quot; &quot;$(SolutionDir)bin&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -324,6 +325,10 @@
 		<Filter
 			Name="Resource"
 			>
+			<File
+				RelativePath="..\Translation\flybot-ru.po"
+				>
+			</File>
 			<File
 				RelativePath=".\flybot.rc"
 				>
