@@ -326,7 +326,7 @@
 			Name="Resource"
 			>
 			<File
-				RelativePath="..\Translation\flybot-ru.po"
+				RelativePath="..\Translation\Chatbot.po"
 				>
 			</File>
 			<File
