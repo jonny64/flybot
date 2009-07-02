@@ -57,6 +57,25 @@ void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& evt)
 	wxGetApp().Config.Write(SETTING_USE_BALLOONS,  evt.GetId() == wxID_YES);
 }
 
+// converts time in seconds to it string representataion (xx hrs/days/weeks/etc.)
+static wxString ToTimeString(int seconds)
+{
+	const wxString labels[] = {_("min."), _("hr."), _("day"), _("wk.") };
+	const int limits[] = {60, 3600, 86400, 86400*7};
+	const int LIMITS_COUNT = 5;
+
+	wxString tail = _("sec.");
+	int time = seconds;
+	int i = 0;
+	while (i < LIMITS_COUNT && seconds >= limits[i])
+	{ 
+		time = seconds / limits[i];
+		tail = labels[i];
+		i++;
+	}
+	return wxString::Format( wxT("%d %s"), time, tail);
+}
+
 // Overridables
 wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 {
@@ -74,7 +93,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 	{
 		submenuSlot->AppendRadioItem(
 			wxID_SLOT_TIMEOUT_BEGIN + index, 
-			wxString::Format(_("%d sec."), *it)
+			wxString::Format( ToTimeString(*it) )
 			);
 		Connect(wxID_SLOT_TIMEOUT_BEGIN + index, 
 			wxEVT_COMMAND_MENU_SELECTED, 
