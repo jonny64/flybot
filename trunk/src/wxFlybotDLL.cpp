@@ -1,7 +1,8 @@
 #include "stdwx.h"
+#include <wx/stdpaths.h>
+#include <wx/utils.h>
 #include "wxFlybotDLL.h"
 #include "wxLogBalloon.h"
-#include <wx/utils.h>
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
@@ -20,6 +21,9 @@ bool wxFlybotDLL::OnInit()
 {
 	m_enabled = true;
 	m_taskBarIcon = NULL;
+	m_locale = NULL;
+	SelectLanguage(wxLANGUAGE_RUSSIAN);
+
 	m_taskBarIcon = new FlybotTaskBarIcon();
 	m_taskBarIcon->SetupIcon();
 
@@ -28,6 +32,17 @@ bool wxFlybotDLL::OnInit()
 	
 	Dict.Load();
 	return true;
+}
+
+void wxFlybotDLL::SelectLanguage(int lang)
+{
+	delete m_locale;
+	m_locale = new wxLocale(lang);
+	m_locale->AddCatalogLookupPathPrefix(wxStandardPaths::Get().GetPluginsDir());
+	if (!m_locale->AddCatalog(wxT("flybot-ru")) )
+	{
+		// fall back to embedded english (do nothing)
+	}
 }
 
 void wxFlybotDLL::ReloadDictionary()
@@ -92,4 +107,5 @@ int wxFlybotDLL::OnExit()
 
 wxFlybotDLL::~wxFlybotDLL()
 {
+	//delete m_locale;
 }
