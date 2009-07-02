@@ -1,0 +1,111 @@
+!ifndef VERSION
+  !define VERSION 'anonymous-build'
+!endif
+
+;--------------------------------
+;Configuration
+
+!ifdef OUTFILE
+  OutFile "${OUTFILE}"
+!else
+  OutFile .\flybot-${VERSION}.exe
+!endif
+
+SetCompressor /SOLID lzma
+
+;RequestExecutionLevel admin
+;--------------------------------
+;Include Modern UI 2
+
+  !include "MUI2.nsh"
+  !include "InstallOptions.nsh"
+;--------------------------------
+;General
+
+  ;Name and file
+  Name "flybot"
+
+  ;Default installation folder
+  InstallDir "$PROGRAMFILES\FlylinkDC++"
+  
+  DirText "Программа установит $(^NameDA) в папку клиента. Чтобы выбрать другую папку, нажмите кнопку 'Обзор' и укажите ее."
+  
+  ;Get installation folder from registry if available
+  InstallDirRegKey HKLM SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\FlylinkDC++_is1 "InstallLocation"
+
+;--------------------------------
+;Interface Configuration
+
+  !define MUI_HEADERIMAGE
+  !define MUI_HEADERIMAGE_BITMAP "line.bmp" ; optional
+  !define MUI_ABORTWARNING
+
+;--------------------------------
+;Pages
+
+  PageEx license
+   LicenseText "Ознакомьтесь со следующей информацией" "Ясно"
+   LicenseData README
+  PageExEnd
+  
+  !insertmacro MUI_PAGE_DIRECTORY
+  !insertmacro MUI_PAGE_INSTFILES
+  
+  !insertmacro MUI_UNPAGE_CONFIRM
+  !insertmacro MUI_UNPAGE_INSTFILES
+  ;!define MUI_FINISHPAGE_LINK "Visit the NSIS site for the latest news, FAQs and support"
+  ;!define MUI_FINISHPAGE_LINK_LOCATION "http://flybot.googlecode.com"
+  ;!insertmacro MUI_PAGE_FINISH
+;--------------------------------
+;Languages
+ 
+  !insertmacro MUI_LANGUAGE "Russian"
+
+;--------------------------------
+;Installer Sections
+
+Section "Dummy Section" SecDummy
+  SetOutPath "$INSTDIR"
+  File README
+  
+  File ..\bin\ChatBot.dll
+  File ..\bin\Chatbot.mo
+  SetOutPath "$INSTDIR\Settings"
+  SetOverwrite off
+  File ..\bin\Settings\flydict.ini
+  SetOverwrite on 
+  ;File ..\bin\Settings\flybot.ini
+
+  ;Store installation folder
+  WriteRegStr HKCU "Software\flybot" "" $INSTDIR
+  
+  ;Create uninstaller
+  WriteUninstaller "$INSTDIR\uninstall-flybot.exe"
+SectionEnd
+
+;--------------------------------
+;Descriptions
+
+  ;Language strings
+  ;LangString DirText ${LANG_RUSSIAN} "A test section."
+
+  ;Assign language strings to sections
+  ;!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+    ;!insertmacro MUI_DESCRIPTION_TEXT ${SecDummy} DirText
+  ;!insertmacro MUI_FUNCTION_DESCRIPTION_END
+ 
+;--------------------------------
+;Uninstaller Section
+
+Section "Uninstall"
+
+  ;ADD YOUR OWN FILES HERE...
+
+  Delete "$INSTDIR\ChatBot.dll"
+  Delete "$INSTDIR\uninstall-flybot.exe"
+  Delete "$INSTDIR\README"
+  Delete "$INSTDIR\Chatbot.mo"
+  
+  DeleteRegKey /ifempty HKCU "Software\flybot"
+
+SectionEnd
