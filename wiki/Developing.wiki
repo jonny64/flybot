@@ -29,4 +29,4 @@ Delphi пример из apex speedmod, который и был доработ�
 [http://www.poedit.net/download.php poEdit]. 
 
 Соответствующий файл проекта
-[http://flybot.googlecode.com/svn/trunk/Translation/flybot-ru.po здесь]
+[http://flybot.googlecode.com/svn/trunk/Translation/Chatbot.po здесь]
