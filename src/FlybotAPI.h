@@ -6,11 +6,11 @@
 struct _FlybotAPI
 {
 	void Init(const BotInit*);
-	bool SendPM(const wxString&, const wxString&);
+	bool SendPM(const wxString &cid, const wxString &msg);
 	bool QueryUserinfo(const WCHAR*, UserInfo*);
-	bool ClosePM(wxString&);
-	bool AddToIgnore(wxString&);
-	bool GiveSlot(wxString&);
+	bool ClosePM(const wxString &cid);
+	bool AddToIgnore(const wxString &cid);
+	bool GiveSlot(const wxString& cid, int slotTimeoutSeconds);
 };
 
 extern _FlybotAPI FlybotAPI;

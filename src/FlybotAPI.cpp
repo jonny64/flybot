@@ -1,6 +1,7 @@
 #include "stdwx.h"
 #include "ChatBotAPI.h"
 #include "FlybotAPI.h"
+#include "wxFlybotDLL.h"
 
 static BotInit m_botAPI;
 _FlybotAPI FlybotAPI;
@@ -32,7 +33,7 @@ bool _FlybotAPI::QueryUserinfo(const WCHAR* cid, UserInfo *userinfo)
 }
 
 
-bool _FlybotAPI::ClosePM(wxString& cid)
+bool _FlybotAPI::ClosePM(const wxString& cid)
 {	
 	if (m_botAPI.SendMessage2 && !cid.empty())
 	{
@@ -42,18 +43,17 @@ bool _FlybotAPI::ClosePM(wxString& cid)
 	return false;
 }
 
-bool _FlybotAPI::AddToIgnore(wxString& cid)
+bool _FlybotAPI::GiveSlot(const wxString& cid, int slotTimeoutSeconds)
 {	
 	if (m_botAPI.SendMessage2 && !cid.empty())
 	{
-		int slotTimeout = 600;
-		m_botAPI.SendMessage2( USER_SLOT, cid.c_str(), &slotTimeout, sizeof(slotTimeout) );
+		m_botAPI.SendMessage2( USER_SLOT, cid.c_str(), &slotTimeoutSeconds, sizeof(slotTimeoutSeconds) );
 		return true;
 	}
 	return false;
 }
 
-bool _FlybotAPI::GiveSlot(wxString& cid)
+bool _FlybotAPI::AddToIgnore(const wxString& cid)
 {
 	if (m_botAPI.SendMessage2 && !cid.empty())
 	{

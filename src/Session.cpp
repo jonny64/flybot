@@ -22,7 +22,8 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
 	}
 	if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
 	{
-		FlybotAPI.GiveSlot(m_userinfo[FLYBOT_API_CID]);
+		int slotTimeout = wxGetApp().Config.GetSelectedSlotTimeout();
+		FlybotAPI.GiveSlot(m_userinfo[FLYBOT_API_CID], slotTimeout);
 		message = _("Slot was given to %s, matched template:\n%s");
 	}
 	if (flags.Freq(DICTIONARY_IGNORE_CHAR) > 0)

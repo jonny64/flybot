@@ -64,6 +64,13 @@ void FlybotConfig::ReadSlotTimeouts()
 	}
 }
 
+int FlybotConfig::GetSelectedSlotTimeout()
+{
+	list<int>::iterator it = SlotTimeouts.begin();
+	std::advance(it, GetSelectedSlotTimeoutId());
+	return *it;
+}
+
 int FlybotConfig::GetSelectedSlotTimeoutId()
 {
 	int selectedTimeoutId = 0;
