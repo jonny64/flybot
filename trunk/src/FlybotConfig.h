@@ -15,6 +15,7 @@ public:
 	
 	list<int> SlotTimeouts;
 	bool BalloonsEnabled();
+	int GetSelectedSlotTimeout();
 	int GetSelectedSlotTimeoutId();
 	void SetSelectedSlotTimeoutId(int id);
 
