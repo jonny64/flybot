@@ -131,6 +131,7 @@ void FlybotTaskBarIcon::OnLeftButtonUp(wxTaskBarIconEvent&)
 
 void FlybotTaskBarIcon::OnPower(wxCommandEvent&)
 {
+	wxGetApp().SwitchState();
 	SetupIcon();
 }
 
