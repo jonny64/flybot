@@ -44,7 +44,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 	const int MIN_PARAMS_PER_LINE = 3;
 	if (row.Count() < MIN_PARAMS_PER_LINE)
 	{
-		*errorMessage = wxT("too few parameters");
+		*errorMessage = _("too few parameters");
 		return false;
 	}
 	

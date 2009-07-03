@@ -33,7 +33,7 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
 	}
 
 	if (!message.empty())
-		wxLogMessage(message, m_userinfo[wxT("NICK")], selectedPharase.MatchExpr);
+		wxLogMessage(message, m_userinfo[FLYBOT_API_NICK], selectedPharase.MatchExpr);
 }
 
 int Session::Answer(wxString& msg)
