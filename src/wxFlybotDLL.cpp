@@ -107,5 +107,5 @@ int wxFlybotDLL::OnExit()
 
 wxFlybotDLL::~wxFlybotDLL()
 {
-	//delete m_locale;
+	delete m_locale;
 }
