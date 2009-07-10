@@ -88,6 +88,7 @@ int Dictionary::Load()
 	wxTextInputStream text(input, wxT("\r\n"), wxCSConv(wxFONTENCODING_CP1251));
 
 	m_phrases.Clear();
+	m_emptyPhrases.Clear();
 
 	wxString line = wxT("");
 	int row = 0;
@@ -109,31 +110,35 @@ int Dictionary::Load()
 
 static int random(int max)
 {
-	srand (time(NULL));
-	return int((rand()/RAND_MAX)*max);
+	wxASSERT(RAND_MAX >= max);
+	srand(time(NULL));
+	return rand() % max;
 }
 
-static Phrase SelectAccordingPriority(ArrayOfPhrases &from)
+static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
 {
-	unsigned int sumPrio = 0;
-	for (unsigned int i = 0; i<from.Count(); i++)
+	// map priority weight 1, 2, 3 => 1000, 500, 333
+    // compute length of priority weight segment: in our example it is 1833
+	unsigned int length = 0;
+	for (unsigned int i = 0; i<candidates.Count(); i++)
 	{
-		sumPrio += int(DICTIONARY_MAX_PRIORITY/from[i].Priority);
+		length += int(DICTIONARY_MAX_PRIORITY/candidates[i].Priority);
 	}
 	
-	unsigned int msgId =  random(sumPrio);
+	// drop a point to segment, e.g. 700
+	unsigned int point =  random(length);
 	
+	// find corresponded phrase
 	unsigned int i = 0;
-	while (true)
+	unsigned int currPoint = int(DICTIONARY_MAX_PRIORITY/candidates[i].Priority);
+	while (point >= currPoint)
 	{
-		sumPrio = sumPrio + int(DICTIONARY_MAX_PRIORITY/from[i].Priority);
-		if (msgId >= sumPrio)
-			i++;
-		else
-			break;
+		i++;
+		currPoint = currPoint + int(DICTIONARY_MAX_PRIORITY/candidates[i].Priority);
 	}
 
-	return from[i];
+	wxASSERT(i < candidates.Count());
+	return candidates[i];
 }
 
 Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedPhrases)
