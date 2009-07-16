@@ -53,16 +53,6 @@ void wxFlybotDLL::ReloadDictionary()
 	}
 }
 
-
-// TODO: remove as soon as wxWidgets 2.9 released http://trac.wxwidgets.org/ticket/9810
-static bool wxLaunchDefaultApplication(const wxString &document)
-{
-	wxString verb = wxT("open"); 
-	int result = (int)ShellExecute(NULL, verb, document, NULL, NULL, SW_SHOWDEFAULT); 
-
-	return result > 32;
-}
-
 void wxFlybotDLL::OpenDictionary()
 {
 	if (!wxLaunchDefaultApplication(Dictionary::GetDictionaryFilename()) )

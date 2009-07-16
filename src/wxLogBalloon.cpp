@@ -9,16 +9,44 @@ wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 
 void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int icon)
 {
+	wxString message = wxString(szString);
 	int id = icon - NIIF_INFO;
-	if (!(0 <= id && id < 3))
+	if ( message.empty() || !(0 <= id && id < 3) )
 		return;
 
-	wxString titles[] = {_("Information"), _("Warning"), _("Error")};
+	// message title and body are separated by special char
+	wxArrayString tokens = wxSplit(message, BALLOON_LOGGER_SEPARATOR_CHAR, BALLOON_LOGGER_ESCAPE_CHAR);
+	wxASSERT( tokens.Count() > 0 );
+	
+	// if no title specified use default one
+	wxString standartTitles[] = {_("Information"), _("Warning"), _("Error")};
+	wxString balloonText = tokens[0];
+	wxString balloonTitle = tokens.Count() > 1? tokens[1] : standartTitles[id];
+	
 	if (NULL != m_taskBarIcon)
 	{
-		m_taskBarIcon->ShowBalloon(titles[id], wxString(szString), icon);
+		m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, icon);
 	}
 }
+
+#define IMPLEMENT_BALLOON_LOG_FUNCTION(level)                                                                                     \
+  void wxLog##level(const wxString &title, const wxString &message) \
+  {																	\
+  	wxString msg  = wxString::Format(								\
+		wxT("%s%c%s"),												\
+		message,													\
+		BALLOON_LOGGER_SEPARATOR_CHAR,								\
+		title														\
+	);																\
+	wxLogMessage(msg);												\
+  }
+
+
+IMPLEMENT_BALLOON_LOG_FUNCTION(Error)
+IMPLEMENT_BALLOON_LOG_FUNCTION(Warning)
+IMPLEMENT_BALLOON_LOG_FUNCTION(Message)
+IMPLEMENT_BALLOON_LOG_FUNCTION(Info)
+IMPLEMENT_BALLOON_LOG_FUNCTION(Status)
 
 void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 {
@@ -64,3 +92,4 @@ void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
 wxLogBalloon::~wxLogBalloon(void)
 {
 }
+
