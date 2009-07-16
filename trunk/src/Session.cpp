@@ -1,6 +1,7 @@
 #include "stdwx.h"
 #include "Session.h"
 #include "wxFlybotDLL.h"
+#include "wxLogBalloon.h"
 
 Session::Session(void)
 {
@@ -14,26 +15,31 @@ Session::Session(UserInfo& userinfo)
 void Session::ProcessFlags(const Phrase &selectedPharase)
 {
 	const wxString flags = selectedPharase.Flags;
+	wxString title = wxString::Format(_("Matched template: %s"), selectedPharase.MatchExpr);
 	wxString message = wxT("");
+	
 	if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
 	{
 		FlybotAPI.ClosePM(m_userinfo[FLYBOT_API_CID]);
-		message = _("Closed PM from %s, matched template:\n%s");
+		message = wxString::Format(_("Closed PM from %s"), m_userinfo[FLYBOT_API_NICK]);
 	}
 	if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
 	{
 		int slotTimeout = wxGetApp().Config.GetSelectedSlotTimeout();
 		FlybotAPI.GiveSlot(m_userinfo[FLYBOT_API_CID], slotTimeout);
-		message = _("Slot was given to %s, matched template:\n%s");
+		
+		message = wxString::Format(_("Slot was given to %s"), m_userinfo[FLYBOT_API_NICK]);
 	}
 	if (flags.Freq(DICTIONARY_IGNORE_CHAR) > 0)
 	{
 		FlybotAPI.AddToIgnore(m_userinfo[FLYBOT_API_CID]);
-		message = _("%s added to ignore list, matched template:\n %s");
+		message = wxString::Format(_("%s added to ignore list") , m_userinfo[FLYBOT_API_NICK]);
 	}
 
 	if (!message.empty())
-		wxLogMessage(message, m_userinfo[FLYBOT_API_NICK], selectedPharase.MatchExpr);
+	{
+		wxLogMessage(title, message);
+	}
 }
 
 int Session::Answer(wxString& msg)

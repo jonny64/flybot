@@ -100,7 +100,8 @@ int Dictionary::Load()
 		wxString errorMessage = wxT("");
 		if (!ProcessLine(line, &errorMessage))
 		{
-			wxLogWarning(_("dictionary, line %d:\n%s"), row, errorMessage);
+			wxLogWarning(wxString::Format(_("Dictionary, line %d:"), row), 
+				errorMessage);
 			errorsCount++;
 		}
 	}
