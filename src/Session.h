@@ -5,15 +5,15 @@
 
 class Session
 {
-	UserInfo m_userinfo;
-	ArrayOfPhrases m_usedPhrases;
+    UserInfo m_userinfo;
+    ArrayOfPhrases m_usedPhrases;
 
-	void ProcessFlags(const Phrase&);
+    void ProcessFlags(const Phrase&);
 public:
-	Session(void);
-	Session(UserInfo&);
+    Session(void);
+    Session(UserInfo&);
 
-	int Answer(wxString&);
+    int Answer(wxString&);
 
-	~Session(void);
+    ~Session(void);
 };
