@@ -4,43 +4,43 @@
 // http://trac.wxwidgets.org/ticket/8370
 wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape) 
 { 
-	if (escape == wxT('\0')) 
-		// we don't need to honour the escape character 
-		return wxStringTokenize(str, sep, wxTOKEN_RET_EMPTY_ALL /* return all tokens, even empty ones */); 
+    if (escape == wxT('\0')) 
+        // we don't need to honour the escape character 
+        return wxStringTokenize(str, sep, wxTOKEN_RET_EMPTY_ALL /* return all tokens, even empty ones */); 
 
-	wxArrayString ret; 
-	wxString curr; 
-	wxChar prev = wxT('\0'); 
+    wxArrayString ret; 
+    wxString curr; 
+    wxChar prev = wxT('\0'); 
 
-	for (const wxChar *p = str.c_str(); *p != wxT('\0'); p++) 
-	{ 
-		if ( *p == sep ) 
-		{ 
-			if ( prev == escape ) 
-			{ 
-				// remove the escape character and don't consider this 
-				// occurrence of 'sep' as a real separator 
-				curr.Last() = sep; 
-			} 
-			else 
-			{ 
-				// add only non-empty tokens 
-				ret.Add(curr); 
-				curr.Empty(); 
-			} 
-		} 
-		else 
-			curr << *p; 
-
-
-		prev = *p; 
-	} 
+    for (const wxChar *p = str.c_str(); *p != wxT('\0'); p++) 
+    { 
+        if ( *p == sep ) 
+        { 
+            if ( prev == escape ) 
+            { 
+                // remove the escape character and don't consider this 
+                // occurrence of 'sep' as a real separator 
+                curr.Last() = sep; 
+            } 
+            else 
+            { 
+                // add only non-empty tokens 
+                ret.Add(curr); 
+                curr.Empty(); 
+            } 
+        } 
+        else 
+            curr << *p; 
 
 
-	// add the last token 
-	ret.Add(curr); 
+        prev = *p; 
+    } 
 
-	return ret; 
+
+    // add the last token 
+    ret.Add(curr); 
+
+    return ret; 
 
 } 
 
@@ -48,8 +48,8 @@ wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape
 // http://trac.wxwidgets.org/ticket/9810
 bool wxLaunchDefaultApplication(const wxString &document)
 {
-	wxString verb = wxT("open"); 
-	int result = (int)ShellExecute(NULL, verb, document, NULL, NULL, SW_SHOWDEFAULT); 
+    wxString verb = wxT("open"); 
+    int result = (int)ShellExecute(NULL, verb, document, NULL, NULL, SW_SHOWDEFAULT); 
 
-	return result > 32;
+    return result > 32;
 }

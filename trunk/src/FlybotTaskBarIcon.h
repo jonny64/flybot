@@ -7,22 +7,22 @@ class FlybotTaskBarIcon: public wxTaskBarIcon
 {
 public:
 #if defined(__WXCOCOA__)
-	FlybotTaskBarIcon(wxTaskBarIconType iconType = DEFAULT_TYPE)
-		:   wxTaskBarIcon(iconType);
+    FlybotTaskBarIcon(wxTaskBarIconType iconType = DEFAULT_TYPE)
+        :   wxTaskBarIcon(iconType);
 #else
-	FlybotTaskBarIcon();
+    FlybotTaskBarIcon();
 #endif
 
-	bool ShowBalloon(const wxString&, const wxString&, int icon = NIIF_INFO, unsigned int timeout = 4);
-	void OnLeftButtonUp(wxTaskBarIconEvent&);
-	void OnMenuOpenDict(wxCommandEvent&);
-	void OnMenuReload(wxCommandEvent&);
-	void OnPower(wxCommandEvent&);
-	void OnMenuUseBalloonsClick(wxCommandEvent &evt);
-	void OnMenuSlotTimeoutClick(wxCommandEvent &evt);
-	void SetupIcon();
+    bool ShowBalloon(const wxString&, const wxString&, int icon = NIIF_INFO, unsigned int timeout = 4);
+    void OnLeftButtonUp(wxTaskBarIconEvent&);
+    void OnMenuOpenDict(wxCommandEvent&);
+    void OnMenuReload(wxCommandEvent&);
+    void OnPower(wxCommandEvent&);
+    void OnMenuUseBalloonsClick(wxCommandEvent &evt);
+    void OnMenuSlotTimeoutClick(wxCommandEvent &evt);
+    void SetupIcon();
 
-	virtual wxMenu *CreatePopupMenu();
+    virtual wxMenu *CreatePopupMenu();
 
-	DECLARE_EVENT_TABLE()
+    DECLARE_EVENT_TABLE()
 };

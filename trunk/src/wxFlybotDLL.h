@@ -9,26 +9,26 @@
 
 class wxFlybotDLL: public wxApp
 {
-	FlybotTaskBarIcon   *m_taskBarIcon;
-	wxLocale *m_locale;
-	WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
-	SessionMap m_sessions;
-	bool m_enabled;
-	
-	void SelectLanguage(int lang);
+    FlybotTaskBarIcon   *m_taskBarIcon;
+    wxLocale *m_locale;
+    WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
+    SessionMap m_sessions;
+    bool m_enabled;
+    
+    void SelectLanguage(int lang);
 public:
-	
-	Dictionary Dict;
-	FlybotConfig Config;
+    
+    Dictionary Dict;
+    FlybotConfig Config;
 
-	void SwitchState();
-	bool GetEnabledState();
-	bool OnInit();
-	void ReloadDictionary();
-	void OpenDictionary();
-	void HandlePM(UserInfo& userinfo, wxString& msg);
-	int OnExit();
-	~wxFlybotDLL();
+    void SwitchState();
+    bool GetEnabledState();
+    bool OnInit();
+    void ReloadDictionary();
+    void OpenDictionary();
+    void HandlePM(UserInfo& userinfo, wxString& msg);
+    int OnExit();
+    ~wxFlybotDLL();
 };
 
 DECLARE_APP(wxFlybotDLL)

@@ -13,16 +13,16 @@ WX_DECLARE_OBJARRAY(Phrase, ArrayOfPhrases);
 
 class Dictionary
 {
-	ArrayOfPhrases m_phrases;
-	ArrayOfPhrases  m_emptyPhrases;
+    ArrayOfPhrases m_phrases;
+    ArrayOfPhrases  m_emptyPhrases;
 
-	bool ProcessLine(const wxString &line, wxString *errorMessage);
+    bool ProcessLine(const wxString &line, wxString *errorMessage);
 public:
-	Dictionary(void);
+    Dictionary(void);
 
-	int Load();
-	static wxString GetDictionaryFilename();
-	Phrase GetMatchedTemplate(const wxString& msg, ArrayOfPhrases* usedPhrases);
+    int Load();
+    static wxString GetDictionaryFilename();
+    Phrase GetMatchedTemplate(const wxString& msg, ArrayOfPhrases* usedPhrases);
 
-	~Dictionary(void);
+    ~Dictionary(void);
 };

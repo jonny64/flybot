@@ -2,13 +2,13 @@
 
 struct Phrase
 {
-	int Priority;
-	wxString MatchExpr;
-	wxString Answer;
-	wxString Flags;
+    int Priority;
+    wxString MatchExpr;
+    wxString Answer;
+    wxString Flags;
 
-	bool empty()
-	{
-		return Flags.empty() && Answer.empty();
-	}
+    bool empty()
+    {
+        return Flags.empty() && Answer.empty();
+    }
 };
