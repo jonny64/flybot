@@ -38,7 +38,8 @@ void wxLog##level(const wxString &title, const wxString &message)\
 		BALLOON_LOGGER_SEPARATOR_CHAR,							\
 		title													\
 	);															\
-	wxLog##level(msg);											\ // use default implementation, which later calls DoLog
+	/* use default implementation, which later calls DoLog */	\
+	wxLog##level(msg);											\
 }
 
 

@@ -115,8 +115,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="performing additional tasks:"
-				CommandLine="echo updating version information...&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;&quot;C:\Program Files\NSIS\makensis&quot; /v2 flybot.nsi&#x0D;&#x0A;"
+				Description="updating version info and packaging:"
+				CommandLine="echo updating version information...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\TortoiseSVN\bin\SubWCRev.exe&quot; GOTO NOSVN:&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\NSIS\makensis.exe&quot; GOTO NONSIS&#x0D;&#x0A;&quot;%PROGRAMFILES%\NSIS\makensis&quot; /v2 flybot.nsi&#x0D;&#x0A;EXIT&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo You don&apos;t have Tortoise SVN installed. Aborting.&#x0D;&#x0A;EXIT -1&#x0D;&#x0A;&#x0D;&#x0A;&#x0D;&#x0A;:NONSIS&#x0D;&#x0A;echo You don&apos;t have NSIS installed. Aborting.&#x0D;&#x0A;EXIT -2"
 			/>
 		</Configuration>
 		<Configuration
@@ -219,7 +219,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy /y &quot;$(SolutionDir)Translation\*.mo&quot; &quot;$(SolutionDir)bin&quot;"
+				Description="Copying translation to destination dir..."
+				CommandLine="copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -326,10 +327,6 @@
 			Name="Resource"
 			>
 			<File
-				RelativePath="..\Translation\Chatbot.po"
-				>
-			</File>
-			<File
 				RelativePath=".\flybot.rc"
 				>
 				<FileConfiguration
@@ -397,6 +394,22 @@
 				RelativePath=".\wxLogBalloon.h"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Translation"
+			>
+			<Filter
+				Name="Russian"
+				>
+				<File
+					RelativePath="..\Translation\Russian\Chatbot.mo"
+					>
+				</File>
+				<File
+					RelativePath="..\Translation\Russian\Chatbot.po"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath="..\inst\README"
