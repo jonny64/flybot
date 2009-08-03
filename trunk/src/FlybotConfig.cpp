@@ -5,6 +5,7 @@
 FlybotConfig::FlybotConfig(void): wxConfig(wxT("flybot"))
 {
     ReadSlotTimeouts();
+    ReadAnswerDelays();
 }
 
 bool FlybotConfig::BalloonsEnabled()
@@ -54,9 +55,8 @@ void FlybotConfig::ReadSlotTimeouts()
     if (SlotTimeouts.empty())
     {
         // set defaults
-        const int COUNT_DEFAULT_TIMEOUTS = 6;
         int defaults[] = {60, 300, 600, 3600, 86400, 86400*7};
-        for (int i = 0; i < COUNT_DEFAULT_TIMEOUTS; i++)
+        for (int i = 0; i < ARRAYSIZE(defaults); i++)
         {
             SlotTimeouts.push_back(defaults[i]);
         }
@@ -64,12 +64,46 @@ void FlybotConfig::ReadSlotTimeouts()
     }
 }
 
+void FlybotConfig::ReadAnswerDelays()
+{
+    AnswerDelays = DoReadIntList(SETTING_ANSWER_DELAY);
+    
+    if (AnswerDelays.empty())
+    {
+        // set defaults
+        int defaults[] = {6, 20, 40};
+        for (int i = 0; i < ARRAYSIZE(defaults); i++)
+        {
+            AnswerDelays.push_back(defaults[i]);
+        }
+        DoWriteIntList(SETTING_ANSWER_DELAY, AnswerDelays);
+    }
+}
+
 int FlybotConfig::GetSelectedSlotTimeout()
 {
-    // FIXME: investigate 'bad case'
     list<int>::iterator it = SlotTimeouts.begin();
     std::advance(it, GetSelectedSlotTimeoutId());
     return *it;
+}
+
+int FlybotConfig::GetSelectedAnswerDelay()
+{
+    list<int>::iterator it = AnswerDelays.begin();
+    std::advance(it, GetSelectedAnswerDelayId());
+    return *it;
+}
+
+int FlybotConfig::GetSelectedAnswerDelayId()
+{
+    int selectedAnswerDelayId = 0;
+    wxGetApp().Config.Read(SETTING_ANSWER_DELAY, &selectedAnswerDelayId );
+    return selectedAnswerDelayId;
+}
+
+void SetSelectedAnswerDelayId(int id)
+{
+    wxGetApp().Config.Write(SETTING_ANSWER_DELAY, id);
 }
 
 int FlybotConfig::GetSelectedSlotTimeoutId()
@@ -82,6 +116,11 @@ int FlybotConfig::GetSelectedSlotTimeoutId()
 void FlybotConfig::SetSelectedSlotTimeoutId(int id)
 {
     wxGetApp().Config.Write(SETTING_SLOT_TIMEOUT, id);
+}
+
+void FlybotConfig::SetSelectedAnswerDelayId(int id)
+{
+    wxGetApp().Config.Write(SETTING_ANSWER_DELAY, id);
 }
 
 FlybotConfig::~FlybotConfig(void)

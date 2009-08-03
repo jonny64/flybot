@@ -21,7 +21,8 @@ enum
     PU_TIMEOUT1,
     PU_TIMEOUT2,
     PU_CHECKMARK,
-    wxID_SLOT_TIMEOUT_BEGIN = 10050
+    wxID_SLOT_TIMEOUT_BEGIN = 10050,
+    wxID_ANSWER_DELAY_BEGIN = 10100
 };
 
 
@@ -50,6 +51,11 @@ void FlybotTaskBarIcon::OnMenuReload(wxCommandEvent& )
 void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
 {
     wxGetApp().Config.SetSelectedSlotTimeoutId(evt.GetId() - wxID_SLOT_TIMEOUT_BEGIN);
+}
+
+void FlybotTaskBarIcon::OnMenuAnswerDelayClick(wxCommandEvent &evt)
+{
+    wxGetApp().Config.SetSelectedAnswerDelayId(evt.GetId() - wxID_ANSWER_DELAY_BEGIN);
 }
 
 void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& evt)
@@ -103,12 +109,22 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->GetSelectedSlotTimeoutId(), true);
     menu->Append(PU_SLOT_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
 
-    /*
-    wxMenu *submenuAnswr = new wxMenu;
-    submenuAnswr->AppendRadioItem(PU_TIMEOUT1, _("Answer timeout 1"));
-    submenuAnswr->AppendRadioItem(PU_TIMEOUT2, _("Answer timeout 2"));
-    menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Answer timeout"), submenuAnswr);
-    */
+    // form answer delays submenu
+    wxMenu *submenuDelay = new wxMenu;
+    index = 0;
+    for (list<int>::iterator it = conf->AnswerDelays.begin(); it != conf->AnswerDelays.end(); ++it)
+    {
+        submenuDelay->AppendRadioItem(
+            wxID_ANSWER_DELAY_BEGIN + index, 
+            wxString::Format( wxT("%d %s"), *it, _("sec."))
+            );
+        Connect(wxID_ANSWER_DELAY_BEGIN + index, 
+            wxEVT_COMMAND_MENU_SELECTED, 
+            wxCommandEventHandler(FlybotTaskBarIcon::OnMenuAnswerDelayClick));
+        index++;
+    }
+    submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetSelectedAnswerDelayId(), true);
+    menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
 
     // form 'enable status balloons' submenu
     wxMenu *submenuBalloon = new wxMenu;

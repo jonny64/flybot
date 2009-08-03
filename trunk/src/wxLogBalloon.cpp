@@ -33,13 +33,13 @@ void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int i
 void wxLog##level(const wxString &title, const wxString &message)\
 {                                                                \
     wxString msg  = wxString::Format(                            \
-        wxT("%s%c%s"),                                            \
-        message,                                                \
-        BALLOON_LOGGER_SEPARATOR_CHAR,                            \
+        wxT("%s%c%s"),                                           \
+        message,                                                 \
+        BALLOON_LOGGER_SEPARATOR_CHAR,                           \
         title                                                    \
-    );                                                            \
+    );                                                           \
     /* use default implementation, which later calls DoLog */    \
-    wxLog##level(msg);                                            \
+    wxLog##level(msg);                                           \
 }
 
 

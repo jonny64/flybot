@@ -56,7 +56,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
         return false;
     }
 
-    // FIXME: embed compiled regexp into phrase struct (this will result in faster phrase match)
+    // TODO: embed compiled regexp into phrase struct (this may result in faster phrase match)
     phrase.MatchExpr = row[1];
     if (!wxRegEx(phrase.MatchExpr).IsValid())
     {

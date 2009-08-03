@@ -116,7 +116,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="updating version info and packaging:"
-				CommandLine="echo updating version information...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\TortoiseSVN\bin\SubWCRev.exe&quot; GOTO NOSVN:&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\NSIS\makensis.exe&quot; GOTO NONSIS&#x0D;&#x0A;&quot;%PROGRAMFILES%\NSIS\makensis&quot; /v2 flybot.nsi&#x0D;&#x0A;EXIT&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo You don&apos;t have Tortoise SVN installed. Aborting.&#x0D;&#x0A;EXIT -1&#x0D;&#x0A;&#x0D;&#x0A;&#x0D;&#x0A;:NONSIS&#x0D;&#x0A;echo You don&apos;t have NSIS installed. Aborting.&#x0D;&#x0A;EXIT -2"
+				CommandLine="echo updating version information...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\TortoiseSVN\bin\SubWCRev.exe&quot; GOTO NOSVN:&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;call genpatch.bat&#x0D;&#x0A;call verpatch.bat&#x0D;&#x0A;&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\NSIS\makensis.exe&quot; GOTO NONSIS&#x0D;&#x0A;&quot;%PROGRAMFILES%\NSIS\makensis&quot; /v2 flybot.nsi&#x0D;&#x0A;EXIT&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo You don&apos;t have Tortoise SVN installed. Aborting.&#x0D;&#x0A;EXIT -1&#x0D;&#x0A;&#x0D;&#x0A;&#x0D;&#x0A;:NONSIS&#x0D;&#x0A;echo You don&apos;t have NSIS installed. Aborting.&#x0D;&#x0A;EXIT -2&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -278,6 +278,26 @@
 				RelativePath=".\wxFlybotDLL.cpp"
 				>
 			</File>
+			<Filter
+				Name="Tray"
+				>
+				<File
+					RelativePath=".\FlybotTaskBarIcon.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\FlybotTaskBarIcon.h"
+					>
+				</File>
+				<File
+					RelativePath=".\wxLogBalloon.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\wxLogBalloon.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header files"
@@ -372,26 +392,6 @@
 			</File>
 			<File
 				RelativePath="..\inst\verpatch.src"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Tray"
-			>
-			<File
-				RelativePath=".\FlybotTaskBarIcon.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\FlybotTaskBarIcon.h"
-				>
-			</File>
-			<File
-				RelativePath=".\wxLogBalloon.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\wxLogBalloon.h"
 				>
 			</File>
 		</Filter>
