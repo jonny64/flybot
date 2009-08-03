@@ -20,6 +20,7 @@ public:
     void OnPower(wxCommandEvent&);
     void OnMenuUseBalloonsClick(wxCommandEvent &evt);
     void OnMenuSlotTimeoutClick(wxCommandEvent &evt);
+    void OnMenuAnswerDelayClick(wxCommandEvent &evt);
     void SetupIcon();
 
     virtual wxMenu *CreatePopupMenu();

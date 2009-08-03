@@ -12,10 +12,10 @@ Session::Session(UserInfo& userinfo)
     m_userinfo = userinfo;
 }
 
-void Session::ProcessFlags(const Phrase &selectedPharase)
+void Session::ProcessFlags(const Phrase &selectedPhrase)
 {
-    const wxString flags = selectedPharase.Flags;
-    wxString title = wxString::Format(_("Matched template: %s"), selectedPharase.MatchExpr);
+    const wxString flags = selectedPhrase.Flags;
+    wxString title = wxString::Format(_("Matched template: %s"), selectedPhrase.MatchExpr);
     wxString message = wxT("");
     
     if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
@@ -42,6 +42,22 @@ void Session::ProcessFlags(const Phrase &selectedPharase)
     }
 }
 
+class AnswerThread: public wxThread
+{
+    wxString m_answer;
+    wxString m_cid;
+public:
+    AnswerThread(wxString &msg, wxString &cid):
+      m_answer(msg), m_cid(cid) {}
+    virtual void *Entry()
+    {
+        wxThread::Sleep(wxGetApp().Config.GetSelectedAnswerDelay()*1000);
+        FlybotAPI.SendPM(m_cid, m_answer);
+        return NULL;
+    }
+
+};
+
 int Session::Answer(wxString& msg)
 {
     Phrase selectedPhrase = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
@@ -52,16 +68,30 @@ int Session::Answer(wxString& msg)
 
     // TODO: replace special vars in answer;
 
-    ProcessFlags(selectedPhrase);
-
-    // TODO: wait desired time interval
-
-    // send answer
     wxString answer = selectedPhrase.Answer;
     wxString cid = m_userinfo[FLYBOT_API_CID];
-    if (!cid.empty() && !answer.empty())
+
+    // FIXME: special case - closed PM window will open again
+    // when we send answer after delay, therefore answer delay should be ignored
+    if (selectedPhrase.Flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
     {
         FlybotAPI.SendPM(cid, answer);
+        ProcessFlags(selectedPhrase);
+        return 0;
+    }
+
+    ProcessFlags(selectedPhrase);
+
+    // this thread will sleep for desired time interval and then send answer    
+    wxThread *answerThread = new AnswerThread(answer, cid);
+    if (!cid.empty() && !answer.empty())
+    {
+        if  (wxTHREAD_NO_ERROR == answerThread->Create())
+        {
+            wxLogError(_("Cannot create worker thread"));
+            return -1;
+        }
+        answerThread->Run();
     }
 
     return 0;
