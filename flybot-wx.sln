@@ -15,15 +15,24 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Unicode Debug|Win32 = Unicode Debug|Win32
+		Unicode Debug|x86_64 = Unicode Debug|x86_64
 		Unicode Release|Win32 = Unicode Release|Win32
+		Unicode Release|x86_64 = Unicode Release|x86_64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Debug|x86_64.ActiveCfg = Unicode Debug|x64
+		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Debug|x86_64.Build.0 = Unicode Debug|x64
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
 		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Release|x86_64.ActiveCfg = Unicode Release|x64
+		{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}.Unicode Release|x86_64.Build.0 = Unicode Release|x64
 		{E08F11BD-35BC-4496-82BB-1CFD56BB044C}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
+		{E08F11BD-35BC-4496-82BB-1CFD56BB044C}.Unicode Debug|x86_64.ActiveCfg = Debug|x64
 		{E08F11BD-35BC-4496-82BB-1CFD56BB044C}.Unicode Release|Win32.ActiveCfg = Release|Win32
+		{E08F11BD-35BC-4496-82BB-1CFD56BB044C}.Unicode Release|x86_64.ActiveCfg = Release|x64
+		{E08F11BD-35BC-4496-82BB-1CFD56BB044C}.Unicode Release|x86_64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
