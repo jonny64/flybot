@@ -65,8 +65,9 @@ wxString Session::SubstituteVars(const wxString& answer)
     wxRegEx reVar = wxT("\\$\\((.+)\\)"); // '$(varName)'
     while (reVar.Matches(result))
     { 
-        // replace first bracketed subexpression (varName)
+        // first bracketed subexpression is varName
         wxString varName = reVar.GetMatch(result, 1);
+
         reVar.Replace(&result, m_userinfo[varName]);
     }
     return result;
