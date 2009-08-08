@@ -1,7 +1,5 @@
 #summary contents
 
   * *[Features Функции]*
-
   * *[Setup Установка]*
-
   * *[Developing Разработчикам]*
