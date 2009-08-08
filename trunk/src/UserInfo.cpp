@@ -13,7 +13,6 @@ UserInfo::UserInfo(WCHAR* userinfo)
         wxString token = tokenizer.GetNextToken();        
 
         // split value and varname
-        // FIXME: carefully investigate empty var case
         varname = token.SubString( 0, token.Index(wxT('=')) - 1 );
         value = token.SubString( token.Index(wxT('=')) + 1, token.Length() );
         m_vars[varname] = value;
@@ -24,9 +23,13 @@ UserInfo::UserInfo(void)
 {
 }
 
-wxString& UserInfo::operator[](const wxString& key)
+wxString UserInfo::operator[](const wxString& key)
 {
-    return m_vars[key];
+    if (m_vars[key])
+    {
+        return m_vars[key];
+    }
+    return wxT("");
 }
 
 bool UserInfo::Favourite()

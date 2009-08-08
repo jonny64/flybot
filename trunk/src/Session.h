@@ -9,6 +9,7 @@ class Session
     ArrayOfPhrases m_usedPhrases;
 
     void ProcessFlags(const Phrase&);
+    wxString SubstituteVars(const wxString&);
 public:
     Session(void);
     Session(UserInfo&);
