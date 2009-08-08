@@ -4,6 +4,7 @@
 #include <wx/wfstream.h>
 #include <wx/stdpaths.h>
 #include <wx/regex.h>
+#include "wxLogBalloon.h"
 
 #include <wx/arrimpl.cpp>
 WX_DEFINE_OBJARRAY(ArrayOfPhrases);
