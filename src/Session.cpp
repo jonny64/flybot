@@ -1,4 +1,5 @@
 #include "stdwx.h"
+#include <wx/regex.h>
 #include "Session.h"
 #include "wxFlybotDLL.h"
 #include "wxLogBalloon.h"
@@ -49,14 +50,27 @@ class AnswerThread: public wxThread
 public:
     AnswerThread(wxString &msg, wxString &cid):
       m_answer(msg), m_cid(cid) {}
+
     virtual void *Entry()
     {
         wxThread::Sleep(wxGetApp().Config.GetSelectedAnswerDelay()*1000);
         FlybotAPI.SendPM(m_cid, m_answer);
         return NULL;
     }
-
 };
+
+wxString Session::SubstituteVars(const wxString& answer)
+{
+    wxString result = answer;
+    wxRegEx reVar = wxT("\\$\\((.+)\\)"); // '$(varName)'
+    while (reVar.Matches(result))
+    { 
+        // replace first bracketed subexpression (varName)
+        wxString varName = reVar.GetMatch(result, 1);
+        reVar.Replace(&result, m_userinfo[varName]);
+    }
+    return result;
+}
 
 int Session::Answer(wxString& msg)
 {
@@ -66,7 +80,8 @@ int Session::Answer(wxString& msg)
     if (selectedPhrase.empty())
         return 0;
 
-    // TODO: replace special vars in answer;
+    // replace special vars (start with $) in answer;
+    selectedPhrase.Answer = SubstituteVars(selectedPhrase.Answer);
 
     wxString answer = selectedPhrase.Answer;
     wxString cid = m_userinfo[FLYBOT_API_CID];
@@ -86,7 +101,7 @@ int Session::Answer(wxString& msg)
     wxThread *answerThread = new AnswerThread(answer, cid);
     if (!cid.empty() && !answer.empty())
     {
-        if  (wxTHREAD_NO_ERROR == answerThread->Create())
+        if  (wxTHREAD_NO_ERROR != answerThread->Create())
         {
             wxLogError(_("Cannot create worker thread"));
             return -1;

@@ -11,7 +11,7 @@ public:
     UserInfo(void);
     UserInfo(WCHAR*);
 
-    wxString& operator[](const wxString&);
+    wxString operator[](const wxString&);
     bool Favourite();
 
     ~UserInfo(void);

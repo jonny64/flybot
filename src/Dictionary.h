@@ -14,7 +14,7 @@ WX_DECLARE_OBJARRAY(Phrase, ArrayOfPhrases);
 class Dictionary
 {
     ArrayOfPhrases m_phrases;
-    ArrayOfPhrases  m_emptyPhrases;
+    ArrayOfPhrases m_emptyPhrases;
 
     bool ProcessLine(const wxString &line, wxString *errorMessage);
 public:
