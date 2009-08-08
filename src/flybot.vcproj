@@ -89,7 +89,7 @@
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
+				AdditionalLibraryDirectories="$(SolutionDir)lib\vc_lib\$(PlatformName)"
 				ProgramDatabaseFile="vc_mswu\flybot.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -193,7 +193,7 @@
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
+				AdditionalLibraryDirectories="$(SolutionDir)lib\vc_lib\$(PlatformName)"
 				ProgramDatabaseFile="vc_mswu\flybot.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -296,7 +296,7 @@
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
+				AdditionalLibraryDirectories="$(SolutionDir)lib\vc_lib\$(PlatformName)"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(SolutionDir)bin\Chatbot.pdb"
 				SubSystem="2"
@@ -400,7 +400,7 @@
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
-				AdditionalLibraryDirectories="$(SolutionDir)\lib\vc_lib"
+				AdditionalLibraryDirectories="$(SolutionDir)lib\vc_lib\$(PlatformName)"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(SolutionDir)bin\Chatbot.pdb"
 				SubSystem="2"
@@ -641,6 +641,10 @@
 				</File>
 				<File
 					RelativePath="..\Translation\Russian\Chatbot.po"
+					>
+				</File>
+				<File
+					RelativePath="..\Translation\Russian\flydict.ini"
 					>
 				</File>
 			</Filter>
