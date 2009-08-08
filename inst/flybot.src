@@ -43,10 +43,10 @@ SetCompressor /SOLID lzma
 ;--------------------------------
 ;Pages
 
-  PageEx license
-   LicenseText "ќзнакомьтесь со следующей информацией" "ясно"
-   LicenseData README
-  PageExEnd
+  ;PageEx license
+   ;LicenseText "ќзнакомьтесь со следующей информацией" "ясно"
+   ;LicenseData README
+  ;PageExEnd
   
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES

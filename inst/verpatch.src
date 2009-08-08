@@ -11,4 +11,4 @@ IF "%1" == "x64" (
 more flybot.src >> flybot.nsi
 
 echo updating version information...
-verpatch.exe /va ..\bin\Chatbot.dll %VERSION% %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
+verpatch.exe /va ..\bin\Chatbot.dll %VERSION%.0 %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
