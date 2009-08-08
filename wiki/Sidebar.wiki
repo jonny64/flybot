@@ -1,7 +1,7 @@
 #summary contents
 
-[Developing Разработка]
+  * *[Features Функции]*
 
-[Features Функции]
+  * *[Setup Установка]*
 
-[Setup HowToGetItWork Установка]
+  * *[Developing Разработчикам]*
