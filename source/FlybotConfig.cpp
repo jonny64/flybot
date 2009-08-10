@@ -71,7 +71,7 @@ void FlybotConfig::ReadAnswerDelays()
     if (AnswerDelays.empty())
     {
         // set defaults
-        int defaults[] = {1, 6, 20, 40};
+        int defaults[] = {0, 6, 40};
         for (int i = 0; i < ARRAYSIZE(defaults); i++)
         {
             AnswerDelays.push_back(defaults[i]);

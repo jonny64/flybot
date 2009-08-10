@@ -55,8 +55,11 @@ public:
 
     virtual void *Entry()
     {
-        int intervalSec = wxGetApp().Config.GetSelectedAnswerDelay()*1000;
-        wxThread::Sleep( random(intervalSec) );
+		// answer delay is 100 ms. per char plus user supplied specified delay
+		int intervalMs = m_answer.Length() *100 + 
+			wxGetApp().Config.GetSelectedAnswerDelay()*1000;
+
+        wxThread::Sleep( intervalMs );
         FlybotAPI.SendPM(m_cid, m_answer);
         return NULL;
     }
