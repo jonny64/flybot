@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flybot", "src\flybot.vcproj", "{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flybot", "source\flybot.vcproj", "{5EB6B8AE-A923-48B4-80B6-D8144D38ECBC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E08F11BD-35BC-4496-82BB-1CFD56BB044C} = {E08F11BD-35BC-4496-82BB-1CFD56BB044C}
 	EndProjectSection
