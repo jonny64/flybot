@@ -110,13 +110,6 @@ int Dictionary::Load()
     return errorsCount;
 }
 
-static int random(int max)
-{
-    wxASSERT(RAND_MAX >= max);
-    srand(time(NULL));
-    return rand() % max;
-}
-
 static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
 {
     // map priority weight 1, 2, 3 => 1000, 500, 333
