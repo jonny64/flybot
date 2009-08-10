@@ -119,7 +119,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="updating version info and packaging:"
-				CommandLine="IF NOT EXIST &quot;%PROGRAMFILES%\TortoiseSVN\bin\SubWCRev.exe&quot; GOTO NOSVN:&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;SubWCRev.exe ..\ verpatch.src verpatch.bat&#x0D;&#x0A;call verpatch.bat $(PlatformName)&#x0D;&#x0A;&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\NSIS\makensis.exe&quot; GOTO NONSIS&#x0D;&#x0A;&quot;%PROGRAMFILES%\NSIS\makensis&quot; /v2 flybot.nsi&#x0D;&#x0A;EXIT&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo You don&apos;t have Tortoise SVN installed. Aborting.&#x0D;&#x0A;EXIT -1&#x0D;&#x0A;&#x0D;&#x0A;&#x0D;&#x0A;:NONSIS&#x0D;&#x0A;echo You don&apos;t have NSIS installed. Aborting.&#x0D;&#x0A;EXIT -2&#x0D;&#x0A;"
+				CommandLine="call &quot;$(SolutionDir)scripts\post-build-release.bat&quot; $(PlatformName)"
 			/>
 		</Configuration>
 		<Configuration
@@ -223,7 +223,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="updating version info and packaging:"
-				CommandLine="IF NOT EXIST &quot;%PROGRAMFILES%\TortoiseSVN\bin\SubWCRev.exe&quot; GOTO NOSVN:&#x0D;&#x0A;cd &quot;$(SolutionDir)inst&quot;&#x0D;&#x0A;SubWCRev.exe ..\ verpatch.src verpatch.bat&#x0D;&#x0A;call verpatch.bat $(PlatformName)&#x0D;&#x0A;&#x0D;&#x0A;copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;&#x0D;&#x0A;&#x0D;&#x0A;echo packaging...&#x0D;&#x0A;IF NOT EXIST &quot;%PROGRAMFILES%\NSIS\makensis.exe&quot; GOTO NONSIS&#x0D;&#x0A;&quot;%PROGRAMFILES%\NSIS\makensis&quot; /v2 flybot.nsi&#x0D;&#x0A;EXIT&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo You don&apos;t have Tortoise SVN installed. Aborting.&#x0D;&#x0A;EXIT -1&#x0D;&#x0A;&#x0D;&#x0A;&#x0D;&#x0A;:NONSIS&#x0D;&#x0A;echo You don&apos;t have NSIS installed. Aborting.&#x0D;&#x0A;EXIT -2&#x0D;&#x0A;"
+				CommandLine="call &quot;$(SolutionDir)scripts\post-build-release-x86_64.bat&quot; $(PlatformName)"
 			/>
 		</Configuration>
 		<Configuration
@@ -430,7 +430,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy /y &quot;$(SolutionDir)Translation\*.mo&quot; &quot;$(SolutionDir)bin&quot;"
+				CommandLine="copy /y &quot;$(SolutionDir)Translation\Russian\*.mo&quot; &quot;$(SolutionDir)bin&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -617,15 +617,15 @@
 			Name="Install"
 			>
 			<File
-				RelativePath="..\inst\flybot.src"
+				RelativePath="..\setup\flybot.src"
 				>
 			</File>
 			<File
-				RelativePath="..\inst\line.bmp"
+				RelativePath="..\setup\line.bmp"
 				>
 			</File>
 			<File
-				RelativePath="..\inst\verpatch.src"
+				RelativePath="..\setup\verpatch.src"
 				>
 			</File>
 		</Filter>
@@ -649,8 +649,20 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Scripts"
+			>
+			<File
+				RelativePath="..\scripts\post-build-release-x86_64.bat"
+				>
+			</File>
+			<File
+				RelativePath="..\scripts\post-build-release.bat"
+				>
+			</File>
+		</Filter>
 		<File
-			RelativePath="..\inst\README"
+			RelativePath="..\setup\README"
 			>
 		</File>
 	</Files>

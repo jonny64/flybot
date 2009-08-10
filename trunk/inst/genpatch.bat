@@ -1,1 +1,0 @@
-SubWCRev.exe ..\ verpatch.src verpatch.bat
