@@ -28,3 +28,4 @@ wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape
 // http://trac.wxwidgets.org/ticket/9810
 bool wxLaunchDefaultApplication(const wxString &document);
 
+int random(int max);

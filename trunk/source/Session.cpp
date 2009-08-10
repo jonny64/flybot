@@ -6,11 +6,13 @@
 
 Session::Session(void)
 {
+    m_replies.Clear();
 }
 
 Session::Session(UserInfo& userinfo)
 {
     m_userinfo = userinfo;
+    m_replies.Clear();
 }
 
 void Session::ProcessFlags(const Phrase &selectedPhrase)
@@ -53,11 +55,26 @@ public:
 
     virtual void *Entry()
     {
-        wxThread::Sleep(wxGetApp().Config.GetSelectedAnswerDelay()*1000);
+        int intervalSec = wxGetApp().Config.GetSelectedAnswerDelay()*1000;
+        wxThread::Sleep( random(intervalSec) );
         FlybotAPI.SendPM(m_cid, m_answer);
         return NULL;
     }
 };
+
+wxString Session::GetVariable(const wxString& varName)
+{
+    if (wxT("LAST") == varName && !m_replies.empty())
+    {
+        return m_replies.Last();
+    }
+    else if (wxT("HISTORY") == varName && !m_replies.empty() )
+    {
+        return m_replies[random(m_replies.Count())];
+    }
+    
+    return m_userinfo[varName];
+}
 
 wxString Session::SubstituteVars(const wxString& answer)
 {
@@ -68,13 +85,15 @@ wxString Session::SubstituteVars(const wxString& answer)
         // first bracketed subexpression is varName
         wxString varName = reVar.GetMatch(result, 1);
 
-        reVar.Replace(&result, m_userinfo[varName]);
+        reVar.Replace(&result, GetVariable(varName));
     }
     return result;
 }
 
 int Session::Answer(wxString& msg)
 {
+    m_replies.Add(msg);
+
     Phrase selectedPhrase = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
 
     // if no matches, exit;
