@@ -12,15 +12,12 @@ DECLARE_APP(wxFlybotDLL)
 
 enum 
 {
-    PU_OPEN_DICT = 10001,
-    PU_RELOAD_DICT,
-    PU_SLOT_TIMEOUT_SUB,
-    PU_ANSWER_TIMEOUT_SUB,
-    PU_BALOON_SUB,
-    PU_POWER,
-    PU_TIMEOUT1,
-    PU_TIMEOUT2,
-    PU_CHECKMARK,
+    wxID_OPEN_DICT = 10001,
+    wxID_RELOAD_DICT,
+    wxID_SLOT_TIMEOUT_SUB,
+    wxID_ANSWER_TIMEOUT_SUB,
+    wxID_POWER,
+    wxID_USE_BALLOONS,
     wxID_SLOT_TIMEOUT_BEGIN = 10050,
     wxID_ANSWER_DELAY_BEGIN = 10100
 };
@@ -28,24 +25,15 @@ enum
 
 BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
     EVT_TASKBAR_LEFT_UP(FlybotTaskBarIcon::OnLeftButtonUp)
-    EVT_MENU(PU_OPEN_DICT, FlybotTaskBarIcon::OnMenuOpenDict)
-    EVT_MENU(PU_RELOAD_DICT,    FlybotTaskBarIcon::OnMenuReload)
-    EVT_MENU_RANGE(wxID_YES, wxID_NO, FlybotTaskBarIcon::OnMenuUseBalloonsClick)
-    EVT_MENU(PU_POWER, FlybotTaskBarIcon::OnPower)
+    EVT_MENU(wxID_OPEN_DICT, FlybotTaskBarIcon::OnMenuClick)
+    EVT_MENU(wxID_RELOAD_DICT, FlybotTaskBarIcon::OnMenuClick)
+	EVT_MENU(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnMenuClick)
+    EVT_MENU(wxID_POWER, FlybotTaskBarIcon::OnMenuClick)
+	EVT_UPDATE_UI(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnUpdateUI)
 END_EVENT_TABLE()
 
 FlybotTaskBarIcon::FlybotTaskBarIcon()
 {
-}
-
-void FlybotTaskBarIcon::OnMenuOpenDict(wxCommandEvent& )
-{
-    wxGetApp().OpenDictionary();
-}
-
-void FlybotTaskBarIcon::OnMenuReload(wxCommandEvent& )
-{
-    wxGetApp().ReloadDictionary();
 }
 
 void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
@@ -58,9 +46,45 @@ void FlybotTaskBarIcon::OnMenuAnswerDelayClick(wxCommandEvent &evt)
     wxGetApp().Config.SetSelectedAnswerDelayId(evt.GetId() - wxID_ANSWER_DELAY_BEGIN);
 }
 
-void FlybotTaskBarIcon::OnMenuUseBalloonsClick(wxCommandEvent& evt)
+void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
 {
-    wxGetApp().Config.Write(SETTING_USE_BALLOONS,  evt.GetId() == wxID_YES);
+	bool newState;
+	switch (evt.GetId())
+	{
+		case wxID_USE_BALLOONS:
+			newState = !wxGetApp().Config.BalloonsEnabled();
+			wxGetApp().Config.Write(SETTING_USE_BALLOONS, newState );
+			break;
+			
+		case wxID_OPEN_DICT:
+			wxGetApp().OpenDictionary();
+			break;
+			
+		case wxID_RELOAD_DICT:
+			wxGetApp().ReloadDictionary();
+			break;
+
+		case wxID_POWER:	
+			wxGetApp().SwitchState();
+			SetupIcon();
+			break;
+
+		default:
+			;
+	}
+}
+
+void FlybotTaskBarIcon::OnUpdateUI(wxUpdateUIEvent &event)
+{
+	switch (event.GetId())
+	{
+		case wxID_USE_BALLOONS:
+			event.Check(wxGetApp().Config.BalloonsEnabled());
+			break;
+
+		default:
+			;
+	}
 }
 
 // converts time in seconds to it string representataion (xx hrs/days/weeks/etc.)
@@ -68,12 +92,11 @@ static wxString ToTimeString(int seconds)
 {
     const wxString labels[] = {_("min."), _("hr."), _("day"), _("wk.") };
     const int limits[] = {60, 3600, 86400, 86400*7};
-    const int LIMITS_COUNT = 5;
 
     wxString tail = _("sec.");
     int time = seconds;
     int i = 0;
-    while (i < LIMITS_COUNT && seconds >= limits[i])
+    while (i < ARRAYSIZE(limits) && seconds >= limits[i])
     { 
         time = seconds / limits[i];
         tail = labels[i];
@@ -88,8 +111,8 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     FlybotConfig *conf = &wxGetApp().Config;
     wxMenu *menu = new wxMenu;
 
-    menu->Append(PU_OPEN_DICT, _("&Open dictionary"));
-    menu->Append(PU_RELOAD_DICT, _("&Reload dicttionary"));
+    menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
+    menu->Append(wxID_RELOAD_DICT, _("&Reload dicttionary"));
     menu->AppendSeparator();
     
     // form slot timeouts submenu
@@ -107,7 +130,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
         index++;
     }
     submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->GetSelectedSlotTimeoutId(), true);
-    menu->Append(PU_SLOT_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
+    menu->Append(wxID_SLOT_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
 
     // form answer delays submenu
     wxMenu *submenuDelay = new wxMenu;
@@ -120,32 +143,22 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
             );
         Connect(wxID_ANSWER_DELAY_BEGIN + index, 
             wxEVT_COMMAND_MENU_SELECTED, 
-            wxCommandEventHandler(FlybotTaskBarIcon::OnMenuAnswerDelayClick));
+			wxCommandEventHandler(FlybotTaskBarIcon::OnMenuAnswerDelayClick));
         index++;
     }
     submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetSelectedAnswerDelayId(), true);
-    menu->Append(PU_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
+    menu->Append(wxID_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
 
     // form 'enable status balloons' submenu
-    wxMenu *submenuBalloon = new wxMenu;
-    submenuBalloon->AppendRadioItem(wxID_YES, _("Yes"));
-    submenuBalloon->AppendRadioItem(wxID_NO, _("No"));
-    submenuBalloon->Check(conf->BalloonsEnabled()? wxID_YES:wxID_NO, true);
-    menu->Append(PU_BALOON_SUB, _("&Show balloons"), submenuBalloon);
+    menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
     menu->AppendSeparator();
 
-    menu->Append(PU_POWER, _("&On/Off"));    
+    menu->Append(wxID_POWER, _("&On/Off"));    
 
     return menu;
 }
 
 void FlybotTaskBarIcon::OnLeftButtonUp(wxTaskBarIconEvent&)
-{
-    wxGetApp().SwitchState();
-    SetupIcon();
-}
-
-void FlybotTaskBarIcon::OnPower(wxCommandEvent&)
 {
     wxGetApp().SwitchState();
     SetupIcon();
