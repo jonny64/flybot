@@ -5,6 +5,11 @@
 
 class FlybotTaskBarIcon: public wxTaskBarIcon
 {
+	void OnUpdateUI(wxUpdateUIEvent &evt);
+    void OnMenuClick(wxCommandEvent &evt);
+
+	void OnMenuSlotTimeoutClick(wxCommandEvent &evt);
+    void OnMenuAnswerDelayClick(wxCommandEvent &evt);
 public:
 #if defined(__WXCOCOA__)
     FlybotTaskBarIcon(wxTaskBarIconType iconType = DEFAULT_TYPE)
@@ -15,13 +20,7 @@ public:
 
     bool ShowBalloon(const wxString&, const wxString&, int icon = NIIF_INFO, unsigned int timeout = 4);
     void OnLeftButtonUp(wxTaskBarIconEvent&);
-    void OnMenuOpenDict(wxCommandEvent&);
-    void OnMenuReload(wxCommandEvent&);
-    void OnPower(wxCommandEvent&);
-    void OnMenuUseBalloonsClick(wxCommandEvent &evt);
-    void OnMenuSlotTimeoutClick(wxCommandEvent &evt);
-    void OnMenuAnswerDelayClick(wxCommandEvent &evt);
-    void SetupIcon();
+	void SetupIcon();
 
     virtual wxMenu *CreatePopupMenu();
 

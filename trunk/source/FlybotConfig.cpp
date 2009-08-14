@@ -10,7 +10,7 @@ FlybotConfig::FlybotConfig(void): wxConfig(wxT("flybot"))
 
 bool FlybotConfig::BalloonsEnabled()
 {
-    bool useBalloons = true;
+    bool useBalloons = true;  // use baloon notifications by default
     Read(SETTING_USE_BALLOONS, &useBalloons, true);
     return useBalloons;
 }
