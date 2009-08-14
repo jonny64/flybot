@@ -4,6 +4,7 @@
 const wxString SETTING_USE_BALLOONS = wxT("EnableBalloons");
 const wxString SETTING_SLOT_TIMEOUT = wxT("SlotTimeout");
 const wxString SETTING_ANSWER_DELAY = wxT("AnswerDelay");
+const wxString SETTING_BOT_ONLINE = wxT("Enabled");
 
 class FlybotConfig :
     public wxConfig

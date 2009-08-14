@@ -3,17 +3,22 @@
 #include <wx/utils.h>
 #include "wxFlybotDLL.h"
 #include "wxLogBalloon.h"
+#include "FlybotConfig.h"
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
 bool wxFlybotDLL::GetEnabledState()
 {
-    return m_enabled;
+	bool enabled = true;
+	Config.Read(SETTING_BOT_ONLINE, &enabled, true);
+	return enabled;
 }
 
 void wxFlybotDLL::SwitchState()
 {
-    m_enabled = !m_enabled;
+    bool enabled = true;
+	Config.Read(SETTING_BOT_ONLINE, &enabled, true);
+	Config.Write(SETTING_BOT_ONLINE, !enabled);
 }
 
 
