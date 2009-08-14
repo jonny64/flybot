@@ -1,6 +1,5 @@
 #include "stdwx.h"
 #include "wxFlybotDLL.h"
-#include "FlybotConfig.h"
 
 FlybotConfig::FlybotConfig(void): wxConfig(wxT("flybot"))
 {
@@ -97,7 +96,7 @@ int FlybotConfig::GetSelectedAnswerDelay()
 int FlybotConfig::GetSelectedAnswerDelayId()
 {
     int selectedAnswerDelayId = 0;
-    wxGetApp().Config.Read(SETTING_ANSWER_DELAY, &selectedAnswerDelayId );
+    Read(SETTING_ANSWER_DELAY, &selectedAnswerDelayId );
     return selectedAnswerDelayId;
 }
 
@@ -109,18 +108,18 @@ void SetSelectedAnswerDelayId(int id)
 int FlybotConfig::GetSelectedSlotTimeoutId()
 {
     int selectedTimeoutId = 0;
-    wxGetApp().Config.Read(SETTING_SLOT_TIMEOUT, &selectedTimeoutId);
+    Read(SETTING_SLOT_TIMEOUT, &selectedTimeoutId);
     return selectedTimeoutId;
 }
 
 void FlybotConfig::SetSelectedSlotTimeoutId(int id)
 {
-    wxGetApp().Config.Write(SETTING_SLOT_TIMEOUT, id);
+    Write(SETTING_SLOT_TIMEOUT, id);
 }
 
 void FlybotConfig::SetSelectedAnswerDelayId(int id)
 {
-    wxGetApp().Config.Write(SETTING_ANSWER_DELAY, id);
+    Write(SETTING_ANSWER_DELAY, id);
 }
 
 FlybotConfig::~FlybotConfig(void)
