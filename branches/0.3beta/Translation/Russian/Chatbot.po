@@ -1,0 +1,192 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: flybot 0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-14 17:40+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team:  <astro64m@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: c:\\home\\Documents\\Visual Studio 2008\\Projects\\flybot\\source\n"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:48
+msgid "too few parameters"
+msgstr "неполный шаблон"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:56
+#, c-format
+msgid "priority should be in range 0..%d"
+msgstr "приоритет должен быть в диапазоне 0..%d"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:64
+#, c-format
+msgid ""
+"invalid regular expression:\n"
+"%s"
+msgstr ""
+"синтаксис регулярного выражения:\n"
+"%s"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:104
+#, c-format
+msgid "Dictionary, line %d:"
+msgstr "Словарь, строка %d:"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:93
+msgid "min."
+msgstr "мин."
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:93
+msgid "hr."
+msgstr "ч."
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:93
+msgid "day"
+msgstr "дн."
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:93
+msgid "wk."
+msgstr "нед."
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:96
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:142
+msgid "sec."
+msgstr "сек."
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:114
+msgid "&Open dictionary"
+msgstr "Открыть словарь"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:115
+msgid "&Reload dicttionary"
+msgstr "Перегрузить словарь"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:133
+msgid "Slot timeout"
+msgstr "Срок действия слота"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:150
+msgid "Answer delay"
+msgstr "Задержка преред ответом"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:153
+msgid "&Show balloons"
+msgstr "Показывать уведомления"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:156
+msgid "&On/Off"
+msgstr "&Вкл/Выкл"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:178
+msgid "Could not set icon."
+msgstr "Невозможно добавить иконку."
+
+#: c:\home\Documents\Visual
+#: Studio 2008\Projects\flybot\source/Session.cpp:21
+#, c-format
+msgid "Matched template: %s"
+msgstr "Cовпадение по шаблону %s"
+
+#: c:\home\Documents\Visual
+#: Studio 2008\Projects\flybot\source/Session.cpp:27
+#, c-format
+msgid "Closed PM from %s"
+msgstr "Закрыта личка %s"
+
+#: c:\home\Documents\Visual
+#: Studio 2008\Projects\flybot\source/Session.cpp:34
+#, c-format
+msgid "Slot was given to %s"
+msgstr "Выдан слот %s"
+
+#: c:\home\Documents\Visual
+#: Studio 2008\Projects\flybot\source/Session.cpp:39
+#, c-format
+msgid "%s added to ignore list"
+msgstr "%s добавлен в игнор"
+
+#: c:\home\Documents\Visual
+#: Studio 2008\Projects\flybot\source/Session.cpp:129
+msgid "Cannot create worker thread"
+msgstr "Невозможно создать поток"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxFlybotDLL.cpp:57
+msgid "Dictionary was successfully loaded"
+msgstr "Словарь успешно загружен"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:22
+msgid "Information"
+msgstr "Информация"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:22
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:22
+msgid "Error"
+msgstr "Ошибка"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:57
+msgid "Fatal error: "
+msgstr "Критическая ошибка:"
+
+#: c:\home\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:57
+msgid "Program aborted."
+msgstr "Программа завершила работу."
+
+#~ msgid "Yes"
+#~ msgstr "Да"
+#~ msgid "No"
+#~ msgstr "Нет"
+#~ msgid "Test"
+#~ msgstr "Тестовая строка"
+
