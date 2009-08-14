@@ -26,14 +26,14 @@ bool wxFlybotDLL::OnInit()
 {
     m_taskBarIcon = NULL;
     m_locale = NULL;
-    
-    // set new logger (SetActiveTarget returns old logger)
-    delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
-    
+        
     SelectLanguage(wxLANGUAGE_RUSSIAN);
 
     m_taskBarIcon = new FlybotTaskBarIcon();
     m_taskBarIcon->SetupIcon();
+
+    // set new logger (SetActiveTarget returns old logger)
+    delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
     Dict.Load();
     return true;
