@@ -17,6 +17,7 @@ copy /y "..\bin\Chatbot.mo" "%botDir%"
 copy /y "..\Translation\Russian\flydict.ini" "%botDir%\Settings"
 "c:\Program Files\7-Zip\7z" a -tzip ..\setup\flybot-%VERSION%-x86_64.zip %botDir%
 pause
+exit
 
 :NOSVN
 echo You don't have Tortoise SVN installed. Aborting.
