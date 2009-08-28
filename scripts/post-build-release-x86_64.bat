@@ -15,7 +15,11 @@ mkdir "%botDir%\Settings"
 copy /y "..\bin\Chatbot.dll" "%botDir%"
 copy /y "..\bin\Chatbot.mo" "%botDir%"
 copy /y "..\Translation\Russian\flydict.ini" "%botDir%\Settings"
-"c:\Program Files\7-Zip\7z" a -tzip ..\setup\flybot-%VERSION%-x86_64.zip %botDir%
+"c:\Program Files\7-Zip\7z" a -tzip "..\release\%VERSION%\flybot-%VERSION%-x86_64.zip" %botDir%
+
+if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
+copy "..\bin\Chatbot.pdb" "..\release\%VERSION%\Chatbot.%VERSION%.x86_64.pdb"
+
 pause
 exit
 

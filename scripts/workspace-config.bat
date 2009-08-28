@@ -18,4 +18,7 @@ mklink /d "..\lib" "%wxWidgetsDir%\lib"
 rem cd %wxWidgetsDir%
 rem call %currDir%\VC2005_MultiTargetSupport.bat
 
+mkdir "e:\tmp\My Dropbox\Public\flybot"
+mklink /d "..\release" "e:\tmp\My Dropbox\Public\flybot"
+
 pause
