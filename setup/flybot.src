@@ -45,7 +45,7 @@ SetCompressor /SOLID lzma
 
   ;PageEx license
    ;LicenseText "ќзнакомьтесь со следующей информацией" "ясно"
-   ;LicenseData README
+   ;LicenseData README.txt
   ;PageExEnd
   
   !insertmacro MUI_PAGE_DIRECTORY
@@ -66,7 +66,7 @@ SetCompressor /SOLID lzma
 
 Section "Dummy Section" SecDummy
   SetOutPath "$INSTDIR"
-  File README
+  File README.txt
   
   File ..\bin\ChatBot.dll
   File ..\Translation\Russian\Chatbot.mo
@@ -103,7 +103,7 @@ Section "Uninstall"
 
   Delete "$INSTDIR\ChatBot.dll"
   Delete "$INSTDIR\uninstall-flybot.exe"
-  Delete "$INSTDIR\README"
+  Delete "$INSTDIR\README.txt"
   Delete "$INSTDIR\Chatbot.mo"
   
   DeleteRegKey /ifempty HKCU "Software\flybot"

@@ -54,7 +54,7 @@
 				AdditionalOptions="/EHsc "
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswu&quot;;&quot;$(SolutionDir)include&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\$(PlatformName)\mswu&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;__WXMSW__;_WINDOWS;NOPCH"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -63,11 +63,12 @@
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="stdwx.h"
 				PrecompiledHeaderFile="$(IntDir)\stdwx.pch"
-				AssemblerListingLocation=".\vc_mswu\flybot/"
-				ObjectFile=".\vc_mswu\flybot/"
-				ProgramDataBaseFileName="vc_mswu\flybot.pdb"
+				AssemblerListingLocation="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ObjectFile="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ProgramDataBaseFileName="$(PlatformName)\$(ConfigurationName)\flybot.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				CallingConvention="0"
 			/>
 			<Tool
@@ -90,7 +91,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(SolutionDir)lib\vc_lib\$(PlatformName)"
-				ProgramDatabaseFile="vc_mswu\flybot.pdb"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(SolutionDir)bin\Chatbot.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -158,7 +160,7 @@
 				AdditionalOptions="/EHsc "
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswu&quot;;&quot;$(SolutionDir)include&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\$(PlatformName)\mswu&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;__WXMSW__;_WINDOWS;NOPCH"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -167,11 +169,12 @@
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="stdwx.h"
 				PrecompiledHeaderFile="$(IntDir)\stdwx.pch"
-				AssemblerListingLocation=".\vc_mswu\flybot/"
-				ObjectFile=".\vc_mswu\flybot/"
-				ProgramDataBaseFileName="vc_mswu\flybot.pdb"
+				AssemblerListingLocation="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ObjectFile="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ProgramDataBaseFileName="$(PlatformName)\$(ConfigurationName)\flybot.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 				CallingConvention="0"
 			/>
 			<Tool
@@ -194,7 +197,8 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="$(SolutionDir)lib\vc_lib\$(PlatformName)"
-				ProgramDatabaseFile="vc_mswu\flybot.pdb"
+				GenerateDebugInformation="true"
+				ProgramDatabaseFile="$(SolutionDir)bin\Chatbot.pdb"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -254,14 +258,14 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="1"
-				TypeLibraryName=".\vc_mswud/flybot.tlb"
+				TypeLibraryName="$(PlatformName)\$(ConfigurationName)\flybot.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHsc "
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswud&quot;;&quot;$(SolutionDir)include&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\$(PlatformName)\mswud&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -269,9 +273,9 @@
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="stdwx.h"
 				PrecompiledHeaderFile="$(IntDir)\stdwx.pch"
-				AssemblerListingLocation=".\vc_mswud\flybot/"
-				ObjectFile=".\vc_mswud\flybot/"
-				ProgramDataBaseFileName="vc_mswud\flybot.pdb"
+				AssemblerListingLocation="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ObjectFile="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ProgramDataBaseFileName="$(PlatformName)\$(ConfigurationName)\flybot.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -316,7 +320,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\vc_mswud/flybot.bsc"
+				OutputFile="$(PlatformName)\$(ConfigurationName)\flybot.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -358,14 +362,14 @@
 				MkTypLibCompatible="true"
 				SuppressStartupBanner="true"
 				TargetEnvironment="3"
-				TypeLibraryName=".\vc_mswud/flybot.tlb"
+				TypeLibraryName="$(PlatformName)\$(ConfigurationName)\flybot.tlb"
 				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/EHsc "
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\mswud&quot;;&quot;$(SolutionDir)include&quot;"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\$(PlatformName)\mswud&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -373,9 +377,9 @@
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="stdwx.h"
 				PrecompiledHeaderFile="$(IntDir)\stdwx.pch"
-				AssemblerListingLocation=".\vc_mswud\flybot/"
-				ObjectFile=".\vc_mswud\flybot/"
-				ProgramDataBaseFileName="vc_mswud\flybot.pdb"
+				AssemblerListingLocation="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ObjectFile="$(PlatformName)\$(ConfigurationName)\flybot/"
+				ProgramDataBaseFileName="$(PlatformName)\$(ConfigurationName)\Chatbot.pdb"
 				WarningLevel="4"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="3"
@@ -420,7 +424,7 @@
 			<Tool
 				Name="VCBscMakeTool"
 				SuppressStartupBanner="true"
-				OutputFile=".\vc_mswud/flybot.bsc"
+				OutputFile="$(PlatformName)\$(ConfigurationName)\flybot.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -665,8 +669,20 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Tools"
+			>
+			<File
+				RelativePath="..\tools\gawk.exe"
+				>
+			</File>
+			<File
+				RelativePath="..\tools\verpatch.exe"
+				>
+			</File>
+		</Filter>
 		<File
-			RelativePath="..\setup\README"
+			RelativePath="..\setup\README.txt"
 			>
 		</File>
 	</Files>
