@@ -9,7 +9,12 @@ copy /y "..\Translation\Russian\*.mo" "..\bin"
 echo packaging...
 if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO NONSIS
 "%PROGRAMFILES%\NSIS\makensis" /v2 flybot.nsi
-EXIT
+
+if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
+copy "..\bin\Chatbot.pdb" "..\release\%VERSION%\Chatbot.%VERSION%.pdb"
+
+pause
+exit
 
 :NOSVN
 echo You don't have Tortoise SVN installed. Aborting.
