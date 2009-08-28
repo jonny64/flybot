@@ -5,7 +5,13 @@
 #include "wxLogBalloon.h"
 #include "FlybotConfig.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
+
+wxCriticalSection gSession;
 
 bool wxFlybotDLL::GetEnabledState()
 {
@@ -30,8 +36,11 @@ bool wxFlybotDLL::OnInit()
     SelectLanguage(wxLANGUAGE_RUSSIAN);
 
     m_taskBarIcon = new FlybotTaskBarIcon();
-    m_taskBarIcon->SetupIcon();
-
+    if (!m_taskBarIcon)
+	{
+		return false;
+	}
+	m_taskBarIcon->SetupIcon();
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
@@ -43,6 +52,11 @@ void wxFlybotDLL::SelectLanguage(int lang)
 {
     delete m_locale;
     m_locale = new wxLocale(lang);
+	if (!m_locale)
+	{
+		return;
+	}
+
     m_locale->AddCatalogLookupPathPrefix(wxStandardPaths::Get().GetPluginsDir());
     if (!m_locale->AddCatalog(wxT("Chatbot")) )
     {
@@ -72,8 +86,9 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
     if ( userinfo.Favourite() )
         return;
 
-    // FIXME: enclose m_sessions processing in critical section
-    // if it is a new PM, create new session
+    wxCriticalSectionLocker locker(gSession); // leaves cs in destructor
+	
+	// if it is a new PM, create new session
     wxString cid = userinfo[FLYBOT_API_CID];
     if (NULL == m_sessions[cid])
     {
@@ -81,15 +96,21 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
     }
 
     // answer pm, according to previous replies, etc.
-    m_sessions[cid]->Answer(msg);
+    if (NULL != m_sessions[cid])
+	{
+		m_sessions[cid]->Answer(msg);
+	}
 }
 
 int wxFlybotDLL::OnExit()
 {
-    m_taskBarIcon->RemoveIcon();
-    delete m_taskBarIcon;
+    if (m_taskBarIcon)
+	{
+		m_taskBarIcon->RemoveIcon();
+		delete m_taskBarIcon;
+	}
 
-    // free session info
+	// free session info
     SessionMap::iterator it;
     for( it = m_sessions.begin(); it != m_sessions.end(); ++it )
     {
@@ -97,10 +118,11 @@ int wxFlybotDLL::OnExit()
     }
     m_sessions.clear();
 
+	delete m_locale;
+
     return 0;
 }
 
 wxFlybotDLL::~wxFlybotDLL()
 {
-    delete m_locale;
 }

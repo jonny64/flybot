@@ -5,10 +5,7 @@
 #define new DEBUG_NEW
 #endif
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                      DWORD  ul_reason_for_call,
-                      LPVOID lpReserved
-                      )
+BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID )
 {
     int argc = 0;
     char **argv = NULL;
@@ -39,11 +36,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-#ifdef _MANAGED
-#pragma managed(pop)
-#endif
-
-void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, unsigned paramsize)
+void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, unsigned /*paramsize*/)
 {
     if (!wxGetApp().GetEnabledState())
         return;

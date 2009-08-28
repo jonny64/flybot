@@ -122,7 +122,7 @@ int Session::Answer(wxString& msg)
 
     // this thread will sleep for desired time interval and then send answer    
     wxThread *answerThread = new AnswerThread(answer, cid);
-    if (!cid.empty() && !answer.empty())
+	if (!cid.empty() && !answer.empty() && NULL!=answerThread)
     {
         if  (wxTHREAD_NO_ERROR != answerThread->Create())
         {
