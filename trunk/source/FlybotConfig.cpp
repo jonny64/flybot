@@ -53,8 +53,8 @@ void FlybotConfig::ReadSlotTimeouts()
     
     if (SlotTimeouts.empty())
     {
-        // set defaults
-        int defaults[] = {60, 300, 600, 3600, 86400, 86400*7};
+        // default slot timeouts
+        int defaults[] = {600, 3600, 7200, 86400};
         for (int i = 0; i < ARRAYSIZE(defaults); i++)
         {
             SlotTimeouts.push_back(defaults[i]);

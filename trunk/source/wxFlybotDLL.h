@@ -9,7 +9,7 @@
 
 class wxFlybotDLL: public wxApp
 {
-    FlybotTaskBarIcon   *m_taskBarIcon;
+    FlybotTaskBarIcon *m_taskBarIcon;
     wxLocale *m_locale;
     WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
     SessionMap m_sessions;
