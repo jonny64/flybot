@@ -14,3 +14,4 @@ more flybot.src >> flybot.nsi
 
 echo updating version information...
 verpatch.exe /va ..\bin\Chatbot.dll %VERSION%.0 %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
+echo .. complete
