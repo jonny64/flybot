@@ -4,7 +4,7 @@ SubWCRev.exe ..\ verpatch.src verpatch.bat
 set platformName = %1
 call verpatch.bat platformName
 
-copy /y "$(SolutionDir)Translation\Russian\*.mo" "$(SolutionDir)bin"
+copy /y "..\Translation\Russian\*.mo" "..\bin"
 
 echo packaging...
 if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO NONSIS
