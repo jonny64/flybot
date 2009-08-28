@@ -1,3 +1,5 @@
+set PATH=..\tools;%PATH%
+
 set VERSION="0.30.$WCREV$"
 set BUILDINFO=/s pb "$WCMODS?MODIFIED:Original$"
 set FILEDESCR=/s desc "chatbot for FlylinkDC++ client"
