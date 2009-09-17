@@ -1,0 +1,127 @@
+!ifndef VERSION
+  !define VERSION 'anonymous-build'
+!endif
+
+;--------------------------------
+;Configuration
+
+SetCompressor /SOLID lzma
+
+;RequestExecutionLevel admin
+;--------------------------------
+;Include Modern UI 2
+
+  !include "MUI2.nsh"
+  !include "InstallOptions.nsh"
+;--------------------------------
+;General
+
+  ;Name and file
+  Name "flybot"
+
+  ;Default installation folder
+  InstallDir "$PROGRAMFILES64\FlylinkDC++"
+  
+  DirText "Программа установит $(^NameDA) в папку клиента. Чтобы выбрать другую папку, нажмите кнопку 'Обзор' и укажите ее."
+  
+  ;Get installation folder from registry if available
+  InstallDirRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\FlylinkDC++ x64_is1" "InstallLocation"
+
+;--------------------------------
+;Interface Configuration
+
+  !define MUI_HEADERIMAGE
+  !define MUI_HEADERIMAGE_BITMAP "line.bmp" ; optional
+  !define MUI_ABORTWARNING
+
+;--------------------------------
+;Pages
+
+  ;PageEx license
+   ;LicenseText "Ознакомьтесь со следующей информацией" "Ясно"
+   ;LicenseData README.txt
+  ;PageExEnd
+  
+  !insertmacro MUI_PAGE_COMPONENTS
+  !insertmacro MUI_PAGE_DIRECTORY
+  !insertmacro MUI_PAGE_INSTFILES
+  
+  !insertmacro MUI_UNPAGE_CONFIRM
+  !insertmacro MUI_UNPAGE_INSTFILES
+;--------------------------------
+;Languages
+ 
+  !insertmacro MUI_LANGUAGE "Russian"
+
+;--------------------------------
+;Installer Sections
+
+Section "-flybot" SecMain
+  SetOutPath "$INSTDIR"
+  File README.txt
+  
+  File ..\bin\ChatBot.dll
+  ;File ..\Translation\Russian\Chatbot.mo
+  SetOutPath "$INSTDIR\Settings"
+  SetOverwrite off
+  File ..\Translation\Russian\flydict.ini
+  SetOverwrite on 
+  ;File ..\bin\Settings\flybot.ini
+
+  ;Store installation folder
+  WriteRegStr HKCU "Software\flybot" "" $INSTDIR
+  
+  ;Create uninstaller
+  WriteUninstaller "$INSTDIR\uninstall-flybot.exe"
+SectionEnd
+
+SectionGroup /e "Перевод"
+
+  Section "Русский" SecRussian
+    SetOutPath "$INSTDIR"
+	File ..\Translation\Russian\Chatbot.mo
+  SectionEnd
+  
+  Section /o "Албанский" SecAlbanian
+    SetOutPath "$INSTDIR"
+	File ..\Translation\Albanian\Chatbot.mo
+  SectionEnd
+  
+SectionGroupEnd
+
+;--------------------------------
+;Uninstaller Section
+
+Section "Uninstall"
+
+  ;ADD YOUR OWN FILES HERE...
+
+  Delete "$INSTDIR\ChatBot.dll"
+  Delete "$INSTDIR\uninstall-flybot.exe"
+  Delete "$INSTDIR\README.txt"
+  Delete "$INSTDIR\Chatbot.mo"
+  
+  DeleteRegKey /ifempty HKCU "Software\flybot"
+
+SectionEnd
+
+;--------------------------------
+; Translation selection 'radio' behaviour
+
+LangString noWow ${LANG_ENGLISH} "Этот дистрибутив предназначен для 64-битной ОС."
+
+Function .onInit
+  StrCpy $1 ${SecRussian} 
+
+; If 32-bit OS (WOW subsystem does not exist)
+  IfFileExists $WINDIR\SysWOW64\Shell32.dll +3 0
+    MessageBox MB_OK|MB_ICONSTOP $(noWow)
+    Abort $(noWow)
+FunctionEnd
+
+Function .onSelChange
+  !insertmacro StartRadioButtons $1
+    !insertmacro RadioButton ${SecRussian}
+    !insertmacro RadioButton ${SecAlbanian}
+  !insertmacro EndRadioButtons
+FunctionEnd
