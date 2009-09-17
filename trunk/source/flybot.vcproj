@@ -630,6 +630,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\setup\flybot.x86_64.src"
+				>
+			</File>
+			<File
 				RelativePath="..\setup\line.bmp"
 				>
 			</File>
