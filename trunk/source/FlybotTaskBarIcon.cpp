@@ -117,8 +117,10 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     FlybotConfig *conf = &wxGetApp().Config;
     wxMenu *menu = new wxMenu;
 
-    menu->AppendCheckItem(wxID_POWER, _("&Online"));    
-    menu->AppendSeparator();
+    menu->AppendCheckItem(wxID_POWER, _("&Online"));
+    menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
+    
+	menu->AppendSeparator();
     
     // form slot timeouts submenu
     wxMenu *submenuSlot = new wxMenu;
@@ -154,9 +156,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetSelectedAnswerDelayId(), true);
     menu->Append(wxID_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
 
-    // form 'enable status balloons' submenu
-    menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
-    menu->AppendSeparator();
+	menu->AppendSeparator();
 
     menu->Append(wxID_RELOAD_DICT, _("&Reload dicttionary"));
     menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));

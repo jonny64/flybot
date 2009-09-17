@@ -657,6 +657,22 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Albanian"
+				>
+				<File
+					RelativePath="..\Translation\Albanian\Chatbot.mo"
+					>
+				</File>
+				<File
+					RelativePath="..\Translation\Albanian\Chatbot.po"
+					>
+				</File>
+				<File
+					RelativePath="..\Translation\Albanian\flydict.ini"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Scripts"
