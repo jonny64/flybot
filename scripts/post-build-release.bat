@@ -4,17 +4,12 @@ SubWCRev.exe ..\ verpatch.src verpatch.bat
 set platformName = %1
 call verpatch.bat platformName
 
-copy /y "..\Translation\Russian\*.mo" "..\bin"
+copy /y "$(SolutionDir)Translation\Russian\*.mo" "$(SolutionDir)bin"
 
 echo packaging...
 if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO NONSIS
 "%PROGRAMFILES%\NSIS\makensis" /v2 flybot.nsi
-
-if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
-copy "..\bin\Chatbot.pdb" "..\release\%VERSION%\Chatbot.%VERSION%.pdb"
-
-pause
-exit
+EXIT
 
 :NOSVN
 echo You don't have Tortoise SVN installed. Aborting.

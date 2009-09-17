@@ -1,5 +1,3 @@
-set PATH=..\tools;%PATH%
-
 set VERSION="0.30.$WCREV$"
 set BUILDINFO=/s pb "$WCMODS?MODIFIED:Original$"
 set FILEDESCR=/s desc "chatbot for FlylinkDC++ client"
@@ -14,4 +12,3 @@ more flybot.src >> flybot.nsi
 
 echo updating version information...
 verpatch.exe /va ..\bin\Chatbot.dll %VERSION%.0 %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
-echo .. complete

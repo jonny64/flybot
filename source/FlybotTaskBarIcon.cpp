@@ -3,7 +3,6 @@
 #include "FlybotTaskBarIcon.h"
 #include "resource.h"
 #include "wxFlybotDLL.h"
-#include "flybot.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,7 +30,6 @@ BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
 	EVT_MENU(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_POWER, FlybotTaskBarIcon::OnMenuClick)
 	EVT_UPDATE_UI(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnUpdateUI)
-	EVT_UPDATE_UI(wxID_POWER, FlybotTaskBarIcon::OnUpdateUI)
 END_EVENT_TABLE()
 
 FlybotTaskBarIcon::FlybotTaskBarIcon()
@@ -76,16 +74,12 @@ void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
 	}
 }
 
-void FlybotTaskBarIcon::OnUpdateUI(wxUpdateUIEvent &evt)
+void FlybotTaskBarIcon::OnUpdateUI(wxUpdateUIEvent &event)
 {
-	switch (evt.GetId())
+	switch (event.GetId())
 	{
 		case wxID_USE_BALLOONS:
-			evt.Check(wxGetApp().Config.BalloonsEnabled());
-			break;
-
-		case wxID_POWER:
-			evt.Check(wxGetApp().GetEnabledState());
+			event.Check(wxGetApp().Config.BalloonsEnabled());
 			break;
 
 		default:
@@ -117,10 +111,9 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     FlybotConfig *conf = &wxGetApp().Config;
     wxMenu *menu = new wxMenu;
 
-    menu->AppendCheckItem(wxID_POWER, _("&Online"));
-    menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
-    
-	menu->AppendSeparator();
+    menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
+    menu->Append(wxID_RELOAD_DICT, _("&Reload dicttionary"));
+    menu->AppendSeparator();
     
     // form slot timeouts submenu
     wxMenu *submenuSlot = new wxMenu;
@@ -156,10 +149,11 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetSelectedAnswerDelayId(), true);
     menu->Append(wxID_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
 
-	menu->AppendSeparator();
+    // form 'enable status balloons' submenu
+    menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
+    menu->AppendSeparator();
 
-    menu->Append(wxID_RELOAD_DICT, _("&Reload dicttionary"));
-    menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
+    menu->Append(wxID_POWER, _("&On/Off"));    
 
     return menu;
 }
@@ -176,12 +170,11 @@ void FlybotTaskBarIcon::SetupIcon()
     HICON hIconOffline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_OFFLINE));
     HICON hIcon = wxGetApp().GetEnabledState()? hIconOnline : hIconOffline;
 
-	wxString tooltipText =  wxString::Format(wxT("flybot %s (%s)"), APP_VERSION, APP_BUILD_DATE);
     wxIcon trayIcon;
     trayIcon.SetHICON(hIcon);
     // TODO: find out why normal loading from resources doesn't work
-    // SetupIcon(wxIcon(IDI_ICON_ONLINE), wxT("flybot 0.3") )
-    if (!SetIcon(trayIcon, tooltipText) )
+    // SetupIcon(wxIcon(IDI_ICON_ONLINE), wxT("flybot 0.3 alpha") )
+    if (!SetIcon(trayIcon, wxT("flybot 0.3 alpha")) )
         wxLogError(_("Could not set icon."));
 }
 

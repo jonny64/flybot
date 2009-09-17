@@ -53,7 +53,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
     Phrase phrase = {0};
     if (!ToPriority(row[0], &phrase.Priority))
     {
-        *errorMessage = wxString::Format(_("priority should be in range 1..%d"), DICTIONARY_MAX_PRIORITY);
+        *errorMessage = wxString::Format(_("priority should be in range 0..%d"), DICTIONARY_MAX_PRIORITY);
         return false;
     }
 

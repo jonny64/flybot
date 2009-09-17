@@ -8,7 +8,7 @@
 !ifdef OUTFILE
   OutFile "${OUTFILE}"
 !else
-  OutFile ..\release\${VERSION}\flybot-${VERSION}.exe
+  OutFile .\flybot-${VERSION}.exe
 !endif
 
 SetCompressor /SOLID lzma
@@ -45,10 +45,9 @@ SetCompressor /SOLID lzma
 
   ;PageEx license
    ;LicenseText "Ознакомьтесь со следующей информацией" "Ясно"
-   ;LicenseData README.txt
+   ;LicenseData README
   ;PageExEnd
   
-  !insertmacro MUI_PAGE_COMPONENTS
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   
@@ -65,12 +64,12 @@ SetCompressor /SOLID lzma
 ;--------------------------------
 ;Installer Sections
 
-Section "-flybot" SecMain
+Section "Dummy Section" SecDummy
   SetOutPath "$INSTDIR"
-  File README.txt
+  File README
   
   File ..\bin\ChatBot.dll
-  ;File ..\Translation\Russian\Chatbot.mo
+  File ..\Translation\Russian\Chatbot.mo
   SetOutPath "$INSTDIR\Settings"
   SetOverwrite off
   File ..\Translation\Russian\flydict.ini
@@ -83,20 +82,6 @@ Section "-flybot" SecMain
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\uninstall-flybot.exe"
 SectionEnd
-
-SectionGroup /e "Перевод"
-
-  Section "Русский" SecRussian
-    SetOutPath "$INSTDIR"
-	File ..\Translation\Russian\Chatbot.mo
-  SectionEnd
-  
-  Section /o "Албанский" SecAlbanian
-    SetOutPath "$INSTDIR"
-	File ..\Translation\Albanian\Chatbot.mo
-  SectionEnd
-  
-SectionGroupEnd
 
 ;--------------------------------
 ;Descriptions
@@ -118,21 +103,9 @@ Section "Uninstall"
 
   Delete "$INSTDIR\ChatBot.dll"
   Delete "$INSTDIR\uninstall-flybot.exe"
-  Delete "$INSTDIR\README.txt"
+  Delete "$INSTDIR\README"
   Delete "$INSTDIR\Chatbot.mo"
   
   DeleteRegKey /ifempty HKCU "Software\flybot"
 
 SectionEnd
-
-; Translation selection 'radio' behaviour
-Function .onInit
-  StrCpy $1 ${SecRussian} 
-FunctionEnd
-
-Function .onSelChange
-  !insertmacro StartRadioButtons $1
-    !insertmacro RadioButton ${SecRussian}
-    !insertmacro RadioButton ${SecAlbanian}
-  !insertmacro EndRadioButtons
-FunctionEnd
