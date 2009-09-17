@@ -5,13 +5,6 @@ set BUILDINFO=/s pb "$WCMODS?MODIFIED:Original$"
 set FILEDESCR=/s desc "chatbot for FlylinkDC++ client"
 set COMPINFO=/s company "astro64m" /s (c) "(c) copyleft 2008-2009"
 
-echo generating packaging script...
-echo !define VERSION %VERSION% > flybot.nsi
-IF "%1" == "x64" (
-	echo !define OUTFILE .\flybot-${VERSION}-x86_64.exe >> flybot.nsi
-)
-more flybot.src >> flybot.nsi
-
 echo updating version information...
 verpatch.exe /va ..\bin\Chatbot.dll %VERSION%.0 %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
 echo .. complete
