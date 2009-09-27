@@ -36,6 +36,7 @@ END_EVENT_TABLE()
 
 FlybotTaskBarIcon::FlybotTaskBarIcon()
 {
+	SetupIcon();
 }
 
 void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
