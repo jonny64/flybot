@@ -10,7 +10,7 @@ SetCompressor /SOLID lzma
 ;RequestExecutionLevel admin
 ;--------------------------------
 ;Include Modern UI 2
-
+  !define MUI_COMPONENTSPAGE_NODESC
   !include "MUI2.nsh"
   !include "InstallOptions.nsh"
 ;--------------------------------
@@ -62,14 +62,12 @@ SetCompressor /SOLID lzma
 Section "-flybot" SecMain
   SetOutPath "$INSTDIR"
   File README.txt
-  
   File ..\bin\ChatBot.dll
-  ;File ..\Translation\Russian\Chatbot.mo
+
   SetOutPath "$INSTDIR\Settings"
   SetOverwrite off
   File ..\Translation\Russian\flydict.ini
-  SetOverwrite on 
-  ;File ..\bin\Settings\flybot.ini
+  SetOverwrite on
 
   ;Store installation folder
   WriteRegStr HKCU "Software\flybot" "" $INSTDIR
@@ -79,19 +77,27 @@ Section "-flybot" SecMain
 SectionEnd
 
 SectionGroup /e "Перевод"
-
   Section "Русский" SecRussian
     SetOutPath "$INSTDIR"
-	File ..\Translation\Russian\Chatbot.mo
+    File ..\Translation\Russian\Chatbot.mo
   SectionEnd
   
   Section /o "Албанский" SecAlbanian
     SetOutPath "$INSTDIR"
-	File ..\Translation\Albanian\Chatbot.mo
-  SectionEnd
-  
+    File ..\Translation\Albanian\Chatbot.mo
+  SectionEnd  
 SectionGroupEnd
 
+Section /o "Сбросить настройки" SecClearSettings
+  DeleteRegKey HKCU "SOFTWARE\flybot"
+SectionEnd
+
+
+Section /o "Перезаписать словарь" OverwriteDict
+  SetOverwrite on
+  SetOutPath "$INSTDIR\Settings"
+  File ..\Translation\Russian\flydict.ini
+SectionEnd
 ;--------------------------------
 ;Descriptions
 

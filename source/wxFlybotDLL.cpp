@@ -40,7 +40,6 @@ bool wxFlybotDLL::OnInit()
 	{
 		return false;
 	}
-	m_taskBarIcon->SetupIcon();
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
