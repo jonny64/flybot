@@ -17,7 +17,7 @@ bool _FlybotAPI::SendPM(const wxString& cid, const wxString& msg)
 	if (m_botAPI.SendMessage2 && !cid.empty() && !msg.empty())
     {
         return m_botAPI.SendMessage2(SEND_PM, cid.c_str(), msg.c_str(), 
-            msg.size() + sizeof(wxChar));
+            (unsigned int)msg.size() + sizeof(wxChar));
     }
     return false;
 }

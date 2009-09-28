@@ -56,7 +56,7 @@ public:
     virtual void *Entry()
     {
 		// answer delay is 100 ms. per char plus user supplied specified delay
-		int intervalMs = m_answer.Length() *100 + 
+		int intervalMs = (int)m_answer.Length() *100 + 
 			wxGetApp().Config.GetSelectedAnswerDelay()*1000;
 
         wxThread::Sleep( intervalMs );
@@ -73,7 +73,8 @@ wxString Session::GetVariable(const wxString& varName)
     }
     else if (wxT("HISTORY") == varName && !m_replies.empty() )
     {
-        return m_replies[random(m_replies.Count())];
+		int selectedReplyId = random( (int)m_replies.Count() );
+        return m_replies[selectedReplyId];
     }
     
     return m_userinfo[varName];

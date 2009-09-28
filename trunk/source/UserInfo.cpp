@@ -8,7 +8,7 @@ UserInfo::UserInfo(WCHAR* userinfo)
 	UserInfo();	
 	// split string by | char
     wxArrayString pairs = wxSplit(info, '|', '#');
-	for (int i = 0; i < pairs.Count(); i++)
+	for (size_t i = 0; i < pairs.Count(); i++)
 	{
 		wxArrayString pair = wxSplit(pairs[i], '=', '#');
 		if (2 == pair.Count())
