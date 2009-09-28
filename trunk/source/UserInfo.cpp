@@ -3,9 +3,12 @@
 
 UserInfo::UserInfo(WCHAR* userinfo)
 {
+	UserInfo();
+	
 	wxString info(userinfo);
+	if (info.empty())
+		return;
 
-	UserInfo();	
 	// split string by | char
     wxArrayString pairs = wxSplit(info, '|', '#');
 	for (size_t i = 0; i < pairs.Count(); i++)
