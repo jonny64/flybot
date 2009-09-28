@@ -5,8 +5,6 @@
 
 Для сборки релиз конфигурации требуются
 
-  * [http://tortoisesvn.net/downloads TortoiseSVN]
-
   * [http://nsis.sourceforge.net/Download NSIS]
 
   * [http://www.poedit.net/download.php poEdit] - могут возникнуть зависания клиента, если забыть обновить файл локализации после определенного редактирования исходных текстов.
@@ -21,9 +19,9 @@
 
   *  Чтобы получить бинарник вменяемого размера переместите содержимое include/msw/setup.h в папку wxWidgets.
 
-  * Сделайте ссылку (mklink /?) на include и полученную папку lib в папку solution'а. 
+  * Сделайте ссылку (mklink /? или Alt-F6 в Far'е) на include и полученную папку lib в папку solution'а. 
 
-    Последние два шага может выполнить простой [http://code.google.com/p/flybot/source/browse/trunk/scripts/workspace-config.bat скрипт] (mklink требует прав администратора) в папке с исходными текстами: 
+    Последние два шага под Windows Vista+ может выполнить простой [http://code.google.com/p/flybot/source/browse/trunk/scripts/workspace-config.bat скрипт] (из-за mklink требует прав администратора) в папке с исходными текстами: 
 {{{
   scripts\workspace-setup.bat
 }}}
