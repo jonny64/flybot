@@ -26,7 +26,7 @@ bool _FlybotAPI::QueryUserinfo(const WCHAR* cid, UserInfo *userinfo)
 {
     if (m_botAPI.QueryInfo && cid)
     {
-        *userinfo = (WCHAR*)m_botAPI.QueryInfo(QUERY_USER_BY_CID, cid, NULL, 0);
+		*userinfo = UserInfo((WCHAR*)m_botAPI.QueryInfo(QUERY_USER_BY_CID, cid, NULL, 0));
         return true;
     }
     return false;
