@@ -3,24 +3,29 @@
 
 UserInfo::UserInfo(WCHAR* userinfo)
 {
-    wxString varname, value;
-    wxString info(userinfo);
+	wxString info(userinfo);
 
-    // split string by | char
-    wxStringTokenizer tokenizer(info, wxT("|"));
-    while (tokenizer.HasMoreTokens() ) 
-    {
-        wxString token = tokenizer.GetNextToken();        
-
-        // split value and varname
-        varname = token.SubString( 0, token.Index(wxT('=')) - 1 );
-        value = token.SubString( token.Index(wxT('=')) + 1, token.Length() );
-        m_vars[varname] = value;
-    }
+	UserInfo();	
+	// split string by | char
+    wxArrayString pairs = wxSplit(info, '|', '#');
+	for (int i = 0; i < pairs.Count(); i++)
+	{
+		wxArrayString pair = wxSplit(pairs[i], '=', '#');
+		if (2 == pair.Count())
+		{
+			wxString varname = pair[0];
+			wxString value = pair[1];
+			if (!varname.empty() && !value.empty())
+			{
+				m_vars[varname] = value;
+			}
+		}
+	}
 }
 
 UserInfo::UserInfo(void)
 {
+	m_vars.clear();
 }
 
 wxString UserInfo::operator[](const wxString& key)
@@ -30,6 +35,12 @@ wxString UserInfo::operator[](const wxString& key)
         return m_vars[key];
     }
     return wxT("");
+}
+
+UserInfo& UserInfo::operator=(const UserInfo& rhs)
+{
+	m_vars = VarMap(rhs.m_vars);
+	return *this;
 }
 
 bool UserInfo::Favourite()

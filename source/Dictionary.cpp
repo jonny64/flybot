@@ -35,12 +35,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
     }
 
     // split string by / char.
-    wxStringTokenizer tokenizer(line, wxT("/"));
-    wxArrayString row;
-    while (tokenizer.HasMoreTokens() ) 
-    {
-        row.Add(tokenizer.GetNextToken());
-    }
+	wxArrayString row = wxSplit(line, DICTIONARY_SEPARATION_CHAR, DICTIONARY_ESCAPE_CHAR);
 
     const int MIN_PARAMS_PER_LINE = 3;
     if (row.Count() < MIN_PARAMS_PER_LINE)

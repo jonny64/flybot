@@ -8,6 +8,8 @@ const wxChar DICTIONARY_COMMENT_CHAR = wxChar(';');
 const wxChar DICTIONARY_CLOSE_CHAR = wxChar('c');
 const wxChar DICTIONARY_IGNORE_CHAR = wxChar('i');
 const wxChar DICTIONARY_SLOT_CHAR = wxChar('s');
+const wxChar DICTIONARY_SEPARATION_CHAR = wxChar('/');
+const wxChar DICTIONARY_ESCAPE_CHAR = wxChar('#');
 
 WX_DECLARE_OBJARRAY(Phrase, ArrayOfPhrases);
 

@@ -63,8 +63,9 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 extern "C" 
 FLYBOT_API init(BotInit* _init)
 {
-    if (_init->apiVersion < 2) 
+    if (NULL == _init || _init->apiVersion < 2) 
         return false;
+
     _init->botId = "flybot";
     _init->botVersion = "0.3";
     _init->RecvMessage2 = OnRecvMessage2;
