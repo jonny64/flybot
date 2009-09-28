@@ -1,4 +1,4 @@
-if not exist "%PROGRAMFILES%\TortoiseSVN\bin\SubWCRev.exe" goto NOSVN:
+set PATH=..\tools;%PATH%
 cd "..\setup"
 SubWCRev.exe ..\ verpatch.src verpatch.bat
 set platformName = %1
@@ -20,11 +20,6 @@ if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
 
 pause
 exit
-
-:NOSVN
-echo You don't have Tortoise SVN installed. Aborting.
-exit -1
-
 
 :NONSIS
 echo You don't have NSIS installed. Aborting.
