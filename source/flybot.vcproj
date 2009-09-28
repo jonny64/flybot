@@ -197,7 +197,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/EXPORT:init"
 				AdditionalDependencies="wxmsw28u_adv.lib wxmsw28u_core.lib wxbase28u.lib wxregexu.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
@@ -408,7 +407,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/EXPORT:init"
 				AdditionalDependencies="wxmsw28ud_adv.lib wxmsw28ud_core.lib wxbase28ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
