@@ -1,14 +1,12 @@
 @echo off
 set PATH=..\tools;%PATH%
 call "..\scripts\update-revision.bat"
-if errorlevel 1 goto :error
+if %errorlevel% neq "0" GOTO END
 
-cd setup
+cd "..\setup"
 SubWCRev.exe ..\ verpatch.src verpatch.bat
 set platformName = %1
 call verpatch.bat platformName
-
-copy /y "..\Translation\Russian\*.mo" "..\bin"
 
 echo generating packaging script...
 echo !define VERSION %VERSION% > flybot.nsi
@@ -22,11 +20,12 @@ if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO NONSIS
 if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
 "c:\Program Files\7-Zip\7z" a -tzip "..\release\%VERSION%\Chatbot.%VERSION%.pdb.zip" "..\bin\Chatbot.pdb"
 
+:END
 pause
 exit
 
 :NONSIS
-echo You don't have NSIS installed. Aborting.
+echo post-build-release.bat : Tools error E0002 : You don't have NSIS installed. Aborting.
 pause
 exit -2
 

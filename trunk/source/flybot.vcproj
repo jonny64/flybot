@@ -30,6 +30,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="svn update"
+				CommandLine="svn --version --quiet&#x0D;&#x0A;if errorlevel 1 goto :NOSVN&#x0D;&#x0A;svn update&#x0D;&#x0A;exit&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo post-build-release-x86_64.bat  : Tools error E0001 : You don&apos;t have svn on PATH. Aborting.&#x0D;&#x0A;pause&#x0D;&#x0A;exit -2&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -140,6 +142,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="svn update"
+				CommandLine="svn --version --quiet&#x0D;&#x0A;if errorlevel 1 goto :NOSVN&#x0D;&#x0A;svn update&#x0D;&#x0A;exit&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo post-build-release-x86_64.bat  : Tools error E0001 : You don&apos;t have svn on PATH.  Aborting.&#x0D;&#x0A;pause&#x0D;&#x0A;exit -2&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"

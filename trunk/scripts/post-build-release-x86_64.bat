@@ -1,7 +1,7 @@
 @echo off
 set PATH=..\tools;%PATH%
 call "..\scripts\update-revision.bat"
-if errorlevel 1 goto :error
+if %errorlevel% neq "0" GOTO END
 
 cd "..\setup"
 SubWCRev.exe ..\ verpatch.src verpatch.bat
@@ -26,11 +26,13 @@ rem "c:\Program Files\7-Zip\7z" a -tzip "..\release\%VERSION%\flybot-%VERSION%-x
 
 if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
 "c:\Program Files\7-Zip\7z" a -tzip "..\release\%VERSION%\Chatbot.%VERSION%.x86_64.pdb.zip" "..\bin\Chatbot.pdb"
+
+:END
 pause
 exit
 
 :NONSIS
-echo You don't have NSIS installed. Aborting.
+echo post-build-release-x86_64.bat : Tools error E0002 : You don't have NSIS installed. Aborting.
 pause
 exit -2
 
