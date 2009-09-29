@@ -1,5 +1,8 @@
 @echo off
 set PATH=..\tools;%PATH%
+call "..\scripts\update-revision.bat"
+if errorlevel 1 goto :error
+
 cd "..\setup"
 SubWCRev.exe ..\ verpatch.src verpatch.bat
 set platformName = %1
@@ -28,4 +31,9 @@ exit
 
 :NONSIS
 echo You don't have NSIS installed. Aborting.
+pause
 exit -2
+
+:ERROR
+pause
+exit %errorlevel%

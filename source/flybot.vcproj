@@ -692,6 +692,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\scripts\update-revision.bat"
+				>
+			</File>
+			<File
 				RelativePath="..\scripts\workspace-config.bat"
 				>
 			</File>
