@@ -1,7 +1,7 @@
 @echo off
 set PATH=..\tools;%PATH%
 call "..\scripts\update-revision.bat"
-if %errorlevel% neq "0" GOTO END
+if errorlevel 1 GOTO :END
 
 cd "..\setup"
 SubWCRev.exe ..\ verpatch.src verpatch.bat
@@ -14,7 +14,7 @@ echo OutFile ..\release\${VERSION}\flybot-${VERSION}.exe >> flybot.nsi
 more flybot.src >> flybot.nsi
 
 echo packaging...
-if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO NONSIS
+if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO :NONSIS
 "%PROGRAMFILES%\NSIS\makensis" /v2 flybot.nsi
 
 if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
