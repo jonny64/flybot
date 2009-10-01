@@ -1,0 +1,199 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: flybot 0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-01 17:44+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: astro64m <astro64m@gmail.com>\n"
+"Language-Team:  <astro64m@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: c:\\Users\\jonson\\Documents\\Visual Studio 2008\\Projects\\flybot\\source\n"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:43
+msgid "too few parameters"
+msgstr "неполный шаблон"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:51
+#, c-format
+msgid "priority should be in range 1..%d"
+msgstr "приоритет должен быть в диапазоне 1..%d"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:59
+#, c-format
+msgid ""
+"invalid regular expression:\n"
+"%s"
+msgstr ""
+"синтаксис регулярного выражения:\n"
+"%s"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Dictionary.cpp:99
+#, c-format
+msgid "Dictionary, line %d:"
+msgstr "Словарь, строка %d:"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:100
+msgid "min."
+msgstr "мин."
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:100
+msgid "hr."
+msgstr "ч."
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:100
+msgid "day"
+msgstr "дн."
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:100
+msgid "wk."
+msgstr "нед."
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:103
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:150
+msgid "sec."
+msgstr "сек."
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:121
+msgid "&Online"
+msgstr "Активен"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:122
+msgid "&Show balloons"
+msgstr "Показывать уведомления"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:141
+msgid "Slot timeout"
+msgstr "Срок действия слота"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:158
+msgid "Answer delay"
+msgstr "Задержка преред ответом"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:162
+msgid "&Reload dicttionary"
+msgstr "Перегрузить словарь"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:163
+msgid "&Open dictionary"
+msgstr "Открыть словарь"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/FlybotTaskBarIcon.cpp:186
+msgid "Could not set icon."
+msgstr "Невозможно добавить иконку."
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Session.cpp:21
+#, c-format
+msgid "Matched template: %s"
+msgstr "Cовпадение по шаблону %s"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Session.cpp:27
+#, c-format
+msgid "Closed PM from %s"
+msgstr "Закрыта личка %s"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Session.cpp:35
+#, c-format
+msgid "Slot was given to %s"
+msgstr "Выдан слот %s"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Session.cpp:40
+#, c-format
+msgid "%s added to ignore list"
+msgstr "%s добавлен в игнор"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/Session.cpp:131
+msgid "Cannot create worker thread"
+msgstr "Невозможно создать поток"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxFlybotDLL.cpp:70
+msgid "Dictionary was successfully loaded"
+msgstr "Словарь успешно загружен"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:22
+msgid "Information"
+msgstr "Информация"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:22
+msgid "Warning"
+msgstr "Предупреждение"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:22
+msgid "Error"
+msgstr "Ошибка"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:57
+msgid "Fatal error: "
+msgstr "Критическая ошибка:"
+
+#: c:\Users\jonson\Documents\Visual
+#: Studio
+#: 2008\Projects\flybot\source/wxLogBalloon.cpp:57
+msgid "Program aborted."
+msgstr "Программа завершила работу."
+
+#~ msgid "&On/Off"
+#~ msgstr "&Вкл/Выкл"
+#~ msgid "Yes"
+#~ msgstr "Да"
+#~ msgid "No"
+#~ msgstr "Нет"
+#~ msgid "Test"
+#~ msgstr "Тестовая строка"
+
