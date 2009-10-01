@@ -86,7 +86,7 @@ SectionGroup /e "Перевод"
 SectionGroupEnd
 
 Section /o "Сбросить настройки" SecClearSettings
-  DeleteRegKey HKCU "SOFTWARE\flybot"
+  Delete "$INSTDIR\Settings\flybot.ini"
 SectionEnd
 
 Section /o "Перезаписать словарь" OverwriteDict
@@ -98,16 +98,10 @@ SectionEnd
 ;Uninstaller Section
 
 Section "Uninstall"
-
-  ;ADD YOUR OWN FILES HERE...
-
   Delete "$INSTDIR\ChatBot.dll"
   Delete "$INSTDIR\uninstall-flybot.exe"
   Delete "$INSTDIR\README.txt"
   Delete "$INSTDIR\Chatbot.mo"
-  
-  DeleteRegKey /ifempty HKCU "Software\flybot"
-
 SectionEnd
 
 ;--------------------------------
@@ -117,7 +111,6 @@ LangString noWow ${LANG_ENGLISH} "Этот дистрибутив предназначен для 64-битной ОС
 
 Function .onInit
   StrCpy $1 ${SecRussian} 
-
 ; If 32-bit OS (WOW subsystem does not exist)
   IfFileExists $WINDIR\SysWOW64\Shell32.dll +3 0
     MessageBox MB_OK|MB_ICONSTOP $(noWow)

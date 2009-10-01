@@ -76,6 +76,7 @@ Section "-flybot" SecMain
   WriteUninstaller "$INSTDIR\uninstall-flybot.exe"
 SectionEnd
 
+
 SectionGroup /e "Перевод"
   Section "Русский" SecRussian
     SetOutPath "$INSTDIR"
@@ -88,8 +89,9 @@ SectionGroup /e "Перевод"
   SectionEnd  
 SectionGroupEnd
 
+
 Section /o "Сбросить настройки" SecClearSettings
-  DeleteRegKey HKCU "SOFTWARE\flybot"
+  Delete "$INSTDIR\Settings\flybot.ini"
 SectionEnd
 
 
@@ -113,18 +115,13 @@ SectionEnd
 ;Uninstaller Section
 
 Section "Uninstall"
-
-  ;ADD YOUR OWN FILES HERE...
-
   Delete "$INSTDIR\ChatBot.dll"
   Delete "$INSTDIR\uninstall-flybot.exe"
   Delete "$INSTDIR\README.txt"
   Delete "$INSTDIR\Chatbot.mo"
-  
-  DeleteRegKey /ifempty HKCU "Software\flybot"
-
 SectionEnd
 
+;--------------------------------
 ; Translation selection 'radio' behaviour
 Function .onInit
   StrCpy $1 ${SecRussian} 
