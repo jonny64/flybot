@@ -13,7 +13,8 @@ class wxFlybotDLL: public wxApp
     wxLocale *m_locale;
     WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
     SessionMap m_sessions;
-    
+    bool m_online; // bot status (active/inactive)
+
     void SelectLanguage(int lang);
 public:
     

@@ -126,7 +126,8 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     // form slot timeouts submenu
     wxMenu *submenuSlot = new wxMenu;
     int index = 0;
-    FOREACH(vector<int>, it, conf->GetSlotTimeouts())
+    vector<int> timeouts = conf->GetSlotTimeouts();
+    FOREACH(vector<int>, it, timeouts)
     {
         submenuSlot->AppendRadioItem(
             wxID_SLOT_TIMEOUT_BEGIN + index, 
@@ -143,7 +144,8 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     // form answer delays submenu
     wxMenu *submenuDelay = new wxMenu;
     index = 0;
-    FOREACH(vector<int>, it, conf->GetAnswerDelays())
+    vector<int> delays = conf->GetAnswerDelays();
+    FOREACH(vector<int>, it, delays)
     {
         submenuDelay->AppendRadioItem(
             wxID_ANSWER_DELAY_BEGIN + index, 
