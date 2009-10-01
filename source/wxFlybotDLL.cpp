@@ -15,16 +15,12 @@ wxCriticalSection gSession;
 
 bool wxFlybotDLL::GetEnabledState()
 {
-    bool enabled = true;
-    Config.Read(SETTING_BOT_ONLINE, &enabled, true);
-    return enabled;
+    return m_online;
 }
 
 void wxFlybotDLL::SwitchState()
 {
-    bool enabled = true;
-    Config.Read(SETTING_BOT_ONLINE, &enabled, true);
-    Config.Write(SETTING_BOT_ONLINE, !enabled);
+    m_online = !m_online;
 }
 
 
@@ -32,6 +28,8 @@ bool wxFlybotDLL::OnInit()
 {
     m_taskBarIcon = NULL;
     m_locale = NULL;
+    
+    Config.Read(SETTING_BOT_ONLINE, &m_online, true);
         
     SelectLanguage(wxLANGUAGE_RUSSIAN);
 
@@ -103,6 +101,8 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 
 int wxFlybotDLL::OnExit()
 {
+    Config.Write(SETTING_BOT_ONLINE, m_online);
+
     if (m_taskBarIcon)
     {
         m_taskBarIcon->RemoveIcon();
