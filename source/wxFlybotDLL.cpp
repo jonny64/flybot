@@ -110,8 +110,7 @@ int wxFlybotDLL::OnExit()
     }
 
     // free session info
-    SessionMap::iterator it;
-    for( it = m_sessions.begin(); it != m_sessions.end(); ++it )
+    FOREACH(SessionMap, it, m_sessions)
     {
         delete it->second;
     }

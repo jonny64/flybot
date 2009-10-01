@@ -6,8 +6,6 @@
 #include <wx/tokenzr.h>
 #include <wx/taskbar.h>
 #include <wx/config.h>
-#include <list>
-using std::list;
 
 
 // memory allocation enhancement
@@ -29,3 +27,10 @@ wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape
 bool wxLaunchDefaultApplication(const wxString &document);
 
 int random(int max);
+
+
+#define FOREACH(type, it, container) \
+    for (type::iterator (it) = (container).begin(); (it) != (container).end(); ++(it))
+
+#define FOREACH_CONST(type, it, container) \
+    for (type::const_iterator (it) = (container).begin(); (it) != (container).end(); ++(it))

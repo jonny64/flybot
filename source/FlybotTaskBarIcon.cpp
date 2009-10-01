@@ -41,12 +41,12 @@ FlybotTaskBarIcon::FlybotTaskBarIcon()
 
 void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
 {
-    wxGetApp().Config.SetSelectedSlotTimeoutId(evt.GetId() - wxID_SLOT_TIMEOUT_BEGIN);
+    wxGetApp().Config.Write(SETTING_SLOT_TIMEOUT, evt.GetId() - wxID_SLOT_TIMEOUT_BEGIN);
 }
 
 void FlybotTaskBarIcon::OnMenuAnswerDelayClick(wxCommandEvent &evt)
 {
-    wxGetApp().Config.SetSelectedAnswerDelayId(evt.GetId() - wxID_ANSWER_DELAY_BEGIN);
+    wxGetApp().Config.Write(SETTING_ANSWER_DELAY, evt.GetId() - wxID_ANSWER_DELAY_BEGIN);
 }
 
 void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
@@ -126,7 +126,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     // form slot timeouts submenu
     wxMenu *submenuSlot = new wxMenu;
     int index = 0;
-    for (list<int>::iterator it = conf->SlotTimeouts.begin(); it != conf->SlotTimeouts.end(); ++it)
+    FOREACH(vector<int>, it, conf->GetSlotTimeouts())
     {
         submenuSlot->AppendRadioItem(
             wxID_SLOT_TIMEOUT_BEGIN + index, 
@@ -137,13 +137,13 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
             wxCommandEventHandler(FlybotTaskBarIcon::OnMenuSlotTimeoutClick));
         index++;
     }
-    submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->GetSelectedSlotTimeoutId(), true);
+    submenuSlot->Check(wxID_SLOT_TIMEOUT_BEGIN + conf->GetSlotTimeoutId(), true);
     menu->Append(wxID_SLOT_TIMEOUT_SUB, _("Slot timeout"), submenuSlot);
 
     // form answer delays submenu
     wxMenu *submenuDelay = new wxMenu;
     index = 0;
-    for (list<int>::iterator it = conf->AnswerDelays.begin(); it != conf->AnswerDelays.end(); ++it)
+    FOREACH(vector<int>, it, conf->GetAnswerDelays())
     {
         submenuDelay->AppendRadioItem(
             wxID_ANSWER_DELAY_BEGIN + index, 
@@ -154,7 +154,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
             wxCommandEventHandler(FlybotTaskBarIcon::OnMenuAnswerDelayClick));
         index++;
     }
-    submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetSelectedAnswerDelayId(), true);
+    submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetAnswerDelayId(), true);
     menu->Append(wxID_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
 
     menu->AppendSeparator();
