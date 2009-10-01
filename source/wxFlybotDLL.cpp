@@ -15,16 +15,16 @@ wxCriticalSection gSession;
 
 bool wxFlybotDLL::GetEnabledState()
 {
-	bool enabled = true;
-	Config.Read(SETTING_BOT_ONLINE, &enabled, true);
-	return enabled;
+    bool enabled = true;
+    Config.Read(SETTING_BOT_ONLINE, &enabled, true);
+    return enabled;
 }
 
 void wxFlybotDLL::SwitchState()
 {
     bool enabled = true;
-	Config.Read(SETTING_BOT_ONLINE, &enabled, true);
-	Config.Write(SETTING_BOT_ONLINE, !enabled);
+    Config.Read(SETTING_BOT_ONLINE, &enabled, true);
+    Config.Write(SETTING_BOT_ONLINE, !enabled);
 }
 
 
@@ -37,9 +37,9 @@ bool wxFlybotDLL::OnInit()
 
     m_taskBarIcon = new FlybotTaskBarIcon();
     if (!m_taskBarIcon)
-	{
-		return false;
-	}
+    {
+        return false;
+    }
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
@@ -51,10 +51,10 @@ void wxFlybotDLL::SelectLanguage(int lang)
 {
     delete m_locale;
     m_locale = new wxLocale(lang);
-	if (!m_locale)
-	{
-		return;
-	}
+    if (!m_locale)
+    {
+        return;
+    }
 
     m_locale->AddCatalogLookupPathPrefix(wxStandardPaths::Get().GetPluginsDir());
     if (!m_locale->AddCatalog(wxT("Chatbot")) )
@@ -86,8 +86,8 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
         return;
 
     wxCriticalSectionLocker locker(gSession); // leaves cs in destructor
-	
-	// if it is a new PM, create new session
+    
+    // if it is a new PM, create new session
     wxString cid = userinfo[FLYBOT_API_CID];
     if (NULL == m_sessions[cid])
     {
@@ -96,20 +96,20 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 
     // answer pm, according to previous replies, etc.
     if (NULL != m_sessions[cid])
-	{
-		m_sessions[cid]->Answer(msg);
-	}
+    {
+        m_sessions[cid]->Answer(msg);
+    }
 }
 
 int wxFlybotDLL::OnExit()
 {
     if (m_taskBarIcon)
-	{
-		m_taskBarIcon->RemoveIcon();
-		delete m_taskBarIcon;
-	}
+    {
+        m_taskBarIcon->RemoveIcon();
+        delete m_taskBarIcon;
+    }
 
-	// free session info
+    // free session info
     SessionMap::iterator it;
     for( it = m_sessions.begin(); it != m_sessions.end(); ++it )
     {
@@ -117,7 +117,7 @@ int wxFlybotDLL::OnExit()
     }
     m_sessions.clear();
 
-	delete m_locale;
+    delete m_locale;
 
     return 0;
 }

@@ -14,7 +14,7 @@ void _FlybotAPI::Init(const BotInit *aInit)
 
 bool _FlybotAPI::SendPM(const wxString& cid, const wxString& msg)
 {
-	if (m_botAPI.SendMessage2 && !cid.empty() && !msg.empty())
+    if (m_botAPI.SendMessage2 && !cid.empty() && !msg.empty())
     {
         return m_botAPI.SendMessage2(SEND_PM, cid.c_str(), msg.c_str(), 
             (unsigned int)msg.size() + sizeof(wxChar));
@@ -26,11 +26,11 @@ bool _FlybotAPI::QueryUserinfo(const WCHAR* cid, UserInfo *userinfo)
 {
     if (m_botAPI.QueryInfo && cid)
     {
-		WCHAR* userinfoString = (WCHAR*)m_botAPI.QueryInfo(QUERY_USER_BY_CID, cid, NULL, 0);
-		if (!userinfoString)
-			return false;
+        WCHAR* userinfoString = (WCHAR*)m_botAPI.QueryInfo(QUERY_USER_BY_CID, cid, NULL, 0);
+        if (!userinfoString)
+            return false;
 
-		*userinfo = UserInfo(userinfoString);
+        *userinfo = UserInfo(userinfoString);
         return true;
     }
     return false;
