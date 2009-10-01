@@ -721,7 +721,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\setup\README.txt"
+			RelativePath="..\setup\readme-flybot.txt"
 			>
 		</File>
 	</Files>
