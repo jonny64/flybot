@@ -28,15 +28,15 @@ BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
     EVT_TASKBAR_LEFT_UP(FlybotTaskBarIcon::OnLeftButtonUp)
     EVT_MENU(wxID_OPEN_DICT, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_RELOAD_DICT, FlybotTaskBarIcon::OnMenuClick)
-	EVT_MENU(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnMenuClick)
+    EVT_MENU(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_POWER, FlybotTaskBarIcon::OnMenuClick)
-	EVT_UPDATE_UI(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnUpdateUI)
-	EVT_UPDATE_UI(wxID_POWER, FlybotTaskBarIcon::OnUpdateUI)
+    EVT_UPDATE_UI(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnUpdateUI)
+    EVT_UPDATE_UI(wxID_POWER, FlybotTaskBarIcon::OnUpdateUI)
 END_EVENT_TABLE()
 
 FlybotTaskBarIcon::FlybotTaskBarIcon()
 {
-	SetupIcon();
+    SetupIcon();
 }
 
 void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
@@ -51,47 +51,47 @@ void FlybotTaskBarIcon::OnMenuAnswerDelayClick(wxCommandEvent &evt)
 
 void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
 {
-	bool newState;
-	switch (evt.GetId())
-	{
-		case wxID_USE_BALLOONS:
-			newState = !wxGetApp().Config.BalloonsEnabled();
-			wxGetApp().Config.Write(SETTING_USE_BALLOONS, newState );
-			break;
-			
-		case wxID_OPEN_DICT:
-			wxGetApp().OpenDictionary();
-			break;
-			
-		case wxID_RELOAD_DICT:
-			wxGetApp().ReloadDictionary();
-			break;
+    bool newState;
+    switch (evt.GetId())
+    {
+        case wxID_USE_BALLOONS:
+            newState = !wxGetApp().Config.BalloonsEnabled();
+            wxGetApp().Config.Write(SETTING_USE_BALLOONS, newState );
+            break;
+            
+        case wxID_OPEN_DICT:
+            wxGetApp().OpenDictionary();
+            break;
+            
+        case wxID_RELOAD_DICT:
+            wxGetApp().ReloadDictionary();
+            break;
 
-		case wxID_POWER:	
-			wxGetApp().SwitchState();
-			SetupIcon();
-			break;
+        case wxID_POWER:    
+            wxGetApp().SwitchState();
+            SetupIcon();
+            break;
 
-		default:
-			;
-	}
+        default:
+            ;
+    }
 }
 
 void FlybotTaskBarIcon::OnUpdateUI(wxUpdateUIEvent &evt)
 {
-	switch (evt.GetId())
-	{
-		case wxID_USE_BALLOONS:
-			evt.Check(wxGetApp().Config.BalloonsEnabled());
-			break;
+    switch (evt.GetId())
+    {
+        case wxID_USE_BALLOONS:
+            evt.Check(wxGetApp().Config.BalloonsEnabled());
+            break;
 
-		case wxID_POWER:
-			evt.Check(wxGetApp().GetEnabledState());
-			break;
+        case wxID_POWER:
+            evt.Check(wxGetApp().GetEnabledState());
+            break;
 
-		default:
-			;
-	}
+        default:
+            ;
+    }
 }
 
 // converts time in seconds to it string representataion (xx hrs/days/weeks/etc.)
@@ -121,7 +121,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     menu->AppendCheckItem(wxID_POWER, _("&Online"));
     menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
     
-	menu->AppendSeparator();
+    menu->AppendSeparator();
     
     // form slot timeouts submenu
     wxMenu *submenuSlot = new wxMenu;
@@ -151,13 +151,13 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
             );
         Connect(wxID_ANSWER_DELAY_BEGIN + index, 
             wxEVT_COMMAND_MENU_SELECTED, 
-			wxCommandEventHandler(FlybotTaskBarIcon::OnMenuAnswerDelayClick));
+            wxCommandEventHandler(FlybotTaskBarIcon::OnMenuAnswerDelayClick));
         index++;
     }
     submenuDelay->Check(wxID_ANSWER_DELAY_BEGIN + conf->GetSelectedAnswerDelayId(), true);
     menu->Append(wxID_ANSWER_TIMEOUT_SUB, _("Answer delay"), submenuDelay);
 
-	menu->AppendSeparator();
+    menu->AppendSeparator();
 
     menu->Append(wxID_RELOAD_DICT, _("&Reload dicttionary"));
     menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
@@ -177,7 +177,7 @@ void FlybotTaskBarIcon::SetupIcon()
     HICON hIconOffline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_OFFLINE));
     HICON hIcon = wxGetApp().GetEnabledState()? hIconOnline : hIconOffline;
 
-	wxString tooltipText =  wxString::Format(wxT("flybot %s (%s)"), APP_VERSION, APP_BUILD_DATE);
+    wxString tooltipText =  wxString::Format(wxT("flybot %s (%s)"), APP_VERSION, APP_BUILD_DATE);
     wxIcon trayIcon;
     trayIcon.SetHICON(hIcon);
     // TODO: find out why normal loading from resources doesn't work

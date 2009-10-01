@@ -55,9 +55,9 @@ public:
 
     virtual void *Entry()
     {
-		// answer delay is 100 ms. per char plus user supplied specified delay
-		int intervalMs = (int)m_answer.Length() *100 + 
-			wxGetApp().Config.GetSelectedAnswerDelay()*1000;
+        // answer delay is 100 ms. per char plus user supplied specified delay
+        int intervalMs = (int)m_answer.Length() *100 + 
+            wxGetApp().Config.GetSelectedAnswerDelay()*1000;
 
         wxThread::Sleep( intervalMs );
         FlybotAPI.SendPM(m_cid, m_answer);
@@ -73,7 +73,7 @@ wxString Session::GetVariable(const wxString& varName)
     }
     else if (wxT("HISTORY") == varName && !m_replies.empty() )
     {
-		int selectedReplyId = random( (int)m_replies.Count() );
+        int selectedReplyId = random( (int)m_replies.Count() );
         return m_replies[selectedReplyId];
     }
     
@@ -123,7 +123,7 @@ int Session::Answer(wxString& msg)
 
     // this thread will sleep for desired time interval and then send answer    
     wxThread *answerThread = new AnswerThread(answer, cid);
-	if (!cid.empty() && !answer.empty() && NULL!=answerThread)
+    if (!cid.empty() && !answer.empty() && NULL!=answerThread)
     {
         if  (wxTHREAD_NO_ERROR != answerThread->Create())
         {

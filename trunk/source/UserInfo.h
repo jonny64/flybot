@@ -12,7 +12,7 @@ public:
     UserInfo(WCHAR*);
 
     wxString operator[](const wxString&);
-	UserInfo& operator=(const UserInfo& rhs);
+    UserInfo& operator=(const UserInfo& rhs);
     bool Favourite();
 
     ~UserInfo(void);

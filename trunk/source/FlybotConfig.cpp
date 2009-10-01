@@ -1,7 +1,15 @@
 #include "stdwx.h"
 #include "wxFlybotDLL.h"
+#include <wx/stdpaths.h>
 
-FlybotConfig::FlybotConfig(void): wxConfig(wxT("flybot"))
+FlybotConfig::FlybotConfig(void):
+    wxFileConfig(
+        wxT("flybot"),
+        wxT("astro64m"), 
+        wxStandardPaths::Get().GetPluginsDir() + CONFIG_FILENAME, 
+        wxT(""), 
+        wxCONFIG_USE_LOCAL_FILE
+        )
 {
     ReadSlotTimeouts();
     ReadAnswerDelays();
@@ -17,7 +25,7 @@ bool FlybotConfig::BalloonsEnabled()
 list<int> FlybotConfig::DoReadIntList(const wxString &path)
 {
     list<int> result;
-    wxConfig *conf = &wxGetApp().Config;
+    wxFileConfig *conf = &wxGetApp().Config;
 
     // read settings
     int val = 0;
@@ -37,7 +45,7 @@ list<int> FlybotConfig::DoReadIntList(const wxString &path)
 
 void FlybotConfig::DoWriteIntList(const wxString &path, const list<int> &lst)
 {
-    wxConfig *conf = &wxGetApp().Config;
+    wxFileConfig *conf = &wxGetApp().Config;
 
     int index = 0;
     for (list<int>::const_iterator it = lst.begin(); it != lst.end(); ++it)
