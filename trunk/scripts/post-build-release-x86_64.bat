@@ -13,6 +13,8 @@ echo !define VERSION %VERSION% > flybot.nsi
 echo OutFile ..\release\${VERSION}\flybot-${VERSION}-x64.exe >> flybot.nsi
 more flybot.x86_64.src >> flybot.nsi
 
+if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
+
 echo packaging...
 if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO :NONSIS
 "%PROGRAMFILES%\NSIS\makensis" /v2 flybot.nsi
@@ -24,7 +26,6 @@ rem copy /y "..\bin\Chatbot.mo" "%botDir%"
 rem copy /y "..\Translation\Russian\flydict.ini" "%botDir%\Settings"
 rem "c:\Program Files\7-Zip\7z" a -tzip "..\release\%VERSION%\flybot-%VERSION%-x86_64.zip" %botDir%
 
-if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
 "c:\Program Files\7-Zip\7z" a -tzip "..\release\%VERSION%\Chatbot.%VERSION%.x86_64.pdb.zip" "..\bin\Chatbot.pdb"
 
 :END
