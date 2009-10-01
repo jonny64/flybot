@@ -28,7 +28,8 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
     }
     if (flags.Freq(DICTIONARY_SLOT_CHAR) > 0)
     {
-        int slotTimeout = wxGetApp().Config.GetSelectedSlotTimeout();
+        vector<int> timeouts = wxGetApp().Config.GetSlotTimeouts();
+        int slotTimeout = timeouts[wxGetApp().Config.GetSlotTimeoutId()];
         FlybotAPI.GiveSlot(m_userinfo[FLYBOT_API_CID], slotTimeout);
         
         message = wxString::Format(_("Slot was given to %s"), m_userinfo[FLYBOT_API_NICK]);
@@ -55,9 +56,9 @@ public:
 
     virtual void *Entry()
     {
+        int anserDelayMsec = 1000*wxGetApp().Config.GetAnswerDelays()[wxGetApp().Config.GetAnswerDelayId()];
         // answer delay is 100 ms. per char plus user supplied specified delay
-        int intervalMs = (int)m_answer.Length() *100 + 
-            wxGetApp().Config.GetSelectedAnswerDelay()*1000;
+        int intervalMs = (int)m_answer.Length() *100 + anserDelayMsec;
 
         wxThread::Sleep( intervalMs );
         FlybotAPI.SendPM(m_cid, m_answer);

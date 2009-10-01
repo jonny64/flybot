@@ -22,9 +22,9 @@ bool FlybotConfig::BalloonsEnabled()
     return useBalloons;
 }
 
-list<int> FlybotConfig::DoReadIntList(const wxString &path)
+vector<int> FlybotConfig::DoReadIntList(const wxString &path)
 {
-    list<int> result;
+    vector<int> result;
     wxFileConfig *conf = &wxGetApp().Config;
 
     // read settings
@@ -43,12 +43,12 @@ list<int> FlybotConfig::DoReadIntList(const wxString &path)
     return result;
 }
 
-void FlybotConfig::DoWriteIntList(const wxString &path, const list<int> &lst)
+void FlybotConfig::DoWriteIntList(const wxString &path, const vector<int> &lst)
 {
     wxFileConfig *conf = &wxGetApp().Config;
 
     int index = 0;
-    for (list<int>::const_iterator it = lst.begin(); it != lst.end(); ++it)
+    FOREACH_CONST(vector<int>, it, lst)
     {
         conf->Write(wxString::Format(wxT("%s/value%d"), path, index), *it);
         index++;
@@ -57,77 +57,58 @@ void FlybotConfig::DoWriteIntList(const wxString &path, const list<int> &lst)
 
 void FlybotConfig::ReadSlotTimeouts()
 {
-    SlotTimeouts = DoReadIntList(SETTING_SLOT_TIMEOUT);
+    m_slotTimeouts = DoReadIntList(SETTING_SLOT_TIMEOUT);
     
-    if (SlotTimeouts.empty())
+    if (m_slotTimeouts.empty())
     {
         // default slot timeouts
-        int defaults[] = {600, 3600, 7200, 86400};
+        int defaults[] = {600, 3600, 3600*5, 86400};
         for (int i = 0; i < ARRAYSIZE(defaults); i++)
         {
-            SlotTimeouts.push_back(defaults[i]);
+            m_slotTimeouts.push_back(defaults[i]);
         }
-        DoWriteIntList(SETTING_SLOT_TIMEOUT, SlotTimeouts);
+        DoWriteIntList(SETTING_SLOT_TIMEOUT, m_slotTimeouts);
     }
 }
 
 void FlybotConfig::ReadAnswerDelays()
 {
-    AnswerDelays = DoReadIntList(SETTING_ANSWER_DELAY);
+    m_answerDelays = DoReadIntList(SETTING_ANSWER_DELAY);
     
-    if (AnswerDelays.empty())
+    if (m_answerDelays.empty())
     {
         // set defaults
         int defaults[] = {0, 6, 40};
         for (int i = 0; i < ARRAYSIZE(defaults); i++)
         {
-            AnswerDelays.push_back(defaults[i]);
+            m_answerDelays.push_back(defaults[i]);
         }
-        DoWriteIntList(SETTING_ANSWER_DELAY, AnswerDelays);
+        DoWriteIntList(SETTING_ANSWER_DELAY, m_answerDelays);
     }
 }
 
-int FlybotConfig::GetSelectedSlotTimeout()
+vector<int> FlybotConfig::GetSlotTimeouts()
 {
-    list<int>::iterator it = SlotTimeouts.begin();
-    std::advance(it, GetSelectedSlotTimeoutId());
-    return *it;
+    return m_slotTimeouts;
 }
 
-int FlybotConfig::GetSelectedAnswerDelay()
+vector<int> FlybotConfig::GetAnswerDelays()
 {
-    list<int>::iterator it = AnswerDelays.begin();
-    std::advance(it, GetSelectedAnswerDelayId());
-    return *it;
+    return m_answerDelays;
 }
 
-int FlybotConfig::GetSelectedAnswerDelayId()
+int FlybotConfig::GetAnswerDelayId()
 {
-    int selectedAnswerDelayId = 0;
-    Read(SETTING_ANSWER_DELAY, &selectedAnswerDelayId );
-    return selectedAnswerDelayId;
+    int answerDelayId = 0;
+    Read(SETTING_ANSWER_DELAY, &answerDelayId );
+    return answerDelayId;
 }
 
-void SetSelectedAnswerDelayId(int id)
+int FlybotConfig::GetSlotTimeoutId()
 {
-    wxGetApp().Config.Write(SETTING_ANSWER_DELAY, id);
-}
-
-int FlybotConfig::GetSelectedSlotTimeoutId()
-{
-    int selectedTimeoutId = 0;
-    Read(SETTING_SLOT_TIMEOUT, &selectedTimeoutId);
-    return selectedTimeoutId;
-}
-
-void FlybotConfig::SetSelectedSlotTimeoutId(int id)
-{
-    Write(SETTING_SLOT_TIMEOUT, id);
-}
-
-void FlybotConfig::SetSelectedAnswerDelayId(int id)
-{
-    Write(SETTING_ANSWER_DELAY, id);
+    int timeoutId = 0;
+    Read(SETTING_SLOT_TIMEOUT, &timeoutId);
+    return timeoutId;
 }
 
 FlybotConfig::~FlybotConfig(void)
