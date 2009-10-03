@@ -539,6 +539,26 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="OfflinePMDialog"
+				>
+				<File
+					RelativePath=".\Dialogs\SendPMDialog.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Dialogs\SendPMDialog.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Dialogs\SendPMDialogBase.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Dialogs\SendPMDialogBase.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header files"

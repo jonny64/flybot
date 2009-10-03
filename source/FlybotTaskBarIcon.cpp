@@ -15,6 +15,7 @@ enum
 {
     wxID_OPEN_DICT = 10001,
     wxID_RELOAD_DICT,
+    wxID_SEND_OFFLINE_PM,
     wxID_SLOT_TIMEOUT_SUB,
     wxID_ANSWER_TIMEOUT_SUB,
     wxID_POWER,
@@ -30,6 +31,7 @@ BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
     EVT_MENU(wxID_RELOAD_DICT, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_POWER, FlybotTaskBarIcon::OnMenuClick)
+    EVT_MENU(wxID_SEND_OFFLINE_PM, FlybotTaskBarIcon::OnMenuClick)
     EVT_UPDATE_UI(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnUpdateUI)
     EVT_UPDATE_UI(wxID_POWER, FlybotTaskBarIcon::OnUpdateUI)
 END_EVENT_TABLE()
@@ -37,6 +39,12 @@ END_EVENT_TABLE()
 FlybotTaskBarIcon::FlybotTaskBarIcon()
 {
     SetupIcon();
+    m_sendDlg = new SendPMDialog((wxWindow*)this);
+}
+
+FlybotTaskBarIcon::~FlybotTaskBarIcon()
+{
+    m_sendDlg->Destroy();
 }
 
 void FlybotTaskBarIcon::OnMenuSlotTimeoutClick(wxCommandEvent &evt)
@@ -65,6 +73,10 @@ void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
             
         case wxID_RELOAD_DICT:
             wxGetApp().ReloadDictionary();
+            break;
+
+        case wxID_SEND_OFFLINE_PM:
+            m_sendDlg->Show();
             break;
 
         case wxID_POWER:    
@@ -121,6 +133,10 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     menu->AppendCheckItem(wxID_POWER, _("&Online"));
     menu->AppendCheckItem(wxID_USE_BALLOONS, _("&Show balloons"));
     
+    menu->AppendSeparator();
+    
+    menu->Append(wxID_SEND_OFFLINE_PM, _("&Send offline PM"));
+
     menu->AppendSeparator();
     
     // form slot timeouts submenu
