@@ -2,9 +2,12 @@
 #include "stdwx.h"
 #include <shellapi.h>
 #include "FlybotConfig.h"
+#include "Dialogs/SendPMDialog.h"
 
 class FlybotTaskBarIcon: public wxTaskBarIcon
 {
+    SendPMDialog *m_sendDlg;
+
     void OnUpdateUI(wxUpdateUIEvent &evt);
     void OnMenuClick(wxCommandEvent &evt);
 
@@ -17,6 +20,7 @@ public:
 #else
     FlybotTaskBarIcon();
 #endif
+    ~FlybotTaskBarIcon();
 
     bool ShowBalloon(const wxString&, const wxString&, int icon = NIIF_INFO, unsigned int timeout = 4);
     void OnLeftButtonUp(wxTaskBarIconEvent&);
