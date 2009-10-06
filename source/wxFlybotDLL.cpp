@@ -12,6 +12,7 @@
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
 wxCriticalSection gSession;
+wxCriticalSection gOfflinePM;
 
 bool wxFlybotDLL::GetEnabledState()
 {
@@ -121,6 +122,15 @@ int wxFlybotDLL::OnExit()
     return 0;
 }
 
-wxFlybotDLL::~wxFlybotDLL()
+void wxFlybotDLL::AddDelayedPM(const wxString& addr, const wxString& text)
 {
+    wxCriticalSectionLocker locker(gOfflinePM);
+    m_text = text;
+    m_addr = addr;
+}
+
+void wxFlybotDLL::TrySendDelayedPM(UserInfo& user)
+{
+    wxCriticalSectionLocker locker(gOfflinePM);
+    // TODO
 }

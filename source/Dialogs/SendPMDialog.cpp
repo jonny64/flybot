@@ -1,5 +1,8 @@
 #include "stdwx.h"
 #include "SendPMDialog.h"
+#include "..\wxFlybotDLL.h"
+
+DECLARE_APP(wxFlybotDLL)
 
 SendPMDialog::SendPMDialog( wxWindow* parent )
 :
@@ -25,5 +28,5 @@ void SendPMDialog::OnTextComboNick( wxCommandEvent& WXUNUSED(event) )
 
 void SendPMDialog::OnSendClick( wxCommandEvent& WXUNUSED(event) )
 {
-	// TODO: Implement OnSendClick
+	wxGetApp().AddDelayedPM(m_comboNick->GetValue(), m_PMtext->GetValue());
 }

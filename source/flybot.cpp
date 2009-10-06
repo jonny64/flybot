@@ -55,6 +55,13 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
                 wxGetApp().HandlePM(userinfo, msg);
             }
             break;
+
+        case RECV_UPDATE:  // user updated his data or new user connected to hub
+            if (FlybotAPI.QueryUserinfo(objid, &userinfo))
+            {
+                wxGetApp().TrySendDelayedPM(userinfo);
+            }
+            break;
         default:
             break;
     }
