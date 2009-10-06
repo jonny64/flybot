@@ -15,12 +15,17 @@ class wxFlybotDLL: public wxApp
     SessionMap m_sessions;
     bool m_online; // bot status (active/inactive)
 
+    wxString m_text; // offline pm text
+    wxString m_addr; // addressier nick
+
     void SelectLanguage(int lang);
 public:
     
     Dictionary Dict;
     FlybotConfig Config;
 
+    void AddDelayedPM(const wxString&, const wxString&);
+    void TrySendDelayedPM(UserInfo& user);
     void SwitchState();
     bool GetEnabledState();
     bool OnInit();
@@ -28,7 +33,6 @@ public:
     void OpenDictionary();
     void HandlePM(UserInfo& userinfo, wxString& msg);
     int OnExit();
-    ~wxFlybotDLL();
 };
 
 DECLARE_APP(wxFlybotDLL)
