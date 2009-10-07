@@ -6,6 +6,7 @@
 Для сборки релиз конфигурации требуются
 
   * [http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=8100 Дистрибутив] subversion от tigris.org
+
   * [http://nsis.sourceforge.net/Download NSIS]
 
   * [http://www.poedit.net/download.php poEdit] - могут возникнуть зависания клиента, если забыть обновить файл локализации после определенного редактирования исходных текстов.
