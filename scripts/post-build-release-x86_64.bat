@@ -1,19 +1,21 @@
 @echo off
 set PATH=..\tools;%PATH%
-call "..\scripts\update-revision.bat"
-if errorlevel 1 GOTO :END
+rem call "..\scripts\update-revision.bat"
+rem if errorlevel 1 GOTO :END
 
-cd "..\setup"
-SubWCRev.exe ..\ verpatch.src verpatch.bat
+cd "..\scripts"
 set platformName = %1
-call verpatch.bat platformName
+call version-patch.bat platformName
 
 echo generating packaging script...
+cd "..\setup"
+@echo on
 echo !define VERSION %VERSION% > flybot.nsi
+echo BrandingText %VERSION% >> flybot.nsi
 echo OutFile ..\release\${VERSION}\flybot-${VERSION}-x64.exe >> flybot.nsi
 more flybot.x86_64.src >> flybot.nsi
-
 if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
+
 
 echo packaging...
 if not exist "%PROGRAMFILES%\NSIS\makensis.exe" GOTO :NONSIS
