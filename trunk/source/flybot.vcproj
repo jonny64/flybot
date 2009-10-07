@@ -639,10 +639,6 @@
 				RelativePath="..\setup\line.bmp"
 				>
 			</File>
-			<File
-				RelativePath="..\setup\verpatch.src"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Translation"
@@ -684,6 +680,14 @@
 			Name="Scripts"
 			>
 			<File
+				RelativePath="..\scripts\bot-version.template"
+				>
+			</File>
+			<File
+				RelativePath="..\scripts\get-version-string.bat"
+				>
+			</File>
+			<File
 				RelativePath="..\scripts\post-build-release-x86_64.bat"
 				>
 			</File>
@@ -697,6 +701,10 @@
 			</File>
 			<File
 				RelativePath="..\scripts\update-revision.bat"
+				>
+			</File>
+			<File
+				RelativePath="..\scripts\version-patch.bat"
 				>
 			</File>
 			<File

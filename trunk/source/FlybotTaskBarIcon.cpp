@@ -179,7 +179,7 @@ void FlybotTaskBarIcon::SetupIcon()
     HICON hIconOffline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_OFFLINE));
     HICON hIcon = wxGetApp().GetEnabledState()? hIconOnline : hIconOffline;
 
-    wxString tooltipText =  wxString::Format(wxT("flybot %s (%s)"), APP_VERSION, APP_BUILD_DATE);
+    wxString tooltipText =  wxString::Format(wxT("flybot %s (build on %s)"), wxT(APP_VERSION), wxT(APP_BUILD_DATE));
     wxIcon trayIcon;
     trayIcon.SetHICON(hIcon);
     // TODO: find out why normal loading from resources doesn't work
