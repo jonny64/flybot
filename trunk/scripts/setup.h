@@ -154,7 +154,7 @@
 //
 // Recommended setting: 1, it is compiled into a separate library so there
 //                         is no overhead if you don't use it
-#define wxUSE_DEBUGREPORT 1
+#define wxUSE_DEBUGREPORT 0
 
 // ----------------------------------------------------------------------------
 // Unicode support
@@ -230,7 +230,7 @@
 // Default is 1
 //
 // Recommended setting: 1 (can be set to 0 if you don't use the cmd line)
-#define wxUSE_CMDLINE_PARSER 1
+#define wxUSE_CMDLINE_PARSER 0
 
 // Support for multithreaded applications: if 1, compile in thread classes
 // (thread.h) and make the library a bit more thread safe. Although thread
@@ -418,14 +418,14 @@
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_TIMER         1
+#define wxUSE_TIMER         0
 
-// Use wxStopWatch clas.
+// Use wxStopWatch class.
 //
 // Default is 1
 //
 // Recommended setting: 1 (needed by wxSocket)
-#define wxUSE_STOPWATCH     1
+#define wxUSE_STOPWATCH     0
 
 // Setting wxUSE_CONFIG to 1 enables the use of wxConfig and related classes
 // which allow the application to store its settings in the persistent
@@ -470,7 +470,7 @@
 #define wxUSE_DYNLIB_CLASS    1
 
 // experimental, don't use for now
-#define wxUSE_DYNAMIC_LOADER  1
+#define wxUSE_DYNAMIC_LOADER  0
 
 // Set to 1 to use socket classes
 #define wxUSE_SOCKETS       0
@@ -541,9 +541,9 @@
 #define wxUSE_PROTOCOL 0
 
 // The settings for the individual URL schemes
-#define wxUSE_PROTOCOL_FILE 1
-#define wxUSE_PROTOCOL_FTP 1
-#define wxUSE_PROTOCOL_HTTP 1
+#define wxUSE_PROTOCOL_FILE 0
+#define wxUSE_PROTOCOL_FTP 0
+#define wxUSE_PROTOCOL_HTTP 0
 
 // Define this to use wxURL class.
 #define wxUSE_URL 0
@@ -565,7 +565,7 @@
 //
 // Recommended setting: 1 unless you want to reduce the library size as much as
 // possible in which case setting this to 0 can gain up to 100KB.
-#define wxUSE_VARIANT 1
+#define wxUSE_VARIANT 0
 
 // Support for regular expression matching via wxRegEx class: enable this to
 // use POSIX regular expressions in your code. You need to compile regex
@@ -692,10 +692,10 @@
 #define wxUSE_CALENDARCTRL  0   // wxCalendarCtrl
 #define wxUSE_CHECKBOX      1   // wxCheckBox
 #define wxUSE_CHECKLISTBOX  0   // wxCheckListBox (requires wxUSE_OWNER_DRAWN)
-#define wxUSE_CHOICE        1   // wxChoice
+#define wxUSE_CHOICE        0   // wxChoice
 #define wxUSE_COLLPANE      0   // wxCollapsiblePane
 #define wxUSE_COLOURPICKERCTRL 0    // wxColourPickerCtrl
-#define wxUSE_COMBOBOX      1   // wxComboBox
+#define wxUSE_COMBOBOX      0   // wxComboBox
 #define wxUSE_DATAVIEWCTRL  0   // wxDataViewCtrl
 #define wxUSE_DATEPICKCTRL  0   // wxDatePickerCtrl
 #define wxUSE_DIRPICKERCTRL 0   // wxDirPickerCtrl
@@ -705,18 +705,18 @@
 #define wxUSE_FONTPICKERCTRL 0  // wxFontPickerCtrl
 #define wxUSE_GAUGE         0   // wxGauge
 #define wxUSE_HEADERCTRL    0   // wxHeaderCtrl
-#define wxUSE_HYPERLINKCTRL 1   // wxHyperlinkCtrl
+#define wxUSE_HYPERLINKCTRL 0   // wxHyperlinkCtrl
 #define wxUSE_LISTBOX       0   // wxListBox
 #define wxUSE_LISTCTRL      0   // wxListCtrl
 #define wxUSE_RADIOBOX      0   // wxRadioBox
 #define wxUSE_RADIOBTN      1   // wxRadioButton
-#define wxUSE_SCROLLBAR     1   // wxScrollBar
+#define wxUSE_SCROLLBAR     0   // wxScrollBar
 #define wxUSE_SEARCHCTRL    0   // wxSearchCtrl
 #define wxUSE_SLIDER        0   // wxSlider
 #define wxUSE_SPINBTN       0   // wxSpinButton
 #define wxUSE_SPINCTRL      0   // wxSpinCtrl
-#define wxUSE_STATBOX       1   // wxStaticBox
-#define wxUSE_STATLINE      1   // wxStaticLine
+#define wxUSE_STATBOX       0   // wxStaticBox
+#define wxUSE_STATLINE      0   // wxStaticLine
 #define wxUSE_STATTEXT      1   // wxStaticText
 #define wxUSE_STATBMP       0   // wxStaticBitmap
 #define wxUSE_TEXTCTRL      1   // wxTextCtrl
@@ -738,7 +738,7 @@
 // Default is 1 for the platforms where native status bar is supported.
 //
 // Recommended setting: 1 (there is no advantage in using the generic one)
-#define wxUSE_NATIVE_STATUSBAR        1
+#define wxUSE_NATIVE_STATUSBAR        0
 
 // wxToolBar related settings: if wxUSE_TOOLBAR is 0, don't compile any toolbar
 // classes at all. Otherwise, use the native toolbar class unless
@@ -823,7 +823,7 @@
 //
 // Recommended setting: 1 but can be safely set to 0 except for wxUniv where it
 //                      it used by wxComboBox
-#define wxUSE_COMBOCTRL 1
+#define wxUSE_COMBOCTRL 0
 
 // wxOwnerDrawnComboBox is a custom combobox allowing to paint the combobox
 // items.
@@ -855,10 +855,10 @@
 // ----------------------------------------------------------------------------
 
 // wxAcceleratorTable/Entry classes and support for them in wxMenu(Bar)
-#define wxUSE_ACCEL 1
+#define wxUSE_ACCEL 0
 
 // Hotkey support (currently Windows only)
-#define wxUSE_HOTKEY 1
+#define wxUSE_HOTKEY 0
 
 // Use wxCaret: a class implementing a "cursor" in a text control (called caret
 // under Windows).
@@ -866,7 +866,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 (can be safely set to 0, not used by the library)
-#define wxUSE_CARET         1
+#define wxUSE_CARET         0
 
 // Use wxDisplay class: it allows enumerating all displays on a system and
 // their geometries as well as finding the display on which the given point or
@@ -878,7 +878,7 @@
 #define wxUSE_DISPLAY       0
 
 // Miscellaneous geometry code: needed for Canvas library
-#define wxUSE_GEOMETRY            1
+#define wxUSE_GEOMETRY            0
 
 // Use wxImageList. This class is needed by wxNotebook, wxTreeCtrl and
 // wxListCtrl.
@@ -929,7 +929,7 @@
 #define wxUSE_TOOLTIPS      0
 
 // wxValidator class and related methods
-#define wxUSE_VALIDATORS 1
+#define wxUSE_VALIDATORS    1
 
 // Use reference counted ID management: this means that wxWidgets will track
 // the automatically allocated ids (those used when you use wxID_ANY when
@@ -986,7 +986,7 @@
 // Default is 1
 //
 // Recommended setting: 1 (used in many places in the library itself)
-#define wxUSE_FILEDLG       1
+#define wxUSE_FILEDLG       0
 
 // Use find/replace dialogs.
 //
@@ -1194,7 +1194,7 @@
 #define wxUSE_POSTSCRIPT  0
 
 // Set to 1 to use font metric files in GetTextExtent
-#define wxUSE_AFM_FOR_POSTSCRIPT 1
+#define wxUSE_AFM_FOR_POSTSCRIPT 0
 
 // Set to 1 to compile in support for wxSVGFileDC, a wxDC subclass which allows
 // to create files in SVG (Scalable Vector Graphics) format.
