@@ -1,2 +1,2 @@
-rem no spaces are allowed: use '-' instead
-set VERSION="0.30.$WCREV$.0-beta-4"
+rem no spaces are allowed
+set VERSION="0.30.$WCREV$-beta4"

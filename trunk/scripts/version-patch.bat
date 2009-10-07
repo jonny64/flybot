@@ -7,5 +7,5 @@ set COMPINFO=/s company "astro64m" /s (c) "(c) copyleft 2008-2009"
 
 echo version string: %VERSION%
 echo updating version information...
-verpatch.exe /va ..\bin\Chatbot.dll %VERSION% %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
+verpatch.exe /va ..\bin\Chatbot.dll %VERSION%.0 %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
 echo .. complete

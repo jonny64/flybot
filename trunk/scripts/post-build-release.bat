@@ -4,13 +4,14 @@ call "..\scripts\update-revision.bat"
 if errorlevel 1 GOTO :END
 
 cd "..\scripts"
-set platformName = %1
+set platformName=%1
 call version-patch.bat platformName
 
 echo generating packaging script...
 cd "..\setup"
 echo !define VERSION %VERSION% > flybot.nsi
-echo BrandingText %VERSION% > flybot.nsi
+set brandingText="%VERSION:"=% %platformName%"
+echo BrandingText %brandingText% >> flybot.nsi
 echo OutFile ..\release\${VERSION}\flybot-${VERSION}.exe >> flybot.nsi
 more flybot.src >> flybot.nsi
 if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
