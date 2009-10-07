@@ -1,0 +1,2 @@
+rem no spaces are allowed
+set VERSION="0.30.$WCREV$-beta4"
