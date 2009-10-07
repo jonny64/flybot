@@ -5,6 +5,7 @@
 
 Для сборки релиз конфигурации требуются
 
+  * [http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=8100 Дистрибутив] subversion от tigris.org
   * [http://nsis.sourceforge.net/Download NSIS]
 
   * [http://www.poedit.net/download.php poEdit] - могут возникнуть зависания клиента, если забыть обновить файл локализации после определенного редактирования исходных текстов.
@@ -13,11 +14,21 @@
 
 Код [http://flybot.googlecode.com/svn/trunk здесь]
 
-  *  Скачайте и соберите библиотеку (статически, конфигурации Unicode Release и Debug) [http://www.wxwidgets.org/downloads/ wxWidgets 2.8.10]. Должно быть достаточно собрать base, core, adv, wxregex. 
+  *  Скачайте и соберите wxWidgets (статически, конфигурации Release и Debug)
+{{{
+    http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_0
+}}}
+
+   Должно быть достаточно собрать base, core, adv, wxregex.
+
+   Если вы собираетесь собрать 64-битную версию, накатите 
+{{{
+    scripts\tag-2.9.0-multiplatform-support.patch
+}}}
 
    Подсказка: ищите документацию в \docs\msw, проект в \build\msw
 
-  *  Чтобы получить бинарник вменяемого размера переместите содержимое include/msw/setup.h в папку wxWidgets.
+  *  Чтобы получить бинарник вменяемого размера переместите содержимое scripts\setup.h в папку wxWidgets\include\msw\.
 
   * Сделайте ссылку (mklink /? или Alt-F6 в Far'е) на include и полученную папку lib в папку solution'а. 
 
