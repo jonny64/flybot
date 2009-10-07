@@ -33,7 +33,7 @@ UserInfo::UserInfo(void)
 
 wxString UserInfo::operator[](const wxString& key)
 {
-    if (m_vars[key])
+    if (NULL != m_vars[key])
     {
         return m_vars[key];
     }

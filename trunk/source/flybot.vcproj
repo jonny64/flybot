@@ -90,7 +90,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/EXPORT:init"
-				AdditionalDependencies="wxmsw28u_adv.lib wxmsw28u_core.lib wxbase28u.lib wxregexu.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="wxmsw29u_adv.lib wxmsw29u_core.lib wxbase29u.lib wxregexu.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -201,7 +201,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28u_adv.lib wxmsw28u_core.lib wxbase28u.lib wxregexu.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="wxmsw29u_adv.lib wxmsw29u_core.lib wxbase29u.lib wxregexu.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -308,7 +308,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/EXPORT:init"
-				AdditionalDependencies="wxmsw28ud_adv.lib wxmsw28ud_core.lib wxbase28ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="wxmsw29ud_adv.lib wxmsw29ud_core.lib wxbase29ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -411,7 +411,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28ud_adv.lib wxmsw28ud_core.lib wxbase28ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="wxmsw29ud_adv.lib wxmsw29ud_core.lib wxbase29ud.lib wxregexud.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(SolutionDir)bin\Chatbot.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -697,6 +697,10 @@
 			</File>
 			<File
 				RelativePath="..\scripts\setup.h"
+				>
+			</File>
+			<File
+				RelativePath="..\scripts\tag-2.9.0-multiplatform-support.patch"
 				>
 			</File>
 			<File
