@@ -51,7 +51,7 @@ void wxLogBalloon::DoLog(wxLogLevel level, const wxString& szString, time_t t)
     switch ( level ) 
     {
     case wxLOG_FatalError:
-        DoLogString(_("Fatal error: ")) + szString + _("Program aborted."), t, wxICON_ERROR);
+        DoLogString(_("Fatal error: ") + szString + _("Program aborted."), t, wxICON_ERROR);
         Flush();
         abort();
         break;
