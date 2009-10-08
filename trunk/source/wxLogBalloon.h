@@ -4,6 +4,7 @@
 
 const wxChar BALLOON_LOGGER_SEPARATOR_CHAR = wxChar('#');
 const wxChar BALLOON_LOGGER_ESCAPE_CHAR = wxChar('\\');
+const int LOG_BALLOON_TIMEOUT_MS = 4000;
 
 #define DECLARE_BALLOON_LOG_FUNCTION(level)                        \
 void wxLog##level(const wxString &title, const wxString &message)
@@ -22,6 +23,6 @@ public:
     ~wxLogBalloon(void);
     
 protected:
-    void DoLogString(const wxChar *, time_t, int icon  = NIIF_INFO);
-    virtual void DoLog(wxLogLevel level, const wxChar *szString, time_t t);
+    void DoLogString(const wxString&, time_t, int icon  = wxICON_INFORMATION);
+    virtual void DoLog(wxLogLevel level, const wxString& szString, time_t t);
 };
