@@ -1,13 +1,14 @@
 @echo off
 set PATH=..\tools;%PATH%
-rem call "..\scripts\update-revision.bat"
-rem if errorlevel 1 GOTO :END
+call "..\scripts\update-revision.bat"
+if errorlevel 1 GOTO :END
 
 cd "..\scripts"
 set platformName=%1
 call version-patch.bat platformName
 
 echo generating packaging script...
+call get-version-string.bat
 cd "..\setup"
 echo !define VERSION %VERSION% > flybot.nsi
 set brandingText="%VERSION:"=% %platformName%"

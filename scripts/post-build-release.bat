@@ -8,6 +8,7 @@ set platformName=%1
 call version-patch.bat platformName
 
 echo generating packaging script...
+call get-version-string.bat
 cd "..\setup"
 echo !define VERSION %VERSION% > flybot.nsi
 set brandingText="%VERSION:"=% %platformName%"

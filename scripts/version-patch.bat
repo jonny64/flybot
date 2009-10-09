@@ -1,11 +1,13 @@
 set PATH=..\tools;%PATH%
 
-call get-version-string.bat
-set BUILDINFO=/s pb "$WCMODS?MODIFIED:Original$"
 set FILEDESCR=/s desc "chatbot for FlylinkDC++ client"
 set COMPINFO=/s company "astro64m" /s (c) "(c) copyleft 2008-2009"
 
-echo version string: %VERSION%
+set REVISION=
+subwcrev .. | gawk "NR==2 { print $5 }" > revision.txt
+for /f "usebackq delims=" %%g in ("revision.txt") do set REVISION=%%g
+set PRODUCTVERSION=/pv %REVISION%.0
+
 echo updating version information...
-verpatch.exe /va ..\bin\Chatbot.dll %VERSION%.0 %FILEDESCR% %COMPINFO% %PRODINFO% %BUILDINFO%
+verpatch.exe ..\bin\Chatbot.dll %REVISION%.0 %PRODUCTVERSION% %FILEDESCR% %COMPINFO%
 echo .. complete
