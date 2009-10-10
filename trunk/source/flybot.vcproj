@@ -628,11 +628,11 @@
 			Name="Install"
 			>
 			<File
-				RelativePath="..\setup\flybot.src"
+				RelativePath="..\setup\flybot.nsi.template"
 				>
 			</File>
 			<File
-				RelativePath="..\setup\flybot.x86_64.src"
+				RelativePath="..\setup\flybot.x86_64.nsi.template"
 				>
 			</File>
 			<File
@@ -679,10 +679,6 @@
 		<Filter
 			Name="Scripts"
 			>
-			<File
-				RelativePath="..\scripts\bot-version.template"
-				>
-			</File>
 			<File
 				RelativePath="..\scripts\get-version-string.bat"
 				>

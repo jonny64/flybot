@@ -11,10 +11,11 @@ echo generating packaging script...
 call get-version-string.bat
 cd "..\setup"
 echo !define VERSION %VERSION% > flybot.nsi
+rem %VERSION:"=% used to unquote var VERSION
 set brandingText="%VERSION:"=% %platformName%"
 echo BrandingText %brandingText% >> flybot.nsi
 echo OutFile ..\release\${VERSION}\flybot-${VERSION}.exe >> flybot.nsi
-more flybot.src >> flybot.nsi
+more flybot.nsi.template >> flybot.nsi
 if not exist "..\release\%VERSION%" mkdir "..\release\%VERSION%"
 
 echo packaging...
