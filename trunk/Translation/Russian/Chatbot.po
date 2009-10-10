@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flybot 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-08 15:12+0300\n"
+"POT-Creation-Date: 2009-10-10 21:36+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: astro64m <astro64m@gmail.com>\n"
 "Language-Team:  <astro64m@gmail.com>\n"
@@ -14,16 +14,20 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: e:\\Code\\flybot-2.9.0\\source\n"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:43
-msgid "too few parameters"
-msgstr "неполный шаблон"
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:47
+msgid "invalid line format.."
+msgstr "ошибка в шаблоне.."
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:51
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:59
 #, c-format
 msgid "priority should be in range 1..%d"
 msgstr "приоритет должен быть в диапазоне 1..%d"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:59
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:76
+msgid "missing template or answer"
+msgstr "пропущена фраза-триггер или  ответ"
+
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:87
 #, c-format
 msgid ""
 "invalid regular expression:\n"
@@ -32,57 +36,57 @@ msgstr ""
 "синтаксис регулярного выражения:\n"
 "%s"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:99
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:124
 #, c-format
 msgid "Dictionary, line %d:"
 msgstr "Словарь, строка %d:"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "min."
 msgstr "мин."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "hr."
 msgstr "ч."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "day"
 msgstr "дн."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "wk."
 msgstr "нед."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:104
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:153
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:103
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:152
 msgid "sec."
 msgstr "сек."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:122
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:121
 msgid "&Online"
 msgstr "Активен"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:123
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:122
 msgid "&Show balloons"
 msgstr "Показывать уведомления"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:143
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:142
 msgid "Slot timeout"
 msgstr "Срок действия слота"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:161
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:160
 msgid "Answer delay"
 msgstr "Задержка преред ответом"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:165
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:164
 msgid "&Reload dicttionary"
 msgstr "Перегрузить словарь"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:166
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:165
 msgid "&Open dictionary"
 msgstr "Открыть словарь"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:189
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:188
 msgid "Could not set icon."
 msgstr "Невозможно добавить иконку."
 
@@ -122,6 +126,9 @@ msgstr "Критическая ошибка:"
 msgid "Program aborted."
 msgstr "Программа завершила работу."
 
+#, fuzzy
+#~ msgid "maybe too few parameters?"
+#~ msgstr "неполный шаблон"
 #~ msgid "Information"
 #~ msgstr "Информация"
 #~ msgid "Warning"

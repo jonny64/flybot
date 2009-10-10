@@ -44,8 +44,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
     if (!reLine.Matches(line))
     { 
         *errorMessage = wxString::Format(
-            _("invalid line format..") + 
-            _("maybe too few parameters?")
+            _("invalid line format..")
             );
         return false;
     }
@@ -74,10 +73,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
     wxRegEx reSplit(r);
     if (!reSplit.Matches(templateAndAnwer))
     { 
-        *errorMessage = wxString::Format(
-            _("invalid line format..") +
-            _("did you forget to split regexp and answer?")
-            );
+        *errorMessage = wxString::Format(_("missing template or answer"));
         return false;
     }
     wxASSERT(reSplit.GetMatchCount() == 3);
@@ -124,8 +120,10 @@ int Dictionary::Load()
         wxString errorMessage = wxT("");
         if (!ProcessLine(line, &errorMessage))
         {
-            wxLogWarning(wxString::Format(_("Dictionary, line %d:"), row), 
-                errorMessage);
+            wxLogWarning(
+                wxString::Format(_("Dictionary, line %d:"), row), 
+                wxString::Format(wxT("%s\n%s"), line, errorMessage)
+                );
             errorsCount++;
         }
     }

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flybot 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-08 15:13+0300\n"
+"POT-Creation-Date: 2009-10-10 21:39+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: astro64m <astro64m@gmail.com>\n"
 "Language-Team:  <astro64m@gmail.com>\n"
@@ -14,16 +14,20 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: e:\\Code\\flybot-2.9.0\\source\n"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:43
-msgid "too few parameters"
-msgstr "мала букаф"
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:47
+msgid "invalid line format.."
+msgstr "афтар жжет"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:51
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:59
 #, c-format
 msgid "priority should be in range 1..%d"
 msgstr "вортербух приорити маст би 1..%d"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:59
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:76
+msgid "missing template or answer"
+msgstr "гиде атвет?"
+
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:87
 #, c-format
 msgid ""
 "invalid regular expression:\n"
@@ -32,57 +36,57 @@ msgstr ""
 "плахой ригэксп:\n"
 "%s"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:99
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:124
 #, c-format
 msgid "Dictionary, line %d:"
 msgstr "Вортербух, лайн %d:"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "min."
 msgstr "мин."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "hr."
 msgstr "ч."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "day"
 msgstr "дн."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:101
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "wk."
 msgstr "нд."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:104
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:153
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:103
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:152
 msgid "sec."
 msgstr "с."
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:122
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:121
 msgid "&Online"
 msgstr "Включино"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:123
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:122
 msgid "&Show balloons"
 msgstr "Пузыри"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:143
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:142
 msgid "Slot timeout"
 msgstr "Дать соучаснегу слот на"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:161
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:160
 msgid "Answer delay"
 msgstr "Атвичать через"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:165
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:164
 msgid "&Reload dicttionary"
 msgstr "Грузить вортербух"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:166
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:165
 msgid "&Open dictionary"
 msgstr "Паказать вортербух"
 
-#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:189
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:188
 msgid "Could not set icon."
 msgstr "Аблом с ыконкой."
 
@@ -122,6 +126,8 @@ msgstr "Полный писец"
 msgid "Program aborted."
 msgstr "Фсе! Кина небудет!"
 
+#~ msgid "too few parameters"
+#~ msgstr "мала букаф"
 #~ msgid "Information"
 #~ msgstr "Падсказка"
 #~ msgid "Warning"
