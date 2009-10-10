@@ -34,40 +34,68 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
         return true;
     }
 
-    // split string by / char.
-    wxArrayString row = wxSplit(line, DICTIONARY_SEPARATION_CHAR, DICTIONARY_ESCAPE_CHAR);
-
-    const int MIN_PARAMS_PER_LINE = 3;
-    if (row.Count() < MIN_PARAMS_PER_LINE)
-    {
-        *errorMessage = _("too few parameters");
+    // check if line is like 'priority/match_and_answer/optional_flags'
+    wxString r = wxString::Format(
+        "^(\\d{1,})%c(.*?)(:?%c([cis]+))?$", 
+        DICTIONARY_SEPARATION_CHAR, 
+        DICTIONARY_SEPARATION_CHAR
+        );
+    wxRegEx reLine(r, wxRE_ADVANCED );
+    if (!reLine.Matches(line))
+    { 
+        *errorMessage = wxString::Format(
+            _("invalid line format..") + 
+            _("maybe too few parameters?")
+            );
         return false;
     }
+    wxASSERT(reLine.GetMatchCount() >= 3);
     
-    // construct phrase
+    // construct phrase: initialize priority and flags
     Phrase phrase = {0};
-    if (!ToPriority(row[0], &phrase.Priority))
+    wxString priorityString = reLine.GetMatch(line, 1);
+    if (!ToPriority(priorityString, &phrase.Priority))
     {
-        *errorMessage = wxString::Format(_("priority should be in range 1..%d"), DICTIONARY_MAX_PRIORITY);
+        *errorMessage = wxString::Format(
+            _("priority should be in range 1..%d"), 
+            DICTIONARY_MAX_PRIORITY
+            );
         return false;
     }
+    phrase.Flags = reLine.GetMatch(line, 4);
+
+    // asssume that anwer does not contain /
+    wxString templateAndAnwer = reLine.GetMatch(line, 2);
+    r = wxString::Format(
+        "(.+)%c([^%c]*)",
+        DICTIONARY_SEPARATION_CHAR, 
+        DICTIONARY_SEPARATION_CHAR
+    );
+    wxRegEx reSplit(r);
+    if (!reSplit.Matches(templateAndAnwer))
+    { 
+        *errorMessage = wxString::Format(
+            _("invalid line format..") +
+            _("did you forget to split regexp and answer?")
+            );
+        return false;
+    }
+    wxASSERT(reSplit.GetMatchCount() == 3);
 
     // TODO: embed compiled regexp into phrase struct (this may result in faster phrase match)
-    phrase.MatchExpr = row[1];
+    // fill phrase regexp and answer fields
+    phrase.MatchExpr = reSplit.GetMatch(templateAndAnwer, 1);
     if (!wxRegEx(phrase.MatchExpr).IsValid())
     {
-        *errorMessage = wxString::Format(_("invalid regular expression:\n%s"), phrase.MatchExpr);
+        *errorMessage = wxString::Format(
+            _("invalid regular expression:\n%s"), 
+            phrase.MatchExpr
+            );
         return false;
     }
-    phrase.Answer = row[2];
-    if (row.Count() > MIN_PARAMS_PER_LINE)
-    {
-        phrase.Flags = row[3];
-    }
-
-    // add newly constructed phrase to collection
-    phrase.MatchExpr.empty()? m_emptyPhrases.Add(phrase) : m_phrases.Add(phrase);
+    phrase.Answer = reSplit.GetMatch(templateAndAnwer, 2);
     
+    phrase.MatchExpr.empty()? m_emptyPhrases.Add(phrase) : m_phrases.Add(phrase);
     return true;
 }
 
@@ -141,7 +169,7 @@ Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedP
     for (unsigned int i = 0; i < m_phrases.Count(); i++)
     {
         p = m_phrases.Item(i);
-        wxRegEx phraseRegEx(p.MatchExpr);
+        wxRegEx phraseRegEx(p.MatchExpr, wxRE_ADVANCED);
         if (phraseRegEx.Matches(msg))
         {
             candidates.Add(p);
