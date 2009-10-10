@@ -85,7 +85,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
     // TODO: embed compiled regexp into phrase struct (this may result in faster phrase match)
     // fill phrase regexp and answer fields
     phrase.MatchExpr = reSplit.GetMatch(templateAndAnwer, 1);
-    if (!wxRegEx(phrase.MatchExpr).IsValid())
+    if (!wxRegEx(phrase.MatchExpr, wxRE_ADVANCED).IsValid())
     {
         *errorMessage = wxString::Format(
             _("invalid regular expression:\n%s"), 
