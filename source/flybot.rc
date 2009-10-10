@@ -77,7 +77,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041904b0"
+        BLOCK "000904b0"
         BEGIN
             VALUE "FileDescription", "flybot"
             VALUE "FileVersion", "0.30.0.0"
@@ -89,7 +89,7 @@ BEGIN
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x419, 1200
+        VALUE "Translation", 0x9, 1200
     END
 END
 
