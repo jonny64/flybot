@@ -680,6 +680,10 @@
 			Name="Scripts"
 			>
 			<File
+				RelativePath="..\scripts\BalloonsOnXP.patch"
+				>
+			</File>
+			<File
 				RelativePath="..\scripts\get-version-string.bat"
 				>
 			</File>
