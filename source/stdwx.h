@@ -18,13 +18,6 @@
 
 const int SUCCESS = 0;
 
-// TODO: remove after wxWidgets 2.9 release
-// http://trac.wxwidgets.org/ticket/8370
-wxArrayString wxSplit(const wxString& str, const wxChar sep, const wxChar escape);
-
-// TODO: remove as soon as wxWidgets 2.9 released 
-// http://trac.wxwidgets.org/ticket/9810
-bool wxLaunchDefaultApplication(const wxString &document);
 
 int random(int max);
 
