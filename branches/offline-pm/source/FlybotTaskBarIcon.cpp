@@ -195,7 +195,7 @@ void FlybotTaskBarIcon::SetupIcon()
     HICON hIconOffline = LoadIcon(wxGetInstance(), MAKEINTRESOURCE(IDI_ICON_OFFLINE));
     HICON hIcon = wxGetApp().GetEnabledState()? hIconOnline : hIconOffline;
 
-    wxString tooltipText =  wxString::Format(wxT("flybot %s (%s)"), APP_VERSION, APP_BUILD_DATE);
+    wxString tooltipText =  wxString::Format(wxT("flybot %s (build on %s)"), wxT(APP_VERSION), wxT(APP_BUILD_DATE));
     wxIcon trayIcon;
     trayIcon.SetHICON(hIcon);
     // TODO: find out why normal loading from resources doesn't work
@@ -204,25 +204,3 @@ void FlybotTaskBarIcon::SetupIcon()
         wxLogError(_("Could not set icon."));
 }
 
-bool FlybotTaskBarIcon::ShowBalloon(const wxString &title, const wxString &message, int icon, unsigned int timeout)
-{
-    if (!IsOk())
-        return false;
-
-    NOTIFYICONDATA notifyData = {0};
-    notifyData.uFlags = NIF_INFO | NIF_TIP;
-    notifyData.dwInfoFlags = icon | NIIF_NOSOUND;
-    notifyData.uTimeout = timeout * 1000;    
-
-    // find our icon (see wxTaskBarIcon implementation for details)
-    notifyData.hWnd = GetHwndOf((wxFrame *)m_win);
-    notifyData.uID = 99;
-
-    wxStrncpy(notifyData.szInfo, message.c_str(), WXSIZEOF(notifyData.szInfo));
-    wxStrncpy(notifyData.szInfoTitle, title.c_str(), WXSIZEOF(notifyData.szInfoTitle));
-
-    // targeting Win2000+
-    notifyData.cbSize = NOTIFYICONDATA_V2_SIZE;
-
-    return m_iconAdded && TRUE == Shell_NotifyIcon(NIM_MODIFY, &notifyData);
-}

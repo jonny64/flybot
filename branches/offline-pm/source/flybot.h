@@ -9,9 +9,9 @@
 #include "FlybotAPI.h"
 
 #define FLYBOT_API __declspec(dllexport) bool  __stdcall
-#define APP_BUILD_DATE wxT(__DATE__)
-#define APP_VERSION wxT("0.3")
+#define APP_NAME "flybot"
+#define APP_BUILD_DATE __DATE__
+#define APP_VERSION "0.30"
 
 extern "C" FLYBOT_API init(BotInit*);
-
 void RunApp();

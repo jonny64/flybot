@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flybot 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-01 17:45+0300\n"
+"POT-Creation-Date: 2009-10-10 21:39+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: astro64m <astro64m@gmail.com>\n"
 "Language-Team:  <astro64m@gmail.com>\n"
@@ -12,24 +12,22 @@ msgstr ""
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\Users\\jonson\\Documents\\Visual Studio 2008\\Projects\\flybot\\source\\\n"
+"X-Poedit-SearchPath-0: e:\\Code\\flybot-2.9.0\\source\n"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Dictionary.cpp:43
-msgid "too few parameters"
-msgstr "мала букаф"
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:47
+msgid "invalid line format.."
+msgstr "афтар жжет"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Dictionary.cpp:51
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:59
 #, c-format
 msgid "priority should be in range 1..%d"
 msgstr "вортербух приорити маст би 1..%d"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Dictionary.cpp:59
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:76
+msgid "missing template or answer"
+msgstr "гиде атвет?"
+
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:87
 #, c-format
 msgid ""
 "invalid regular expression:\n"
@@ -38,156 +36,104 @@ msgstr ""
 "плахой ригэксп:\n"
 "%s"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Dictionary.cpp:99
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:124
 #, c-format
 msgid "Dictionary, line %d:"
 msgstr "Вортербух, лайн %d:"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:100
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "min."
 msgstr "мин."
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:100
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "hr."
 msgstr "ч."
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:100
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "day"
 msgstr "дн."
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:100
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:100
 msgid "wk."
 msgstr "нд."
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:103
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:150
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:103
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:152
 msgid "sec."
 msgstr "с."
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:121
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:121
 msgid "&Online"
 msgstr "Включино"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:122
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:122
 msgid "&Show balloons"
 msgstr "Пузыри"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:141
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:142
 msgid "Slot timeout"
 msgstr "Дать соучаснегу слот на"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:158
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:160
 msgid "Answer delay"
 msgstr "Атвичать через"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:162
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:164
 msgid "&Reload dicttionary"
 msgstr "Грузить вортербух"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:163
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:165
 msgid "&Open dictionary"
 msgstr "Паказать вортербух"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/FlybotTaskBarIcon.cpp:186
+#: e:\Code\flybot-2.9.0\source/FlybotTaskBarIcon.cpp:188
 msgid "Could not set icon."
 msgstr "Аблом с ыконкой."
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Session.cpp:21
+#: e:\Code\flybot-2.9.0\source/Session.cpp:21
 #, c-format
 msgid "Matched template: %s"
 msgstr "Бля, савпало: %s!"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Session.cpp:27
+#: e:\Code\flybot-2.9.0\source/Session.cpp:27
 #, c-format
 msgid "Closed PM from %s"
 msgstr "Нах гешпрах %s"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Session.cpp:35
+#: e:\Code\flybot-2.9.0\source/Session.cpp:35
 #, c-format
 msgid "Slot was given to %s"
 msgstr "Отдал слот %s"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Session.cpp:40
+#: e:\Code\flybot-2.9.0\source/Session.cpp:40
 #, c-format
 msgid "%s added to ignore list"
 msgstr "Ахтунг-бан: %s"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/Session.cpp:131
+#: e:\Code\flybot-2.9.0\source/Session.cpp:131
 msgid "Cannot create worker thread"
 msgstr "Гидрокалбасы нибудет"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/wxFlybotDLL.cpp:70
+#: e:\Code\flybot-2.9.0\source/wxFlybotDLL.cpp:68
 msgid "Dictionary was successfully loaded"
 msgstr "Вортербух фпарядке"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/wxLogBalloon.cpp:22
-msgid "Information"
-msgstr "Падсказка"
-
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/wxLogBalloon.cpp:22
-msgid "Warning"
-msgstr "Типа смари,"
-
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/wxLogBalloon.cpp:22
-msgid "Error"
-msgstr "Аблом"
-
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/wxLogBalloon.cpp:57
+#: e:\Code\flybot-2.9.0\source/wxLogBalloon.cpp:54
 msgid "Fatal error: "
 msgstr "Полный писец"
 
-#: c:\Users\jonson\Documents\Visual
-#: Studio
-#: 2008\Projects\flybot\source\/wxLogBalloon.cpp:57
+#: e:\Code\flybot-2.9.0\source/wxLogBalloon.cpp:54
 msgid "Program aborted."
 msgstr "Фсе! Кина небудет!"
 
+#~ msgid "too few parameters"
+#~ msgstr "мала букаф"
+#~ msgid "Information"
+#~ msgstr "Падсказка"
+#~ msgid "Warning"
+#~ msgstr "Типа смари,"
+#~ msgid "Error"
+#~ msgstr "Аблом"
 #~ msgid "&On/Off"
 #~ msgstr "&Вкл/Выкл"
 #~ msgid "Yes"

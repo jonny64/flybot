@@ -7,11 +7,9 @@ wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
     m_taskBarIcon = tb;
 }
 
-void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int icon)
+void wxLogBalloon::DoLogString(const wxString& message, time_t WXUNUSED(t), int icon)
 {
-    wxString message = wxString(szString);
-    int id = icon - NIIF_INFO;
-    if ( message.empty() || !(0 <= id && id < 3) )
+    if ( message.empty())
         return;
 
     // message title and body are separated by special char
@@ -19,13 +17,12 @@ void wxLogBalloon::DoLogString(const wxChar *szString, time_t WXUNUSED(t), int i
     wxASSERT( tokens.Count() > 0 );
 
     // if no title specified use default one
-    wxString standartTitles[] = {_("Information"), _("Warning"), _("Error")};
     wxString balloonText = tokens[0];
-    wxString balloonTitle = tokens.Count() > 1? tokens[1] : standartTitles[id];
+    wxString balloonTitle = tokens.Count() > 1? tokens[1] : wxT("flybot");
 
     if (NULL != m_taskBarIcon)
     {
-        m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, icon);
+        m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, LOG_BALLOON_TIMEOUT_MS, icon);
     }
 }
 
@@ -49,22 +46,22 @@ IMPLEMENT_BALLOON_LOG_FUNCTION(Message)
 IMPLEMENT_BALLOON_LOG_FUNCTION(Info)
 IMPLEMENT_BALLOON_LOG_FUNCTION(Status)
 
-void wxLogBalloon::DoLog(wxLogLevel level, const wxChar *szString, time_t t)
+void wxLogBalloon::DoLog(wxLogLevel level, const wxString& szString, time_t t)
 {
     switch ( level ) 
     {
     case wxLOG_FatalError:
-        DoLogString(wxString(_("Fatal error: ")) + szString + _("Program aborted."), t, NIIF_ERROR);
+        DoLogString(_("Fatal error: ") + szString + _("Program aborted."), t, wxICON_ERROR);
         Flush();
         abort();
         break;
 
     case wxLOG_Error:
-        DoLogString(wxString(szString), t, NIIF_ERROR);
+        DoLogString(szString, t, wxICON_ERROR);
         break;
 
     case wxLOG_Warning:
-        DoLogString(wxString(szString), t, NIIF_WARNING);
+        DoLogString(szString, t, wxICON_WARNING);
         break;
 
     case wxLOG_Info:
