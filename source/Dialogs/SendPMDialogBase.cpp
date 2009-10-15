@@ -42,8 +42,8 @@ SendPMDialogBase::SendPMDialogBase( wxWindow* parent, wxWindowID id, const wxStr
 	fgSizerNickSend->SetFlexibleDirection( wxBOTH );
 	fgSizerNickSend->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-	m_comboNick = new wxComboBox( this, wxID_COMBO_NICK, _("Specify address in form \"Nick\" or \"Nick/IP\""), wxDefaultPosition, wxDefaultSize, 0, NULL, 0 ); 
-	fgSizerNickSend->Add( m_comboNick, 0, wxALL|wxEXPAND, 5 );
+    m_textNick = new wxTextCtrl( this, wxID_COMBO_NICK, _("Specify address in form \"Nick\" or \"Nick/IP\""), wxDefaultPosition, wxDefaultSize); 
+	fgSizerNickSend->Add( m_textNick, 0, wxALL|wxEXPAND, 5 );
 	
 	m_buttonSend = new wxButton( this, wxID_BUTTON_SEND, _("Send"), wxDefaultPosition, wxDefaultSize, 0 );
 	fgSizerNickSend->Add( m_buttonSend, 0, wxALL, 5 );
@@ -58,8 +58,8 @@ SendPMDialogBase::SendPMDialogBase( wxWindow* parent, wxWindowID id, const wxStr
 	// Connect Events
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( SendPMDialogBase::OnCloseDialog ) );
 	this->Connect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( SendPMDialogBase::OnInitDialog ) );
-	m_comboNick->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( SendPMDialogBase::OnTextComboNick ), NULL, this );
-	m_comboNick->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( SendPMDialogBase::OnSendClick ), NULL, this );
+	m_textNick->Connect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( SendPMDialogBase::OnTextComboNick ), NULL, this );
+	m_textNick->Connect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( SendPMDialogBase::OnSendClick ), NULL, this );
 	m_buttonSend->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SendPMDialogBase::OnSendClick ), NULL, this );
 }
 
@@ -68,7 +68,7 @@ SendPMDialogBase::~SendPMDialogBase()
 	// Disconnect Events
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( SendPMDialogBase::OnCloseDialog ) );
 	this->Disconnect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( SendPMDialogBase::OnInitDialog ) );
-	m_comboNick->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( SendPMDialogBase::OnTextComboNick ), NULL, this );
-	m_comboNick->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( SendPMDialogBase::OnSendClick ), NULL, this );
+	m_textNick->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( SendPMDialogBase::OnTextComboNick ), NULL, this );
+	m_textNick->Disconnect( wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler( SendPMDialogBase::OnSendClick ), NULL, this );
 	m_buttonSend->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( SendPMDialogBase::OnSendClick ), NULL, this );
 }

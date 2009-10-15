@@ -28,5 +28,5 @@ void SendPMDialog::OnTextComboNick( wxCommandEvent& WXUNUSED(event) )
 
 void SendPMDialog::OnSendClick( wxCommandEvent& WXUNUSED(event) )
 {
-	wxGetApp().AddDelayedPM(m_comboNick->GetValue(), m_PMtext->GetValue());
+	wxGetApp().AddDelayedPM(m_textNick->GetValue(), m_PMtext->GetValue());
 }
