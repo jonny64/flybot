@@ -63,8 +63,8 @@ IDI_ICON_OFFLINE        ICON                    "..\\icon\\offline.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,30,0,0
- PRODUCTVERSION 0,30,0,0
+ FILEVERSION 0,31,0,0
+ PRODUCTVERSION 0,31,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -80,11 +80,11 @@ BEGIN
         BLOCK "000004b0"
         BEGIN
             VALUE "FileDescription", "flybot"
-            VALUE "FileVersion", "0.30.0.0"
+            VALUE "FileVersion", "0.31.0.0"
             VALUE "InternalName", "flybot"
             VALUE "OriginalFilename", "flybot"
             VALUE "ProductName", "flybot"
-            VALUE "ProductVersion", "0.30.0.0"
+            VALUE "ProductVersion", "0.31.0.0"
         END
     END
     BLOCK "VarFileInfo"
