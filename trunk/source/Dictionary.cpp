@@ -2,9 +2,9 @@
 #include "Dictionary.h"
 #include <wx/txtstrm.h>
 #include <wx/wfstream.h>
-#include <wx/stdpaths.h>
 #include <wx/regex.h>
 #include "wxLogBalloon.h"
+#include "wxFlybotDLL.h"
 
 #include <wx/arrimpl.cpp>
 WX_DEFINE_OBJARRAY(ArrayOfPhrases);
@@ -97,12 +97,22 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
 
 wxString Dictionary::GetDictionaryFilename()
 {
-    return wxStandardPaths::Get().GetPluginsDir() + DICTIONARY_FILENAME;
+    return FlybotAPI.ConfigPath + DICTIONARY_FILENAME;
 }
 
 int Dictionary::Load()
 {
-    wxFileInputStream input(GetDictionaryFilename());
+    wxString dictionaryFileName = GetDictionaryFilename();
+    wxFileInputStream input(dictionaryFileName);
+    if (!input.Ok())
+    {
+        wxLogError(
+            _("Cannot open dictionary for reading"), 
+            wxString::Format("Path: %s", dictionaryFileName)
+            );
+        return IO_FAILURE;
+    }
+
     // TODO: support both for Unicode and ANSI encoded dictionary
     // wxTextInputStream text(input) supposed to work fine in both cases, but...
     wxTextInputStream text(input, wxT("\r\n"), wxCSConv(wxFONTENCODING_CP1251));

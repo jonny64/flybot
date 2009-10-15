@@ -2,6 +2,7 @@
 #include "ChatBotAPI.h"
 #include "FlybotAPI.h"
 #include "wxFlybotDLL.h"
+#include <wx/stdpaths.h>
 
 TFlybotAPI FlybotAPI;
 
@@ -9,6 +10,17 @@ void TFlybotAPI::Initialize(const BotInit *aInit)
 {
     memset(&m_botAPI, 0, sizeof(BotInit));
     memcpy(&m_botAPI, aInit, sizeof(BotInit));
+    
+    if (aInit->apiVersion > 2)
+    {
+        ConfigPath = wxString(aInit->appConfigPath, MAX_PATH);
+    }
+    else
+    {
+        ConfigPath = wxStandardPaths::Get().GetPluginsDir() + wxT("\\Settings\\");
+    }
+
+    wxGetApp().Dict.Load();
 }
 
 bool TFlybotAPI::SendPM(const wxString& cid, const wxString& msg)

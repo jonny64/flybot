@@ -41,7 +41,6 @@ bool wxFlybotDLL::OnInit()
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
-    Dict.Load();
     return true;
 }
 

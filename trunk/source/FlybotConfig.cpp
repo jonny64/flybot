@@ -2,11 +2,11 @@
 #include "wxFlybotDLL.h"
 #include <wx/stdpaths.h>
 
-FlybotConfig::FlybotConfig(void):
+FlybotConfig::FlybotConfig():
     wxFileConfig(
         wxT("flybot"),
         wxT("astro64m"), 
-        wxStandardPaths::Get().GetPluginsDir() + CONFIG_FILENAME, 
+        FlybotAPI.ConfigPath + CONFIG_FILENAME, 
         wxT(""), 
         wxCONFIG_USE_LOCAL_FILE
         )
