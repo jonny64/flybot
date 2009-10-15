@@ -132,5 +132,9 @@ void wxFlybotDLL::AddDelayedPM(const wxString& addr, const wxString& text)
 void wxFlybotDLL::TrySendDelayedPM(UserInfo& user)
 {
     wxCriticalSectionLocker locker(gOfflinePM);
-    // TODO
+
+    if (!m_addr.empty() && m_addr==user[FLYBOT_API_NICK])
+    {
+        FlybotAPI.SendPM(user[FLYBOT_API_CID], m_text);
+    }
 }

@@ -37,7 +37,7 @@ class SendPMDialogBase : public wxDialog
 		wxStaticText* m_staticPM;
 		wxTextCtrl* m_PMtext;
 		wxStaticText* m_staticNick;
-		wxComboBox* m_comboNick;
+		wxTextCtrl* m_textNick;
 		wxButton* m_buttonSend;
 		
 		// Virtual event handlers, overide them in your derived class
