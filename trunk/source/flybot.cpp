@@ -46,9 +46,9 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 
     switch (msgid)
     {
-        case RECV_PM:
+        case BotInit::RECV_PM:
             // fall down
-        case RECV_PM_NEW:
+        case BotInit::RECV_PM_NEW:
             msg = wxString((WCHAR*)param);
             if (FlybotAPI.QueryUserinfo(objid, &userinfo))
             {
@@ -61,15 +61,15 @@ void __stdcall OnRecvMessage2(int msgid, const WCHAR* objid, const void* param, 
 }
 
 extern "C" 
-FLYBOT_API init(BotInit* _init)
+FLYBOT_API init(BotInit* apiInfo)
 {
-    if (NULL == _init || _init->apiVersion < 2) 
+    if (NULL == apiInfo || apiInfo->apiVersion < 2) 
         return false;
 
-    _init->botId = APP_NAME;
-    _init->botVersion = APP_VERSION;
-    _init->RecvMessage2 = OnRecvMessage2;
-    FlybotAPI.Init(_init);
+    apiInfo->botId = APP_NAME;
+    apiInfo->botVersion = APP_VERSION;
+    apiInfo->RecvMessage2 = OnRecvMessage2;
+    FlybotAPI.Initialize(apiInfo);
 
     return true;
 }
