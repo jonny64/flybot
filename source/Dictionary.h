@@ -2,7 +2,7 @@
 #include <wx/dynarray.h>
 #include "Phrase.h"
 
-const wxString DICTIONARY_FILENAME = wxT("\\Settings\\flydict.ini");
+const wxString DICTIONARY_FILENAME = wxT("flydict.ini");
 const long DICTIONARY_MAX_PRIORITY = 1000;
 const wxChar DICTIONARY_COMMENT_CHAR = wxChar(';');
 const wxChar DICTIONARY_CLOSE_CHAR = wxChar('c');

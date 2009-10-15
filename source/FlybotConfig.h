@@ -8,7 +8,7 @@ const wxString SETTING_USE_BALLOONS = wxT("EnableBalloons");
 const wxString SETTING_SLOT_TIMEOUT = wxT("SlotTimeout");
 const wxString SETTING_ANSWER_DELAY = wxT("AnswerDelay");
 const wxString SETTING_BOT_ONLINE = wxT("Enabled");
-const wxString CONFIG_FILENAME = wxT("\\Settings\\flybot.ini");;
+const wxString CONFIG_FILENAME = wxT("flybot.ini");;
 
 class FlybotConfig :
     public wxFileConfig
@@ -21,7 +21,7 @@ class FlybotConfig :
     vector<int> m_slotTimeouts;
     vector<int> m_answerDelays;
 public:
-    FlybotConfig(void);
+    FlybotConfig();
 
     bool BalloonsEnabled();
     

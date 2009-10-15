@@ -7,6 +7,7 @@ typedef
 struct _FlybotAPI
 {
     BotInit m_botAPI;
+    wxString ConfigPath;
     void Initialize(const BotInit*);
     bool SendPM(const wxString &cid, const wxString &msg);
     bool QueryUserinfo(const WCHAR*, UserInfo*);
