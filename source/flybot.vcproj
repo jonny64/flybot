@@ -30,7 +30,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="svn update"
+				Description="svn version"
 				CommandLine="svn --version --quiet&#x0D;&#x0A;if errorlevel 1 goto :NOSVN&#x0D;&#x0A;svn update&#x0D;&#x0A;exit&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo post-build-release-x86_64.bat  : Tools error E0001 : You don&apos;t have svn on PATH. Aborting.&#x0D;&#x0A;pause&#x0D;&#x0A;exit -2&#x0D;&#x0A;"
 			/>
 			<Tool
@@ -53,7 +53,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/EHsc "
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="2"
@@ -142,7 +141,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="svn update"
+				Description="svn version"
 				CommandLine="svn --version --quiet&#x0D;&#x0A;if errorlevel 1 goto :NOSVN&#x0D;&#x0A;svn update&#x0D;&#x0A;exit&#x0D;&#x0A;&#x0D;&#x0A;:NOSVN&#x0D;&#x0A;echo post-build-release-x86_64.bat  : Tools error E0001 : You don&apos;t have svn on PATH.  Aborting.&#x0D;&#x0A;pause&#x0D;&#x0A;exit -2&#x0D;&#x0A;"
 			/>
 			<Tool
@@ -165,7 +164,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/EHsc "
 				Optimization="1"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="2"
@@ -275,7 +273,6 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/EHsc "
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\$(PlatformName)\mswud&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH"
@@ -379,11 +376,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/EHsc "
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)lib\vc_lib\$(PlatformName)\mswud&quot;;&quot;$(SolutionDir)include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_WINDOWS;NOPCH"
-				MinimalRebuild="true"
 				RuntimeLibrary="3"
 				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="2"
