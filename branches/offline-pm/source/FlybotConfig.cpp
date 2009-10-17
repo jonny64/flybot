@@ -22,15 +22,33 @@ bool FlybotConfig::BalloonsEnabled()
     return useBalloons;
 }
 
+wxArrayString FlybotConfig::DoReadStringList(const wxString &path)
+{
+    wxArrayString result;
+    wxString buf;
+    buf.Printf(wxT("%s/value%d"), path, 1);
+
+    wxString val;
+    int i = 0;
+    while ((wxFileConfig *)this->Read(
+            wxString::Format(wxT("%s/value%d"), path, i),
+            &val
+            )
+        )
+    {
+        result.Add(val);
+        i++;
+    }
+    return result;
+}
+
 vector<int> FlybotConfig::DoReadIntList(const wxString &path)
 {
     vector<int> result;
-    wxFileConfig *conf = &wxGetApp().Config;
-
-    // read settings
+    
     int val = 0;
     int i = 0;
-    while (conf->Read(
+    while ((wxFileConfig *)this->Read(
             wxString::Format(wxT("%s/value%d"), path, i),
             &val
             )
@@ -45,14 +63,34 @@ vector<int> FlybotConfig::DoReadIntList(const wxString &path)
 
 void FlybotConfig::DoWriteIntList(const wxString &path, const vector<int> &lst)
 {
-    wxFileConfig *conf = &wxGetApp().Config;
-
     int index = 0;
     FOREACH_CONST(vector<int>, it, lst)
     {
-        conf->Write(wxString::Format(wxT("%s/value%d"), path, index), *it);
+        (wxFileConfig *)this->Write(wxString::Format(wxT("%s/value%d"), path, index), (int)*it);
         index++;
     }
+}
+
+void FlybotConfig::AddNickHistory(const wxString &nick)
+{
+    wxString val;
+    int i = 0;
+    while ((wxFileConfig *)this->Read(
+            wxString::Format(wxT("%s/value%d"), SETTING_NICK_HISTORY, i),
+            &val
+            )
+        )
+    {
+        i++;
+    }
+
+    wxString path = wxString::Format(wxT("%s/value%d"), SETTING_NICK_HISTORY, i);
+    Write(path, nick);
+}
+
+wxArrayString FlybotConfig::GetNickHistory()
+{
+    return DoReadStringList(SETTING_NICK_HISTORY);
 }
 
 void FlybotConfig::ReadSlotTimeouts()
