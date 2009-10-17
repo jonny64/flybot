@@ -18,7 +18,9 @@ void SendPMDialog::OnCloseDialog( wxCloseEvent& event )
 
 void SendPMDialog::OnInitDialog( wxInitDialogEvent& WXUNUSED(event) )
 {
-	// TODO: Implement OnInitDialog
+    wxArrayString nickAutoCompleteHistory = wxGetApp().Config.GetNickHistory();
+    this->m_textNick->AutoComplete(nickAutoCompleteHistory);
+
 }
 
 void SendPMDialog::OnTextComboNick( wxCommandEvent& WXUNUSED(event) )
@@ -29,4 +31,6 @@ void SendPMDialog::OnTextComboNick( wxCommandEvent& WXUNUSED(event) )
 void SendPMDialog::OnSendClick( wxCommandEvent& WXUNUSED(event) )
 {
 	wxGetApp().AddDelayedPM(m_textNick->GetValue(), m_PMtext->GetValue());
+    wxGetApp().Config.AddNickHistory(m_textNick->GetValue());
+    this->Close();
 }

@@ -1125,7 +1125,7 @@
 // Default is 1.
 //
 // Recommended setting: 1
-#define wxUSE_DATAOBJ       0
+#define wxUSE_DATAOBJ       1
 
 // Use wxDropTarget and wxDropSource classes for drag and drop (this is
 // different from "built in" drag and drop in wxTreeCtrl which is always
@@ -1327,7 +1327,7 @@
 // Default is 1.
 //
 // Recommended setting: 1
-#define wxUSE_OLE           0
+#define wxUSE_OLE           1
 
 // Set this to 1 to enable wxAutomationObject class.
 //
