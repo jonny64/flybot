@@ -119,7 +119,9 @@ int wxFlybotDLL::OnExit()
 
     delete m_locale;
 
-    return 0;
+    Config.Flush();
+
+    return SUCCESS;
 }
 
 void wxFlybotDLL::AddDelayedPM(const wxString& addr, const wxString& text)
