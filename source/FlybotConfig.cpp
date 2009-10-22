@@ -7,7 +7,7 @@ FlybotConfig::FlybotConfig(void):
         wxT("flybot"),
         wxT("astro64m"), 
         wxStandardPaths::Get().GetPluginsDir() + CONFIG_FILENAME, 
-        wxT(""), 
+        wxEmptyString, 
         wxCONFIG_USE_LOCAL_FILE
         )
 {

@@ -19,6 +19,11 @@ bool wxFlybotDLL::GetEnabledState()
     return m_online;
 }
 
+bool wxFlybotDLL::HasOutgoingPM()
+{
+    return !m_opmTarget.empty();
+}
+
 void wxFlybotDLL::SwitchState()
 {
     m_online = !m_online;
@@ -124,19 +129,25 @@ int wxFlybotDLL::OnExit()
     return SUCCESS;
 }
 
-void wxFlybotDLL::AddDelayedPM(const wxString& addr, const wxString& text)
+void wxFlybotDLL::AddOutgoingPM(const wxString& addr, const wxString& text)
 {
     wxCriticalSectionLocker locker(gOfflinePM);
-    m_text = text;
-    m_addr = addr;
+    m_opmText = text;
+    m_opmTarget = addr;
 }
 
-void wxFlybotDLL::TrySendDelayedPM(UserInfo& user)
+void wxFlybotDLL::TrySendOutgoingPM(UserInfo& user)
 {
     wxCriticalSectionLocker locker(gOfflinePM);
 
-    if (!m_addr.empty() && m_addr==user[FLYBOT_API_NICK])
+    if (!m_opmTarget.empty() && m_opmTarget==user[FLYBOT_API_NICK])
     {
-        FlybotAPI.SendPM(user[FLYBOT_API_CID], m_text);
+        FlybotAPI.SendPM(user[FLYBOT_API_CID], m_opmText);
     }
+}
+
+void wxFlybotDLL::DeleteOutgoingPM()
+{
+    m_opmTarget = wxEmptyString;
+    m_opmText = wxEmptyString;
 }

@@ -110,14 +110,14 @@ int Dictionary::Load()
     m_phrases.Clear();
     m_emptyPhrases.Clear();
 
-    wxString line = wxT("");
+    wxString line = wxEmptyString;
     int row = 0;
     int errorsCount = 0;
     while(input.IsOk() && !input.Eof() )
     {
         row++;
         line = text.ReadLine();
-        wxString errorMessage = wxT("");
+        wxString errorMessage = wxEmptyString;
         if (!ProcessLine(line, &errorMessage))
         {
             wxLogWarning(
@@ -159,7 +159,7 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
 
 Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedPhrases)
 {
-    wxString answer = wxT("");
+    wxString answer = wxEmptyString;
 
     // find matches
     ArrayOfPhrases candidates;
