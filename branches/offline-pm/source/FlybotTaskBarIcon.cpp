@@ -76,7 +76,14 @@ void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
             break;
 
         case wxID_SEND_OFFLINE_PM:
-            m_sendDlg->Show();
+            if (wxGetApp().HasOutgoingPM())
+            {
+                wxGetApp().DeleteOutgoingPM();
+            }
+            else
+            {
+                m_sendDlg->Show();
+            }
             break;
 
         case wxID_POWER:    
@@ -135,7 +142,9 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     
     menu->AppendSeparator();
     
-    menu->Append(wxID_SEND_OFFLINE_PM, _("&Send offline PM"));
+    wxString offlinePMlabel = wxGetApp().HasOutgoingPM()? _("&Cancel pending offline PM"):
+        _("&Send offline PM");
+    menu->Append(wxID_SEND_OFFLINE_PM, offlinePMlabel);
 
     menu->AppendSeparator();
     

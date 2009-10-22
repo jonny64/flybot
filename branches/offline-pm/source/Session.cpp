@@ -19,7 +19,7 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
 {
     const wxString flags = selectedPhrase.Flags;
     wxString title = wxString::Format(_("Matched template: %s"), selectedPhrase.MatchExpr);
-    wxString message = wxT("");
+    wxString message = wxEmptyString;
     
     if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
     {

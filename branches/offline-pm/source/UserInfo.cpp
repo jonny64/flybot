@@ -37,7 +37,7 @@ wxString UserInfo::operator[](const wxString& key)
     {
         return m_vars[key];
     }
-    return wxT("");
+    return wxEmptyString;
 }
 
 UserInfo& UserInfo::operator=(const UserInfo& rhs)

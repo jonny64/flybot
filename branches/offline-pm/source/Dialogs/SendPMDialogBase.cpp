@@ -11,7 +11,13 @@
 
 ///////////////////////////////////////////////////////////////////////////
 
-SendPMDialogBase::SendPMDialogBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxDialog( parent, id, title, pos, size, style )
+SendPMDialogBase::SendPMDialogBase( wxWindow* parent, 
+                                   wxWindowID id, 
+                                   const wxString& title, 
+                                   const wxPoint& pos, 
+                                   const wxSize& size, 
+                                   long style ) : 
+    wxDialog( parent, id, title, pos, size, style )
 {
 	this->SetSizeHints( wxSize( 400,120 ), wxDefaultSize );
 	
@@ -42,7 +48,7 @@ SendPMDialogBase::SendPMDialogBase( wxWindow* parent, wxWindowID id, const wxStr
 	fgSizerNickSend->SetFlexibleDirection( wxBOTH );
 	fgSizerNickSend->SetNonFlexibleGrowMode( wxFLEX_GROWMODE_SPECIFIED );
 	
-    m_textNick = new wxTextCtrl( this, wxID_COMBO_NICK, _("Specify address in form \"Nick\" or \"Nick/IP\""), wxDefaultPosition, wxDefaultSize); 
+    m_textNick = new wxTextCtrl( this, wxID_COMBO_NICK, _("Specify nickname"), wxDefaultPosition, wxDefaultSize); 
 	fgSizerNickSend->Add( m_textNick, 0, wxALL|wxEXPAND, 5 );
 	
 	m_buttonSend = new wxButton( this, wxID_BUTTON_SEND, _("Send"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -65,7 +71,7 @@ SendPMDialogBase::SendPMDialogBase( wxWindow* parent, wxWindowID id, const wxStr
 
 SendPMDialogBase::~SendPMDialogBase()
 {
-	// Disconnect Events
+    // Disconnect Events
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( SendPMDialogBase::OnCloseDialog ) );
 	this->Disconnect( wxEVT_INIT_DIALOG, wxInitDialogEventHandler( SendPMDialogBase::OnInitDialog ) );
 	m_textNick->Disconnect( wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler( SendPMDialogBase::OnTextComboNick ), NULL, this );
