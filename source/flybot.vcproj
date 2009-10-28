@@ -483,6 +483,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Phrase.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Session.cpp"
 				>
 			</File>

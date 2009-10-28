@@ -1,5 +1,6 @@
 #include "stdwx.h"
 #include <wx/regex.h>
+#include <wx/datetime.h>
 #include "Session.h"
 #include "wxFlybotDLL.h"
 #include "wxLogBalloon.h"
@@ -38,6 +39,16 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
     {
         FlybotAPI.AddToIgnore(m_userinfo[FLYBOT_API_CID]);
         message = wxString::Format(_("%s added to ignore list") , m_userinfo[FLYBOT_API_NICK]);
+    }
+    if (flags.Freq(DICTIONARY_LOG_CHAR) > 0)
+    {
+        wxString logMessage = wxString::Format(
+            wxT("%s: user %s, rule %s"), 
+            wxDateTime::Now().Format("%c", wxDateTime::UTC),
+            m_userinfo[FLYBOT_API_NICK],
+            selectedPhrase.ToString()
+        );
+        // TODO: log to file
     }
 
     if (!message.empty())
@@ -102,7 +113,7 @@ int Session::Answer(wxString& msg)
     Phrase selectedPhrase = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
 
     // if no matches, exit;
-    if (selectedPhrase.empty())
+    if (selectedPhrase.Empty())
         return 0;
 
     // replace special vars (start with $) in answer;
