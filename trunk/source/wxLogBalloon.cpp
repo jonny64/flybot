@@ -46,31 +46,48 @@ IMPLEMENT_BALLOON_LOG_FUNCTION(Message)
 IMPLEMENT_BALLOON_LOG_FUNCTION(Info)
 IMPLEMENT_BALLOON_LOG_FUNCTION(Status)
 
-void wxLogBalloon::DoLog(wxLogLevel level, const wxString& szString, time_t t)
+void wxLogBalloon::DoLogStatus(const wxString &msg)
+{
+    wxString logFileName = FlybotAPI.ConfigPath + wxT("Logs\\flybot.log");
+    FILE *logFile = fopen(logFileName.c_str(), "a");
+    wxLog *oldLogger = wxLog::SetActiveTarget(new wxLogStderr(logFile));
+
+    wxLogMessage(msg);
+
+    delete wxLog::SetActiveTarget(oldLogger);
+    if (logFile != NULL)
+    {
+        fclose(logFile);
+    }
+}
+
+void wxLogBalloon::DoLog(wxLogLevel level, const wxString& message, time_t t)
 {
     switch ( level ) 
     {
     case wxLOG_FatalError:
-        DoLogString(_("Fatal error: ") + szString + _("Program aborted."), t, wxICON_ERROR);
+        DoLogString(_("Fatal error: ") + message + _("Program aborted."), t, wxICON_ERROR);
         Flush();
         abort();
         break;
 
     case wxLOG_Error:
-        DoLogString(szString, t, wxICON_ERROR);
+        DoLogString(message, t, wxICON_ERROR);
         break;
 
     case wxLOG_Warning:
-        DoLogString(szString, t, wxICON_WARNING);
+        DoLogString(message, t, wxICON_WARNING);
+        break;
+
+    case wxLOG_Status:
+        DoLogStatus(message);
         break;
 
     case wxLOG_Info:
-        if ( GetVerbose() )
     case wxLOG_Message:
-    case wxLOG_Status:
     default:    // log unknown log levels too
         if (wxGetApp().Config.BalloonsEnabled())
-            DoLogString(szString, t);
+            DoLogString(message, t);
         break;
 
     case wxLOG_Trace:
@@ -79,7 +96,7 @@ void wxLogBalloon::DoLog(wxLogLevel level, const wxString& szString, time_t t)
         {
             wxString msg = level == wxLOG_Trace ? wxT("Trace: ")
                 : wxT("Debug: ");
-            msg << szString;
+            msg << message;
             DoLogString(msg, t);
         }
 #endif // Debug

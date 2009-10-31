@@ -19,7 +19,6 @@
 const int SUCCESS = 0;
 const int IO_FAILURE = -1;
 
-
 int random(int max);
 
 

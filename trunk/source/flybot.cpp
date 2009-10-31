@@ -71,5 +71,7 @@ FLYBOT_API init(BotInit* apiInfo)
     apiInfo->RecvMessage2 = OnRecvMessage2;
     FlybotAPI.Initialize(apiInfo);
 
+    wxGetApp().Dict.Load();
+
     return true;
 }

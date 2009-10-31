@@ -117,7 +117,7 @@ int wxFlybotDLL::OnExit()
 
     delete m_locale;
 
-    return 0;
+    return SUCCESS;
 }
 
 wxFlybotDLL::~wxFlybotDLL()

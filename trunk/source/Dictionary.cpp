@@ -43,7 +43,7 @@ int Dictionary::Load()
     {
         wxLogError(
             _("Cannot open dictionary for reading"), 
-            wxString::Format("Path: %s", dictionaryFileName)
+            wxString::Format(_("Path: %s"), dictionaryFileName)
             );
         return IO_FAILURE;
     }
