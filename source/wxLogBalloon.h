@@ -18,11 +18,12 @@ DECLARE_BALLOON_LOG_FUNCTION(Info);
 class wxLogBalloon : public wxLog
 {
     FlybotTaskBarIcon *m_taskBarIcon;
+    void DoLogStatus(const wxString &msg);
 public:
     wxLogBalloon(FlybotTaskBarIcon *);
     ~wxLogBalloon(void);
     
 protected:
     void DoLogString(const wxString&, time_t, int icon  = wxICON_INFORMATION);
-    virtual void DoLog(wxLogLevel level, const wxString& szString, time_t t);
+    virtual void DoLog(wxLogLevel level, const wxString& msg, time_t t);
 };

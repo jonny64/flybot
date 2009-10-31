@@ -20,7 +20,7 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
 {
     const wxString flags = selectedPhrase.Flags;
     wxString title = wxString::Format(_("Matched template: %s"), selectedPhrase.MatchExpr);
-    wxString message = wxT("");
+    wxString message = wxEmptyString;
     
     if (flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
     {
@@ -42,13 +42,9 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
     }
     if (flags.Freq(DICTIONARY_LOG_CHAR) > 0)
     {
-        wxString logMessage = wxString::Format(
-            wxT("%s: user %s, rule %s"), 
-            wxDateTime::Now().Format("%c", wxDateTime::UTC),
-            m_userinfo[FLYBOT_API_NICK],
-            selectedPhrase.ToString()
-        );
-        // TODO: log to file
+        wxString logMessage = selectedPhrase.ToString();
+        logMessage  += message.empty()? wxEmptyString : wxT(" => ") + message;
+        wxLogStatus(logMessage);
     }
 
     if (!message.empty())

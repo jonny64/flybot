@@ -20,7 +20,7 @@ Phrase::Phrase(const wxString &line)
 {
     // check if line is like 'priority/match_and_answer/optional_flags'
     wxString r = wxString::Format(
-        "^(\\d{1,})%c(.*?)(:?%c([cis]+))?$", 
+        "^(\\d{1,})%c(.*?)(:?%c([cisl]+))?$", 
         DICTIONARY_SEPARATION_CHAR, 
         DICTIONARY_SEPARATION_CHAR
         );
@@ -90,8 +90,16 @@ bool Phrase::Matches(const wxString &PM) const
 
 wxString Phrase::ToString() const
 {
-    // TODO:
-    return wxEmptyString;
+    return wxString::Format(
+        wxT("%i%c%s%c%s%c%s"),
+        Priority,
+        DICTIONARY_SEPARATION_CHAR,
+        MatchExpr,
+        DICTIONARY_SEPARATION_CHAR,
+        Answer,
+        DICTIONARY_SEPARATION_CHAR,
+        Flags
+        );
 }
 
 bool Phrase::Empty() const

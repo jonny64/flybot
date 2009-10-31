@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: flybot 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-10 21:36+0300\n"
+"POT-Creation-Date: 2009-10-31 20:58+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: astro64m <astro64m@gmail.com>\n"
 "Language-Team:  <astro64m@gmail.com>\n"
@@ -14,29 +14,16 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: e:\\Code\\flybot-2.9.0\\source\n"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:47
-msgid "invalid line format.."
-msgstr "ошибка в шаблоне.."
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:45
+msgid "Cannot open dictionary for reading"
+msgstr "Не могу открыть файл словаря"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:59
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:46
 #, c-format
-msgid "priority should be in range 1..%d"
-msgstr "приоритет должен быть в диапазоне 1..%d"
+msgid "Path: %s"
+msgstr "Путь %s"
 
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:76
-msgid "missing template or answer"
-msgstr "пропущена фраза-триггер или  ответ"
-
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:87
-#, c-format
-msgid ""
-"invalid regular expression:\n"
-"%s"
-msgstr ""
-"синтаксис регулярного выражения:\n"
-"%s"
-
-#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:124
+#: e:\Code\flybot-2.9.0\source/Dictionary.cpp:69
 #, c-format
 msgid "Dictionary, line %d:"
 msgstr "Словарь, строка %d:"
@@ -90,39 +77,61 @@ msgstr "Открыть словарь"
 msgid "Could not set icon."
 msgstr "Невозможно добавить иконку."
 
-#: e:\Code\flybot-2.9.0\source/Session.cpp:21
+#: e:\Code\flybot-2.9.0\source/Phrase.cpp:31
+msgid "invalid line format.."
+msgstr "ошибка в шаблоне.."
+
+#: e:\Code\flybot-2.9.0\source/Phrase.cpp:43
+#, c-format
+msgid "priority should be in range 1..%d"
+msgstr "приоритет должен быть в диапазоне 1..%d"
+
+#: e:\Code\flybot-2.9.0\source/Phrase.cpp:61
+msgid "missing template or answer"
+msgstr "пропущена фраза-триггер или  ответ"
+
+#: e:\Code\flybot-2.9.0\source/Phrase.cpp:73
+#, c-format
+msgid ""
+"invalid regular expression:\n"
+"%s"
+msgstr ""
+"синтаксис регулярного выражения:\n"
+"%s"
+
+#: e:\Code\flybot-2.9.0\source/Session.cpp:22
 #, c-format
 msgid "Matched template: %s"
 msgstr "Cовпадение по шаблону %s"
 
-#: e:\Code\flybot-2.9.0\source/Session.cpp:27
+#: e:\Code\flybot-2.9.0\source/Session.cpp:28
 #, c-format
 msgid "Closed PM from %s"
 msgstr "Закрыта личка %s"
 
-#: e:\Code\flybot-2.9.0\source/Session.cpp:35
+#: e:\Code\flybot-2.9.0\source/Session.cpp:36
 #, c-format
 msgid "Slot was given to %s"
 msgstr "Выдан слот %s"
 
-#: e:\Code\flybot-2.9.0\source/Session.cpp:40
+#: e:\Code\flybot-2.9.0\source/Session.cpp:41
 #, c-format
 msgid "%s added to ignore list"
 msgstr "%s добавлен в игнор"
 
-#: e:\Code\flybot-2.9.0\source/Session.cpp:131
+#: e:\Code\flybot-2.9.0\source/Session.cpp:138
 msgid "Cannot create worker thread"
 msgstr "Невозможно создать поток"
 
-#: e:\Code\flybot-2.9.0\source/wxFlybotDLL.cpp:68
+#: e:\Code\flybot-2.9.0\source/wxFlybotDLL.cpp:67
 msgid "Dictionary was successfully loaded"
 msgstr "Словарь успешно загружен"
 
-#: e:\Code\flybot-2.9.0\source/wxLogBalloon.cpp:54
+#: e:\Code\flybot-2.9.0\source/wxLogBalloon.cpp:69
 msgid "Fatal error: "
 msgstr "Критическая ошибка:"
 
-#: e:\Code\flybot-2.9.0\source/wxLogBalloon.cpp:54
+#: e:\Code\flybot-2.9.0\source/wxLogBalloon.cpp:69
 msgid "Program aborted."
 msgstr "Программа завершила работу."
 
