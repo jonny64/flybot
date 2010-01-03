@@ -26,26 +26,6 @@ void wxLogBalloon::DoLogString(const wxString& message, time_t WXUNUSED(t), int 
     }
 }
 
-#define IMPLEMENT_BALLOON_LOG_FUNCTION(level)                                                                                     \
-void wxLog##level(const wxString &title, const wxString &message)\
-{                                                                \
-    wxString msg  = wxString::Format(                            \
-        wxT("%s%c%s"),                                           \
-        message,                                                 \
-        BALLOON_LOGGER_SEPARATOR_CHAR,                           \
-        title                                                    \
-    );                                                           \
-    /* use default implementation, which later calls DoLog */    \
-    wxLog##level(msg);                                           \
-}
-
-
-IMPLEMENT_BALLOON_LOG_FUNCTION(Error)
-IMPLEMENT_BALLOON_LOG_FUNCTION(Warning)
-IMPLEMENT_BALLOON_LOG_FUNCTION(Message)
-IMPLEMENT_BALLOON_LOG_FUNCTION(Info)
-IMPLEMENT_BALLOON_LOG_FUNCTION(Status)
-
 void wxLogBalloon::DoLogStatus(const wxString &msg)
 {
     wxString logFileName = FlybotAPI.ConfigPath + wxT("Logs\\flybot.log");

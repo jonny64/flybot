@@ -49,7 +49,7 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
 
     if (!message.empty())
     {
-        wxLogMessage(title, message);
+        wxLogMessage(MESSAGE_WITH_TITLE(title, message));
     }
 }
 
