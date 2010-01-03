@@ -1,32 +1,13 @@
 #include "stdwx.h"
 #include "wxLogBalloon.h"
 #include "wxFlybotDLL.h"
-
+#include "wx/datetime.h"
 wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 {
     m_taskBarIcon = tb;
 }
 
-void wxLogBalloon::DoLogString(const wxString& message, time_t WXUNUSED(t), int icon)
-{
-    if ( message.empty())
-        return;
-
-    // message title and body are separated by special char
-    wxArrayString tokens = wxSplit(message, BALLOON_LOGGER_SEPARATOR_CHAR, BALLOON_LOGGER_ESCAPE_CHAR);
-    wxASSERT( tokens.Count() > 0 );
-
-    // if no title specified use default one
-    wxString balloonText = tokens[0];
-    wxString balloonTitle = tokens.Count() > 1? tokens[1] : wxT("flybot");
-
-    if (NULL != m_taskBarIcon)
-    {
-        m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, LOG_BALLOON_TIMEOUT_MS, icon);
-    }
-}
-
-void wxLogBalloon::DoLogStatus(const wxString &msg)
+void wxLogBalloon::DoLogStatus(const wxString& msg)
 {
     wxString logFileName = FlybotAPI.ConfigPath + wxT("Logs\\flybot.log");
     FILE *logFile = fopen(logFileName.c_str(), "a");
@@ -41,33 +22,52 @@ void wxLogBalloon::DoLogStatus(const wxString &msg)
     }
 }
 
-void wxLogBalloon::DoLog(wxLogLevel level, const wxString& message, time_t t)
+void wxLogBalloon::DoLogText(const wxString& msg, int icon)
+{
+    if ( msg.empty())
+        return;
+
+    // msg title and body are separated by special char
+    wxArrayString tokens = wxSplit(msg, BALLOON_LOGGER_SEPARATOR_CHAR, BALLOON_LOGGER_ESCAPE_CHAR);
+    wxASSERT( tokens.Count() > 0 );
+
+    // if no title specified use default one ('flybot')
+    wxString balloonText = tokens[0];
+    wxString balloonTitle = tokens.Count() > 1? tokens[1] : wxT("flybot");
+
+    if (NULL != m_taskBarIcon)
+    {
+        m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, LOG_BALLOON_TIMEOUT_MS, icon);
+    }
+}
+
+
+void wxLogBalloon::DoLogTextAtLevel(wxLogLevel level, const wxString& msg)
 {
     switch ( level ) 
     {
     case wxLOG_FatalError:
-        DoLogString(_("Fatal error: ") + message + _("Program aborted."), t, wxICON_ERROR);
-        Flush();
+        DoLogText(_("Fatal error: ") + msg + _("Program aborted."), wxICON_ERROR);
         abort();
         break;
 
     case wxLOG_Error:
-        DoLogString(message, t, wxICON_ERROR);
+        DoLogText(msg, wxICON_ERROR);
         break;
 
     case wxLOG_Warning:
-        DoLogString(message, t, wxICON_WARNING);
+        DoLogText(msg, wxICON_WARNING);
         break;
 
     case wxLOG_Status:
-        DoLogStatus(message);
+        DoLogStatus(msg);
         break;
 
     case wxLOG_Info:
     case wxLOG_Message:
     default:    // log unknown log levels too
         if (wxGetApp().Config.BalloonsEnabled())
-            DoLogString(message, t);
+            DoLogText(msg);
         break;
 
     case wxLOG_Trace:
@@ -76,12 +76,19 @@ void wxLogBalloon::DoLog(wxLogLevel level, const wxString& message, time_t t)
         {
             wxString msg = level == wxLOG_Trace ? wxT("Trace: ")
                 : wxT("Debug: ");
-            msg << message;
-            DoLogString(msg, t);
+            msg << msg;
+            DoLogText(msg);
         }
 #endif // Debug
         break;
     }
+}
+
+
+void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& info)
+{
+    //msg = wxString::Format("%s%s", msg, wxDateTime(info.timestamp) );
+    DoLogTextAtLevel(level, msg);
 }
 
 wxLogBalloon::~wxLogBalloon(void)
