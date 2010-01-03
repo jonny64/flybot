@@ -18,12 +18,13 @@ const int LOG_BALLOON_TIMEOUT_MS = 4000;
 class wxLogBalloon : public wxLog
 {
     FlybotTaskBarIcon *m_taskBarIcon;
-    void DoLogStatus(const wxString &msg);
+    void DoLogStatus(const wxString& msg);
 public:
     wxLogBalloon(FlybotTaskBarIcon *);
     ~wxLogBalloon(void);
     
 protected:
-    void DoLogString(const wxString&, time_t, int icon  = wxICON_INFORMATION);
-    virtual void DoLog(wxLogLevel level, const wxString& msg, time_t t);
+    void DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& info);
+    void DoLogTextAtLevel(wxLogLevel level, const wxString& msg);
+    void DoLogText(const wxString& msg, int icon = wxICON_INFORMATION);
 };
