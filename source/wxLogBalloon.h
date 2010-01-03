@@ -6,14 +6,14 @@ const wxChar BALLOON_LOGGER_SEPARATOR_CHAR = wxChar('#');
 const wxChar BALLOON_LOGGER_ESCAPE_CHAR = wxChar('\\');
 const int LOG_BALLOON_TIMEOUT_MS = 4000;
 
-#define DECLARE_BALLOON_LOG_FUNCTION(level)                        \
-void wxLog##level(const wxString &title, const wxString &message)
 
-DECLARE_BALLOON_LOG_FUNCTION(FatalError);
-DECLARE_BALLOON_LOG_FUNCTION(Error);
-DECLARE_BALLOON_LOG_FUNCTION(Warning);
-DECLARE_BALLOON_LOG_FUNCTION(Message);
-DECLARE_BALLOON_LOG_FUNCTION(Info);
+#define MESSAGE_WITH_TITLE(message, title)                                                                                     \
+    wxString::Format(											\
+	    wxT("%s%c%s"),                                           \
+	    message,                                                 \
+	    BALLOON_LOGGER_SEPARATOR_CHAR,                           \
+	    title                                                    \
+    )
 
 class wxLogBalloon : public wxLog
 {

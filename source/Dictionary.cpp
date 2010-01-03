@@ -42,9 +42,11 @@ int Dictionary::Load()
     if (!input.Ok())
     {
         wxLogError(
-            _("Cannot open dictionary for reading"), 
-            wxString::Format(_("Path: %s"), dictionaryFileName)
-            );
+			MESSAGE_WITH_TITLE(
+				_("Cannot open dictionary for reading"), 
+				wxString::Format(_("Path: %s"), dictionaryFileName)
+            )
+		);
         return IO_FAILURE;
     }
 
