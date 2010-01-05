@@ -3,7 +3,7 @@ set PATH=..\tools;%PATH%
 
 rem cd to bat file directory: need when run from explorer
 cd /d %~dp0
-set wxWidgetsDir=e:\Code\wxWidgets-2.9.0
+set wxWidgetsDir=e:\Code\wxWidgets-2.9.1
 set currDir=.
 
 copy /y "%wxWidgetsDir%\include\wx\msw\setup.h" "%wxWidgetsDir%\include\wx\msw\setup.h.bak"
