@@ -74,10 +74,10 @@ void wxLogBalloon::DoLogTextAtLevel(wxLogLevel level, const wxString& msg)
     case wxLOG_Debug:
 #ifdef __WXDEBUG__
         {
-            wxString msg = level == wxLOG_Trace ? wxT("Trace: ")
+            wxString qualifiedMsg = level == wxLOG_Trace ? wxT("Trace: ")
                 : wxT("Debug: ");
-            msg << msg;
-            DoLogText(msg);
+            qualifiedMsg << msg;
+            DoLogText(qualifiedMsg);
         }
 #endif // Debug
         break;
@@ -85,7 +85,7 @@ void wxLogBalloon::DoLogTextAtLevel(wxLogLevel level, const wxString& msg)
 }
 
 
-void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& info)
+void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& WXUNUSED(info))
 {
     //msg = wxString::Format("%s%s", msg, wxDateTime(info.timestamp) );
     DoLogTextAtLevel(level, msg);

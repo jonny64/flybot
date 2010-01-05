@@ -11,12 +11,7 @@ class FlybotTaskBarIcon: public wxTaskBarIcon
     void OnMenuSlotTimeoutClick(wxCommandEvent &evt);
     void OnMenuAnswerDelayClick(wxCommandEvent &evt);
 public:
-#if defined(__WXCOCOA__)
-    FlybotTaskBarIcon(wxTaskBarIconType iconType = DEFAULT_TYPE)
-        :   wxTaskBarIcon(iconType);
-#else
     FlybotTaskBarIcon();
-#endif
 
     void OnLeftButtonUp(wxTaskBarIconEvent&);
     void SetupIcon();
