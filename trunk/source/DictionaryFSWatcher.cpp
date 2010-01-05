@@ -25,7 +25,7 @@ void DictionaryFSWatcher::Notify()
 		if (fileinfo.st_mtime != oldTimestamp)
 		{
 			// dictionary file changed by user
-			wxGetApp().Dict.Load();
+			wxGetApp().ReloadDictionary();
 			oldTimestamp = fileinfo.st_mtime;
 		}
 	}
