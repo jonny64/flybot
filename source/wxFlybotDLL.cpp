@@ -41,6 +41,9 @@ bool wxFlybotDLL::OnInit()
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
+    // reload when dictionary file is changed
+    m_dictWatcher = new DictionaryFSWatcher();
+	m_dictWatcher->Start(DICTIONARY_WATCH_INTERVAL_MS);
     return true;
 }
 
@@ -116,6 +119,9 @@ int wxFlybotDLL::OnExit()
     m_sessions.clear();
 
     delete m_locale;
+
+	m_dictWatcher->Stop();
+	delete m_dictWatcher;
 
     return SUCCESS;
 }

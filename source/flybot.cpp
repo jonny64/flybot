@@ -14,14 +14,6 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID )
     case DLL_PROCESS_ATTACH:
         wxSetInstance((HINSTANCE)hModule);
         wxEntryStart(argc, argv);
-        if( !wxTheApp || !wxTheApp->CallOnInit() )
-        {
-            wxEntryCleanup();
-            if( wxTheApp )
-                wxTheApp->OnExit();
-            return FALSE;
-        }
-
         break;
     case DLL_THREAD_ATTACH:
         break;
@@ -69,9 +61,15 @@ FLYBOT_API init(BotInit* apiInfo)
     apiInfo->botId = APP_NAME;
     apiInfo->botVersion = APP_VERSION;
     apiInfo->RecvMessage2 = OnRecvMessage2;
+
     FlybotAPI.Initialize(apiInfo);
-
-    wxGetApp().Dict.Load();
-
+    if( !wxTheApp || !wxTheApp->CallOnInit() )
+    {
+        wxEntryCleanup();
+        if( wxTheApp )
+            wxTheApp->OnExit();
+        return false;
+    }
+    
     return true;
 }

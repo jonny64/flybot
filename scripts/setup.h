@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id: setup0.h 58620 2009-02-02 11:39:48Z VZ $
+// RCS-ID:      $Id: setup0.h 62704 2009-11-24 00:01:15Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -45,20 +45,7 @@
 // in the version after it completely.
 //
 // Recommended setting: 0 (please update your code)
-#define WXWIN_COMPATIBILITY_2_8 0
-
-// Use the 2.8-compatible events and Connect(): this is set to 0 by default as
-// the new events bring significant benefits in compile-time safety and
-// flexibility but can be disabled to somewhat reduce the compilation time and,
-// especially, to still allow building if the compiler template support is too
-// bad to compile the new code.
-//
-// Default is 0 but this is set to 1 automatically in wx/chkconf.h for the
-// compilers which can't build the new code (currently only g++ and MSVC >= 8
-// can)
-//
-// Recommended setting: 0
-#define wxEVENTS_COMPATIBILITY_2_8 0
+#define WXWIN_COMPATIBILITY_2_8 1
 
 // MSW-only: Set to 0 for accurate dialog units, else 1 for old behaviour when
 // default system font is used for wxWindow::GetCharWidth/Height() instead of
@@ -73,6 +60,50 @@
 // debugging settings
 // ----------------------------------------------------------------------------
 
+// wxDEBUG_LEVEL will be defined as 1 in wx/debug.h so normally there is no
+// need to define it here. You may do it for two reasons: either completely
+// disable/compile out the asserts in release version (then do it inside #ifdef
+// NDEBUG) or, on the contrary, enable more asserts, including the usually
+// disabled ones, in the debug build (then do it inside #ifndef NDEBUG)
+//
+// #ifdef NDEBUG
+//  #define wxDEBUG_LEVEL 0
+// #else
+//  #define wxDEBUG_LEVEL 2
+// #endif
+
+// wxHandleFatalExceptions() may be used to catch the program faults at run
+// time and, instead of terminating the program with a usual GPF message box,
+// call the user-defined wxApp::OnFatalException() function. If you set
+// wxUSE_ON_FATAL_EXCEPTION to 0, wxHandleFatalExceptions() will not work.
+//
+// This setting is for Win32 only and can only be enabled if your compiler
+// supports Win32 structured exception handling (currently only VC++ does)
+//
+// Default is 1
+//
+// Recommended setting: 1 if your compiler supports it.
+#define wxUSE_ON_FATAL_EXCEPTION 0
+
+// Set this to 1 to be able to generate a human-readable (unlike
+// machine-readable minidump created by wxCrashReport::Generate()) stack back
+// trace when your program crashes using wxStackWalker
+//
+// Default is 1 if supported by the compiler.
+//
+// Recommended setting: 1, set to 0 if your programs never crash
+#define wxUSE_STACKWALKER 0
+
+// Set this to 1 to compile in wxDebugReport class which allows you to create
+// and optionally upload to your web site a debug report consisting of back
+// trace of the crash (if wxUSE_STACKWALKER == 1) and other information.
+//
+// Default is 1 if supported by the compiler.
+//
+// Recommended setting: 1, it is compiled into a separate library so there
+//                         is no overhead if you don't use it
+#define wxUSE_DEBUGREPORT 0
+
 // Generic comment about debugging settings: they are very useful if you don't
 // use any other memory leak detection tools such as Purify/BoundsChecker, but
 // are probably redundant otherwise. Also, Visual C++ CRT has the same features
@@ -80,9 +111,12 @@
 // may prefer to use it instead of built in memory debugging code because it is
 // faster and more fool proof.
 //
-// Using VC++ CRT memory debugging is enabled by default in debug mode
-// (__WXDEBUG__) if wxUSE_GLOBAL_MEMORY_OPERATORS is *not* enabled (i.e. is 0)
+// Using VC++ CRT memory debugging is enabled by default in debug build (_DEBUG
+// is defined) if wxUSE_GLOBAL_MEMORY_OPERATORS is *not* enabled (i.e. is 0)
 // and if __NO_VC_CRTDBG__ is not defined.
+
+// The rest of the options in this section are obsolete and not supported,
+// enable them at your own risk.
 
 // If 1, enables wxDebugContext, for writing error messages to file, etc. If
 // __WXDEBUG__ is not defined, will still use the normal memory operators.
@@ -124,37 +158,6 @@
 // Recommended setting: 0
 #define wxUSE_DEBUG_NEW_ALWAYS 0
 
-// wxHandleFatalExceptions() may be used to catch the program faults at run
-// time and, instead of terminating the program with a usual GPF message box,
-// call the user-defined wxApp::OnFatalException() function. If you set
-// wxUSE_ON_FATAL_EXCEPTION to 0, wxHandleFatalExceptions() will not work.
-//
-// This setting is for Win32 only and can only be enabled if your compiler
-// supports Win32 structured exception handling (currently only VC++ does)
-//
-// Default is 1
-//
-// Recommended setting: 1 if your compiler supports it.
-#define wxUSE_ON_FATAL_EXCEPTION 1
-
-// Set this to 1 to be able to generate a human-readable (unlike
-// machine-readable minidump created by wxCrashReport::Generate()) stack back
-// trace when your program crashes using wxStackWalker
-//
-// Default is 1 if supported by the compiler.
-//
-// Recommended setting: 1, set to 0 if your programs never crash
-#define wxUSE_STACKWALKER 0
-
-// Set this to 1 to compile in wxDebugReport class which allows you to create
-// and optionally upload to your web site a debug report consisting of back
-// trace of the crash (if wxUSE_STACKWALKER == 1) and other information.
-//
-// Default is 1 if supported by the compiler.
-//
-// Recommended setting: 1, it is compiled into a separate library so there
-//                         is no overhead if you don't use it
-#define wxUSE_DEBUGREPORT 0
 
 // ----------------------------------------------------------------------------
 // Unicode support
@@ -418,14 +421,21 @@
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_TIMER         0
+#define wxUSE_TIMER         1
 
-// Use wxStopWatch class.
+// Use wxStopWatch clas.
 //
 // Default is 1
 //
 // Recommended setting: 1 (needed by wxSocket)
 #define wxUSE_STOPWATCH     0
+
+// Set wxUSE_FSWATCHER to 1 if you want to enable wxFileSystemWatcher
+//
+// Default is 1
+//
+// Recommended setting: 1
+#define wxUSE_FSWATCHER     1
 
 // Setting wxUSE_CONFIG to 1 enables the use of wxConfig and related classes
 // which allow the application to store its settings in the persistent
@@ -567,6 +577,14 @@
 // possible in which case setting this to 0 can gain up to 100KB.
 #define wxUSE_VARIANT 0
 
+// Support for wxAny class, the successor for wxVariant.
+//
+// Default is 1.
+//
+// Recommended setting: 1 unless you want to reduce the library size by a small amount,
+// or your compiler cannot for some reason cope with complexity of templates used.
+#define wxUSE_ANY 0
+
 // Support for regular expression matching via wxRegEx class: enable this to
 // use POSIX regular expressions in your code. You need to compile regex
 // library from src/regex to use it under Windows.
@@ -590,14 +608,6 @@
 // Recommended setting: 1
 #define wxUSE_MEDIACTRL     0
 
-// Use GStreamer for Unix.
-//
-// Default is 0 as this requires a lot of dependencies which might not be
-// available.
-//
-// Recommended setting: 1 (wxMediaCtrl won't work by default without it)
-#define wxUSE_GSTREAMER    0
-
 // Use wxWidget's XRC XML-based resource system.  Recommended.
 //
 // Default is 1
@@ -620,12 +630,19 @@
 // Recommended setting: 1
 #define wxUSE_AUI       0
 
+// Use wxWidget's Ribbon classes for interfaces
+//
+// Default is 1
+//
+// Recommended setting: 1
+#define wxUSE_RIBBON    0
+
 // Use wxPropertyGrid.
 //
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_PROPGRID  0
+#define wxUSE_PROPGRID  1
 
 // Use wxStyledTextCtrl, a wxWidgets implementation of Scintilla.
 //
@@ -638,16 +655,17 @@
 // Enable the new wxGraphicsPath and wxGraphicsContext classes for an advanced
 // 2D drawing API.  (Still somewhat experimental)
 //
-// Please note that on Windows you will need to link with gdiplus.lib (use
-// USE_GDIPLUS=1 for makefile builds) and distribute gdiplus.dll with your
-// application if you want it to be runnable on pre-XP systems.
+// Please note that on Windows gdiplus.dll is loaded dynamically which means
+// that nothing special needs to be done as long as you don't use
+// wxGraphicsContext at all or only use it on XP and later systems but you
+// still do need to distribute it yourself for an application using
+// wxGraphicsContext to be runnable on pre-XP systems.
 //
-// Default is 0
+// Default is 1 if the compiler has gdiplus.h (currently only MSVC 7+ under
+// Windows is known to).
 //
 // Recommended setting: 1
-#ifndef wxUSE_GRAPHICS_CONTEXT
 #define wxUSE_GRAPHICS_CONTEXT 0
-#endif
 
 // ----------------------------------------------------------------------------
 // Individual GUI controls
@@ -855,7 +873,7 @@
 // ----------------------------------------------------------------------------
 
 // wxAcceleratorTable/Entry classes and support for them in wxMenu(Bar)
-#define wxUSE_ACCEL 0
+#define wxUSE_ACCEL 1
 
 // Hotkey support (currently Windows only)
 #define wxUSE_HOTKEY 0
@@ -888,6 +906,14 @@
 // Recommended setting: 1 (set it to 0 if you don't use any of the controls
 // enumerated above, then this class is mostly useless too)
 #define wxUSE_IMAGLIST      0
+
+// Use wxInfoBar class.
+//
+// Default is 1.
+//
+// Recommended setting: 1 (but can be disabled without problems as nothing
+// depends on it)
+#define wxUSE_INFOBAR       0
 
 // Use wxMenu, wxMenuBar, wxMenuItem.
 //
@@ -929,7 +955,7 @@
 #define wxUSE_TOOLTIPS      0
 
 // wxValidator class and related methods
-#define wxUSE_VALIDATORS    1
+#define wxUSE_VALIDATORS 0
 
 // Use reference counted ID management: this means that wxWidgets will track
 // the automatically allocated ids (those used when you use wxID_ANY when
@@ -1091,13 +1117,15 @@
 
 // Setting wxUSE_GLCANVAS to 1 enables OpenGL support. You need to have OpenGL
 // headers and libraries to be able to compile the library with wxUSE_GLCANVAS
-// set to 1. Note that for some compilers (notably Microsoft Visual C++) you
-// will need to manually add opengl32.lib and glu32.lib to the list of
-// libraries linked with your program if you use OpenGL.
+// set to 1 and, under Windows, also to add opengl32.lib and glu32.lib to the
+// list of libraries used to link your application (although this is done
+// implicitly for Microsoft Visual C++ users).
 //
-// Default is 0.
+// Default is 1 unless the compiler is known to ship without the necessary
+// headers (Digital Mars) or the platform doesn't support OpenGL (Windows CE).
 //
-// Recommended setting: 1 if you intend to use OpenGL, 0 otherwise
+// Recommended setting: 1 if you intend to use OpenGL, can be safely set to 0
+// otherwise.
 #define wxUSE_GLCANVAS       0
 
 // wxRichTextCtrl allows editing of styled text.
@@ -1402,7 +1430,7 @@
 #define wxUSE_TASKBARICON_BALLOONS 1
 
 // Set to 1 to compile MS Windows XP theme engine support
-#define wxUSE_UXTHEME           0
+#define wxUSE_UXTHEME           1
 
 // Set to 1 to use InkEdit control (Tablet PC), if available
 #define wxUSE_INKEDIT  0

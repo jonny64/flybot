@@ -455,6 +455,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\DictionaryFSWatcher.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\DictionaryFSWatcher.h"
+				>
+			</File>
+			<File
 				RelativePath=".\flybot.cpp"
 				>
 				<FileConfiguration
