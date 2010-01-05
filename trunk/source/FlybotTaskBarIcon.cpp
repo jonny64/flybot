@@ -161,7 +161,6 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
 
     menu->AppendSeparator();
 
-    menu->Append(wxID_RELOAD_DICT, _("&Reload dicttionary"));
     menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
 
     return menu;
