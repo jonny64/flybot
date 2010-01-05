@@ -85,10 +85,10 @@ void wxLogBalloon::DoLogTextAtLevel(wxLogLevel level, const wxString& msg)
 }
 
 
-void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& WXUNUSED(info))
+void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& info)
 {
-    //msg = wxString::Format("%s%s", msg, wxDateTime(info.timestamp) );
-    DoLogTextAtLevel(level, msg);
+    //wxString msgWithTime = wxString::Format("%s%s", msg, wxDateTime(info.timestamp).Format() );
+    DoLogTextAtLevel(level, msg );
 }
 
 wxLogBalloon::~wxLogBalloon(void)
