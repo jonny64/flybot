@@ -25,7 +25,6 @@ SetCompressor /SOLID lzma
   DirText "Программа установит $(^NameDA) в папку клиента. Если она неверно определилась, нажмите кнопку 'Обзор' и укажите ее."
   
   ;Get installation folder from registry if available
-  SetRegView 64
   InstallDirRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\FlylinkDC++ x64_is1" "InstallLocation"
 
 ;--------------------------------
@@ -116,6 +115,9 @@ Function .onInit
   IfFileExists $WINDIR\SysWOW64\Shell32.dll +3 0
     MessageBox MB_OK|MB_ICONSTOP $(noWow)
     Abort $(noWow)
+    
+  SetRegView 64
+  ReadRegStr $INSTDIR HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\FlylinkDC++ x64_is1" "InstallLocation"
 FunctionEnd
 
 Function .onSelChange
