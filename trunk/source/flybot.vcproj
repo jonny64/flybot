@@ -711,6 +711,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\scripts\trunk-r63084-multiplatform-support.patch"
+				>
+			</File>
+			<File
 				RelativePath="..\scripts\update-revision.bat"
 				>
 			</File>
