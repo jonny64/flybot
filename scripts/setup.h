@@ -435,7 +435,7 @@
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_FSWATCHER     1
+#define wxUSE_FSWATCHER     0
 
 // Setting wxUSE_CONFIG to 1 enables the use of wxConfig and related classes
 // which allow the application to store its settings in the persistent
@@ -642,7 +642,7 @@
 // Default is 1
 //
 // Recommended setting: 1
-#define wxUSE_PROPGRID  1
+#define wxUSE_PROPGRID  0
 
 // Use wxStyledTextCtrl, a wxWidgets implementation of Scintilla.
 //
@@ -873,7 +873,7 @@
 // ----------------------------------------------------------------------------
 
 // wxAcceleratorTable/Entry classes and support for them in wxMenu(Bar)
-#define wxUSE_ACCEL 1
+#define wxUSE_ACCEL 0
 
 // Hotkey support (currently Windows only)
 #define wxUSE_HOTKEY 0
@@ -1430,7 +1430,7 @@
 #define wxUSE_TASKBARICON_BALLOONS 1
 
 // Set to 1 to compile MS Windows XP theme engine support
-#define wxUSE_UXTHEME           1
+#define wxUSE_UXTHEME           0
 
 // Set to 1 to use InkEdit control (Tablet PC), if available
 #define wxUSE_INKEDIT  0
