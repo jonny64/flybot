@@ -41,6 +41,8 @@ bool wxFlybotDLL::OnInit()
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
 
+    Dict.Load();
+
     // reload when dictionary file is changed
     m_dictWatcher = new DictionaryFSWatcher();
 	m_dictWatcher->Start(DICTIONARY_WATCH_INTERVAL_MS);

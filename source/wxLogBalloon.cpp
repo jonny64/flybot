@@ -27,7 +27,7 @@ void wxLogBalloon::DoLogText(const wxString& msg, int icon)
     if ( msg.empty())
         return;
 
-    // msg title and body are separated by special char
+    // msg title and body are separated by special char: see MESSAGE_WITH_TITLE macro
     wxArrayString tokens = wxSplit(msg, BALLOON_LOGGER_SEPARATOR_CHAR, BALLOON_LOGGER_ESCAPE_CHAR);
     wxASSERT( tokens.Count() > 0 );
 
@@ -85,9 +85,8 @@ void wxLogBalloon::DoLogTextAtLevel(wxLogLevel level, const wxString& msg)
 }
 
 
-void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& info)
+void wxLogBalloon::DoLogRecord(wxLogLevel level, const wxString& msg, const wxLogRecordInfo& WXUNUSED(info) )
 {
-    //wxString msgWithTime = wxString::Format("%s%s", msg, wxDateTime(info.timestamp).Format() );
     DoLogTextAtLevel(level, msg );
 }
 
