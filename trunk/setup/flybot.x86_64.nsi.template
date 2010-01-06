@@ -22,9 +22,10 @@ SetCompressor /SOLID lzma
   ;Default installation folder
   InstallDir "$PROGRAMFILES64\FlylinkDC++_x64"
   
-  DirText "Программа установит $(^NameDA) в папку клиента. Чтобы выбрать другую папку, нажмите кнопку 'Обзор' и укажите ее."
+  DirText "Программа установит $(^NameDA) в папку клиента. Если она неверно определилась, нажмите кнопку 'Обзор' и укажите ее."
   
   ;Get installation folder from registry if available
+  SetRegView 64
   InstallDirRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\FlylinkDC++ x64_is1" "InstallLocation"
 
 ;--------------------------------
