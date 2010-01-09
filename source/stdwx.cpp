@@ -4,10 +4,10 @@ int random(int max)
 {
     if (max <= 0)
         return 0;
-
+        
     int result = 0;
     int i = max;
-    while (RAND_MAX < i )
+    while (RAND_MAX < i)
     {
         srand(time(NULL));
         result += rand();
@@ -15,6 +15,6 @@ int random(int max)
     }
     srand(time(NULL));
     result += rand() % i;
-        
+    
     return result;
 }

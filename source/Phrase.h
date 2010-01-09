@@ -14,14 +14,14 @@ class Phrase
     bool m_valid;
 public:
     Phrase(const wxString &line);
-    Phrase() : MatchExpr(wxEmptyString), Answer(wxEmptyString), Flags(wxEmptyString), ErrorMsg(wxEmptyString){}
-
+    Phrase() : MatchExpr(wxEmptyString), Answer(wxEmptyString), Flags(wxEmptyString), ErrorMsg(wxEmptyString) {}
+    
     int Priority;
     wxString MatchExpr;
     wxString Answer;
     wxString Flags;
     wxString ErrorMsg;
-
+    
     bool Empty() const;
     bool Valid() const;
     bool Matches(const wxString &PM) const;

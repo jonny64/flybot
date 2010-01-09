@@ -15,13 +15,13 @@ class wxFlybotDLL: public wxApp
     WX_DECLARE_STRING_HASH_MAP(Session*, SessionMap);
     SessionMap m_sessions;
     bool m_online; // bot status (active/inactive)
-	DictionaryFSWatcher *m_dictWatcher;
-
+    DictionaryFSWatcher *m_dictWatcher;
+    
     void SelectLanguage(int lang);
 public:
-	Dictionary Dict;
+    Dictionary Dict;
     FlybotConfig Config;
-
+    
     void SwitchState();
     bool GetEnabledState();
     bool OnInit();

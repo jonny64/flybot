@@ -731,6 +731,14 @@
 			Name="Tools"
 			>
 			<File
+				RelativePath="..\tools\Astyle.bat"
+				>
+			</File>
+			<File
+				RelativePath="..\tools\AStyle.exe"
+				>
+			</File>
+			<File
 				RelativePath="..\tools\gawk.exe"
 				>
 			</File>

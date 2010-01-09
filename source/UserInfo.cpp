@@ -8,7 +8,7 @@ UserInfo::UserInfo(WCHAR* userinfo)
     wxString info(userinfo);
     if (info.empty())
         return;
-
+        
     // split string by | char
     wxArrayString pairs = wxSplit(info, '|', '#');
     for (size_t i = 0; i < pairs.Count(); i++)
@@ -40,7 +40,7 @@ wxString UserInfo::operator[](const wxString& key)
     return wxT("");
 }
 
-UserInfo& UserInfo::operator=(const UserInfo& rhs)
+UserInfo& UserInfo::operator=(const UserInfo & rhs)
 {
     m_vars = VarMap(rhs.m_vars);
     return *this;

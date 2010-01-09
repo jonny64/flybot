@@ -3,12 +3,12 @@
 #include <wx/stdpaths.h>
 
 FlybotConfig::FlybotConfig():
-    wxFileConfig(
-        wxT("flybot"),
-        wxT("astro64m"), 
-        FlybotAPI.ConfigPath + CONFIG_FILENAME, 
-        wxT(""), 
-        wxCONFIG_USE_LOCAL_FILE
+        wxFileConfig(
+            wxT("flybot"),
+            wxT("astro64m"),
+            FlybotAPI.ConfigPath + CONFIG_FILENAME,
+            wxT(""),
+            wxCONFIG_USE_LOCAL_FILE
         )
 {
     ReadSlotTimeouts();
@@ -26,27 +26,27 @@ vector<int> FlybotConfig::DoReadIntList(const wxString &path)
 {
     vector<int> result;
     wxFileConfig *conf = &wxGetApp().Config;
-
+    
     // read settings
     int val = 0;
     int i = 0;
     while (conf->Read(
-            wxString::Format(wxT("%s/value%d"), path, i),
-            &val
+                wxString::Format(wxT("%s/value%d"), path, i),
+                &val
             )
-        )
+          )
     {
         result.push_back(val);
         i++;
     }
-
+    
     return result;
 }
 
 void FlybotConfig::DoWriteIntList(const wxString &path, const vector<int> &lst)
 {
     wxFileConfig *conf = &wxGetApp().Config;
-
+    
     int index = 0;
     FOREACH_CONST(vector<int>, it, lst)
     {
@@ -100,7 +100,7 @@ vector<int> FlybotConfig::GetAnswerDelays()
 int FlybotConfig::GetAnswerDelayId()
 {
     int answerDelayId = 0;
-    Read(SETTING_ANSWER_DELAY, &answerDelayId );
+    Read(SETTING_ANSWER_DELAY, &answerDelayId);
     return answerDelayId;
 }
 

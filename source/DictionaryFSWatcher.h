@@ -10,6 +10,6 @@ class DictionaryFSWatcher : public wxTimer
 public:
     DictionaryFSWatcher(void);
     ~DictionaryFSWatcher(void);
-
+    
     void Notify();
 };

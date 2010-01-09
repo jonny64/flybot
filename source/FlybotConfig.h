@@ -11,7 +11,7 @@ const wxString SETTING_BOT_ONLINE = wxT("Enabled");
 const wxString CONFIG_FILENAME = wxT("flybot.ini");;
 
 class FlybotConfig :
-    public wxFileConfig
+        public wxFileConfig
 {
     vector<int> DoReadIntList(const wxString &path);
     void DoWriteIntList(const wxString &path, const vector<int> &lst);
@@ -22,14 +22,14 @@ class FlybotConfig :
     vector<int> m_answerDelays;
 public:
     FlybotConfig();
-
+    
     bool BalloonsEnabled();
     
     int GetSlotTimeoutId();
     int GetAnswerDelayId();
-
+    
     vector<int> GetSlotTimeouts();
     vector<int> GetAnswerDelays();
-
+    
     ~FlybotConfig(void);
 };

@@ -1,5 +1,5 @@
 #pragma once
-#include "stdwx.h" 
+#include "stdwx.h"
 
 #include "FlybotTaskBarIcon.h"
 #include "UserInfo.h"
