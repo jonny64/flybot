@@ -43,10 +43,10 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
     if (flags.Freq(DICTIONARY_LOG_CHAR) > 0)
     {
         wxString logMessage = selectedPhrase.ToString();
-        logMessage  += message.empty()? wxEmptyString : wxT(" => ") + message;
+        logMessage  += message.empty() ? wxEmptyString : wxT(" => ") + message;
         wxLogStatus(logMessage);
     }
-
+    
     if (!message.empty())
     {
         wxLogMessage(MESSAGE_WITH_TITLE(title, message));
@@ -59,15 +59,15 @@ class AnswerThread: public wxThread
     wxString m_cid;
 public:
     AnswerThread(wxString &msg, wxString &cid):
-      m_answer(msg), m_cid(cid) {}
-
+            m_answer(msg), m_cid(cid) {}
+            
     virtual void *Entry()
     {
-        int anserDelayMsec = 1000*wxGetApp().Config.GetAnswerDelays()[wxGetApp().Config.GetAnswerDelayId()];
+        int anserDelayMsec = 1000 * wxGetApp().Config.GetAnswerDelays()[wxGetApp().Config.GetAnswerDelayId()];
         // answer delay is 100 ms. per char plus user supplied specified delay
-        int intervalMs = (int)m_answer.Length() *100 + anserDelayMsec;
-
-        wxThread::Sleep( intervalMs );
+        int intervalMs = (int)m_answer.Length() * 100 + anserDelayMsec;
+        
+        wxThread::Sleep(intervalMs);
         FlybotAPI.SendPM(m_cid, m_answer);
         return NULL;
     }
@@ -79,9 +79,9 @@ wxString Session::GetVariable(const wxString& varName)
     {
         return m_replies.Last();
     }
-    else if (wxT("HISTORY") == varName && !m_replies.empty() )
+    else if (wxT("HISTORY") == varName && !m_replies.empty())
     {
-        int selectedReplyId = random( (int)m_replies.Count() );
+        int selectedReplyId = random((int)m_replies.Count());
         return m_replies[selectedReplyId];
     }
     
@@ -93,10 +93,10 @@ wxString Session::SubstituteVars(const wxString& answer)
     wxString result = answer;
     wxRegEx reVar = wxT("\\$\\((.+)\\)"); // '$(varName)'
     while (reVar.Matches(result))
-    { 
+    {
         // first bracketed subexpression is varName
         wxString varName = reVar.GetMatch(result, 1);
-
+        
         reVar.Replace(&result, GetVariable(varName));
     }
     return result;
@@ -105,19 +105,19 @@ wxString Session::SubstituteVars(const wxString& answer)
 int Session::Answer(wxString& msg)
 {
     m_replies.Add(msg);
-
+    
     Phrase selectedPhrase = wxGetApp().Dict.GetMatchedTemplate(msg, &m_usedPhrases);
-
+    
     // if no matches, exit;
     if (selectedPhrase.Empty())
         return 0;
-
+        
     // replace special vars (start with $) in answer;
     selectedPhrase.Answer = SubstituteVars(selectedPhrase.Answer);
-
+    
     wxString answer = selectedPhrase.Answer;
     wxString cid = m_userinfo[FLYBOT_API_CID];
-
+    
     // FIXME: special case - closed PM window will open again
     // when we send answer after delay, therefore answer delay should be ignored
     if (selectedPhrase.Flags.Freq(DICTIONARY_CLOSE_CHAR) > 0)
@@ -126,21 +126,21 @@ int Session::Answer(wxString& msg)
         ProcessFlags(selectedPhrase);
         return 0;
     }
-
+    
     ProcessFlags(selectedPhrase);
-
-    // this thread will sleep for desired time interval and then send answer    
+    
+    // this thread will sleep for desired time interval and then send answer
     wxThread *answerThread = new AnswerThread(answer, cid);
-    if (!cid.empty() && !answer.empty() && NULL!=answerThread)
+    if (!cid.empty() && !answer.empty() && NULL != answerThread)
     {
-        if  (wxTHREAD_NO_ERROR != answerThread->Create())
+        if (wxTHREAD_NO_ERROR != answerThread->Create())
         {
             wxLogError(_("Cannot create worker thread"));
             return -1;
         }
         answerThread->Run();
     }
-
+    
     return 0;
 }
 

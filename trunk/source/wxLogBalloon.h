@@ -7,13 +7,8 @@ const wxChar BALLOON_LOGGER_ESCAPE_CHAR = wxChar('\\');
 const int LOG_BALLOON_TIMEOUT_MS = 4000;
 
 
-#define MESSAGE_WITH_TITLE(message, title)                                                                                     \
-    wxString::Format(											\
-	    wxT("%s%c%s"),                                           \
-	    message,                                                 \
-	    BALLOON_LOGGER_SEPARATOR_CHAR,                           \
-	    title                                                    \
-    )
+#define MESSAGE_WITH_TITLE(message, title) \
+    wxString::Format(wxT("%s%c%s"), message, BALLOON_LOGGER_SEPARATOR_CHAR, title)
 
 class wxLogBalloon : public wxLog
 {

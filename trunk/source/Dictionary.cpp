@@ -18,7 +18,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
     {
         return true;
     }
-
+    
     Phrase phrase(line);
     if (!phrase.Valid())
     {
@@ -26,7 +26,7 @@ bool Dictionary::ProcessLine(const wxString &line, wxString *errorMessage)
         return false;
     }
     
-    phrase.MatchExpr.empty()? m_emptyPhrases.Add(phrase) : m_phrases.Add(phrase);
+    phrase.MatchExpr.empty() ? m_emptyPhrases.Add(phrase) : m_phrases.Add(phrase);
     return true;
 }
 
@@ -42,25 +42,25 @@ int Dictionary::Load()
     if (!input.Ok())
     {
         wxLogError(
-			MESSAGE_WITH_TITLE(
-				_("Cannot open dictionary for reading"), 
-				wxString::Format(_("Path: %s"), dictionaryFileName)
+            MESSAGE_WITH_TITLE(
+                _("Cannot open dictionary for reading"),
+                wxString::Format(_("Path: %s"), dictionaryFileName)
             )
-		);
+        );
         return IO_FAILURE;
     }
-
+    
     // TODO: support both for Unicode and ANSI encoded dictionary
     // wxTextInputStream text(input) supposed to work fine in both cases, but...
     wxTextInputStream text(input, wxT("\r\n"), wxCSConv(wxFONTENCODING_CP1251));
-
+    
     m_phrases.Clear();
     m_emptyPhrases.Clear();
-
+    
     wxString line = wxT("");
     int row = 0;
     int errorsCount = 0;
-    while(input.IsOk() && !input.Eof() )
+    while (input.IsOk() && !input.Eof())
     {
         row++;
         line = text.ReadLine();
@@ -68,13 +68,13 @@ int Dictionary::Load()
         if (!ProcessLine(line, &errorMessage))
         {
             wxLogWarning(
-                wxString::Format(_("Dictionary, line %d:"), row), 
+                wxString::Format(_("Dictionary, line %d:"), row),
                 wxString::Format(wxT("%s\n%s"), line, errorMessage)
-                );
+            );
             errorsCount++;
         }
     }
-
+    
     return errorsCount;
 }
 
@@ -83,9 +83,9 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
     // map priority weight 1, 2, 3 => 1000, 500, 333
     // compute length of priority weight segment: in our example it is 1833
     unsigned int length = 0;
-    for (unsigned int i = 0; i<candidates.Count(); i++)
+    for (unsigned int i = 0; i < candidates.Count(); i++)
     {
-        length += int(DICTIONARY_MAX_PRIORITY/candidates[i].Priority);
+        length += int(DICTIONARY_MAX_PRIORITY / candidates[i].Priority);
     }
     
     // drop a point to segment, e.g. 700
@@ -93,13 +93,13 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
     
     // find corresponded phrase
     unsigned int i = 0;
-    unsigned int currPoint = int(DICTIONARY_MAX_PRIORITY/candidates[i].Priority);
+    unsigned int currPoint = int(DICTIONARY_MAX_PRIORITY / candidates[i].Priority);
     while (point >= currPoint)
     {
         i++;
-        currPoint = currPoint + int(DICTIONARY_MAX_PRIORITY/candidates[i].Priority);
+        currPoint = currPoint + int(DICTIONARY_MAX_PRIORITY / candidates[i].Priority);
     }
-
+    
     wxASSERT(i < candidates.Count());
     return candidates[i];
 }
@@ -107,7 +107,7 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
 Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedPhrases)
 {
     wxString answer = wxEmptyString;
-
+    
     // find matches
     ArrayOfPhrases candidates;
     for (unsigned int i = 0; i < m_phrases.Count(); i++)
@@ -117,12 +117,12 @@ Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedP
             candidates.Add(m_phrases.Item(i));
         }
     }
-
+    
     if (candidates.empty())
     {
         candidates = m_emptyPhrases;
     }
-
+    
     Phrase selectedPhrase;
     if (!candidates.empty())
     {

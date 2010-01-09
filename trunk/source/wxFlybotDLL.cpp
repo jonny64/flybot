@@ -30,9 +30,9 @@ bool wxFlybotDLL::OnInit()
     m_locale = NULL;
     
     Config.Read(SETTING_BOT_ONLINE, &m_online, true);
-        
+    
     SelectLanguage(wxLANGUAGE_RUSSIAN);
-
+    
     m_taskBarIcon = new FlybotTaskBarIcon();
     if (!m_taskBarIcon)
     {
@@ -40,12 +40,12 @@ bool wxFlybotDLL::OnInit()
     }
     // set new logger (SetActiveTarget returns old logger)
     delete wxLog::SetActiveTarget(new wxLogBalloon(m_taskBarIcon));
-
+    
     Dict.Load();
-
+    
     // reload when dictionary file is changed
     m_dictWatcher = new DictionaryFSWatcher();
-	m_dictWatcher->Start(DICTIONARY_WATCH_INTERVAL_MS);
+    m_dictWatcher->Start(DICTIONARY_WATCH_INTERVAL_MS);
     return true;
 }
 
@@ -57,9 +57,9 @@ void wxFlybotDLL::SelectLanguage(int lang)
     {
         return;
     }
-
+    
     m_locale->AddCatalogLookupPathPrefix(wxStandardPaths::Get().GetPluginsDir());
-    if (!m_locale->AddCatalog(wxT("Chatbot")) )
+    if (!m_locale->AddCatalog(wxT("Chatbot")))
     {
         // fall back to embedded english (do nothing)
     }
@@ -75,7 +75,7 @@ void wxFlybotDLL::ReloadDictionary()
 
 void wxFlybotDLL::OpenDictionary()
 {
-    if (!wxLaunchDefaultApplication(Dictionary::GetDictionaryFilename()) )
+    if (!wxLaunchDefaultApplication(Dictionary::GetDictionaryFilename()))
     {
         // TODO: handle case when no program associated to .ini files
     }
@@ -84,9 +84,9 @@ void wxFlybotDLL::OpenDictionary()
 void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 {
     // do not process favourites
-    if ( userinfo.Favourite() )
+    if (userinfo.Favourite())
         return;
-
+        
     wxCriticalSectionLocker locker(gSession); // leaves cs in destructor
     
     // if it is a new PM, create new session
@@ -95,7 +95,7 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
     {
         m_sessions[cid] = new Session(userinfo);
     }
-
+    
     // answer pm, according to previous replies, etc.
     if (NULL != m_sessions[cid])
     {
@@ -106,25 +106,25 @@ void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 int wxFlybotDLL::OnExit()
 {
     Config.Write(SETTING_BOT_ONLINE, m_online);
-
+    
     if (m_taskBarIcon)
     {
         m_taskBarIcon->RemoveIcon();
         delete m_taskBarIcon;
     }
-
+    
     // free session info
     FOREACH(SessionMap, it, m_sessions)
     {
         delete it->second;
     }
     m_sessions.clear();
-
+    
     delete m_locale;
-
-	m_dictWatcher->Stop();
-	delete m_dictWatcher;
-
+    
+    m_dictWatcher->Stop();
+    delete m_dictWatcher;
+    
     return SUCCESS;
 }
 

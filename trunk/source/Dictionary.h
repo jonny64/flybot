@@ -10,14 +10,14 @@ class Dictionary
 {
     ArrayOfPhrases m_phrases;
     ArrayOfPhrases m_emptyPhrases;
-
+    
     bool ProcessLine(const wxString &line, wxString *errorMessage);
 public:
     Dictionary(void);
-
+    
     int Load();
     static wxString GetDictionaryFilename();
     Phrase GetMatchedTemplate(const wxString& msg, ArrayOfPhrases* usedPhrases);
-
+    
     ~Dictionary(void);
 };
