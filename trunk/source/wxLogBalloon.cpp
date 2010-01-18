@@ -9,10 +9,13 @@ wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 
 void wxLogBalloon::DoLogStatus(const wxString& msg)
 {
-    wxString logFileName = FlybotAPI.ConfigPath + wxT("Logs\\flybot.log");
+    wxString logDirectory = FlybotAPI.ConfigPath + wxT("Logs");
+    wxString logFileName = logDirectory + wxT("\\flybot.log");
+
+    wxFileName::Mkdir(logDirectory, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
     FILE *logFile = fopen(logFileName.c_str(), "a");
-    wxLog *oldLogger = wxLog::SetActiveTarget(new wxLogStderr(logFile));
     
+    wxLog *oldLogger = wxLog::SetActiveTarget(new wxLogStderr(logFile));
     wxLogMessage(msg);
     
     delete wxLog::SetActiveTarget(oldLogger);
