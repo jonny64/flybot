@@ -11,7 +11,7 @@
 
 IMPLEMENT_APP_NO_MAIN(wxFlybotDLL)
 
-wxCriticalSection gSession;
+static wxCriticalSection gSession;
 
 bool wxFlybotDLL::GetEnabledState()
 {

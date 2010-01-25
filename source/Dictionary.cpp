@@ -8,6 +8,8 @@
 #include <wx/arrimpl.cpp>
 WX_DEFINE_OBJARRAY(ArrayOfPhrases);
 
+static wxCriticalSection gPhrases;
+
 Dictionary::Dictionary(void)
 {
 }
@@ -37,6 +39,8 @@ wxString Dictionary::GetDictionaryFilename()
 
 int Dictionary::Load()
 {
+	wxCriticalSectionLocker locker(gPhrases);
+
     wxString dictionaryFileName = GetDictionaryFilename();
     wxFileInputStream input(dictionaryFileName);
     if (!input.Ok())
@@ -106,8 +110,9 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
 
 Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedPhrases)
 {
-    wxString answer = wxEmptyString;
+	wxString answer = wxEmptyString;
     
+    wxCriticalSectionLocker locker(gPhrases);
     // find matches
     ArrayOfPhrases candidates;
     for (unsigned int i = 0; i < m_phrases.Count(); i++)
