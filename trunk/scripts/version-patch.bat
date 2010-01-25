@@ -1,7 +1,7 @@
 set PATH=..\tools;%PATH%
 
 set FILEDESCR=/s desc "chatbot for FlylinkDC++ client"
-set COMPINFO=/s company "astro64m" /s (c) "(c) copyleft 2008-2009"
+set COMPINFO=/s company "astro64m" /s (c) "(c) copyleft 2008-2010"
 
 set REVISION=
 subwcrev .. | gawk "NR==2 { print $5 }" > revision.txt

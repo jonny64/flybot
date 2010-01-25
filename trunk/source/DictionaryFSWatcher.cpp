@@ -13,7 +13,7 @@ DictionaryFSWatcher::~DictionaryFSWatcher(void)
 {
 }
 
-// checks dictionary modification time and reloads it when needed
+//called every DICTIONARY_WATCH_INTERVAL_MS milliseconds
 void DictionaryFSWatcher::Notify()
 {
     wxFileName dictionary(FlybotAPI.ConfigPath + DICTIONARY_FILENAME);

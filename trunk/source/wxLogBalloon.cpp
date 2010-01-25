@@ -2,6 +2,9 @@
 #include "wxLogBalloon.h"
 #include "wxFlybotDLL.h"
 #include "wx/datetime.h"
+
+static wxCriticalSection gBalloonUI;
+
 wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 {
     m_taskBarIcon = tb;
@@ -40,6 +43,7 @@ void wxLogBalloon::DoLogText(const wxString& msg, int icon)
     
     if (NULL != m_taskBarIcon)
     {
+		wxCriticalSectionLocker locker(gBalloonUI);
         m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, LOG_BALLOON_TIMEOUT_MS, icon);
     }
 }
