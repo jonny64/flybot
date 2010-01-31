@@ -8,6 +8,8 @@
 #include "FlybotTaskBarIcon.h"
 #include "DictionaryFSWatcher.h"
 
+const wxString PATH_TO_TEXT_LOG = wxT("Logs\\flybot.log");
+
 class wxFlybotDLL: public wxApp
 {
     FlybotTaskBarIcon *m_taskBarIcon;
@@ -27,6 +29,8 @@ public:
     bool OnInit();
     void ReloadDictionary();
     void OpenDictionary();
+    void OpenLog();
+    wxString GetLogFilename();
     void HandlePM(UserInfo& userinfo, wxString& msg);
     int OnExit();
     ~wxFlybotDLL();

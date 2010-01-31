@@ -19,6 +19,7 @@ enum
     wxID_ANSWER_TIMEOUT_SUB,
     wxID_POWER,
     wxID_USE_BALLOONS,
+    wxID_OPEN_LOGFILE,
     wxID_SLOT_TIMEOUT_BEGIN = 10050,
     wxID_ANSWER_DELAY_BEGIN = 10100
 };
@@ -30,6 +31,7 @@ BEGIN_EVENT_TABLE(FlybotTaskBarIcon, wxTaskBarIcon)
     EVT_MENU(wxID_RELOAD_DICT, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnMenuClick)
     EVT_MENU(wxID_POWER, FlybotTaskBarIcon::OnMenuClick)
+    EVT_MENU(wxID_OPEN_LOGFILE, FlybotTaskBarIcon::OnMenuClick)
     EVT_UPDATE_UI(wxID_USE_BALLOONS, FlybotTaskBarIcon::OnUpdateUI)
     EVT_UPDATE_UI(wxID_POWER, FlybotTaskBarIcon::OnUpdateUI)
 END_EVENT_TABLE()
@@ -65,6 +67,10 @@ void FlybotTaskBarIcon::OnMenuClick(wxCommandEvent& evt)
             
         case wxID_RELOAD_DICT:
             wxGetApp().ReloadDictionary();
+            break;
+            
+        case wxID_OPEN_LOGFILE:
+            wxGetApp().OpenLog();
             break;
             
         case wxID_POWER:
@@ -161,6 +167,7 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     
     menu->AppendSeparator();
     
+    menu->Append(wxID_OPEN_LOGFILE, _("Open &log"));
     menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
     
     return menu;
