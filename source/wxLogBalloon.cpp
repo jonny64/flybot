@@ -12,11 +12,11 @@ wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 
 void wxLogBalloon::DoLogStatus(const wxString& msg)
 {
-    wxString logDirectory = FlybotAPI.ConfigPath + wxT("Logs");
-    wxString logFileName = logDirectory + wxT("\\flybot.log");
-
-    wxFileName::Mkdir(logDirectory, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
-    FILE *logFile = fopen(logFileName.c_str(), "a");
+    wxString logFileName = wxGetApp().GetLogFilename();
+    wxFileName log(logFileName);
+    
+    wxFileName::Mkdir(log.GetPath(), wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+    FILE *logFile = fopen(log.GetFullPath().c_str(), "a");
     
     wxLog *oldLogger = wxLog::SetActiveTarget(new wxLogStderr(logFile));
     wxLogMessage(msg);
@@ -43,7 +43,7 @@ void wxLogBalloon::DoLogText(const wxString& msg, int icon)
     
     if (NULL != m_taskBarIcon)
     {
-		wxCriticalSectionLocker locker(gBalloonUI);
+        wxCriticalSectionLocker locker(gBalloonUI);
         m_taskBarIcon->ShowBalloon(balloonTitle, balloonText, LOG_BALLOON_TIMEOUT_MS, icon);
     }
 }

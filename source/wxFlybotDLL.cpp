@@ -81,6 +81,19 @@ void wxFlybotDLL::OpenDictionary()
     }
 }
 
+wxString wxFlybotDLL::GetLogFilename()
+{
+    return FlybotAPI.ConfigPath + PATH_TO_TEXT_LOG;
+}
+
+void wxFlybotDLL::OpenLog()
+{
+    if (!wxLaunchDefaultApplication(GetLogFilename()))
+    {
+        // TODO: handle case when no program associated to .ini files
+    }
+}
+
 void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 {
     // do not process favourites

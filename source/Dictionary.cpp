@@ -39,8 +39,8 @@ wxString Dictionary::GetDictionaryFilename()
 
 int Dictionary::Load()
 {
-	wxCriticalSectionLocker locker(gPhrases);
-
+    wxCriticalSectionLocker locker(gPhrases);
+    
     wxString dictionaryFileName = GetDictionaryFilename();
     wxFileInputStream input(dictionaryFileName);
     if (!input.Ok())
@@ -110,7 +110,7 @@ static Phrase SelectAccordingPriority(ArrayOfPhrases &candidates)
 
 Phrase Dictionary::GetMatchedTemplate(const wxString& msg, ArrayOfPhrases *usedPhrases)
 {
-	wxString answer = wxEmptyString;
+    wxString answer = wxEmptyString;
     
     wxCriticalSectionLocker locker(gPhrases);
     // find matches
