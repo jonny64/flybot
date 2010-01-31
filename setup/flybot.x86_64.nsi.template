@@ -20,7 +20,7 @@ SetCompressor /SOLID lzma
   Name "flybot"
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES64\FlylinkDC++_x64"
+  InstallDir "$PROGRAMFILES64\FlylinkDC++_x64\"
   
   DirText "Программа установит $(^NameDA) в папку клиента. Если она неверно определилась, нажмите кнопку 'Обзор' и укажите ее."
   
