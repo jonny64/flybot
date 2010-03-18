@@ -120,6 +120,8 @@ int wxFlybotDLL::OnExit()
 {
     Config.Write(SETTING_BOT_ONLINE, m_online);
     
+    wxLogNull suspendLoggingInScope;
+
     if (m_taskBarIcon)
     {
         m_taskBarIcon->RemoveIcon();
