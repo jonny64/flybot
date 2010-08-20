@@ -13,27 +13,17 @@
 
    Для этого нужно открыть [http://flybot.googlecode.com/svn/trunk/Translation/Russian/Chatbot.po проект] в poEdit и нажать кнопку 'обновить' на панели инструментов.
 
-Код [http://flybot.googlecode.com/svn/trunk здесь]
-
-  *  Скачайте и соберите wxWidgets (статически, конфигурации Release и Debug)
+Код [http://flybot.googlecode.com/svn/trunk здесь]. Нужная версия wxWidgets скачается с кодом.
+  *  Накатите на папку wxWidgets
 {{{
-    http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_2_9_0
+    scripts\wxWidgets.2.9.1.vc2010.patch
 }}}
-
-   Должно быть достаточно собрать base, core, adv, wxregex.
-
-   Если вы собираетесь собрать 64-битную версию, накатите 
-{{{
-    scripts\tag-2.9.0-multiplatform-support.patch
-}}}
-
-   Подсказка: ищите документацию в \docs\msw, проект в \build\msw
 
   *  Чтобы получить бинарник вменяемого размера переместите содержимое scripts\setup.h в папку wxWidgets\include\msw\.
 
-  * Сделайте ссылку (mklink /? или Alt-F6 в Far'е) на include и полученную папку lib в папку solution'а. 
+  * Соберите wxWidgets (проект тут: build/msw/wx.sln). 
 
-    Последние два шага под Windows Vista+ может выполнить простой [http://code.google.com/p/flybot/source/browse/trunk/scripts/workspace-config.bat скрипт] (из-за mklink требует прав администратора) в папке с исходными текстами: 
+    Последние два шага может выполнить простой [http://code.google.com/p/flybot/source/browse/trunk/scripts/workspace-config.bat скрипт] в папке с исходными текстами: 
 {{{
   scripts\workspace-setup.bat
 }}}
