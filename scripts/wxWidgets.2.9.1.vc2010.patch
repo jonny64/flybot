@@ -2,17 +2,16 @@ Index: build/msw/wx.sln
 ===================================================================
 --- build/msw/wx.sln	(revision 0)
 +++ build/msw/wx.sln	(revision 0)
-@@ -0,0 +1,56 @@
-+﻿
+@@ -0,0 +1,55 @@
 +Microsoft Visual Studio Solution File, Format Version 11.00
 +# Visual Studio 2010
-+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxregex", "wx_wxregex.vcxproj", "{66914FF8-CFA3-3E63-9C5C-B4AD89497539}"
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "wxregex", "wx_wxregex.vcxproj", "{F6843FC4-FFE2-0771-157E-901358911F2D}"
 +EndProject
-+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base", "wx_base.vcxproj", "{B7F671A4-A977-AB32-F46A-82427E32B3E9}"
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "base", "wx_base.vcxproj", "{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}"
 +EndProject
-+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "wx_core.vcxproj", "{41C310AA-2B52-EB9E-AF57-FE283CAE248D}"
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "wx_core.vcxproj", "{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}"
 +EndProject
-+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adv", "wx_adv.vcxproj", "{5700034E-4135-90E2-F86C-B073FCF62515}"
++Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adv", "wx_adv.vcxproj", "{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}"
 +EndProject
 +Global
 +	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,38 +21,38 @@ Index: build/msw/wx.sln
 +		Release|x64 = Release|x64
 +	EndGlobalSection
 +	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Debug|Win32.ActiveCfg = Debug|Win32
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Debug|Win32.Build.0 = Debug|Win32
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Debug|x64.ActiveCfg = Debug|x64
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Debug|x64.Build.0 = Debug|x64
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Release|Win32.ActiveCfg = Release|Win32
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Release|Win32.Build.0 = Release|Win32
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Release|x64.ActiveCfg = Release|x64
-+		{66914FF8-CFA3-3E63-9C5C-B4AD89497539}.Release|x64.Build.0 = Release|x64
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Debug|Win32.ActiveCfg = Debug|Win32
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Debug|Win32.Build.0 = Debug|Win32
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Debug|x64.ActiveCfg = Debug|x64
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Debug|x64.Build.0 = Debug|x64
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Release|Win32.ActiveCfg = Release|Win32
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Release|Win32.Build.0 = Release|Win32
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Release|x64.ActiveCfg = Release|x64
-+		{B7F671A4-A977-AB32-F46A-82427E32B3E9}.Release|x64.Build.0 = Release|x64
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Debug|Win32.ActiveCfg = Debug|Win32
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Debug|Win32.Build.0 = Debug|Win32
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Debug|x64.ActiveCfg = Debug|x64
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Debug|x64.Build.0 = Debug|x64
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Release|Win32.ActiveCfg = Release|Win32
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Release|Win32.Build.0 = Release|Win32
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Release|x64.ActiveCfg = Release|x64
-+		{41C310AA-2B52-EB9E-AF57-FE283CAE248D}.Release|x64.Build.0 = Release|x64
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Debug|Win32.ActiveCfg = Debug|Win32
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Debug|Win32.Build.0 = Debug|Win32
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Debug|x64.ActiveCfg = Debug|x64
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Debug|x64.Build.0 = Debug|x64
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Release|Win32.ActiveCfg = Release|Win32
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Release|Win32.Build.0 = Release|Win32
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Release|x64.ActiveCfg = Release|x64
-+		{5700034E-4135-90E2-F86C-B073FCF62515}.Release|x64.Build.0 = Release|x64
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Debug|Win32.ActiveCfg = Debug|Win32
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Debug|Win32.Build.0 = Debug|Win32
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Debug|x64.ActiveCfg = Debug|x64
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Debug|x64.Build.0 = Debug|x64
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Release|Win32.ActiveCfg = Release|Win32
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Release|Win32.Build.0 = Release|Win32
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Release|x64.ActiveCfg = Release|x64
++		{F6843FC4-FFE2-0771-157E-901358911F2D}.Release|x64.Build.0 = Release|x64
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Debug|Win32.ActiveCfg = Debug|Win32
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Debug|Win32.Build.0 = Debug|Win32
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Debug|x64.ActiveCfg = Debug|x64
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Debug|x64.Build.0 = Debug|x64
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Release|Win32.ActiveCfg = Release|Win32
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Release|Win32.Build.0 = Release|Win32
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Release|x64.ActiveCfg = Release|x64
++		{DB5783FC-4CCB-6BBF-4CB3-714536EC528D}.Release|x64.Build.0 = Release|x64
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Debug|Win32.ActiveCfg = Debug|Win32
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Debug|Win32.Build.0 = Debug|Win32
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Debug|x64.ActiveCfg = Debug|x64
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Debug|x64.Build.0 = Debug|x64
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Release|Win32.ActiveCfg = Release|Win32
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Release|Win32.Build.0 = Release|Win32
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Release|x64.ActiveCfg = Release|x64
++		{773B75A0-BFA4-D0D5-E0ED-2536A2C71612}.Release|x64.Build.0 = Release|x64
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Debug|Win32.ActiveCfg = Debug|Win32
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Debug|Win32.Build.0 = Debug|Win32
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Debug|x64.ActiveCfg = Debug|x64
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Debug|x64.Build.0 = Debug|x64
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Release|Win32.ActiveCfg = Release|Win32
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Release|Win32.Build.0 = Release|Win32
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Release|x64.ActiveCfg = Release|x64
++		{E2C0EC99-06E9-9C35-1C00-7CB324199F2B}.Release|x64.Build.0 = Release|x64
 +	EndGlobalSection
 +	GlobalSection(SolutionProperties) = preSolution
 +		HideSolutionNode = FALSE
@@ -64,7 +63,7 @@ Index: build/msw/wx_adv.vcxproj
 --- build/msw/wx_adv.vcxproj	(revision 0)
 +++ build/msw/wx_adv.vcxproj	(revision 0)
 @@ -0,0 +1,1884 @@
-+﻿<?xml version="1.0" encoding="utf-8"?>
++<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 +  <ItemGroup Label="ProjectConfigurations">
 +    <ProjectConfiguration Include="Debug|Win32">
@@ -1948,12 +1947,11 @@ Index: build/msw/wx_adv.vcxproj
 +  <ImportGroup Label="ExtensionTargets">
 +  </ImportGroup>
 +</Project>
-\ No newline at end of file
 Index: build/msw/wx_base.vcxproj
 ===================================================================
 --- build/msw/wx_base.vcxproj	(revision 0)
 +++ build/msw/wx_base.vcxproj	(revision 0)
-@@ -0,0 +1,3323 @@
+@@ -0,0 +1,3328 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 +  <ItemGroup Label="ProjectConfigurations">
@@ -2200,6 +2198,7 @@ Index: build/msw/wx_base.vcxproj
 +    <OutDir>.\..\..\lib\</OutDir>
 +    <IntDir>.\vc_mswud\base\$(PlatformName)\</IntDir>
 +    <TargetName>$(ProjectName).$(Platform).$(Configuration)</TargetName>
++    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
 +  </PropertyGroup>
 +  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 +    <OutDir>.\..\..\lib\</OutDir>
@@ -2306,6 +2305,10 @@ Index: build/msw/wx_base.vcxproj
 +      <OutputFile>..\..\lib\$(TargetName)$(TargetExt)</OutputFile>
 +      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
 +    </Lib>
++    <PreBuildEvent>
++      <Command>
++      </Command>
++    </PreBuildEvent>
 +  </ItemDefinitionGroup>
 +  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 +    <ClCompile>
@@ -5606,7 +5609,7 @@ Index: build/msw/wx_core.vcxproj
 +      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 +      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
 +      <FunctionLevelLinking>false</FunctionLevelLinking>
-+      <Optimization>MinSpace</Optimization>
++      <Optimization>Disabled</Optimization>
 +      <SuppressStartupBanner>true</SuppressStartupBanner>
 +      <WarningLevel>Level4</WarningLevel>
 +      <MinimalRebuild>true</MinimalRebuild>
@@ -5620,8 +5623,8 @@ Index: build/msw/wx_core.vcxproj
 +      <ObjectFileName>.\vc_mswud\$(PlatformName)\core\$(PlatformName)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
-+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
-+      <WholeProgramOptimization>true</WholeProgramOptimization>
++      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
++      <WholeProgramOptimization>false</WholeProgramOptimization>
 +    </ClCompile>
 +    <ResourceCompile>
 +      <Culture>0x0409</Culture>
@@ -13187,7 +13190,7 @@ Index: build/msw/wx_wxregex.vcxproj
 --- build/msw/wx_wxregex.vcxproj	(revision 0)
 +++ build/msw/wx_wxregex.vcxproj	(revision 0)
 @@ -0,0 +1,952 @@
-+﻿<?xml version="1.0" encoding="utf-8"?>
++<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 +  <ItemGroup Label="ProjectConfigurations">
 +    <ProjectConfiguration Include="Debug|Win32">
@@ -14139,4 +14142,3 @@ Index: build/msw/wx_wxregex.vcxproj
 +  <ImportGroup Label="ExtensionTargets">
 +  </ImportGroup>
 +</Project>
-\ No newline at end of file
