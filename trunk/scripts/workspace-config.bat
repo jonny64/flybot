@@ -17,7 +17,7 @@ rem any tool with name patch requires admin rights
 
 cd "%wxWidgetsDir%\build\msw\"
 call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
-devenv "wx.sln" "Win32" /rebuild "Debug|x64"
+devenv "wx.sln" /rebuild "Debug|x64"
 devenv "wx.sln" /rebuild "Debug|Win32"
 devenv "wx.sln" /rebuild "Release|x64"
 devenv "wx.sln" /rebuild "Release|Win32"

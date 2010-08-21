@@ -62,7 +62,7 @@ Index: build/msw/wx_adv.vcxproj
 ===================================================================
 --- build/msw/wx_adv.vcxproj	(revision 0)
 +++ build/msw/wx_adv.vcxproj	(revision 0)
-@@ -0,0 +1,1886 @@
+@@ -0,0 +1,1906 @@
 +﻿<?xml version="1.0" encoding="utf-8"?>
 +<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 +  <ItemGroup Label="ProjectConfigurations">
@@ -413,11 +413,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswunivu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivu\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivu\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivu\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_lib\$(PlatformName)\wxmswuniv29u_adv.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +    </ClCompile>
@@ -445,11 +445,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswunivu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivu\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivu\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivu\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_lib\$(PlatformName)\wxmswuniv29u_adv.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +    </ClCompile>
@@ -477,11 +477,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswunivud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivuddll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivuddll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivuddll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv291ud_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -523,11 +523,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswunivud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivuddll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivuddll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivuddll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv291ud_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -569,11 +569,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;NDEBUG;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswudll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswudll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw291u_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +    </ClCompile>
@@ -616,11 +616,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;NDEBUG;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswudll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswudll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswudll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw291u_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +    </ClCompile>
@@ -662,11 +662,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswu\$(PlatformName)\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswu\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>.\..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
@@ -697,11 +697,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswu\$(PlatformName)\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswu\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>.\..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
@@ -732,11 +732,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswunivu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivudll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivudll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivudll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv291u_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +    </ClCompile>
@@ -779,11 +779,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswunivu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;__WXMSW__;__WXUNIVERSAL__;NDEBUG;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivudll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivudll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivudll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmswuniv291u_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +    </ClCompile>
@@ -825,12 +825,12 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\adv\$(PlatformName)\</AssemblerListingLocation>
-+      <PrecompiledHeaderOutputFile>vc_mswud\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
++      <PrecompiledHeaderOutputFile>vc_mswud\$(PlatformName)\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswud\adv\$(PlatformName)\</ObjectFileName>
-+      <ProgramDataBaseFileName>.\..\..\lib\$(ProjectName).$(Platform).$(Configuration).pdb</ProgramDataBaseFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
++      <ProgramDataBaseFileName>.\..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
 +    <ResourceCompile>
@@ -842,7 +842,7 @@ Index: build/msw/wx_adv.vcxproj
 +    </Bscmake>
 +    <Lib>
 +      <SuppressStartupBanner>true</SuppressStartupBanner>
-+      <OutputFile>.\..\..\lib\$(ProjectName).$(Platform).$(Configuration)$(TargetExt)</OutputFile>
++      <OutputFile>.\..\..\lib\$(TargetName)$(TargetExt)</OutputFile>
 +    </Lib>
 +  </ItemDefinitionGroup>
 +  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -856,11 +856,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswud\$(PlatformName)\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswud\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>.\..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -888,11 +888,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswunivud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivud\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivud\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivud\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_lib\$(PlatformName)\wxmswuniv29ud_adv.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -919,11 +919,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswunivud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;__WXUNIVERSAL__;WXBUILDING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswunivud\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswunivud\wxprec_advlib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswunivud\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_lib\$(PlatformName)\wxmswuniv29ud_adv.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -951,11 +951,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswuddll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswuddll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw291ud_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -997,11 +997,11 @@ Index: build/msw/wx_adv.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_dll\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_USRDLL;DLL_EXPORTS;_DEBUG;__WXMSW__;WXBUILDING;WXUSINGDLL;WXMAKINGDLL_ADV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswuddll\adv\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswuddll\wxprec_advdll.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswuddll\adv\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\vc_dll\wxmsw291ud_adv_vc_custom.pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +    </ClCompile>
@@ -1030,6 +1030,26 @@ Index: build/msw/wx_adv.vcxproj
 +      <AdditionalLibraryDirectories>..\..\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
 +      <AdditionalDependencies>wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;wininet.lib;..\..\lib\vc_dll\wxmsw29ud_core.lib;..\..\lib\vc_dll\wxbase29ud.lib;%(AdditionalDependencies)</AdditionalDependencies>
 +    </Link>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
++    <ClCompile>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
++    </ClCompile>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
++    <ClCompile>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
++    </ClCompile>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
++    <ClCompile>
++      <AssemblerListingLocation>.\adv\$(PlatformName).($Configuration)\</AssemblerListingLocation>
++    </ClCompile>
++  </ItemDefinitionGroup>
++  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
++    <ClCompile>
++      <ObjectFileName>.\adv\$(PlatformName).($Configuration)\</ObjectFileName>
++    </ClCompile>
 +  </ItemDefinitionGroup>
 +  <ItemGroup>
 +    <ClCompile Include="..\..\src\common\animatecmn.cpp">
@@ -2288,11 +2308,11 @@ Index: build/msw/wx_base.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\$(PlatformName)\base\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\base\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswud\$(PlatformName)\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswud\$(PlatformName)\base\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\base\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
@@ -2326,11 +2346,11 @@ Index: build/msw/wx_base.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\$(PlatformName)\base\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\base\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswud\$(PlatformName)\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswud\$(PlatformName)\base\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\base\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
@@ -2453,11 +2473,11 @@ Index: build/msw/wx_base.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\base\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\base\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswu\$(PlatfomName)\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswu\base\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\base\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
@@ -2488,11 +2508,11 @@ Index: build/msw/wx_base.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\$(PlatformName)\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;wxUSE_GUI=0;wxUSE_BASE=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\base\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\base\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswu\$(PlatfomName)\wxprec_baselib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswu\base\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\base\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
@@ -5623,11 +5643,11 @@ Index: build/msw/wx_core.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\$(PlatformName)\core\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\core\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswud\core\$(PlatformName)\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswud\$(PlatformName)\core\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\core\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
@@ -5656,11 +5676,11 @@ Index: build/msw/wx_core.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswud;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;__WXMSW__;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\$(PlatformName)\core\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\core\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswud\core\$(PlatformName)\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswud\$(PlatformName)\core\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\core\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
@@ -6094,11 +6114,11 @@ Index: build/msw/wx_core.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\$(PlatformName)\core\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\core\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswu\core\$(PlatformName)\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswu\$(PlatformName)\core\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\core\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
@@ -6129,11 +6149,11 @@ Index: build/msw/wx_core.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\lib\vc_lib\mswu;..\..\include;..\..\src\tiff\libtiff;..\..\src\jpeg;..\..\src\png;..\..\src\zlib;..\..\src\regex;..\..\src\expat\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;__WXMSW__;NDEBUG;WXBUILDING;wxUSE_BASE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\$(PlatformName)\core\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\core\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>vc_mswu\core\$(PlatformName)\wxprec_corelib.pch</PrecompiledHeaderOutputFile>
 +      <PrecompiledHeader>Use</PrecompiledHeader>
 +      <PrecompiledHeaderFile>wx/wxprec.h</PrecompiledHeaderFile>
-+      <ObjectFileName>.\vc_mswu\$(PlatformName)\core\$(PlatformName)\</ObjectFileName>
++      <ObjectFileName>.\core\$(PlatformName).($Configuration)\</ObjectFileName>
 +      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
@@ -13788,10 +13808,10 @@ Index: build/msw/wx_wxregex.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\include;..\..\lib\vc_lib\mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\$(PlatformName)\wxregex\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\wxregex\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>.\vc_mswud\wxregex\$(PlatformName).$(Configuration)\wx_wxregex.pch</PrecompiledHeaderOutputFile>
-+      <ObjectFileName>.\vc_mswud\$(PlatformName)\wxregex\$(PlatformName)\</ObjectFileName>
-+      <ProgramDataBaseFileName>..\..\lib\$(ProjectName).$(Platform).$(Configuration).pdb</ProgramDataBaseFileName>
++      <ObjectFileName>.\wxregex\$(PlatformName).($Configuration)\</ObjectFileName>
++      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
 +      <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -13807,7 +13827,7 @@ Index: build/msw/wx_wxregex.vcxproj
 +    </Bscmake>
 +    <Lib>
 +      <SuppressStartupBanner>true</SuppressStartupBanner>
-+      <OutputFile>..\..\lib\$(ProjectName).$(Platform).$(Configuration)$(TargetExt)</OutputFile>
++      <OutputFile>..\..\lib\$(TargetName)$(TargetExt)</OutputFile>
 +      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
 +    </Lib>
 +  </ItemDefinitionGroup>
@@ -13821,10 +13841,10 @@ Index: build/msw/wx_wxregex.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\include;..\..\lib\vc_lib\mswud;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswud\$(PlatformName)\wxregex\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\wxregex\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>.\vc_mswud\wxregex\$(PlatformName).$(Configuration)\wx_wxregex.pch</PrecompiledHeaderOutputFile>
-+      <ObjectFileName>.\vc_mswud\$(PlatformName)\wxregex\$(PlatformName)\</ObjectFileName>
-+      <ProgramDataBaseFileName>..\..\lib\$(ProjectName).$(Platform).$(Configuration).pdb</ProgramDataBaseFileName>
++      <ObjectFileName>.\wxregex\$(PlatformName).($Configuration)\</ObjectFileName>
++      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc </AdditionalOptions>
 +      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
 +      <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -13840,7 +13860,7 @@ Index: build/msw/wx_wxregex.vcxproj
 +    </Bscmake>
 +    <Lib>
 +      <SuppressStartupBanner>true</SuppressStartupBanner>
-+      <OutputFile>..\..\lib\$(ProjectName).$(Platform).$(Configuration)$(TargetExt)</OutputFile>
++      <OutputFile>..\..\lib\$(TargetName)$(TargetExt)</OutputFile>
 +      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
 +    </Lib>
 +  </ItemDefinitionGroup>
@@ -13855,10 +13875,10 @@ Index: build/msw/wx_wxregex.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\include;..\..\lib\vc_lib\mswu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\$(PlatformName)\wxregex\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\wxregex\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>.\vc_mswu\wxregex\$(PlatformName).($Configuration)\wx_wxregex.pch</PrecompiledHeaderOutputFile>
-+      <ObjectFileName>.\vc_mswu\$(PlatformName)\wxregex\$(PlatformName)\</ObjectFileName>
-+      <ProgramDataBaseFileName>..\..\lib\$(ProjectName).$(Platform).$(Configuration).pdb</ProgramDataBaseFileName>
++      <ObjectFileName>.\wxregex\$(PlatformName).($Configuration)\</ObjectFileName>
++      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
 +      <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -13874,7 +13894,7 @@ Index: build/msw/wx_wxregex.vcxproj
 +    </Bscmake>
 +    <Lib>
 +      <SuppressStartupBanner>true</SuppressStartupBanner>
-+      <OutputFile>..\..\lib\$(ProjectName).$(Platform).$(Configuration)$(TargetExt)</OutputFile>
++      <OutputFile>..\..\lib\$(TargetName)$(TargetExt)</OutputFile>
 +      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
 +    </Lib>
 +  </ItemDefinitionGroup>
@@ -13889,10 +13909,10 @@ Index: build/msw/wx_wxregex.vcxproj
 +      <RuntimeTypeInfo>true</RuntimeTypeInfo>
 +      <AdditionalIncludeDirectories>..\..\include;..\..\lib\vc_lib\mswu;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 +      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_CRT_SECURE_NO_WARNINGS;__WXMSW__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-+      <AssemblerListingLocation>.\vc_mswu\$(PlatformName)\wxregex\$(PlatformName)\</AssemblerListingLocation>
++      <AssemblerListingLocation>.\wxregex\$(PlatformName).($Configuration)\</AssemblerListingLocation>
 +      <PrecompiledHeaderOutputFile>.\vc_mswu\wxregex\$(PlatformName).($Configuration)\wx_wxregex.pch</PrecompiledHeaderOutputFile>
-+      <ObjectFileName>.\vc_mswu\$(PlatformName)\wxregex\$(PlatformName)\</ObjectFileName>
-+      <ProgramDataBaseFileName>..\..\lib\$(ProjectName).$(Platform).$(Configuration).pdb</ProgramDataBaseFileName>
++      <ObjectFileName>.\wxregex\$(PlatformName).($Configuration)\</ObjectFileName>
++      <ProgramDataBaseFileName>..\..\lib\$(TargetName).pdb</ProgramDataBaseFileName>
 +      <AdditionalOptions> /EHsc /opt:ref /opt:icf </AdditionalOptions>
 +      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
 +      <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -13908,7 +13928,7 @@ Index: build/msw/wx_wxregex.vcxproj
 +    </Bscmake>
 +    <Lib>
 +      <SuppressStartupBanner>true</SuppressStartupBanner>
-+      <OutputFile>..\..\lib\$(ProjectName).$(Platform).$(Configuration)$(TargetExt)</OutputFile>
++      <OutputFile>..\..\lib\$(TargetName)$(TargetExt)</OutputFile>
 +      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
 +    </Lib>
 +  </ItemDefinitionGroup>
