@@ -19,8 +19,6 @@ void TFlybotAPI::Initialize(const BotInit *aInit)
     {
         ConfigPath = wxStandardPaths::Get().GetPluginsDir() + wxT("\\Settings\\");
     }
-    
-    wxGetApp().Dict.Load();
 }
 
 bool TFlybotAPI::SendPM(const wxString& cid, const wxString& msg)
