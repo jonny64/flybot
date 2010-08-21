@@ -5,9 +5,15 @@ rem cd to bat file directory: need when run from explorer
 cd /d %~dp0
 set wxWidgetsDir=..\wxWidgets
 
-copy /y "%wxWidgetsDir%\include\wx\msw\setup.h" "%wxWidgetsDir%\include\wx\msw\setup.h.bak"
-copy /y setup.h "%wxWidgetsDir%\include\wx\msw\setup.h"
-copy /y setup.h "%wxWidgetsDir%\include\wx\setup.h"
+cd "%wxWidgetsDir%"
+del .\build\msw\wx_adv.vcxproj
+del .\build\msw\wx_base.vcxproj
+del .\build\msw\wx_core.vcxproj
+del .\build\msw\wx_wxregex.vcxproj
+del .\build\msw\wx.sln
+del .\include\wx\setup.h
+rem any tool with name patch requires admin rights
+..\tools\patsh -p0 < ..\scripts\wxWidgets.2.9.1.vc2010.patch
 
 cd "%wxWidgetsDir%\build\msw\"
 call "C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"

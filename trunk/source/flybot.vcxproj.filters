@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{d7549960-0a0e-406c-aaae-a7557627267a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tray">
+      <UniqueIdentifier>{c3566666-3f4c-4648-86bb-ceebe3ba7acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{47cbfda9-d099-47c2-be98-c86c1bcc461c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{1f92247d-6766-4e21-a96b-f60532df7656}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Icons">
+      <UniqueIdentifier>{8a9747c3-a1df-47d7-a29f-c021d4604236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Install">
+      <UniqueIdentifier>{a4c341aa-5824-44fd-965d-dac27dc49acf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translation">
+      <UniqueIdentifier>{94afe126-ff9f-4023-b52a-ae50fb4064dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translation\Russian">
+      <UniqueIdentifier>{02352eb9-976d-4c68-8a29-cb32b92075bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translation\Albanian">
+      <UniqueIdentifier>{597d22fb-c77f-4f96-b111-3ba5736ef2bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{46ab9d5b-b7eb-41fd-85cc-68dd163fef10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{a9c6d1c7-da28-4b8e-8562-34eddb909ec3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Dictionary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DictionaryFSWatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="flybot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlybotAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlybotConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Phrase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdwx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wxFlybotDLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlybotTaskBarIcon.cpp">
+      <Filter>Source Files\Tray</Filter>
+    </ClCompile>
+    <ClCompile Include="wxLogBalloon.cpp">
+      <Filter>Source Files\Tray</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DictionaryFSWatcher.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlybotTaskBarIcon.h">
+      <Filter>Source Files\Tray</Filter>
+    </ClInclude>
+    <ClInclude Include="wxLogBalloon.h">
+      <Filter>Source Files\Tray</Filter>
+    </ClInclude>
+    <ClInclude Include="ChatBotAPI.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dictionary.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="flybot.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlybotAPI.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlybotConfig.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Phrase.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdwx.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInfo.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="wxFlybotDLL.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\scripts\setup.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="flybot.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ico\offline.ICO">
+      <Filter>Icons</Filter>
+    </None>
+    <None Include="..\ico\online.ICO">
+      <Filter>Icons</Filter>
+    </None>
+    <None Include="..\setup\flybot.nsi.template">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="..\setup\flybot.x86_64.nsi.template">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="..\setup\line.bmp">
+      <Filter>Install</Filter>
+    </None>
+    <None Include="..\Translation\Russian\Chatbot.mo">
+      <Filter>Translation\Russian</Filter>
+    </None>
+    <None Include="..\Translation\Russian\Chatbot.po">
+      <Filter>Translation\Russian</Filter>
+    </None>
+    <None Include="..\Translation\Russian\flydict.ini">
+      <Filter>Translation\Russian</Filter>
+    </None>
+    <None Include="..\Translation\Albanian\Chatbot.mo">
+      <Filter>Translation\Albanian</Filter>
+    </None>
+    <None Include="..\Translation\Albanian\Chatbot.po">
+      <Filter>Translation\Albanian</Filter>
+    </None>
+    <None Include="..\Translation\Albanian\flydict.ini">
+      <Filter>Translation\Albanian</Filter>
+    </None>
+    <None Include="..\scripts\BalloonsOnXP.patch">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\get-version-string.bat">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\post-build-release-x86_64.bat">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\post-build-release.bat">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\tag-2.9.0-multiplatform-support.patch">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\trunk-r63084-multiplatform-support.patch">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\update-revision.bat">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\version-patch.bat">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\scripts\workspace-config.bat">
+      <Filter>Scripts</Filter>
+    </None>
+    <None Include="..\tools\Astyle.bat">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="..\tools\AStyle.exe">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="..\tools\gawk.exe">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="..\tools\SubWCRev.exe">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="..\tools\verpatch.exe">
+      <Filter>Tools</Filter>
+    </None>
+    <None Include="..\setup\readme-flybot.txt" />
+  </ItemGroup>
+</Project>
