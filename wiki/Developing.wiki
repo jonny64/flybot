@@ -5,13 +5,11 @@
 
 Для сборки релиз конфигурации требуются
 
-  * [http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=8100 Дистрибутив] subversion от tigris.org
+  * Дистрибутив subversion для Windows например, [http://www.sliksvn.com/en/download sliksvn]
 
   * [http://nsis.sourceforge.net/Download NSIS]
 
-  * [http://www.poedit.net/download.php poEdit] - могут возникнуть зависания клиента, если забыть обновить файл локализации после определенного редактирования исходных текстов.
-
-   Для этого нужно открыть [http://flybot.googlecode.com/svn/trunk/Translation/Russian/Chatbot.po проект] в poEdit и нажать кнопку 'обновить' на панели инструментов.
+  * [http://www.poedit.net/download.php poEdit] - для редактирования файлов локализации (.po)
 
 Код [http://flybot.googlecode.com/svn/trunk здесь]. Нужная версия wxWidgets скачается с кодом.
   *  Накатите на папку wxWidgets
