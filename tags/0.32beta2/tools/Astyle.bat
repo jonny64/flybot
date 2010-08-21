@@ -1,0 +1,1 @@
+astyle --indent=spaces --brackets=break --indent-switches --indent-preprocessor --break-closing-brackets --pad-oper --unpad-paren --convert-tabs --fill-empty-lines --max-instatement-indent=79 ..\source\*.h ..\source\*.cpp
