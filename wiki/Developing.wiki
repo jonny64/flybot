@@ -21,7 +21,7 @@
 
   * Соберите wxWidgets (проект тут: build/msw/wx.sln). 
 
-    Последние два шага может выполнить простой [http://code.google.com/p/flybot/source/browse/trunk/scripts/workspace-config.bat скрипт] в папке с исходными текстами: 
+    Последние три шага может выполнить простой [http://code.google.com/p/flybot/source/browse/trunk/scripts/workspace-config.bat скрипт] в папке с исходными текстами: 
 {{{
   scripts\workspace-setup.bat
 }}}
