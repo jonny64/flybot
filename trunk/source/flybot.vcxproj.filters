@@ -159,9 +159,6 @@
     <None Include="..\Translation\Albanian\flydict.ini">
       <Filter>Translation\Albanian</Filter>
     </None>
-    <None Include="..\scripts\BalloonsOnXP.patch">
-      <Filter>Scripts</Filter>
-    </None>
     <None Include="..\scripts\get-version-string.bat">
       <Filter>Scripts</Filter>
     </None>
@@ -169,12 +166,6 @@
       <Filter>Scripts</Filter>
     </None>
     <None Include="..\scripts\post-build-release.bat">
-      <Filter>Scripts</Filter>
-    </None>
-    <None Include="..\scripts\tag-2.9.0-multiplatform-support.patch">
-      <Filter>Scripts</Filter>
-    </None>
-    <None Include="..\scripts\trunk-r63084-multiplatform-support.patch">
       <Filter>Scripts</Filter>
     </None>
     <None Include="..\scripts\update-revision.bat">
