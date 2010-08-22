@@ -8,6 +8,7 @@ static wxCriticalSection gBalloonUI;
 wxLogBalloon::wxLogBalloon(FlybotTaskBarIcon *tb)
 {
     m_taskBarIcon = tb;
+    wxLog::SetTimestamp(wxString("%c"));
 }
 
 void wxLogBalloon::DoLogStatus(const wxString& msg)

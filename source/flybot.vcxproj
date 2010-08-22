@@ -415,12 +415,9 @@ exit -2
     <None Include="..\Translation\Albanian\Chatbot.mo" />
     <None Include="..\Translation\Albanian\Chatbot.po" />
     <None Include="..\Translation\Albanian\flydict.ini" />
-    <None Include="..\scripts\BalloonsOnXP.patch" />
     <None Include="..\scripts\get-version-string.bat" />
     <None Include="..\scripts\post-build-release-x86_64.bat" />
     <None Include="..\scripts\post-build-release.bat" />
-    <None Include="..\scripts\tag-2.9.0-multiplatform-support.patch" />
-    <None Include="..\scripts\trunk-r63084-multiplatform-support.patch" />
     <None Include="..\scripts\update-revision.bat" />
     <None Include="..\scripts\version-patch.bat" />
     <None Include="..\scripts\workspace-config.bat" />
