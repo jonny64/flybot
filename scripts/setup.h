@@ -347,7 +347,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 (but can be safely disabled if you don't use it)
-#define wxUSE_CONSOLE_EVENTLOOP 1
+#define wxUSE_CONSOLE_EVENTLOOP 0
 
 // Set wxUSE_(F)FILE to 1 to compile wx(F)File classes. wxFile uses low level
 // POSIX functions for file access, wxFFile uses ANSI C stdio.h functions.
@@ -397,7 +397,7 @@
 //
 // Recommended setting: 1 but may be disabled if you are writing programs
 // running only in C locale anyhow
-#define wxUSE_XLOCALE       1
+#define wxUSE_XLOCALE       0
 
 // Set wxUSE_DATETIME to 1 to compile the wxDateTime and related classes which
 // allow to manipulate dates, times and time intervals. wxDateTime replaces the
@@ -528,13 +528,13 @@
 // Default is 1.
 //
 // Recommended setting: 1 unless you don't like the license terms (unlikely)
-#define wxUSE_APPLE_IEEE          1
+#define wxUSE_APPLE_IEEE          0
 
 // Joystick support class
 #define wxUSE_JOYSTICK            0
 
 // wxFontEnumerator class
-#define wxUSE_FONTENUM 1
+#define wxUSE_FONTENUM 0
 
 // wxFontMapper class
 #define wxUSE_FONTMAP 1
@@ -730,7 +730,7 @@
 #define wxUSE_BUTTON        1   // wxButton
 #define wxUSE_BMPBUTTON     0   // wxBitmapButton
 #define wxUSE_CALENDARCTRL  0   // wxCalendarCtrl
-#define wxUSE_CHECKBOX      1   // wxCheckBox
+#define wxUSE_CHECKBOX      0   // wxCheckBox
 #define wxUSE_CHECKLISTBOX  0   // wxCheckListBox (requires wxUSE_OWNER_DRAWN)
 #define wxUSE_CHOICE        0   // wxChoice
 #define wxUSE_COLLPANE      0   // wxCollapsiblePane
@@ -749,7 +749,7 @@
 #define wxUSE_LISTBOX       0   // wxListBox
 #define wxUSE_LISTCTRL      0   // wxListCtrl
 #define wxUSE_RADIOBOX      0   // wxRadioBox
-#define wxUSE_RADIOBTN      1   // wxRadioButton
+#define wxUSE_RADIOBTN      0   // wxRadioButton
 #define wxUSE_SCROLLBAR     0   // wxScrollBar
 #define wxUSE_SEARCHCTRL    0   // wxSearchCtrl
 #define wxUSE_SLIDER        0   // wxSlider
@@ -757,9 +757,9 @@
 #define wxUSE_SPINCTRL      0   // wxSpinCtrl
 #define wxUSE_STATBOX       0   // wxStaticBox
 #define wxUSE_STATLINE      0   // wxStaticLine
-#define wxUSE_STATTEXT      1   // wxStaticText
+#define wxUSE_STATTEXT      0   // wxStaticText
 #define wxUSE_STATBMP       0   // wxStaticBitmap
-#define wxUSE_TEXTCTRL      1   // wxTextCtrl
+#define wxUSE_TEXTCTRL      0   // wxTextCtrl
 #define wxUSE_TOGGLEBTN     0   // requires wxButton
 #define wxUSE_TREECTRL      0   // wxTreeCtrl
 
@@ -988,7 +988,7 @@
 // the other platforms, where the ids have the full int range, this shouldn't
 // be necessary.
 #ifdef __WXMSW__
-#define wxUSE_AUTOID_MANAGEMENT 1
+#define wxUSE_AUTOID_MANAGEMENT 0
 #else
 #define wxUSE_AUTOID_MANAGEMENT 0
 #endif
@@ -1234,13 +1234,13 @@
 // Use wxHTML-based help controller?
 #define wxUSE_WXHTML_HELP 0
 
-#define wxUSE_CONSTRAINTS 1
+#define wxUSE_CONSTRAINTS 0
                                 // 0 for no window layout constraint system
 
 #define wxUSE_SPLINES     0
                                 // 0 for no splines
 
-#define wxUSE_MOUSEWHEEL        1
+#define wxUSE_MOUSEWHEEL        0
                                 // Include mouse wheel support
 
 // Compile wxUIActionSimulator class?
