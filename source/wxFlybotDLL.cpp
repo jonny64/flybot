@@ -94,6 +94,11 @@ void wxFlybotDLL::OpenLog()
     }
 }
 
+bool wxFlybotDLL::LogFileExists()
+{
+    return wxFileExists(GetLogFilename());
+}
+
 void wxFlybotDLL::HandlePM(UserInfo& userinfo, wxString& msg)
 {
     // do not process favourites
