@@ -27,7 +27,7 @@ public:
     void SwitchState();
     bool GetEnabledState();
     bool OnInit();
-	bool LogFileExists();
+    bool LogFileExists();
     void ReloadDictionary();
     void OpenDictionary();
     void OpenLog();
