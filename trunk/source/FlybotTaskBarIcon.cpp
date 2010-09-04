@@ -169,8 +169,8 @@ wxMenu *FlybotTaskBarIcon::CreatePopupMenu()
     
     menu->Append(wxID_OPEN_LOGFILE, _("Open &log"));
     menu->Append(wxID_OPEN_DICT, _("&Open dictionary"));
-
-	menu->Enable(wxID_OPEN_LOGFILE, wxGetApp().LogFileExists());
+    
+    menu->Enable(wxID_OPEN_LOGFILE, wxGetApp().LogFileExists());
     
     return menu;
 }
