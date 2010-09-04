@@ -43,7 +43,7 @@ void Session::ProcessFlags(const Phrase &selectedPhrase)
     if (flags.Freq(DICTIONARY_LOG_CHAR) > 0)
     {
         wxString logMessage = selectedPhrase.ToString();
-        logMessage  += message.empty() ? wxEmptyString : wxT(" => ") + message;
+        logMessage  += message.empty() ? wxEmptyString : wxT("   ") + message;
         wxLogStatus(logMessage);
     }
     
