@@ -96,7 +96,7 @@ msgid ""
 "invalid regular expression:\n"
 "%s"
 msgstr ""
-"синтаксис регулярного выражения:\n"
+"неверное регулярное выражение:\n"
 "%s"
 
 #: e:\Code\flybot-2.9.1\source/Session.cpp:22
