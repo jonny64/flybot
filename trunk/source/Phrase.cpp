@@ -2,7 +2,7 @@
 #include <wx/regex.h>
 #include "Phrase.h"
 
-static bool ToPriority(const wxString str, int *buf)
+static bool ToPriority(const wxString &str, int *buf)
 {
     long converted = 0;
     
