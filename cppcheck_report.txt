@@ -1,0 +1,89 @@
+source/Phrase.h:17:5: warning: Member variable 'Phrase::m_valid' is not initialized in the constructor. [uninitMemberVar]
+    Phrase() : MatchExpr(wxEmptyString), Answer(wxEmptyString), Flags(wxEmptyString), ErrorMsg(wxEmptyString) {}
+    ^
+source/Phrase.h:17:5: warning: Member variable 'Phrase::Priority' is not initialized in the constructor. [uninitMemberVar]
+    Phrase() : MatchExpr(wxEmptyString), Answer(wxEmptyString), Flags(wxEmptyString), ErrorMsg(wxEmptyString) {}
+    ^
+source/wxFlybotDLL.h:13:1: style: The class 'wxFlybotDLL' does not have a constructor although it has private member variables. [noConstructor]
+class wxFlybotDLL: public wxApp
+^
+source/Phrase.h:16:5: style: Class 'Phrase' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    Phrase(const wxString &line);
+    ^
+source/wxLogBalloon.h:18:5: style: Class 'wxLogBalloon' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    wxLogBalloon(FlybotTaskBarIcon *);
+    ^
+source/UserInfo.h:12:5: style: Class 'UserInfo' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    UserInfo(WCHAR*);
+    ^
+source/Session.h:17:5: style: Class 'Session' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+    Session(UserInfo&);
+    ^
+source/Dictionary.cpp:64:19: style: Variable 'line' is assigned a value that is never used. [unreadVariable]
+    wxString line = wxT("");
+                  ^
+source/Dictionary.cpp:115:21: style: Variable 'answer' is assigned a value that is never used. [unreadVariable]
+    wxString answer = wxEmptyString;
+                    ^
+source/wxFlybotDLL.h:40:1: error: There is an unknown macro here somewhere. Configuration is required. If DECLARE_APP is a macro then please configure it. [unknownMacro]
+DECLARE_APP(wxFlybotDLL)
+^
+source/Session.cpp:15:5: performance: Variable 'm_userinfo' is assigned in constructor body. Consider performing initialization in initialization list. [useInitializationList]
+    m_userinfo = userinfo;
+    ^
+source/Session.cpp:13:28: style: Parameter 'userinfo' can be declared with const [constParameter]
+Session::Session(UserInfo& userinfo)
+                           ^
+source/UserInfo.h:14:14: style:inconclusive: Technically the member function 'UserInfo::operator[]' can be const. [functionConst]
+    wxString operator[](const wxString&);
+             ^
+source/UserInfo.cpp:34:20: note: Technically the member function 'UserInfo::operator[]' can be const.
+wxString UserInfo::operator[](const wxString& key)
+                   ^
+source/UserInfo.h:14:14: note: Technically the member function 'UserInfo::operator[]' can be const.
+    wxString operator[](const wxString&);
+             ^
+source/UserInfo.h:16:10: style:inconclusive: Technically the member function 'UserInfo::Favourite' can be const. [functionConst]
+    bool Favourite();
+         ^
+source/UserInfo.cpp:49:16: note: Technically the member function 'UserInfo::Favourite' can be const.
+bool UserInfo::Favourite()
+               ^
+source/UserInfo.h:16:10: note: Technically the member function 'UserInfo::Favourite' can be const.
+    bool Favourite();
+         ^
+source/UserInfo.cpp:6:5: style: Instance of 'UserInfo' object is destroyed immediately. [unusedScopedObject]
+    UserInfo();
+    ^
+source/Session.cpp:64:0: style: The function 'Entry' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:16:0: style: The function 'GetEnabledState' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:102:0: style: The function 'HandlePM' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:97:0: style: The function 'LogFileExists' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:124:0: style: The function 'OnExit' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:27:0: style: The function 'OnInit' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:76:0: style: The function 'OpenDictionary' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:89:0: style: The function 'OpenLog' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:68:0: style: The function 'ReloadDictionary' is never used. [unusedFunction]
+
+^
+source/wxFlybotDLL.cpp:21:0: style: The function 'SwitchState' is never used. [unusedFunction]
+
+^
+nofile:0:0: information: Cppcheck cannot find all the include files (use --check-config for details) [missingInclude]
+
